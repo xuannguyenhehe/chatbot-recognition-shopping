@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+        <meta charset="utf-8">
+        <title>Chat | Hume ChatBot</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin &amp; Dashboard Template" name="description">
+        <meta content="Chatbot Hume" name="author">
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="https://cdn-icons.flaticon.com/png/512/1698/premium/1698535.png?token=exp=1643255342~hmac=eed3a453aadca58b5a9d5e788923a71c">
+
+        <!-- Bootstrap Css -->
+        <link href="css/bootstrap.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+        <!-- Icons Css -->
+        <link href="css/icons.css" rel="stylesheet" type="text/css">
+        <!-- App Css-->
+        <link href="css/app.css" id="app-style" rel="stylesheet" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet"> 
+        <script src="https://cdn.rawgit.com/showdownjs/showdown/1.7.4/dist/showdown.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+        
+        <link href="css/toarst.min.css" id="app-style" rel="stylesheet" type="text/css">
+    </head>
+
+    <body data-sidebar="dark" class="">
+        <div id="preloader">
+            <div id="status">
+                <div class="spinner-chase">
+                    <div class="chase-dot"></div>
+                    <div class="chase-dot"></div>
+                    <div class="chase-dot"></div>
+                    <div class="chase-dot"></div>
+                    <div class="chase-dot"></div>
+                    <div class="chase-dot"></div>
+                </div>
+            </div>
+        </div>
+
+    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="#" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="image/logo.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="image/logo-dark.png" alt="" height="17">
+                                </span>
+                            </a>
+
+                            <a href="#" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="image/logo-light.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="image/logo.png" alt="" height="50">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+
+
+                    </div>
+
+                    <div class="d-flex">
+
+                        <div class="dropdown d-inline-block d-lg-none ms-2">
+                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-search-dropdown">
+        
+                                <form class="p-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
+                                <i class="bx bx-fullscreen"></i>
+                            </button>
+                            <button onclick="showHistoryLogs()" type="button" class="btn btn-primary waves-effect waves-light">
+                                <i class="bx bx-download  font-size-16 align-middle me-2"></i> Tải lịch sử nhật ký
+                            </button>
+                            <button onclick="resetHistoryLogs()" type="button" class="btn btn-light waves-effect waves-light">
+                                <i class="bx bx-reset  font-size-16 align-middle me-2"></i> Đặt lại lịch sử nhật ký
+                            </button>
+                        </div>
+
+                        
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="image/profile-img.png" alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1" key="t-henry">User</span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item text-danger" href="#"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu mm-active">
+
+                <div data-simplebar="init" class="h-100 mm-show"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: -17px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 0px;">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu" class="mm-active">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled mm-show" id="side-menu">
+                            <div id="message_template" style="display:none">
+                                  {{#if message.isTyping}}
+                                  <div class="wrapper-typing-indicator">
+                                    <div class="typing-indicator-custom">
+                                      <div class="iball"></div>
+                                      <div class="iball"></div>
+                                      <div class="iball"></div>
+                                      <div class="iball"></div>
+                                    </div>
+                                  </div>
+                                  {{/if}}
+                                  {{{message.html}}}
+                                            </div>
+
+                            <li class="menu-title" key="t-apps">Apps</li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-receipt"></i>
+                                    <span key="t-ecommerce">Nhận diện ID_product</span>
+                                </a>
+                                <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                    <li><a href="#" key="t-products">Nhận diện hình ảnh sản phẩm khách hàng gửi </a></li>
+                                    <li><a href="#" key="t-product-detail">Nhận diện tên đầy đủ của sản phẩm</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-briefcase-alt-2"></i>
+                                    <span key="t-ecommerce">Cung cấp thông tin sản phẩm</span>
+                                </a>
+                                <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                    <li><a href="#" key="t-products">Hình ảnh sản phẩm</a></li>
+                                    <li><a href="#" key="t-product-detail">Màu sắc</a></li>
+                                    <li><a href="#" key="t-product-detail">Size</a></li>
+                                    <li><a href="#" key="t-product-detail">Giá</a></li>
+                                    <li><a href="#" key="t-product-detail">Chất liệu</a></li>
+                                    <li><a href="#" key="t-product-detail">Bảng size</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-store"></i>
+                                    <span key="t-ecommerce">Cung cấp thông tin shop</span>
+                                </a>
+                                <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                    <li><a href="#" key="t-products">Địa chỉ shop</a></li>
+                                    <li><a href="#" key="t-product-detail">Phí ship</a></li>
+                                    <li><a href="#" key="t-product-detail">Thời gian giao hàng</a></li>
+                                    <li><a href="#" key="t-product-detail">Chính sách kiểm tra hàng</a></li>
+                                    <li><a href="#" key="t-product-detail">Chính sách đổi trả hàng</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bxs-user-detail"></i>
+                                    <span key="t-ecommerce">Tư vấn Size</span>
+                                </a>
+                                <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                    <li><a href="#" key="t-products">Khách cần tư vấn size từ shop</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-task"></i>
+                                    <span key="t-ecommerce">Đặt hàng</span>
+                                </a>
+                                <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                    <li><a href="#" key="t-products">Hỏi các thông tin sản phẩm đặt hàng</a></li>
+                                    <li><a href="#" key="t-product-detail">Hỏi thông tin sdt,địa chỉ giao hàng</a></li>
+                                    <li><a href="#" key="t-product-detail">Lựa chọn phương thức thanh toán</a></li>
+                                    <li><a href="#" key="t-product-detail">Xác nhận thông tin đơn hàng</a></li>
+                                    <li><a href="#" key="t-product-detail">Lưu thông tin khách hàng</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-task"></i>
+                                    <span key="t-ecommerce">Đặt hàng nhiều sản phẩm</span>
+                                </a>
+                                <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                    <li><a href="#" key="t-products">Khách hỏi thông tin nhiều sản phẩm trong cùng một cuộc hội thoại</a></li>
+                                    <li><a href="#" key="t-product-detail">Trường hợp đặt nhiều sản phẩm khác nhau cùng một size</a></li>
+                                    <li><a href="#" key="t-product-detail">Trường hợp khách đặt các size khác nhau 
+                                        cho các sản phẩm khác nhau</a></li>
+                                    <li><a href="#" key="t-product-detail">Trường hợp đặt hàng cùng một sản 
+                                        phẩm nhưng các size khác nhau</a></li>
+                                    <li><a href="#" key="t-product-detail">Trường hợp khách chỉ chốt một sản 
+                                        phẩm trong số nhiều sản phẩm 
+                                        khách đã hỏi thông tin</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-task"></i>
+                                    <span key="t-ecommerce">Gợi ý tiếp tục mua hàng</span>
+                                </a>
+                                <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                    <li><a href="#" key="t-products">Không kèm sản phẩm gợi ý</a></li>
+                                    <li><a href="#" key="t-product-detail">Kèm sản phẩm gợi ý</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Sidebar -->
+                </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 1192px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 657px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Chatbot</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">TMT</a></li>
+                                            <li class="breadcrumb-item active">Chat</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="d-lg-flex">    
+                            <div class="col-xl-2"> </div>
+                            <div class="col-xl-8">
+                            <div class="w-100 user-chat">
+                                <div class="card">
+                                    <div class="p-4 border-bottom ">
+                                        <div class="row">
+                                            <div class="d-flex">
+                                                <!-- <div class="col-md-1">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <img class="rounded avatar-sm rounded-circle " src="image/bot_avatar.png" alt="Generic placeholder image">
+                                                </div>
+                                            </div> -->
+                                                <div class="col-md-4">
+                                                    <h4 class="font-size-18 mb-1" style="margin-top: 4px;font-weight:600">Tư vấn Hume</h4>
+                                                    <p class="text-muted mb-0"><i style="padding-bottom:3px" class="mdi mdi-circle text-success align-middle me-1"></i>Online</span></p>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <ul class="list-inline user-chat-nav text-end mb-0">
+                                                    
+        
+                                                        <li class="list-inline-item">
+                                                            <div class="dropdown">
+                                                                <button class="btn nav-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="bx bx-dots-horizontal-rounded"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                    <a class="dropdown-item" href="#">Action</a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                    </div>
+    
+    
+                                    <div>
+                                        <div id="message_window" class="chat-conversation p-3">
+                                            <ul class="list-unstyled mb-0" data-simplebar="init" id="message_window_ul">
+                                                <div id="message_list" class="simplebar-content" style="padding: 0px;">
+                                                <li> 
+                                                    <div class="chat-day-title">
+                                                        <span class="title">Hôm nay 
+                                                            <script>                
+                                                            let hours = new Date().getHours()
+                                                            let minutes = new Date().getMinutes();
+                                                            document.write(hours+`:`+(minutes > 10 ? minutes:`0`+minutes))
+                                                        </script></span>
+                                                    </div>
+                                                </li>
+                                                <!-- <li>
+                                                    <div class="conversation-list">
+                                                        <div class="dropdown">
+    
+                                                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                              </a>
+
+                                                        </div>
+                                                        
+                                                        <div class="ctext-wrap">
+                                                            
+                                                            <p>
+                                                                Xin chào, mình là TMT Intelligent Chatbot. Bạn cần mình giúp gì nè ?
+                                                            </p>
+                                                            <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i> 10:00</p>
+                                                        </div>
+                                                    
+                                                        
+                                                    </div>
+                                                </li>
+    
+                                                <li class="right">
+                                                    <div class="conversation-list">
+                                                        <div class="dropdown">
+    
+                                                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                              </a>
+
+                                                        </div>
+                                                        <div class="ctext-wrap">
+                                                            
+                                                            <p>
+                                                                Khách mới cần tư vấn
+                                                            </p>
+    
+                                                            <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i> 10:02</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <div class="conversation-list">
+                                                        <div class="dropdown">
+    
+                                                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                              </a>
+
+                                                        </div>
+                                                        <div class="ctext-wrap">
+                                                            
+                                                            <p>
+                                                                Khách mới cần tư vấn
+                                                            </p>
+                                                            
+                                                            <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i> 10:06</p>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </li>
+    
+                                                <li class="ctext-wrap">
+                                                    <div class="conversation-list">
+                                                        <div class="dropdown">
+    
+                                                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                              </a>
+
+                                                        </div>
+                                                        <div class="ctext-wrap">
+                                                            
+                                                            <p>Khách mới cần tư vấn</p>
+                                                            <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i> 10:06</p>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </li>
+    
+                                                <li class="right">
+                                                    <div class="conversation-list">
+                                                        <div class="dropdown">
+    
+                                                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                              </a>
+
+                                                        </div>
+                                                        <div class="ctext-wrap">
+                                                            
+                                                            <p>
+                                                                Khách mới cần tư vấn
+                                                            </p>
+    
+                                                            <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i> 10:07</p>
+                                                        </div>
+                                                    </div>
+                                                </li> -->
+                                                
+                                                
+                                            </div></ul>
+                                            <div class="main-elements" id="message_slider_template">
+                                                <div class="carousel-mask" id="mask-{{{message.resultSliderId}}}">
+                                                  <div class="carousel-items" id="wrapper-{{{message.resultSliderId}}}">
+                                                  </div>
+                                                </div>
+                                              </div>
+                                        </div>
+                                        
+                                        <div class="p-3 chat-input-section">
+                                            <div style="height:150px;" id="image_input" >
+                                                
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col">
+                                                    
+                                                    <div class="position-relative">
+                                                        <input onkeyup="stoppedTyping()" id="messenger_input" type="text" class="form-control chat-input" placeholder="Nhập tin nhắn và ấn [ENTER] để gửi" value="">
+                                                        <div class="chat-input-links" id="tooltip-container">
+                                                            <ul class="list-inline mb-0">
+                                                                <li class="list-inline-item" id="image-icon"><a href="javascript: void(0);" title="Images"><i class="mdi mdi-file-image-outline"></i></a></li>
+                                                                    <input accept="image/*" type="file" id="image-input" name="image-input" style="display: none;" accept="image/png*"
+                                                                      multiple>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <button id="button_submit" type="submit" class="btn btn-primary btn-rounded chat-send w-md waves-effect waves-light"><span class="d-none d-sm-inline-block me-2">Trả lời</span> <i class="mdi mdi-send"></i></button>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="col-xl-2"> </div>
+
+                        </div>
+                        <!-- end row -->
+                        
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+        <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="icon/typing_indicator.js"></script>
+        
+        <script src="js/bootstrap.js"></script>
+        <script src="js/metisMenu.js"></script>
+        <script src="js/toarst.min.js"></script>
+        <script src="js/simplebar.js"></script>
+        <script src="js/waves.js"></script>
+        <script src="js/app.js"></script>
+        <script src="client.js"></script>
+        <script>
+            document.getElementById('message_window_ul').setAttribute("style","height:"+String((window.innerHeight-350)*1)+"px");
+            $('#image_input').hide()
+            function stoppedTyping() {
+                if (document.getElementById("messenger_input").value === "" && document.getElementById("image_input").children.length === 0) {
+                  $('#button_submit').attr("disabled", true);
+                } else {
+                  $('#button_submit').attr("disabled", false);
+                }
+              }
+            stoppedTyping()
+            $("#messenger_input").focus();
+            $("#messenger_input").on('keyup', function (e) {
+                if ((e.key === 'Enter' || e.keyCode === 13) && $("#messenger_input").val() !== '') {
+                    $('#button_submit').click()
+                    $("#messenger_input").val('')
+                }
+            });
+            $('#button_submit').click(function(){
+                messenger_input = $('#messenger_input').val()
+                Botkit.send(messenger_input)
+                let id = + new Date()
+                let hours = new Date().getHours()
+                let minutes = new Date().getMinutes()
+                let conversation_box = $("#message_list")
+                if(document.getElementById("image_input").children.length === 0){
+                conversation_box.append(`<li id="`+id+`" class="right last-chat">
+                    <div class="chat-avatar-user">
+                        <img src="image/profile-img.png"  class="img-thumbnail rounded-circle avatar-sm">
+                    </div>
+                    <div class="conversation-list">
+                        <div class="ctext-wrap">
+                            
+                            <p class="item_message item_message_user">
+                                `+messenger_input+`
+                            </p>
+
+                            <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i>`+hours+`:`+(minutes > 10 ? minutes:`0`+minutes)+`</p>
+                        </div>
+                    </div>
+                </li>`);
+                }else{
+
+                    image_list =''
+                    $('#image_input').hide()
+                    image_number = document.getElementById("image_input").children.length
+                    for(let m=0;m<image_number;m++){
+                        let new_image = document.getElementById("image_input").children[m]
+                        new_image.style.width = String(50/image_number)+'%'
+                        new_image.style.maxHeight =''
+                        image_list+=new_image.outerHTML
+                    } 
+                    document.getElementById("image_input").innerHTML=''
+                    conversation_box.append(`<li id="`+id+`" class="right last-chat">
+                        <div class="chat-avatar-user">
+                            <img src="image/profile-img.png"  class="img-thumbnail rounded-circle avatar-sm">
+                        </div>
+                        <div class="conversation-list">
+                            <div class="ctext-wrap">
+                                `+image_list+`
+                                <p class="item_message item_message_user">
+                                    `+messenger_input+`
+                                </p>
+    
+                                <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i>`+hours+`:`+(minutes > 10 ? minutes:`0`+minutes)+`</p>
+                            </div>
+                        </div>
+                    </li>`);
+                }
+
+
+
+                document.getElementById(id).scrollIntoView();
+                $("#messenger_input").val('')
+                
+
+              });
+        </script>
+        <script>
+            function resetHistoryLogs() {
+                toastr["success"]("Success.")
+              // Clear all the History Logs
+              localStorage.clear();
+              console.log("RESET");
+            };
+        
+            
+            function showHistoryLogs() {
+                toastr["success"]("Success.")
+                userID = Botkit.showUserID();
+                var new_conversation = "\n******** Conversation: Khách " + userID + " ********\n";
+                var historyChat = Botkit.showHistoryChatChat();
+                historyChat = new_conversation + historyChat;
+                console.log("History");
+                message_list = document.getElementsByClassName("item_message")
+                write_text = ''
+                for (let i = 0; i < message_list.length; i++) {
+                    if (message_list[i].className.includes('_user')){
+                        if(message_list[i].tagName === 'IMG'){
+                            text = message_list[i].textContent.trim()
+                            write_text = 'User '+userID+':    IMAGE is here\n'
+                        }else{
+                            text = message_list[i].textContent.trim()
+                            write_text = 'User '+userID+':    '+text+'\n'
+                        }
+                    }else
+                    if (message_list[i].className.includes('_bot')){
+                        if(message_list[i].tagName === 'IMG'){
+                            text = message_list[i].textContent.trim()
+                            write_text = 'Bot '+" ".repeat(userID.length+1)+':    IMAGE is here\n'
+                        }else{
+                            text = message_list[i].textContent.trim()
+                            write_text = 'Bot '+" ".repeat(userID.length+1)+':    '+text+'\n'
+                        }
+                    }
+                    historyChat += write_text
+
+                } 
+                
+
+                
+                // save data to localStorage to append historyChat
+
+                myStorage = window.localStorage;
+                historyChat = myStorage.getItem("historyChat") + "\n" + historyChat;
+                userID_ = myStorage.getItem("userID") + "\n" + historyChat;
+                myStorage.setItem('userID', userID);
+                myStorage.setItem('historyChat', historyChat);
+                console.log('historyChat: ', historyChat);
+
+
+
+                localStorage.setItem('historyChat',historyChat)
+                var pom = document.createElement('a');
+                pom.setAttribute('href', 'data:text/plain;charset=utf-8,' +
+                    encodeURIComponent(historyChat));
+
+                pom.setAttribute('download', "historyChat.txt");
+
+                pom.style.display = 'none';
+                document.body.appendChild(pom);
+
+                pom.click();
+
+                document.body.removeChild(pom);
+
+            }
+              
+        
+              
+          </script>
+    
+
+</body></html>

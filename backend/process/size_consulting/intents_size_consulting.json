@@ -1,0 +1,401 @@
+{
+    "intents": [
+        {
+            "tag": "greetings",
+            "patterns": ["hi", "hello", "xin chào", "alo", "chào", "alo shop", "có ai không"],
+            "responses": ["Hi chị, chị cần em tư vấn mẫu nào ạ", "em giúp được gì cho chị"]
+        },
+        {
+            "tag": "request_material",
+            "patterns": ["Vai gi vayé", "vải gì", "chất vải gì", "chất vải", "Mình muốn biết mẫu này chất gì?"],
+            "responses": [],
+            "condition": {
+                "request_material_dont_have_product": {
+                    "product_name": 0
+                },
+                "request_material_have_product": {
+                    "product_name": 1
+                }
+            }
+        },
+        {
+            "tag": "request_material_dont_have_product",
+            "patterns": [],
+            "responses": ["Chị quan tâm sản phẩm nào ạ"],
+            "condition": {
+                "request_material": {}
+            }
+        },
+        {
+            "tag": "request_material_have_product",
+            "patterns": [],
+            "responses": ["(loop){product_name} vải là cotton Hàn ạ", "(loop){product_name} chất mát mịn dễ mặc, k đổ lông"],
+            "condition": {}
+        },
+        {
+            "tag": "ship_fee",
+            "patterns": ["Phí ship hà nội bn ạ", "phí ship", "ship quận 10 bao nhiêu", "ship bn"],
+            "responses": ["Dạ phí ship tầm 20-30k tùy khu vực ạ"]
+        },
+        {
+            "tag": "shop_address",
+            "patterns": ["địa chỉ của shop ở đâu", "cửa hàng của shop ở đâu vậy", "shop ở đâu", "địa chỉ của shop là gì á", "shop ở hcm hay hn", "shop có cửa hàng ở hcm ko"],
+            "responses": ["Địa chỉ của shop ở Đường 19/5, Tây Thạnh, Tân Phú, Thành phố Hồ Chí Minh a."]
+        },
+        {
+            "tag": "ship_time",
+            "patterns": ["bao lâu nhận được hàng", "ship hn bao lâu", "ship bao lâu", "ship hcm khi nào có", "ship nhanh ko shop"],
+            "responses": ["Tầm 3-4 ngày mình nhận được hàng ạ"]
+        },
+        {
+            "tag": "request_return_policy",
+            "patterns": ["Nếu ktra hàng k ưng thì trả ship thôi đc k shop", "được đổi trả k" ,"được trả hàng không"],
+            "responses": ["Dạ shop hỗ trợ đổi trả sản phẩm trong vòng 3 đến 5 ngày, nếu không vừa size, sản phẩm bị lỗi (giữ sản phẩm sạch và chưa qua sử dụng) bạn sẽ đổi hoặc trả sản phẩm mà không tốn phí."]
+        },
+        {
+            "tag": "request_policy",
+            "patterns": ["có được kiểm tra hàng k shop", "được ktra hàng trước khi nhận k shop" ,"được kiểm tra hàng không ạ"],
+            "responses": ["Mình được kiểm tra hàng trước khi nhận ạ."]
+        },
+        {
+            "tag": "ask_price",
+            "patterns": ["Bộ này bn vậy shop?", "này bao nhiêu", "giá bao nhiêu", "giá bn", "bn vậy shop", "giá bn vậy"],
+            "responses": [],
+            "condition": {
+                "ask_price_dont_have_product": {
+                    "product_name": 0
+                },
+                "ask_price_have_product": {
+                    "measure":{
+                        "height": 0,
+                        "weight": 0
+                    }
+                },
+                "size_consulting_dont_have_weight": {
+                    "measure":{
+                        "height": 1,
+                        "weight": 0
+                    }
+                },
+                "size_consulting_dont_have_height": {
+                    "measure":{
+                        "height": 0,
+                        "weight": 1
+                    }
+                },
+                "ask_price_have_height_weight": {
+                    "measure":{
+                        "height": 1,
+                        "weight": 1
+                    }
+                }
+            }
+        },
+        {
+            "tag": "ask_price_have_product",
+            "patterns": [],
+            "responses": [["(loop)Hi chị mẫu {product_name} có giá là {price}k. Mẫu có size {size_list}.", "*Được kt hàng trước khi nhận ạ.*Chị cho em xin chiều cao cân nặng để tư vấn size phù hợp cho mình nhé"]],
+            "condition": {
+                "request_size_consulting": {}
+            }
+        },
+        {
+            "tag": "ask_price_have_height_weight",
+            "patterns": [],
+            "responses": [["(loop)Hi chị mẫu {product_name} có giá là {price}k.*Chị cho em xin số điện thoại và địa chỉ để Shop lên đơn cho mình nhé."]],
+            "condition": {
+                "order": {}
+            }
+        },
+        {
+            "tag": "ask_price_dont_have_product",
+            "patterns": [],
+            "responses": ["chị quan tâm sản phẩm nào"],
+            "condition": {
+                "ask_price": {}
+            }
+        },
+        {
+            "tag": "ask_available",
+            "patterns": ["còn ko", "còn không", "đầm caro còn không", "set xanh còn ko", "có size L ko", "còn size S ko", "đầm caro còn size M ko", "có size gì", "còn size gì", "còn L ko", "còn M không"],
+            "responses": [],
+            "condition": {
+                "ask_available_dont_have_product": {
+                    "product_name": 0
+                },
+                "ask_available_have_product": {
+                    "consulting_size": 0
+                },
+                "inform_size": {
+                    "consulting_size": 1
+                }
+            }
+        },
+        {
+            "tag": "ask_available_dont_have_product",
+            "patterns": [],
+            "responses": ["chị quan tâm sản phẩm nào"],
+            "condition": {
+                "ask_available": {}
+            }
+        },
+        {
+            "tag": "ask_available_have_product",
+            "patterns": [],
+            "responses": ["Mẫu {product_name} có size {size_list}.*Chị cho em xin chiều cao cân nặng để tư vấn size phù hợp cho mình nhé"],
+            "condition": {
+                "ask_available_have_product": {
+                    "measure":{
+                        "height": 0,
+                        "weight": 0
+                    }
+                },
+                "size_consulting_dont_have_weight": {
+                    "measure":{
+                        "height": 1,
+                        "weight": 0
+                    }
+                },
+                "size_consulting_dont_have_height": {
+                    "measure":{
+                        "height": 0,
+                        "weight": 1
+                    }
+                },
+                "size_consulting": {
+                    "measure":{
+                        "height": 1,
+                        "weight": 1
+                    },
+                    "consulting_size": 0
+                },
+                "inform_size": {
+                    "measure":{
+                        "height": 1,
+                        "weight": 1
+                    },
+                    "consulting_size": 1
+                }
+            }
+        },
+        {
+            "tag": "inform_size",
+            "patterns": [],
+            "responses": ["Mẫu {product_name} có size {size_list} ạ"],
+            "condition": {
+                "order": {}
+            }
+        },
+        {
+            "tag": "request_size_consulting",
+
+            "patterns": [" Mình cao 1m6 nặng 45kg thì mặc sz gì shop", "mặc size gì", "size nào được", "cao 1m50 nặng 50kg", "1m60 nặng 45", "1m55 49kg", "1m58", "cao 1m52", "nặng 50kg", "nặng 45kg", "60kg", "55 kí", "1m55", "1m50", "1m60"],
+            "responses": [],
+            "condition": {
+                "size_consulting_dont_have_product": {
+                    "product_name": 0
+                },
+                "size_consulting_dont_have_height_weight": {
+                    "measure":{
+                        "height": 0,
+                        "weight": 0
+                    }
+                },
+                "size_consulting_dont_have_height": {
+                    "measure":{
+                        "height": 0,
+                        "weight": 1
+                    }
+                },
+                "size_consulting_dont_have_weight": {
+                    "measure":{
+                        "height": 1,
+                        "weight": 0
+                    }
+                },
+                "size_consulting": {
+                    "measure":{
+                        "height": 1,
+                        "weight": 1
+                    }
+                }
+            }
+        },
+        {
+            "tag": "size_consulting_dont_have_product",
+            "patterns": [],
+            "responses": ["chị quan tâm sản phẩm nào vậy ạ"],
+            "condition": {
+                "size_consulting_dont_have_product": {
+                    "product_name": 0
+                },
+                "request_size_consulting": {
+                    "product_name": 1
+                }
+            }
+        },
+        {
+            "tag": "size_consulting_dont_have_height_weight",
+            "patterns": [],
+            "responses": ["Chị cho shop xin chiều cao và cân nặng để tư vấn size cho mình nhé"],
+            "condition": {
+                "request_size_consulting": {}
+            }
+        },
+        {
+            "tag": "size_consulting_dont_have_height",
+            "patterns": [],
+            "responses": ["Chị cho shop xin thêm chiều cao của mình nha"],
+            "condition": {
+                "request_size_consulting": {}
+            }
+        },
+        {
+            "tag": "size_consulting_dont_have_weight",
+            "patterns": [],
+            "responses": ["Chị cho shop xin thêm cân nặng của mình nha"],
+            "condition": {
+                "request_size_consulting": {}
+            }
+        },
+        {
+            "tag": "size_consulting",
+            "patterns": [],
+            "responses": [],
+            "condition": {
+                "size_consulting_notfit": {
+                    "consulting_size": "none"
+                },
+                "size_consulting_fit": {
+                    "consulting_size": 1
+                }
+            }
+        },
+        {
+            "tag": "size_consulting_fit",
+            "patterns": [],
+            "responses": ["Chị chọn size {consulting_size} nhé. Chị mặc là xinh lung linh luôn ạ.*Chị cho shop xin số điện thoại và địa chỉ để shop lên đơn cho mình nhé"],
+            "condition": {
+                "order": {}
+            }
+        },
+        {
+            "tag": "size_consulting_notfit",
+            "patterns": [],
+            "responses": ["Chị mặc không vừa mẫu này rồi ạ, chị muốn tư vấn mẫu khác không ạ?"],
+            "condition": {
+                "order": {}
+            }
+        },
+        {
+            "tag": "order",
+            "patterns": ["Cho mình 1 bộ sz S đến trường tiểu học Đồng Tâm, ngõ 128c Đại La, quận Hai Bà Trưng, HN", 
+                "Lay size L", "Ship c váy này size M nhé", "chốt đơn nhé", "lên đơn cho em", "ok chốt", "lấy 1 cái", "lấy 1 bộ", "lấy size m", "lấy size s", "lấy size l", "lấy đầm caro", "lấy set xanh"],
+            "responses": [],
+            "condition": {
+                "a_order_miss_product": {
+                    "product_name": 0
+                },
+                "order_miss_size": {
+                    "size": 0
+                },
+                "order_miss_phone_address": {
+                    "phone_number": 0,
+                    "address": 0
+                },
+                "order_miss_phone": {
+                    "phone_number": 0,
+                    "address": 1
+                },
+                "order_miss_address": {
+                    "address": 0,
+                    "phone_number": 1
+                },
+                "rep_inform": {
+                    "phone_number": 1,
+                    "address": 1,
+                    "product_name": 1
+                }
+            }
+        },
+        {
+            "tag": "a_order_miss_product",
+            "patterns": [],
+            "responses": ["Chị lấy sản phẩm nào ạ."],
+            "condition": {
+                "order": {}
+            }
+        },
+        {
+            "tag": "order_miss_phone_address",
+            "patterns": [],
+            "responses": ["Chị cho shop xin địa chỉ và số điện thoại để chốt đơn cho mình nhé."],
+            "condition": {
+                "order": {}
+            }
+        },
+        {
+            "tag": "order_miss_phone",
+            "patterns": [],
+            "responses": ["Chị cho em xin số điện thoại nhe."],
+            "condition": {
+                "order": {}
+            }
+        },
+        {
+            "tag": "order_miss_address",
+            "patterns": [],
+            "responses": ["Chị cho em xin địa chỉ nhé."],
+            "condition": {
+                "order": {}
+            }
+        },
+        {
+            "tag": "rep_inform",
+            "patterns": [],
+            "actions": ["check_agree"],
+            "responses": [["Dạ đơn hàng của chị là", "(loop){amount} {product_name} giá {price}k", "*Tổng cộng {total}k. Số điện thoại {phone_number} Địa chỉ {address}. Tầm 3-4 hôm chị nhận được hàng ạ.Được kt hàng trước khi nhận ạ"]],
+            "condition": {
+                "deal" : {
+                    "check_agree": 1
+                },
+                "transfer_to_admin-not_agree_after_rep_inform" : {
+                }
+            }
+        },
+        {
+            "tag": "deal",
+            "patterns": [],
+            "responses": ["Cảm ơn chị đẹp đã lựa chọn sản phẩm bên em. Chúc chị luôn mãi trẻ đẹp. Hẹn gặp lại chị lần tới ạ."]
+        },
+        {
+            "tag": "transfer_to_admin-not_agree_after_rep_inform",
+            "patterns": [],
+            "responses": ["Đang chuyển cho Admin xử lý.*Lý do: Khách chưa xác nhận sau khi chốt đơn"]
+        }
+    ],
+    "list_entities" : {
+        "email":"",
+        "phone_number":"",
+        "address":"",
+        "amount":[],
+        "size": [],
+        "product_name":[],
+        "total":"",
+        "price":[],
+        "measure":{
+            "height":"",
+            "weight":""
+        },
+        "consulting_size": "",
+        "size_list":[],
+        "material": [],
+        "deal": ""
+    },
+
+    "config": {
+        "size_consulting": 1
+    },
+    
+    "actions_list": ["check_agree", "check_disagree"]
+}
