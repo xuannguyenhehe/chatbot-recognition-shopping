@@ -26,8 +26,8 @@ import torch.backends.cudnn as cudnn
 import sys
 sys.path.append('./model')
 from yolov5.models.experimental import attempt_load
-from yolov5.utils.datasets import LoadImages
-from yolov5.utils.general import check_img_size, check_suffix, non_max_suppression, scale_coords, set_logging
+from yolov5.utils.dataloaders import LoadImages
+from yolov5.utils.general import check_img_size, check_suffix, non_max_suppression, scale_boxes, set_logging
 from yolov5.utils.torch_utils import select_device
 ROOT = YOLO_PATH+"/yolov5"
 
@@ -69,7 +69,7 @@ def load_yolo_model(weights=ROOT + '/yolov5s.pt',  # model.pt path(s)
     pt, onnx, tflite, pb, saved_model = (suffix == x for x in suffixes)  # backend booleans
     stride, names = 64, [f'class{i}' for i in range(1000)]  # assign defaults
     if pt:
-        model = torch.jit.load(w) if 'torchscript' in w else attempt_load(weights, map_location=device)
+        model = torch.jit.load(w) if 'torchscript' in w else attempt_load(weights, device=device)
         stride = int(model.stride.max())  # model stride
         names = model.module.names if hasattr(model, 'module') else model.names  # get class names
         if half:
@@ -101,7 +101,7 @@ def bbox(source='test2', conf_thres=0.7, imgsz=416):
         list_detections = []
         for i, det in enumerate(pred):  # per image
             if len(det):
-                det[:, :4] = scale_coords(img.shape[2:], det[:, :4], im0s.shape).round()
+                det[:, :4] = scale_boxes(img.shape[2:], det[:, :4], im0s.shape).round()
                 for *xyxy, conf, _ in reversed(det):
                     x1,y1,x2,y2 = int(xyxy[0]), int(xyxy[1]), int(xyxy[2]), int(xyxy[3])
                     list_detections.append({'bounding_box': [x1,y1,x2,y2], 'confidence': conf})

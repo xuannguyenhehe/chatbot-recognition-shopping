@@ -2,7 +2,7 @@ import pymongo, re
 import numpy as np
 from unidecode import unidecode
 from backend.process.size_consulting.regex import pt_height, pt_weight, pt_weight_6, pt_weight_7, regex_lst
-client = pymongo.MongoClient("mongodb://mdbadmin:fwYHdDtTym6lNmyoiJPTfZzTW0jiokx5@aimdb.devhcm.local:30000/admin")
+client = pymongo.MongoClient("mongodb://admin:admin@chatbot-mongo-1:27017/admin")
 
 def get_measure_from_message(message,measure):
     measure_dict = {

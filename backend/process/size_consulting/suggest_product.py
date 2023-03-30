@@ -1,7 +1,7 @@
 
 import pymongo
 
-client = pymongo.MongoClient("mongodb://mdbadmin:fwYHdDtTym6lNmyoiJPTfZzTW0jiokx5@aimdb.devhcm.local:30000/admin")
+client = pymongo.MongoClient("mongodb://admin:admin@chatbot-mongo-1:27017/admin")
 def suggest_product(name, size, amount, check_size=False):
     '''
         Get product info from database base on name, size, amount

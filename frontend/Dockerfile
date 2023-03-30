@@ -7,3 +7,5 @@ COPY bot.js /frontend/
 COPY package.json /frontend/
 RUN npm install
 RUN npm install --save botkit
+
+ENTRYPOINT ["npm", "start"]

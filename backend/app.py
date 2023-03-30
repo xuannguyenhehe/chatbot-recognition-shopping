@@ -1,7 +1,8 @@
 from fastapi import FastAPI, Request
 from fastapi.encoders import jsonable_encoder
-import uvicorn
+from uvicorn import Config, Server
 import logging
+import asyncio
 
 from backend.config.config import get_config
 from backend.process.PretrainedModel import PretrainedModel
@@ -36,5 +37,4 @@ async def train_model_pattern():
     _ = train_pattern_model(PATH_FILE_PATTERNS)
     return "SUCCESSFUL TRAIN MODEL "
 
-uvicorn.run(app, host="0.0.0.0", port=5060)
  

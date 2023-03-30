@@ -1,24 +1,25 @@
 version: "3.3"
 services:
   backend:
-    # build: ./backend/
-    image: automation_be:latest
+    # platform: linux/amd64
+    build: ./backend/
+    # image: automation_be:latest
     # command: ./backend/start.sh ${PORT_BACKEND}
     command: uvicorn app:app --host=0.0.0.0 --port=${PORT_BACKEND}
     ports:
       - "${PORT_BACKEND}:${PORT_BACKEND}"
     restart: always
     volumes:
-      - ./backend/model:/app/backend/model
-      - ./backend/data:/app/backend/data
+      - ./backend:/app/backend
     networks:
-      chatbot_automation:
-        ipv4_address: ${IP_BACKEND}
+    - chatbot_automation
+      # chatbot_automation:
+      #   ipv4_address: ${IP_BACKEND}
 
   frontend:
-    # build: ./frontend/
-    image: automation_fe:latest
-    command: npm start
+    build: ./frontend/
+    # image: automation_fe:latest
+    # command: npm start
     ports:
       - "${PORT_FRONTEND}:${PORT_FRONTEND}"
     restart: always
@@ -29,13 +30,16 @@ services:
     environment:
       - PORT=${PORT_FRONTEND}
     networks:
-      chatbot_automation:
-        ipv4_address: ${IP_FRONTEND}
+      - chatbot_automation
+      # chatbot_automation:
+        # ipv4_address: ${IP_FRONTEND}
 
 networks:
   chatbot_automation:
+    name: chatbot_automation
     driver: bridge
-    ipam:
-      config:
-        - subnet: ${SUBNET}
-          gateway: ${GATEWAY}
+    # external: true
+    # ipam:
+    #   config:
+    #     - subnet: ${SUBNET}
+    #       gateway: ${GATEWAY}

@@ -1,5 +1,5 @@
 import pymongo
-client = pymongo.MongoClient("mongodb://mdbadmin:fwYHdDtTym6lNmyoiJPTfZzTW0jiokx5@aimdb.devhcm.local:30000/admin")
+client = pymongo.MongoClient("mongodb://admin:admin@chatbot-mongo-1:27017/admin")
 my_db = client['chatbot_quangminhtien']
 my_col = my_db['products']
 

@@ -1,3 +1,11 @@
+backend/model/*
+backend/data/*
+backend/yolov5/data/*
+backend/yolov5/models/*
+DS_Store
+.DS_Store
+*.ipynb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

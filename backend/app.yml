@@ -15,7 +15,7 @@ create_chatbot_api:
       tudien_don: "data/spell_corection/tudien_don.json"
 
 mongodb:
-  link_db_server: "mongodb://mdbadmin:fwYHdDtTym6lNmyoiJPTfZzTW0jiokx5@aimdb.devhcm.local:30000/admin"
+  link_db_server: "mongodb://admin:admin@chatbot-mongo-1:27017/admin"
   
 models_chatbot:
   model_load_image:
