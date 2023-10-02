@@ -1,0 +1,9 @@
+uvicorn
+gunicorn
+fastapi
+uvloop
+httptools
+pydantic[dotenv]
+python-dotenv
+starlette
+loguru

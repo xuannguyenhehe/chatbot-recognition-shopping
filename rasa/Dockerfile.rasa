@@ -1,0 +1,14 @@
+# For more information, please refer to https://aka.ms/vscode-docker-python
+FROM condaforge/miniforge3
+
+RUN conda install python=3.9
+RUN conda install pip
+
+# Install pip requirements
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install git+https://github.com/vpol/text.git --no-deps
+RUN conda install psycopg2-binary==2.8.6
+RUN pip install rasa --default-timeout=20000
+RUN apt-get update
+RUN apt-get install -y iputils-ping
+RUN apt-get install -y --no-install-recommends libgl1 libglib2.0-0 dos2unix
