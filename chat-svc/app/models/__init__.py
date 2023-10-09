@@ -27,9 +27,8 @@ def get_database():
 from .message import Message
 from .image import Image
 from .chat import Chat
-from .user import User
 
 mongo_client = None
 mongo_dbname = "chatbot"
 
-__all__ = ["Message", "Image", "User", "Chat"]
+__all__ = ["Message", "Image", "Chat"]
