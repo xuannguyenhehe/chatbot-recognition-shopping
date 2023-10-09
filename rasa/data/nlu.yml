@@ -1,0 +1,846 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - xin chào
+    - chào em
+    - chào anh
+    - hé lô
+    - chào ad
+    - chào shop
+    - hi shop
+
+- intent: goodbye
+  examples: |
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - tạm biệt
+    - cảm ơn shop nhaaaaa
+    - thank shop nhaaaaaa
+    - xia xìaaaaa
+    - xia xìa
+
+- intent: have_image
+  examples: |
+    - có ạ
+    - có á shop
+    - tất nhiên có á
+    - tất nhiên rồi
+    - uhm có
+    - có ảnh á
+    - phải có rồi
+    - Tôi có ảnh á
+    - Tôi cũng có á
+    - Cũng có ạ
+
+- intent: have_no_image
+  examples: |
+    - không có ạ
+    - không shop ơi
+    - hong pé oi
+    - hông có á
+    - tiếc là không có
+    - Tôi không có ảnh rồi
+    - Tôi làm lạc rồi
+    - Hong có ròi
+    - bay màu ròi
+    - không có ảnh rùi
+    - hong rùi
+
+- intent: deny
+  examples: |
+    - chắc là không ạ
+    - vậy được rồi ạ
+    - không cần ạ
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - yes
+    - dé
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+    - tuyệt vời
+    - tốt lắm
+    - uy tín
+    - thích
+    - đẹp lắm
+    - đẹp quá
+    - hay ghê
+    - ngon đó
+
+- intent: mood_oke
+  examples: |
+    - okieeee
+    - ok
+    - okela
+    - okeeee
+    - oke
+    - ô kê
+    - ó kè
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+    - buồn vậy
+    - tệ quá
+    - không được
+    - không đúng ý 
+    - sai rồi
+    - không phải rồi
+
+- intent: ask_type
+  examples: |
+    - Tôi muốn mua loại [áo]{"entity": "cate", "value": "T-Shirt"} giống như vậy nè
+    - Tôi muốn mua kiểu [áo sơ mi]{"entity": "cate", "value": "Shirt"} tương tự như này á
+    - Tôi muốn mua mẫu [áo thun]{"entity": "cate", "value": "Shirt"} trong hình á
+    - Loại [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} này còn hàng như hình không ạ
+    - [Áo]{"entity": "cate", "value": "Shirt"} này còn hàng loại này không shop
+
+    - Shop còn loại [mũ]{"entity": "cate", "value": "Anorak"} [hồng]{"entity": "color", "value": "pink"} [dạng len]{"entity": "attr", "value": "knit"} như bên dưới á
+    - Ad có kiểu [áo hở lưng]{"entity": "cate", "value": "Halter"} [hoa hoè]{"entity": "attr", "value": "floral"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} như trên hong á
+    - Tôi muốn mua [hoodie]{"entity": "cate", "value": "Hoodie"} [không có cổ]{"entity": "attr", "value": "no_neckline"} và nó màu [tím]{"entity": "color", "value": "purple"} như này ạ
+    - [Áo khoác]{"entity": "cate", "value": "Jacket"} [vàng đậm]{"entity": "color", "value": "yellow"} [denim]{"entity": "attr", "value": "denim"} có loại nào giống hình không
+
+    - Shop còn chiếc [quần ống rộng]{"entity": "cate", "value": "Culottes"} nào ở hình không ạ
+    - Shop còn chiếc [quần tự chế]{"entity": "cate", "value": "Cutoffs"} tương tự không ạ
+    - Ad có kiểu [quần ống loe]{"entity": "cate", "value": "Gauchos"} giống vậy không á
+    - Tôi muốn mua loại [quần Jeggings]{"entity": "cate", "value": "Jeggings"} này còn hàng như hình không ạ
+    - Tôi muốn mua loại [quần sọt]{"entity": "cate", "value": "Shorts"} này
+    - Tôi muốn mua mẫu [quần lửng]{"entity": "cate", "value": "Capris"} như này có không ạ
+    - Ad còn mẫu [quần bó sát]{"entity": "cate", "value": "Jodhpurs"} không ạ
+    - Ad còn mẫu [quần jeans]{"entity": "cate", "value": "Jeans"} tương tự như không ạ
+    - [Quần thun ống rộng]{"entity": "cate", "value": "Joggers"} này còn hàng không dị 
+
+    - Tôi muốn mua kiểu [quần dệt chéo]{"entity": "cate", "value": "Chinos"} tương tự như này á
+    - Ad có kiểu [quần bó sát chân]{"entity": "cate", "value": "Leggings"} như  không á
+    - Tôi muốn mua mẫu [váy xà rông]{"entity": "cate", "value": "Sarong"} như này ạ
+    - [Váy]{"entity": "cate", "value": "Skirt"} này còn mẫu không thế
+
+    - Shop còn hàng [áo thể thao]{"entity": "cate", "value": "Jersey"} [kiểu suông]{"entity": "attr", "value": "loose"} nào tương tự không ạ
+    - Kiểu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} loại [phủ lông]{"entity": "attr", "value": "faux"} [màu đen]{"entity": "color", "value": "black"} còn hàng k shop
+    - Còn kiểu [áo len dày]{"entity": "cate", "value": "Peacoat"} [màu hồng]{"entity": "color", "value": "pink"} [chất liệu len]{"entity": "attr", "value": "knit"} như hình shop
+
+    - Shop còn loại [đầm]{"entity": "cate", "value": "Dress"} này không ạ
+    - Tôi muốn mua kiểu [đầm rộng]{"entity": "cate", "value": "Caftan"} này á shop
+    - Còn kiểu [đầm bình thường]{"entity": "cate", "value": "Dress"} như này không
+
+    - Tôi muốn mua loại [áo Poncho]{"entity": "cate", "value": "Poncho"} này
+    - Shop còn mẫu [áo len có mũ]{"entity": "cate", "value": "Hoodie"} không ạ
+
+    - Shop có [áo]{"entity": "cate", "value": "T-Shirt"} kiểu [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không ạ
+    - Có loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} [tay dài]{"entity": "attr", "value": "Shirt"} không shop
+    - Có mẫu [áo thun]{"entity": "cate", "value": "T-Shirt"} [loại cô ton]{"entity": "attr", "value": "cotton"} [màu đỏ]{"entity": "color", "value": "red"} không dị
+    - [Áo]{"entity": "cate", "value": "T-Shirt"} [trắng]{"entity": "color", "value": "white"} mà [ngắn tay]{"entity": "attr", "value": "short_sleeve"} để đi học còn hàng không ạ
+    - Shop còn loại [áo]{"entity": "cate", "value": "T-Shirt"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không shop
+
+    - Shop có [loại blazer]{"entity": "cate", "value": "Blazer"} [đen màu]{"entity": "color", "value": "black"} loại [vải voan]{"entity": "attr", "value": "chiffon"} không á
+    - Có loại [áo bánh bèo]{"entity": "cate", "value": "Blouse"} màu [trơn]{"entity": "attr", "value": "solid"} [xanh lá]{"entity": "color", "value": "green"} không shop
+    - Có mẫu {"entity": "cate", "value": "Bomber"} kiểu [sọc]{"entity": "attr", "value": "striped"} với màu [lục]{"entity": "color", "value": "blue"} không dị
+    - [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} mà [ngắn tay]{"entity": "attr", "value": "short_sleeve"} để đi học còn hàng không ạ
+    - Shop còn loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} dạng [ca rô]{"entity": "attr", "value": "Flannel"} nào mà đẹp đẹp màu [cam]{"entity": "color", "value": "orange"} [đỏ]{"entity": "color", "value": "red"} không shop
+
+    - Tôi muốn mua kiểu [mũ]{"entity": "cate", "value": "Anorak"} [hồng]{"entity": "color", "value": "pink"} [dạng len]{"entity": "attr", "value": "knit"} này á mà không biết lựa như thế nào
+    - Ad có kiểu [áo hở lưng]{"entity": "cate", "value": "Halter"} [hoa hoè]{"entity": "attr", "value": "floral"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} xinh không shop
+    - Lựa dùm mẫu [hoodie]{"entity": "cate", "value": "Hoodie"} [không có cổ]{"entity": "attr", "value": "no_neckline"} và nó màu [tím]{"entity": "color", "value": "purple"} đi shop
+    - [Áo khoác]{"entity": "cate", "value": "Jacket"} [vàng đậm]{"entity": "color", "value": "yellow"} [denim]{"entity": "attr", "value": "denim"} có loại nào ok không shop
+
+    - Shop còn loại [áo thể thao]{"entity": "cate", "value": "Jersey"} [kiểu suông]{"entity": "attr", "value": "loose"} nào đẹp không ạ
+    - Lựa giúp tôi cái kiểu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} loại [phủ lông]{"entity": "attr", "value": "faux"} [màu đen]{"entity": "color", "value": "black"} đi shop
+    - Còn kiểu [áo len dày]{"entity": "cate", "value": "Peacoat"} [màu hồng]{"entity": "color", "value": "pink"} [chất liệu len]{"entity": "attr", "value": "knit"} không shop
+
+    - Shop còn loại [áo choàng]{"entity": "cate", "value": "Poncho"} [thoải mái]{"entity": "attr", "value": "conventional"} [dài qua đầu gối]{"entity": "attr", "value": "maxi_length"} á shop
+    - Shop có mẫu [sweater]{"entity": "cate", "value": "Sweater"} nào [có hình]{"entity": "attr", "value": "graphic"} [màu trắng]{"entity": "color", "value": "white"} đẹp đẹp không dị
+
+    - Shop có [áo ba lổ]{"entity": "cate", "value": "Tank"} [sát nách]{"entity": "attr", "value": "sleeveless"} [màu lam]{"entity": "color", "value": "green"} không á
+    - Có loại [áo Tee]{"entity": "cate", "value": "Tee"} [dạng ôm]{"entity": "attr", "value": "tight"} [xếp ly]{"entity": "attr", "value": "pleated"} không shop
+    - Có mẫu [crop top]{"entity": "cate", "value": "Top"} [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} với [màu vàng]{"entity": "color", "value": "yellow"} không dị
+    - [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} mà [dạng thêu]{"entity": "attr", "value": "embroidered"} để đi học còn hàng không ạ
+    - Shop có [áo giữ ấm]{"entity": "cate", "value": "Coat"} [dài tay]{"entity": "attr", "value": "long_sleeve"} [màu xanh lá]{"entity": "color", "value": "green"} không á
+    - Có loại [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} [form rộng]{"entity": "attr", "value": "loose"} không shop
+
+    - Shop còn chiếc [quần tây]{"entity": "cate", "value": "pants"} [màu tím]{"entity": "color", "value": "purple"} hợp trend bây giờ không ạ
+    - Shop còn mẫu [quần]{"entity": "cate", "value": "pants"} [dài]{"entity": "attr", "value": "maxi_length"} [kiểu văn phòng]{"entity": "attr", "value": "conventional"} không ạ
+    - Ad có kiểu [quần kaki]{"entity": "cate", "value": "pants"} mà nó [màu trắng]{"entity": "color", "value": "white"} không á
+    - Có loại [quần lửng]{"entity": "cate", "value": "Capris"} [ngắn]{"entity": "attr", "value": "mini_length"} mặc [mát mẻ]{"entity": "attr", "value": "conventional"} không shop
+    - Tôi đang có nhu cầu mua loại [quần sọt]{"entity": "cate", "value": "Shorts"} [ngắn]{"entity": "attr", "value": "mini_length"} hợp xu hướng đi shop
+    - Shop tư vấn mua mẫu [quần lửng]{"entity": "cate", "value": "quần"} nào đẹp với ạ [màu nâu]{"entity": "color", "value": "nâu"} nha
+    - Ad còn mẫu [quần jean]{"entity": "cate", "value": "Jeans"} [xanh]{"entity": "color", "value": "blue"} không ạ
+    - Ad còn mẫu [quần váy]{"entity": "cate", "value": "Skirt"} [đen]{"entity": "color", "value": "black"} [kiểu dài]{"entity": "attr", "value": "maxi_length"} không dị
+    - [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} cái nào đẹp [dạng rộng rãi]{"entity": "attr", "value": "loose"} vậy shop
+    - [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} cái nào đẹp [dạng ôm]{"entity": "attr", "value": "tight"} vậy shop
+
+    - Shop còn loại [quần lót]{"entity": "cate", "value": "Trunks"} sexy [màu cam]{"entity": "color", "value": "orange"} không shop
+    - Shop còn loại [đồ coverup]{"entity": "cate", "value": "Coverup"} [đa dạng]{"entity": "attr", "value": "conventional"} á shop
+    - Shop có mẫu [đồ bay]{"entity": "cate", "value": "Jumpsuit"} [dạng sọc]{"entity": "attr", "value": "striped"} nào không
+
+    - Tôi muốn mua kiểu [váy]{"entity": "cate", "value": "Skirt"} [có in hình]{"entity": "attr", "value": "graphic"} này á mà không biết lựa như thế nào
+    - Ad có kiểu [áo choàng Robe]{"entity": "cate", "value": "Robe"} [cổ vuông]{"entity": "attr", "value": "square_neckline"} xinh [màu trắng]{"entity": "color", "value": "white"} không shop
+    - Lựa dùm mẫu [váy sơ mi]{"entity": "cate", "value": "Shirtdress"} [màu đỏ]{"entity": "color", "value": "red"} đi shop
+    - [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [cam]{"entity": "color", "value": "orange"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} có loại nào ok không shop
+
+    - Shop còn loại [đầm]{"entity": "cate", "value": "Dress"} nào [hồng hồng]{"entity": "color", "value": "pink"} [trơn]{"entity": "attr", "value": "solid"} đẹp không ạ
+    - Lựa giúp tôi cái kiểu [đầm rộng]{"entity": "cate", "value": "Caftan"} [có hoa]{"entity": "attr", "value": "floral"} đi shop
+    - Còn kiểu [đầm không tay]{"entity": "cate", "value": "Cape"} [màu vàng]{"entity": "color", "value": "yellow"} [dạng lưới]{"entity": "attr", "value": "lattice"} không shop
+
+    - Shop còn loại [đầm ngủ]{"entity": "cate", "value": "Nightdress"} [ôm sát người]{"entity": "attr", "value": "tight"} á shop
+    - Shop có mẫu [Kimono]{"entity": "cate", "value": "Kimono"} [có hình lưới]{"entity": "attr", "value": "lattice"} nào cute không dị
+
+    - Shop còn loại [onesie]{"entity": "cate", "value": "Onesie"} [rộng rãi]{"entity": "attr", "value": "conventional"} [vàng đậm]{"entity": "color", "value": "yellow"} á shop
+    - Shop có mẫu [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} [kiểu không váy]{"entity": "attr", "value": "no_dress"} nào cute không dị
+
+
+- synonym: Anorak
+  examples: |
+    - anorak
+    - mũ anorak
+    - mũ trùm đầu
+    - mũ len trùm đầu
+
+- synonym: Blazer
+  examples: |
+    - áo blazer
+    - áo khoác Blazer
+    - áo khoác đi tiệc
+
+- synonym: Blouse
+  examples: |
+    - Blouse
+    - áo bờ lu
+    - áo blouse
+    - áo bánh bèo
+    - áo xếp phồng
+    - áo xếp ly
+    - áo may phồng
+
+- synonym: Bomber
+  examples: |
+    - bomber
+    - áo bomber
+    - áo khoác không mũ
+    - áo khoác bomber
+
+- synonym: Button-Down
+  examples: |
+    - Button-Down
+    - áo sơ mi button-down
+    - áo sơ mi nút dẹt
+    - áo sơ mi cổ nút dẹt
+
+- synonym: Cardigan
+  examples: |
+    - Cardigan
+    - áo Cardigan
+    - áo len Cardigan
+    - áo len dệt hở
+    - áo len dệt
+
+- synonym: Flannel
+  examples: |
+    - Flannel
+    - áo Flannel
+    - áo sơ mi Flannel
+    - áo sơ mi kiểu ca rô 
+    - áo sơ mi ca rô
+    - áo sơ mi Flannel
+
+- synonym: Halter
+  examples: |
+    - Halter
+    - áo Halter
+    - áo dây
+    - áo hở lưng
+
+- synonym: Henley
+  examples: |
+    - Henley
+    - áo Henley
+    - áo thun tay dài 
+    - áo thun khui đầu
+
+- synonym: Hoodie
+  examples: |
+    - Hoodie
+    - áo Hoodie
+    - áo len Hoodie
+    - áo form rộng
+    - áo len có mũ
+
+- synonym: Jacket
+  examples: |
+    - Jacket
+    - áo khoác Jacket
+    - áo khoác unisex
+    - áo khoác cho nam nữ
+
+- synonym: Jersey
+  examples: |
+    - Jersey
+    - áo thể thao Jersey
+    - áo Jersey
+    - áo thể thao
+
+- synonym: Parka
+  examples: |
+    - Parka
+    - áo Parka
+    - áo khoác kèm mũ
+    - áo khoác liền mũ
+
+- synonym: Peacoat
+  examples: |
+    - Peacoat
+    - áo Peacoat
+    - áo len dày
+    - áo len Peacoat
+
+- synonym: Poncho
+  examples: |
+    - Poncho
+    - áo Poncho
+    - áo choàng
+
+- synonym: Sweater
+  examples: |
+    - Sweater
+    - áo Sweater
+    - áo len thông thường
+    - áo len
+
+- synonym: Tank
+  examples: |
+    - Tank
+    - áo Tank
+    - áo ba lỗ
+    - áo không tay
+    - áo thun không tay
+    - áo thun ba lỗ
+
+- synonym: Tee
+  examples: |
+    - Tee
+    - áo Tee
+    - áo cổ tròn
+    - áo thun cổ tròn
+    - áo thun ít hoạ tiết
+
+- synonym: Top
+  examples: |
+    - Top
+    - áo Top
+    - áo crop top
+
+- synonym: Turtleneck
+  examples: |
+    - Turtleneck
+    - áo Turtleneck
+    - áo cổ lọ Turtleneck
+    - áo cổ lọ
+
+- synonym: Capris
+  examples: |
+    - Capris
+    - quần Capris
+    - quần lửng
+
+- synonym: Chinos
+  examples: |
+    - Chinos
+    - quần Chinos
+    - quần cotton
+    - quần dệt chéo
+
+- synonym: Culottes
+  examples: |
+    - Culottes
+    - quần Culottes
+    - quần ống rộng Culottes
+    - quần ống rộng
+
+- synonym: Cutoffs
+  examples: |
+    - Cutoffs
+    - quần Cutoffs
+    - quần tự chế
+    - quần ngắn sát
+
+- synonym: Gauchos
+  examples: |
+    - Gauchos
+    - quần Gauchos
+    - quần ống loe
+
+- synonym: Jeans
+  examples: |
+    - Jeans
+    - quần Jeans
+    - áo Jeans
+
+- synonym: Jeggings
+  examples: |
+    - Jeggings
+    - quần Jeggings
+    - quần Legging nhưng may bằng vải denim
+
+- synonym: Jodhpurs
+  examples: |
+    - Jodhpurs
+    - quần Jodhpurs
+    - quần bó sát
+    - quần sát tới mắt cá chân
+
+- synonym: Joggers
+  examples: |
+    - Joggers
+    - quần Joggers
+    - quần thun
+    - quần ống rộng
+    - quần thun ống rộng
+
+- synonym: Leggings
+  examples: |
+    - Leggings
+    - quần Leggings
+    - quần bó sát chân
+
+- synonym: Sarong
+  examples: |
+    - Sarong
+    - quần váy Sarong
+    - quần Sarong
+    - quần váy xà rông
+    - quần xà rông
+    - váy xà rông
+
+- synonym: Shorts
+  examples: |
+    - Shorts
+    - quần Shorts
+    - quần sọt
+    - quần ngắn
+  
+- synonym: Skirt
+  examples: |
+    - Skirt
+    - quần Skirt
+    - quần váy
+
+- synonym: Sweatpants
+  examples: |
+    - Sweatpants
+    - quần Sweatpants
+    - quần nỉ
+    - quần bo gấu
+    - quần nỉ bo gấu
+
+- synonym: Sweatshorts
+  examples: |
+    - Sweatshorts
+    - quần Sweatshorts
+    - quần nỉ ngắn
+
+- synonym: Trunks
+  examples: |
+    - Trunks
+    - quần Trunks
+    - quần lót
+
+- synonym: Caftan
+  examples: |
+    - Caftan
+    - đầm Caftan
+    - đầm rộng
+
+- synonym: Cape
+  examples: |
+    - Cape
+    - đầm Cape
+    - đầm không tay Cape
+    - đầm không tay
+
+- synonym: Coat
+  examples: |
+    - Coat
+    - áo khoác Coat
+    - áo giữ ấm
+    - áo khoác giữ ấm
+
+- synonym: Coverup
+  examples: |
+    - Coverup
+    - đồ Coverup
+
+- synonym: Dress
+  examples: |
+    - Dress
+    - đầm
+    - đầm thông thường
+    - đầm thường
+
+- synonym: Jumpsuit
+  examples: |
+    - Jumpsuit
+    - đồ bay
+    - đồ Jumpsuit
+
+- synonym: Kaftan
+  examples: |
+    - áo Kaftan
+    - Kaftan
+    - áo khoác không tay
+
+- synonym: Kimono
+  examples: |
+    - Kimono
+    - đồ Kimono
+    - đồ bộ Kimono
+    - đồ bộ kiểu Nhật
+    - đồ kiểu Nhật
+    - bộ Kimono
+
+- synonym: Nightdress
+  examples: |
+    - Nightdress
+    - đầm Nightdress
+    - đầm ngủ
+
+- synonym: Onesie
+  examples: |
+    - Onesie
+    - đồ Onesie
+    - áo liền quần
+
+- synonym: Robe
+  examples: |
+    - Robe
+    - áo Robe
+    - áo choàng Robe
+
+- synonym: Romper
+  examples: |
+    - Romper
+    - áo liền quần ngắn
+
+- synonym: Shirtdress
+  examples: |
+    - Shirtdress
+    - váy Shirtdress
+    - váy sơ mi
+
+- synonym: Sundress
+  examples: |
+    - váy Sundress
+    - Sundress
+    - váy đi chơi hè
+
+- synonym: floral
+  examples: |
+    - floral
+    - kiểu floral
+    - kiểu có hoa
+    - có hoa
+    - có bông
+    - dạng bông hoa
+
+- synonym: graphic
+  examples: |
+    - graphic
+    - kiểu graphic
+    - kiểu có hình ảnh
+    - kiểu in hình
+    - dạng có ảnh
+
+- synonym: striped
+  examples: |
+    - striped
+    - kiểu striped
+    - kiểu sọc
+    - có sọc
+
+- synonym: embroidered
+  examples: |
+    - embroidered
+    - dạng embroidered
+    - kiểu thêu
+    - dạng thêu
+
+- synonym: pleated
+  examples: |
+    - pleated
+    - kiểu pleated
+    - dạng xếp ly
+    - kiểu xếp li
+    - xếp li
+  
+- synonym: solid
+  examples: |
+    - solid
+    - kiểu solid
+    - trơn
+    - đồ trơn
+    - dạng trơn
+
+- synonym: lattice
+  examples: |
+    - lattice
+    - dạng lattice
+    - kiểu lưới
+    - có hình lưới
+
+- synonym: long_sleeve
+  examples: |
+    - long sleeve
+    - kiểu long sleeve
+    - dạng dài tay
+    - ống dài
+
+- synonym: short_sleeve
+  examples: |
+    - short sleeve
+    - kiểu short sleeve
+    - kiểu ngắn tay
+    - tay ngắn 
+    - ống ngắn
+
+- synonym: sleeveless
+  examples: |
+    - sleeveless
+    - kiểu sleeveless
+    - sát nách
+    - không có cánh tay
+
+- synonym: maxi_length
+  examples: |
+    - đồ dài
+    - qua đầu gối
+    - dưới đầu gối
+
+- synonym: mini_length
+  examples: |
+    - đồ ngắn
+    - kiểu ngắn
+    - trên đầu dưới
+    - ngắn hết cỡ
+
+- synonym: no_dress
+  examples: |
+    - no dress
+    - kiểu không váy
+
+- synonym: crew_neckline
+  examples: |
+    - có cổ
+    - kiểu cổ thuyền
+    - cổ truyền thống
+
+- synonym: v_neckline
+  examples: |
+    - kiểu cổ v
+    - kiểu v neckline
+    - có cổ chữ v
+    - cổ v
+
+- synonym: square_neckline
+  examples: |
+    - kiểu cổ vuông
+    - cổ vuông
+    - có dạng cổ vuông
+    - kiểu square neckline
+
+- synonym: no_neckline
+  examples: |
+    - kiểu không cổ
+    - dạng no neckline
+    - không có cổ
+
+- synonym: denim
+  examples: |
+    - kiểu denim
+    - denim
+    - kiểu jeans
+    - chất liệu jeans
+
+- synonym: chiffon
+  examples: |
+    - chiffon
+    - kiểu chiffon
+    - áo voan
+    - kiểu voan
+    - voan
+    - vải voan
+    - chất liệu voan
+    - chất liệu chiffon
+
+- synonym: cotton
+  examples: |
+    - cotton
+    - loại cô tông
+    - loại co ton
+    - kiểu cotton
+    - chất liệu cô tôn
+
+- synonym: leather
+  examples: |
+    - leather
+    - loại da
+    - da
+    - chất liệu da
+
+- synonym: faux
+  examples: |
+    - faux
+    - loại phủ lông
+    - phủ lông
+    - chất liệu lông
+
+- synonym: knit
+  examples: |
+    - knit
+    - dạng len
+    - có len
+    - chất liệu len
+
+- synonym: tight
+  examples: |
+    - tight
+    - bó sát
+    - kiểu tight
+    - dạng ôm
+
+- synonym: loose
+  examples: |
+    - loose
+    - dạng rộng rãi
+    - kiểu suông
+    - oversize
+
+- synonym: conventional
+  examples: |
+    - conventional
+    - kiểu thuận tiện
+    - kiểu văn phòng
+    - thoải mái
+    - đa dạng
+
+- synonym: red
+  examples: |
+    - red
+    - đỏ
+    - đỏ nhạt
+    - đỏ đậm
+    - đỏ sẫm
+    - màu đỏ
+
+- synonym: yellow
+  examples: |
+    - yellow
+    - vàng
+    - vàng nhạt
+    - vàng đậm
+    - màu vàng
+
+- synonym: blue
+  examples: |
+    - blue
+    - xanh
+    - xanh nhạt
+    - xanh đậm
+    - xanh biển
+    - biển
+    - màu xanh
+    - màu biển
+    - lục
+    - màu lục
+
+- synonym: green
+  examples: |
+    - green
+    - xanh lá
+    - xanh cây
+    - màu lam
+    - lam
+    - màu xanh lá
+
+- synonym: black
+  examples: |
+    - black
+    - đen
+    - đen nhạt
+    - đen đậm
+    - màu đen
+
+- synonym: white
+  examples: |
+    - white
+    - trắng
+    - trắng ngà
+    - màu trắng 
+
+- synonym: pink
+  examples: |
+    - pink
+    - hồng
+    - hồng nhạt
+    - hồng đậm
+    - màu hồng
+
+- synonym: orange
+  examples: |
+    - orange
+    - cam
+    - cam nhạt
+    - cam đậm
+    - màu cam
+
+- synonym: purple
+  examples: |
+    - tím
+    - tím nhạt
+    - tím đậm
+    - màu tím
+    - purple

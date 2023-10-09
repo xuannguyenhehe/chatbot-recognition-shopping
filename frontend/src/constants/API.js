@@ -4,9 +4,9 @@ export const URL = {
         prefix: process.env.REACT_APP_RASA_PREFIX,
         value: process.env.REACT_APP_RASA,
     },
-    BACKEND: {
-        version: process.env.REACT_APP_BACKEND_VERSION,
-        prefix: process.env.REACT_APP_BACKEND_PREFIX,
-        value: process.env.REACT_APP_BACKEND,
-    },
+    ENTRYPOINT: {
+        version: process.env.REACT_APP_ENTRYPOINT_VERSION,
+        prefix: process.env.REACT_APP_ENTRYPOINT_PREFIX,
+        value: process.env.REACT_APP_ENTRYPOINT,
+    }
 };

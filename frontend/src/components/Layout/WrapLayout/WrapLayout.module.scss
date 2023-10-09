@@ -1,0 +1,54 @@
+.wrapLayout {
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 20px;
+    background-color: #f8f9fa;
+    min-height: calc(100vh - var(--header-height) - 50px);
+  
+    .card {
+      border-radius: 0;
+      border: none;
+      background-color: #f8f9fa;
+  
+      .cardHeader {
+        font-size: var(--header-size-l);
+        background-color: #f8f9fa;
+        border-bottom: none;
+        padding: 0 0 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+  
+        .link {
+          font-weight: bold;
+          cursor: default;
+        }
+  
+        .linkRoot {
+          cursor: pointer;
+        }
+  
+        .iconRefix {
+          margin: 0 10px;
+          font-weight: bold;
+          cursor: default;
+        }
+  
+        .linkRoot,
+        .iconRefix,
+        .breadCrumbIcon {
+          color: black;
+          display: inline-block;
+        }
+  
+        .breadCrumbIcon {
+          margin-right: 16px;
+        }
+      }
+
+      .cardBody {
+        background-color: white;
+        border-radius: 10px;
+      }
+    }
+  }

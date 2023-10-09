@@ -1,0 +1,35 @@
+# server:
+#   ip_address: "0.0.0.0"
+#   port: 5050
+
+create_chatbot_api:
+  general_chatbot:
+    address_prepare: "data/address"
+    spell_corection:
+      short_word_file: "data/spell_corection/short_word.json"
+      teencode_regex: "data/spell_corection/teencode_regex.json"
+      single_word_dic: "data/spell_corection/unidecode_vietnamese_dic.txt"
+      eng_file: "data/spell_corection/eng_dic.json"
+      vowel: "data/spell_corection/vietnamese_vowel.json"
+      telex_fault: "data/spell_corection/additional_telex_fault.json"
+      tudien_don: "data/spell_corection/tudien_don.json"
+
+mongodb:
+  link_db_server: "mongodb://admin:admin@chatbot-mongo-1:27017/admin"
+  
+models_chatbot:
+  model_load_image:
+    encoder-image: "model/encode-image"
+    filenames: "model/filenames-Hume_full_crop_v1.pickle"
+    feature_list: "model/features-Hume-resnet_full_crop_v1.pickle"
+    clothes_identify: "model/model_image_croped"
+    yolov5: "model/yolov5/best.pt"
+  model_load_text:
+    dcnn_model: "model/dcnn/dcnn"
+    tokenizer: "model/dcnn/tokenizer.pickle"
+    classes: "model/dcnn/classes.pickle"
+    pretrained_pattern_model: "model/pattern_similarity/pretrained_model" 
+
+log:
+  app: "app.log"
+  request: "request.log"

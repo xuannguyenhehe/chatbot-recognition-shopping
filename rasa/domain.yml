@@ -1,0 +1,32 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+responses: 
+  utter_greet:
+    - text: 'Chào bạn. Shop giúp được gì cho bạn?'
+
+  utter_type:
+    - text: 'Shop gợi ý 5 mẫu có thể phù hợp với yêu cầu của bạn!'
+
+  utter_happy:
+    - text: 'Cảm ơn bạn đã tin tưởng shop! <3'
+
+  utter_unhappy:
+    - text: 'Shop rất tiếc về sự nhầm lẫn này :('
+
+  utter_goodbye:
+    - text: 'Hẹn gặp lại bạn nhé!'
+
+  utter_help:
+    - text: 'Shop có thể giúp được gì thêm không ạ?'
+
+  utter_ask_image:
+    - text: 'Bạn có ảnh của mẫu không ạ?'
+
+  utter_need_image:
+    - text: 'Cho shop xin ảnh của bạn ạ!'
+
+  utter_wait:
+    - text: 'Đợi shop kiểm tra bạn nhé!'

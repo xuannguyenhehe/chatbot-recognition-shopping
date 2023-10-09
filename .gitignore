@@ -142,7 +142,7 @@ dmypy.json
 *.index
 *.gz
 *.png
-*.yml
 *tf*
 *checkpoint*
 *db*
+.DS_Store

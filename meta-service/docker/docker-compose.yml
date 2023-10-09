@@ -1,0 +1,30 @@
+version: '3.7'
+
+name: "chatbot"
+
+services:
+  meta-service:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      network: host
+    container_name: meta-service
+    restart: unless-stopped
+    env_file: .env.development
+    networks:
+      - chatbot_default
+    volumes:
+      - ../app:/meta-service/app
+      - ../extensions:/meta-service/extensions
+      - ../config:/meta-service/config
+      - ./log:/var/log
+    ports:
+      - 8003:8003
+
+networks:
+  chatbot_default:
+    name: chatbot_default
+    external: true
+  host:
+    name: host
+    external: true

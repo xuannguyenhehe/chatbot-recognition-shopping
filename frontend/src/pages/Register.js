@@ -25,11 +25,11 @@ function Register() {
     theme: "dark",
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("username")) {
-      navigate("/");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   if (localStorage.getItem("username")) {
+  //     navigate("/");
+  //   }
+  // }, [navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

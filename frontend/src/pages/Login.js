@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ChatLogo from "../assets/chat.png";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,7 +12,6 @@ function Login() {
     username: "",
     password: "",
   });
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.user.isLoading);
 
@@ -24,18 +23,12 @@ function Login() {
     theme: "dark",
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("username")) {
-      navigate("/");
-    }
-  }, [navigate]);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
       const { password, username } = values;
       dispatch({
-        type: "user/login",
+        type: "account/handleLogin",
         payload: {
           username: username,
           password: password,

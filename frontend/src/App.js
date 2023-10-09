@@ -1,19 +1,80 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Loading from "components/CircleLoading";
+import Layout from "components/Layout";
+import { React, useEffect } from "react";
+import { connect } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import { getLocalStorage } from "utils/token";
 import Chat from "./pages/Chat";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-// import SetAvatar from "./pages/SetAvatar";
 
-export default function App() {
-  return (
-    <BrowserRouter>
+const App = (props) => {
+  const { account, dispatch } = props;
+  const { username, isLoading } = account;
+  const encodedUsername = getLocalStorage("user");
+
+  useEffect(() => {
+    window.addEventListener("storage", () => {
+      if (!getLocalStorage("user") || !getLocalStorage("au") || !getLocalStorage("ur")) {
+        dispatch({
+          type: "account/getCurrentUserInfo",
+          payload: {
+            isNotRedicted: false,
+          },
+        });
+      }
+    });
+    if (!username) {
+      dispatch({
+        type: "account/getCurrentUserInfo",
+        payload: {
+          isNotRedicted: true,
+        },
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
+
+  if (username) {
+    return (
+      <Routes>
+        <Route 
+          path="/"
+          element={
+              <Layout
+                username={username}
+              >
+                <Chat />
+              </Layout>
+            } 
+        />
+      </Routes>
+    );
+  } else if ((username === null && encodedUsername !== null) || isLoading === true) {
+    return (
+      <Routes>
+        <Route
+          path="*"
+          element={
+            <Loading isLoading={true} breadCrumb={[]}>
+            <Login />
+            </Loading>
+          }
+        />
+      </Routes>
+    );
+  } else {
+    return (
       <Routes>
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        {/* <Route path="/setAvatar" element={<SetAvatar />} /> */}
-        <Route path="/" element={<Chat />} />
+        <Route path="*" element={<Login />} />
       </Routes>
-    </BrowserRouter>
-  );
+    );
+  }
 }
+
+const mapStateToProps = (state) => ({
+  account: state.account,
+});
+
+export default connect(mapStateToProps)(App);

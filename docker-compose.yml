@@ -1,0 +1,45 @@
+version: "3.3"
+services:
+  backend:
+    # platform: linux/amd64
+    build: ./backend/
+    # image: automation_be:latest
+    # command: ./backend/start.sh ${PORT_BACKEND}
+    command: uvicorn app:app --host=0.0.0.0 --port=${PORT_BACKEND}
+    ports:
+      - "${PORT_BACKEND}:${PORT_BACKEND}"
+    restart: always
+    volumes:
+      - ./backend:/app/backend
+    networks:
+    - chatbot_automation
+      # chatbot_automation:
+      #   ipv4_address: ${IP_BACKEND}
+
+  frontend:
+    build: ./frontend/
+    # image: automation_fe:latest
+    # command: npm start
+    ports:
+      - "${PORT_FRONTEND}:${PORT_FRONTEND}"
+    restart: always
+    volumes:
+      - type: bind
+        source: .env
+        target: /frontend/.env
+    environment:
+      - PORT=${PORT_FRONTEND}
+    networks:
+      - chatbot_automation
+      # chatbot_automation:
+        # ipv4_address: ${IP_FRONTEND}
+
+networks:
+  chatbot_automation:
+    name: chatbot_automation
+    driver: bridge
+    # external: true
+    # ipam:
+    #   config:
+    #     - subnet: ${SUBNET}
+    #       gateway: ${GATEWAY}

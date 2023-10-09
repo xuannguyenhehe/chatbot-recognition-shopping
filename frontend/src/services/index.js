@@ -1,12 +1,12 @@
 import { all } from "redux-saga/effects";
 import MessageSagas from "./message";
-import UserSagas from "./user";
 import ChatSagas from "./chat";
+import AccountSagas from "./account";
 
 export default function* rootSaga() {
   yield all([
     MessageSagas(),
-    UserSagas(),
     ChatSagas(),
+    AccountSagas(),
   ]);
 }

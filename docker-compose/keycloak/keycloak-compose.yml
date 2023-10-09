@@ -1,0 +1,32 @@
+version: '3.7'
+
+name: "chatbot"  
+  
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:legacy
+    container_name: chatbot-keycloak
+    platform: linux/arm64
+    restart: always
+    environment:
+      DB_DATABASE: keycloak
+      DB_ADDR: ${DATABASE_HOST}
+      DB_VENDOR: POSTGRES
+      DB_USER: ${DATABASE_USER}
+      DB_PASSWORD: ${DATABASE_PASSWORD}
+      KEYCLOAK_USER: ${KEYCLOAK_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+      KEYCLOAK_IMPORT: /opt/jboss/keycloak/imports/realm-export-chatbot.json
+      PROXY_ADDRESS_FORWARDING: "true" # very important when using reverse proxy
+    volumes:
+      - ./imports:/opt/jboss/keycloak/imports # mount export realm json
+    ports:
+      - 8190:8080
+      - 8191:8443
+    networks:
+      - chatbot_default
+
+networks:
+  chatbot_default:
+    name: chatbot_default
+    external: true

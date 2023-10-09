@@ -1,0 +1,85 @@
+#### This file contains tests to evaluate that your bot behaves as expected.
+#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
+
+stories:
+- story: Không có ảnh mẫu
+  steps:
+  - user: |
+      Chào shop
+    intent: greet
+  - action: utter_greet
+  - user: |
+      Cho tôi hỏi chiếc đầm màu đen này còn không ạ?
+    intent: ask_type
+  - action: utter_ask_image
+  - user: |
+      Tôi không có ạ
+    intent: have_no_image
+  - action: utter_wait
+
+- story: Có ảnh mẫu
+  steps:
+  - user: |
+      Chào shop
+    intent: greet
+  - action: utter_greet
+  - user: |
+      Cho tôi hỏi chiếc đầm màu đen này còn không ạ?
+    intent: ask_type
+  - action: utter_ask_image
+  - user: |
+      Có á shop
+    intent: have_image
+  - action: utter_need_image
+
+- story: Phản hồi kết quả tốt
+  steps:
+  - user: |
+      Đẹp quá nè
+    intent: mood_great
+  - action: utter_happy
+  - user: |
+      Cảm ơn shop nhé!
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: Hỏi cần gì giúp đỡ thêm - Phản hồi không
+  steps:
+  - user: |
+      Đẹp quá nè
+    intent: mood_great
+  - action: utter_happy
+  - user: |
+      Okeeeeeee
+    intent: mood_oke
+  - action: utter_help
+  - user: |
+      Không á
+    intent: deny
+  - action: utter_goodbye
+
+- story: Hỏi cần gì giúp đỡ thêm - Phản hồi có
+  steps:
+  - user: |
+      Đẹp quá nè
+    intent: mood_great
+  - action: utter_happy
+  - user: |
+      Okeeeeeee
+    intent: mood_oke
+  - action: utter_help
+  - user: |
+      Vậy shop có quần jeans hợp thời trang hong
+    intent: ask_type
+  - action: utter_ask_image
+  - user: |
+      Có á shop
+    intent: have_image
+  - action: utter_need_image
+
+- story: Phản hồi kết quả tệ
+  steps:
+  - user: |
+      Không đúng rồi shop ơi
+    intent: mood_unhappy
+  - action: utter_unhappy

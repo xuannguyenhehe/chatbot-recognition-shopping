@@ -1,0 +1,30 @@
+version: '3.7'
+
+name: "chatbot"
+
+services:
+  entrypoint:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      network: host
+    container_name: chatbot-entrypoint
+    restart: unless-stopped
+    env_file: .env.development
+    networks:
+      - chatbot_default
+    volumes:
+      - ../app:/entrypoint/app
+      - ../extensions:/entrypoint/extensions
+      - ../config:/entrypoint/config
+      - ./log:/var/log
+    ports:
+      - 8000:8000
+
+networks:
+  chatbot_default:
+    name: chatbot_default
+    external: true
+  host:
+    name: host
+    external: true

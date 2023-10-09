@@ -1,6 +1,7 @@
 import axios from "axios"
-import isRetryAllowed from "is-retry-allowed"
 import { URL } from "constants/API"
+import isRetryAllowed from "is-retry-allowed"
+import { getLocalStorage } from "utils/token"
 
 const RETRIES = 3
 
@@ -14,7 +15,7 @@ const API = axios.create({
 })
 
 const switchService = (configUrl) => {
-  return URL.BACKEND.value;
+  return URL.ENTRYPOINT.value;
 }
 
 API.interceptors.request.use(
@@ -22,7 +23,7 @@ API.interceptors.request.use(
     if (!config?.headers?.Authorization)
       config.headers = {
         ...config.headers,
-        // Authorization: getLocalStorage("au") ? `Bearer ${getLocalStorage("au")}` : null,
+        Authorization: getLocalStorage("au") ? `Bearer ${getLocalStorage("au")}` : null,
       }
     config.retryCount = config.retryCount || 0
     config.baseURL = switchService(config.url)
