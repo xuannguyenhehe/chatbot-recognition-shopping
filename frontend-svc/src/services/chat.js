@@ -13,11 +13,7 @@ function* getAllChats({ payload }) {
     });
     let response = yield call(
       async () =>
-        await API.get(getURL("chat", "BACKEND"), {
-          params: {
-            username: payload.username,
-          },
-        }),
+        await API.get(getURL("chat", "ENTRYPOINT")),
     );
     if (response.status === 200) {
       yield put({
@@ -25,7 +21,7 @@ function* getAllChats({ payload }) {
         payload: {
           chats: response.data.data.map(chat => ({
             _id: chat.id,
-            name: chat.name,
+            name: chat.sender === payload.username ? chat.receiver : chat.sender,
             avatarImage: null,
           })),
           isLoading: false,

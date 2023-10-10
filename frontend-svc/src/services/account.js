@@ -1,10 +1,12 @@
 import notification from "components/Notification";
+import { REALM_TYPES } from "constants/users";
 import i18n from "i18n";
 import API from "plugins/http-proxy/http-client";
 import { all, call, put, takeEvery } from "redux-saga/effects";
 import { Base64 } from "utils/base64";
 import { getLocalStorage, removeLocalStorage, setLocalStorage } from "utils/token";
 import { getURL } from "utils/url";
+
 
 function* getCurrentUserInfo({ payload }) {
   try {
@@ -21,6 +23,10 @@ function* getCurrentUserInfo({ payload }) {
       let responseUserInfo = yield call(
         async () => await API.get(getURL("keycloak/user", "ENTRYPOINT")),
       );
+      let roleList = responseUserInfo.data.data.realm_role.filter((role) =>
+        [REALM_TYPES.ADMIN, REALM_TYPES.ANNOTATOR].includes(role),
+      );
+      let role = roleList.length ? roleList[0] : "";
       if (responseUserInfo.status === 200) {
         setLocalStorage("user", responseUserInfo.data.data.preferred_username);
         yield put({
@@ -31,6 +37,7 @@ function* getCurrentUserInfo({ payload }) {
             firstName: responseUserInfo.data.data.given_name,
             lastName: responseUserInfo.data.data.family_name,
             email: responseUserInfo.data.data.email,
+            role: role,
             isLoading: false,
           },
         });
@@ -124,7 +131,6 @@ function* handleSignOut() {
         type: "account/saveState",
         payload: {
           idUser: null,
-          belongedGroup: null,
           username: null,
           firstName: null,
           lastName: null,

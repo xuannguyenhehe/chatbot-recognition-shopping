@@ -1,16 +1,21 @@
-import styled from "styled-components";
-import ChatInput from "components/ChatInput";
-import Logout from "components/Logout";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef } from "react";
-import { v4 as uuidv4 } from "uuid";
+import defaultAvatar from "assets/DefaultAvatar.png";
 import loading from "assets/loader.gif";
+import ChatInput from "components/ChatInput";
+import { useEffect, useRef } from "react";
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import { useDispatch, useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
 const ChatContainer = ({ chatId, chatName }) => {
+  const account = useSelector((state) => state.account);
+  const [username, role] = [account.username, account.role];
+
   const isShowLoading = useSelector((state) => state.message.isShowLoading);
   const isLoading = useSelector((state) => state.message.isLoading);
   const messages = useSelector((state) => state.message.messages);
-  const currentUser = localStorage.getItem("username");
+  console.log(messages)
 
   const dispatch = useDispatch();
 
@@ -20,11 +25,11 @@ const ChatContainer = ({ chatId, chatName }) => {
         type: "message/getMessages",
         payload: {
           chatId: chatId,
-          username: currentUser,
+          username: username,
         },
       });
     }
-  }, [chatId, currentUser, dispatch]);
+  }, [chatId, username, dispatch]);
 
   const scrollRef = useRef(null);
 
@@ -42,176 +47,65 @@ const ChatContainer = ({ chatId, chatName }) => {
         message: msg,
         chatId: chatId,
         image: image,
-        username: currentUser,
+        username: username,
       },
     });
   };
+
   return (
-    <div>ABC</div>
-  )}
-
-  // return (
-  //   <Container>
-  //     <div className="chat-header">
-  //       <div className="user-details">
-  //         <div className="avatar">
-  //           <img src={null} alt="current Chat avatar" />
-  //         </div>
-  //         <div className="username">
-  //           <h3>{chatName}</h3>
-  //         </div>
-  //       </div>
-  //       <Logout />
-  //     </div>
-  //     {isShowLoading ? (
-  //       <div className="loading-messages">
-  //         <img src={loading} alt="loader" className="loader" />
-  //       </div>
-  //     ) : (
-  //       <div className="chat-messages">
-  //         {messages.map((message) => {
-  //           return (
-  //             <div ref={scrollRef} key={uuidv4()}>
-  //               <div className={`message ${message.fromSelf ? "sended" : "recieved"}`}>
-  //                 {message.message && (
-  //                   <div className="content ">
-  //                     <p>{message.message}</p>
-  //                   </div>
-  //                 )}
-  //                 {message.image && (
-  //                   <div className="content-image">
-  //                     <img src={message.image} alt="sended" />
-  //                   </div>
-  //                 )}
-  //               </div>
-  //             </div>
-  //           );
-  //         })}
-  //         {isLoading && (
-  //           <div className="message recieved">
-  //             <div className="content ">
-  //               <p>...</p>
-  //             </div>
-  //           </div>
-  //         )}
-  //       </div>
-  //     )}
-  //     <ChatInput handleSendMessage={handleSendMessage} />
-  //   </Container>
-  // );
-  // };
-
-// const Container = styled.div`
-//   display: grid;
-//   grid-template-rows: 10% 80% 10%;
-//   /* gap: 0.1rem; */
-//   overflow: hidden;
-
-//   .chat-header {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     padding: 0 2rem;
-//     border-bottom: 1px solid #ffffff15;
-//     -webkit-box-shadow: 0px 17px 20px -26px rgba(66, 68, 90, 1);
-//     -moz-box-shadow: 0px 17px 20px -26px rgba(66, 68, 90, 1);
-//     box-shadow: 0px 17px 20px -26px rgba(66, 68, 90, 1);
-//     .user-details {
-//       display: flex;
-//       align-items: center;
-//       gap: 1rem;
-//       .avatar {
-//         img {
-//           height: 3.1rem;
-//         }
-//       }
-//       .username {
-//         h3 {
-//           color: #e4e6eb;
-//         }
-//       }
-//     }
-//     @media screen and (min-width: 720px) {
-//       .avatar {
-//         img {
-//           height: 3rem;
-//         }
-//       }
-//     }
-//   }
-
-//   .loading-messages {
-//     text-align: center;
-//     margin-top: 35vh;
-//     img {
-//       width: 120px;
-//       height: 120px;
-//     }
-//   }
-
-//   .chat-messages {
-//     padding: 1rem 2rem;
-//     display: flex;
-//     flex-direction: column;
-//     gap: 1rem;
-//     overflow: auto;
-//     &::-webkit-scrollbar {
-//       width: 0.2rem;
-//       &-thumb {
-//         background-color: #ffffff39;
-//         width: 0.1rem;
-//         border-radius: 1rem;
-//       }
-//     }
-//     .message {
-//       display: flex;
-//       align-items: center;
-//       .content {
-//         max-width: 70%;
-//         overflow-wrap: break-word;
-//         padding: 1rem;
-//         font-size: 0.9rem;
-//         border-radius: 1rem;
-//         color: #d1d1d1;
-//         @media screen and (min-width: 720px) {
-//           max-width: 50%;
-//           font-size: 1.1rem;
-//         }
-//       }
-//       .content-image {
-//         max-width: 70%;
-//         /* justify-self: flex-end; */
-//         img {
-//           max-width: 300px;
-//         }
-//       }
-//     }
-//     .sended {
-//       justify-content: flex-end;
-//       .content {
-//         background-color: rgb(255, 82, 161);
-//       }
-//     }
-//     .recieved {
-//       justify-content: flex-start;
-//       .content {
-//         background-color: rgb(0, 135, 255);
-//       }
-//     }
-//   }
-//   @media screen and (max-width: 900px) and (orientation: landscape) {
-//     grid-template-rows: 15% 70% 15%;
-
-//     .chat-header {
-//       .user-details {
-//         .avatar {
-//           img {
-//             height: 2.6rem;
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
+    <Container>
+      <Row className="p-2">
+          <Col sm={1} style={{"width": "5%"}}>
+            <img src={defaultAvatar} alt="current Chat avatar" style={{"height": "3.1rem"}} />
+          </Col>
+          <Col sm={10}>
+            <h3 className="m-0 p-1">{chatName}</h3>
+          </Col>
+      </Row>
+      <Row>
+      {isShowLoading ? (
+        <Col style={{"textAlign": "center",}}>
+          <img 
+            src={loading} 
+            alt="loader" 
+            style={{
+              "width": "120px", 
+              "height": "120px",
+            }}
+          />
+        </Col>
+      ) : <Container className="m-2">
+          {messages.map((message) => {
+            return (
+              <Row 
+                ref={scrollRef} 
+                key={uuidv4()} 
+                className={username !== message.sender ? "d-flex flex-row" : "d-flex flex-row-reverse"}
+              >
+                <Col sm={1} style={{"width": "5%"}}>
+                  <img src={defaultAvatar} alt="current Chat avatar" style={{"height": "3.1rem"}} />
+                </Col>
+                <Col sm={8} style={username === message.sender ? {"textAlign": "end"} : null}>
+                  {message.message && (
+                    <p>{message.message}</p>
+                  )}
+                </Col>
+              </Row>
+            );
+          })}
+          {isLoading && (
+            <Row className="d-flex flex-row">
+              <Col sm={1} style={{"width": "5%"}}>
+                <img src={defaultAvatar} alt="current Chat avatar" style={{"height": "3.1rem"}} />
+              </Col>
+              <Col sm={8}>...</Col>
+            </Row>
+          )}
+        </Container>}
+      </Row>
+      <ChatInput handleSendMessage={handleSendMessage} />
+    </Container>
+  );
+};
 
 export default ChatContainer;

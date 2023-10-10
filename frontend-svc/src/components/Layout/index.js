@@ -4,7 +4,7 @@ import Footer from "./Footer";
 
 function Layout(props) {
   return (
-    <div style={{"background-color": "#0e0e11"}}>
+    <div style={{"backgroundColor": "#0e0e11"}}>
       <Header username={props.username} />
       {props.children}
       <Footer />

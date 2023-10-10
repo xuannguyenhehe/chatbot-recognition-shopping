@@ -1,28 +1,32 @@
 import ChatContainer from "components/ChatContainer";
 import Contacts from "components/Contacts";
+import CustomSearch from "components/CustomSearch";
 import Welcome from "components/Welcome";
 import { useEffect, useState } from "react";
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import CustomSearch from "components/CustomSearch"
-import styles from "./index.scss";
 
 function Chat() {
+  const account = useSelector((state) => state.account);
+  const [username, role] = [account.username, account.role];
+
   const chats = useSelector((state) => state.chat.chats);
   const [contacts, setContacts] = useState(chats);
+
   const [currentChat, setCurrentChat] = useState(undefined);
-  const currentUser = localStorage.getItem("user");
+  const currentChatUser = localStorage.getItem("user");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!username) {
       navigate("/login");
     }
-  }, [navigate, currentUser]);
+  }, [navigate, username]);
 
   useEffect(() => {
     if (chats.length) {
@@ -31,15 +35,15 @@ function Chat() {
   }, [chats]);
 
   useEffect(() => {
-    if (currentUser && contacts.length === 0) {
+    if (username && contacts.length === 0) {
       dispatch({
         type: "chat/getAllChats",
         payload: {
-          username: currentUser,
+          username: username,
         },
       });
     }
-  }, [currentUser, navigate, contacts.length, dispatch]);
+  }, [username, navigate, contacts.length, dispatch]);
 
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
@@ -77,10 +81,8 @@ function Chat() {
                 />
             </Container>
             <Contacts
-                contacts={contacts}
-                currentUser={currentUser}
-                currentImage={null}
-                changeChat={handleChatChange}
+              contacts={contacts}
+              changeChat={handleChatChange}
             />
           </Col>
           
@@ -93,7 +95,7 @@ function Chat() {
                 }}
             >
                 {currentChat === undefined ? (
-                    <Welcome currentUsername={currentUser?.username || ""} />
+                    <Welcome currentChatUsername={currentChatUser?.username || ""} />
                 ) : (
                     <ChatContainer chatId={currentChat._id} chatName={currentChat.name} />
                 )}

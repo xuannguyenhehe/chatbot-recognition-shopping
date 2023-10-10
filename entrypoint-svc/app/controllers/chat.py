@@ -32,7 +32,7 @@ async def create(request: Request, chat: Chat):
 
     if chat.receiver not in usernames or chat.receiver == user_info['preferred_username']:
         return handle_result(ResultResponse((
-            f"Can not create a create with {chat.receiver}",
+            f"Can not create a chat with {chat.receiver}",
             requests.codes.unauthorized
         )))
     

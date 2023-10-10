@@ -1,12 +1,15 @@
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import styles from "./Header.module.scss";
-import { LinkContainer } from "react-router-bootstrap";
-import { connect } from "react-redux";
-import { VscAccount } from "react-icons/vsc";
-import { HiOutlineBookOpen } from "react-icons/hi";
-import { AiOutlineGlobal } from "react-icons/ai";
-import { useTranslation } from "react-i18next";
+import Chat from "assets/chat.png";
 import { useState } from "react";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { useTranslation } from "react-i18next";
+import { AiOutlineGlobal } from "react-icons/ai";
+import { HiOutlineBookOpen } from "react-icons/hi";
+import { VscAccount } from "react-icons/vsc";
+import { connect } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
+import styles from "./Header.module.scss";
 
 function Header(props) {
   const { dispatch, account } = props;
@@ -31,6 +34,16 @@ function Header(props) {
   return (
     <Navbar className={styles["navbar-header"]}>
       <Container style={{ maxWidth: "100%" }}>
+        <Navbar.Brand href="/">
+          <Row>
+            <Col>
+              <img src={Chat} alt="logo" style={{"height": "3rem"}}/>
+            </Col>
+            <Col style={{"color": "white"}}>
+              <h4 className="m-0 p-1">Automation Fashion Chatbot</h4>
+            </Col>
+          </Row>
+        </Navbar.Brand>
         <Navbar.Collapse id="responsive-navbar-nav" className={styles["navbar-collapse"]}>
           <Nav className={styles["navbar-docs"]}>
             <NavDropdown

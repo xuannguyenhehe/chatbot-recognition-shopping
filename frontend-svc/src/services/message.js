@@ -13,9 +13,8 @@ function* getMessages({ payload }) {
     });
     let response = yield call(
       async () =>
-        await API.get(getURL("message", "BACKEND"), {
+        await API.get(getURL("message", "ENTRYPOINT"), {
           params: {
-            username: payload.username,
             chat_id: payload.chatId,
           },
         }),
@@ -29,7 +28,8 @@ function* getMessages({ payload }) {
             image: messageObj.path_image
               ? process.env.REACT_APP_IMAGE_URL + messageObj.path_image
               : null,
-            fromSelf: messageObj.is_from_self,
+            sender: messageObj.sender,
+            receiver: messageObj.receiver,
           })),
           isShowLoading: false,
         },

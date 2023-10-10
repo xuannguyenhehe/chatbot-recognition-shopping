@@ -132,6 +132,7 @@ class MessageService(AppService):
         #     return ResultResponse((None, status_code, message_response))
         # else:
         #     return ResultResponse(ExceptionResponse.ErrorServer(message))
+        return ResultResponse((message, status_code, message_response))
 
     def get(self, chat_id: int, username: str) -> ResultResponse:
         exist_chat = ChatCRUD(self.db).get(username=username, id=chat_id)
