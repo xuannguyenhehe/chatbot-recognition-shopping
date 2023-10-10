@@ -64,6 +64,15 @@ class KeycloakUserService:
             res = self.return_keycloak_error(e)
             logger.error(f"[Keycloak Error] {res}")
             return ResultResponse((res, requests.codes.bad_request))
+        
+    def get_all_name_users(self):
+        try:
+            datas = list(set([data['username'] for data in self.kc_admin.get_users({})]) - {'chatbot'})
+            return ResultResponse(('Successfully get all name users', requests.codes.ok, datas))
+        except KeycloakError as e:
+            res = self.return_keycloak_error(e)
+            logger.error(f"[Keycloak Error] {res}")
+            return ResultResponse((res, requests.codes.bad_request))
 
     def get_groups(self):
         try:
@@ -108,7 +117,7 @@ class KeycloakUserService:
         try:
             data = self.kc_admin.get_realm_roles_of_user(
                 user_id=user_id
-                )
+            )
             msg = 'Successfully get user role info'
             return ResultResponse((msg, requests.codes.ok, data))
         except KeycloakError as e:
@@ -120,10 +129,11 @@ class KeycloakUserService:
         if not isinstance(roles, list):
             roles = [roles]
         try:
+            print(user_id, roles)
             data = self.kc_admin.assign_realm_roles(
                 user_id=user_id,
                 roles=roles
-                )
+            )
             msg = 'Successfully add user role'
             return ResultResponse((msg, requests.codes.ok, data))
         except KeycloakError as e:
@@ -138,7 +148,7 @@ class KeycloakUserService:
             data = self.kc_admin.delete_realm_roles_of_user(
                 user_id=user_id,
                 roles=roles
-                )
+            )
             msg = 'Successfully delete user role'
             return ResultResponse((msg, requests.codes.ok, data))
         except KeycloakError as e:
@@ -151,7 +161,7 @@ class KeycloakUserService:
             data = self.kc_admin.update_user(
                 user_id=user_id,
                 payload=payload
-                )
+            )
             msg = 'Successfully update user info'
             return ResultResponse((msg, requests.codes.ok, data))
         except KeycloakError as e:
@@ -163,7 +173,7 @@ class KeycloakUserService:
         try:
             data = self.kc_admin.user_logout(
                 user_id=user_id
-                )
+            )
             msg = 'Successfully logout'
             return ResultResponse((msg, requests.codes.ok, data))
 
@@ -172,12 +182,14 @@ class KeycloakUserService:
             logger.error(f"[Keycloak Error] {res}")
             return ResultResponse((res, requests.codes.bad_request))
 
-    def reset_user_password(self,
-                            username,
-                            user_id,
-                            password,
-                            new_password,
-                            temporary=True):
+    def reset_user_password(
+            self,
+            username,
+            user_id,
+            password,
+            new_password,
+            temporary=True,
+        ):
 
         try:
             # valid user credentials

@@ -23,8 +23,8 @@ RUN apt-get install -y iputils-ping
 RUN apt-get install -y --no-install-recommends libgl1 libglib2.0-0 dos2unix
 RUN pip install requests
 
-WORKDIR /entrypoint
-COPY . /entrypoint
+WORKDIR /chat
+COPY . /chat
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 RUN dos2unix ./entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*

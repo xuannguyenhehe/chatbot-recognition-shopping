@@ -1,55 +1,70 @@
+import os
+from enum import Enum
 from typing import List, Union
 from urllib import parse
 
-from minio.versioningconfig import VersioningConfig, ENABLED
-from minio.error import S3Error
-
-from flask import current_app
-
 import minio
+from extensions.minio.utils import make_dirname, split_bucket_path
+from loguru import logger
+from minio.commonconfig import CopySource
+from minio.error import S3Error
+from minio.versioningconfig import ENABLED, VersioningConfig
 
+
+class ObjectType(str, Enum):
+    IMAGE = "images"
+    CHECKPOINT = "checkpoints"
+
+    @staticmethod
+    def list():
+        return list(map(lambda c: c.value, ObjectType))
+
+    @classmethod
+    def has_value(cls, value):
+        return value in cls._value2member_map_
 
 class MinioConnector():
-    def __init__(self, app=None):
+    def __init__(self, config=None):
         self.client = None
-        if app is not None:
-            self.init_app(app)
+        self.init_app(config)
+        self.default_buckets = "backend"
+        self.init_bucket(config=config)
 
-    def init_app(self, app):
-        app.config.setdefault("MINIO_SECURE", True)
-        app.config.setdefault("MINIO_REGION", None)
-        app.config.setdefault("MINIO_HTTP_CLIENT", None)
-        self.client = self.connect(app)
+    def init_app(self, config):
+        config.setdefault("MINIO_SECURE", True)
+        config.setdefault("MINIO_REGION", None)
+        config.setdefault("MINIO_HTTP_CLIENT", None)
+        self.client = self.connect(config)
 
-    def connect(self, app):
+    def connect(self, config):
         _pre_config = {
-            "endpoint": parse.urlsplit(app.config["ADMIN_MINIO_URL"]).netloc,
-            "secure": app.config["MINIO_SECURE"],
-            "region": app.config["MINIO_REGION"],
-            "http_client": app.config["MINIO_HTTP_CLIENT"],
+            "endpoint": parse.urlsplit(config["ADMIN_MINIO_URL"]).netloc,
+            "secure": config["MINIO_SECURE"],
+            "region": config["MINIO_REGION"],
+            "http_client": config["MINIO_HTTP_CLIENT"],
         }
 
-        if app.config["MINIO_ROOT_USER"] and app.config["MINIO_ROOT_PASSWORD"]:
+        if config["MINIO_ROOT_USER"] and config["MINIO_ROOT_PASSWORD"]:
             return minio.Minio(
-                access_key=app.config["MINIO_ROOT_USER"],
-                secret_key=app.config["MINIO_ROOT_PASSWORD"],
+                access_key=config["MINIO_ROOT_USER"],
+                secret_key=config["MINIO_ROOT_PASSWORD"],
                 **_pre_config,
             )
-        elif app.config["MINIO_ACCESS_KEY"] and app.config["MINIO_SECRET_KEY"]:
+        elif config["MINIO_ACCESS_KEY"] and config["MINIO_SECRET_KEY"]:
             return minio.Minio(
-                access_key=app.config["MINIO_ACCESS_KEY"],
-                secret_key=app.config["MINIO_SECRET_KEY"],
+                access_key=config["MINIO_ACCESS_KEY"],
+                secret_key=config["MINIO_SECRET_KEY"],
                 **_pre_config,
             )
         raise ConnectionError("Config Minio is not matching on this platform")
 
-    def init_bucket(self, buckets: list):
+    def init_bucket(self, buckets: list = [], config = None):
         """ Initialize some buckets if they not exist.
 
         Args:
             buckets (list): the list of buckets to initialize.
         """
-        buckets = buckets or current_app.config["MINIO_BUCKETS"]
+        buckets = buckets or config["MINIO_BUCKETS"]
         for bucket in buckets:
             bucket = bucket.lower()
             if not self.client.bucket_exists(bucket):
@@ -91,7 +106,7 @@ class MinioConnector():
             response = self.client.get_object(bucket_name, object_name)
             return response.data or None
         except S3Error as e:
-            current_app.logger.error(e)
+            logger.error(e)
             return None
         finally:
             if response is not None: 
@@ -160,3 +175,102 @@ class MinioConnector():
             prefix,
             recursive,
         )
+    
+    def save_object(
+        self,
+        file_name,
+        data,
+        object_type,
+        bucket_name=None
+    ):
+        """ Save object to storage with path
+            bucket_name/object_type/yyyy/mm/dd/file_name
+        Args:
+            file_name (str): file name
+            data (bytes): bytestring data
+            object_type (str): images or checkpoints
+            bucket_name (str): name of bucket if not given, use default_bucket
+
+        Returns:
+            str: object name with full path
+        """
+        if bucket_name is None:
+            bucket_name = self.default_buckets
+
+        # check object type
+        if not ObjectType.has_value(object_type):
+            raise ValueError(f"expect object_type to be one of {ObjectType.list()}, got {object_type}")
+
+        if not self.client.bucket_exists(bucket_name):
+            raise FileNotFoundError(f"bucket {bucket_name} does not exist")
+
+        object_name = os.path.join(object_type, make_dirname(), file_name)
+
+        self.put_object(
+            bucket_name=bucket_name,
+            object_name=object_name,
+            data=data,
+        )
+        full_path = os.path.join(bucket_name, object_name)
+        return full_path
+    
+    def download_objects(self, ls_path: list, save_dir: str = None):
+        """Create temporary directory for all objects belong to save_dir
+        by list of path of objects
+
+        Args:
+            ls_path (list): list of path of objects
+            save_dir (str): directory to save objects if given
+        Returns:
+            List of byte objects
+        """
+        if save_dir and not os.path.exists(save_dir):
+            os.mkdir(save_dir)
+
+        objs = []
+        for path in ls_path:
+            bucket_name, object_name = split_bucket_path(path)
+            obj = self.get_object(bucket_name, object_name)
+            if obj is not None:
+                objs.append(obj)
+
+                if save_dir:
+                    head_tail = os.path.split(object_name)
+                    tail_object_name = head_tail[1]
+                    tmp_file_name = os.path.join(save_dir, tail_object_name)
+                    with open(tmp_file_name, "wb") as fh:
+                        fh.write(obj)
+        return objs
+
+    def get_object_from_path(self, path):
+        """Convenience for getting object from path"""
+        bucket_name, object_name = split_bucket_path(path)
+        obj = self.get_object(bucket_name, object_name)
+        return obj
+    
+    
+    def copy_object(self, src, dst):
+        old_bucket, old_object = split_bucket_path(src)
+        new_bucket, new_object = split_bucket_path(dst)
+        if (
+            not self.client.bucket_exists(old_bucket)
+            or not self.client.bucket_exists(new_bucket)
+        ):
+            return False
+        try:
+            self.client.copy_object(
+                new_bucket,
+                new_object,
+                CopySource(
+                    old_bucket,
+                    old_object
+                ))
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+
+    def path_exists(self, path):
+        bucket, object_name = split_bucket_path(path)
+        return self.object_exists(bucket, object_name)

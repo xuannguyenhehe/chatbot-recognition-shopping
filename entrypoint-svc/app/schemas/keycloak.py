@@ -24,3 +24,6 @@ class UserRegister(BaseModel):
         if values['password'] != field_value:
             raise ValueError('Repassword and password need to be same.')
         return field_value
+    
+class RoleByUser(BaseModel):
+    role: str

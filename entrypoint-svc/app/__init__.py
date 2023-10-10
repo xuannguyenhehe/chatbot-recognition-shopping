@@ -2,10 +2,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from fastapi import APIRouter
-from app.controllers import keycloak, user
+from app.controllers import keycloak, chat, message, image
 from app.models import create_mongo_client
 from extensions.keycloak.keycloak_openid import KeycloakOpenIDConnector
 from extensions.keycloak.keycloak_admin import KeycloakAdminConnector
+from extensions.minio import create_minio_connector
 from config import config
 
 @asynccontextmanager
@@ -15,6 +16,7 @@ async def lifespan(app: FastAPI):
     app.kc_openid.init_app(config)
     app.kc_admin = KeycloakAdminConnector()
     app.kc_admin.init_app(config)
+    app.storage = create_minio_connector(config)
     yield
 
 def create_app():
@@ -31,7 +33,9 @@ def create_app():
     # Import a module / component using its blueprint handler variable
     router = APIRouter()
     router.include_router(keycloak.router)
-    router.include_router(user.router)
+    router.include_router(chat.router)
+    router.include_router(message.router)
+    router.include_router(image.router)
     app.include_router(router)
 
     return app

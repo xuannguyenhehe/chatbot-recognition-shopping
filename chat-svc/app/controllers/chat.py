@@ -19,10 +19,3 @@ async def get_by_user(username: str, db: get_database = Depends()):
 async def create(chat: Chat, db: get_database = Depends()):
     response = ChatService(db).create(chat)
     return handle_result(response)
-
-payload = {
-    'phase_id': '1', 
-    'prob_id': '1', 
-    'file': (
-        'raw_train.parquet',
-        open('/Users/xuannguyenphamnguyen/Documents/competition/mlops-marathon-2023/mlops2023/data/raw_data/phase-1/prob-1/raw_train.parquet','rb'))}

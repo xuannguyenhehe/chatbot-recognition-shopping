@@ -12,7 +12,7 @@ services:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
     volumes:
-      - "${DISK_PATH}/data-1-1:/data1"
+      - "./data:/data1"
     command: server --address ":9099" --console-address ":9000" /data
     restart: always # necessary since it's failing to start sometimes
 

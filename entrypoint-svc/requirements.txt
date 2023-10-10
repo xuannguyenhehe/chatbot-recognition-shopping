@@ -14,6 +14,13 @@ requests
 dnspython
 pymongo
 
+# Other
+minio
+
 # Entrypoint
-passlib[bcrypt] 
+pandas
+matplotlib
+seaborn
+beanie
+uuid
 python-keycloak==2.6.0 

@@ -4,7 +4,7 @@ name: "chatbot"
   
 services:
   keycloak:
-    image: quay.io/keycloak/keycloak:legacy
+    image: quay.io/keycloak/keycloak:19.0.3-legacy
     container_name: chatbot-keycloak
     platform: linux/arm64
     restart: always

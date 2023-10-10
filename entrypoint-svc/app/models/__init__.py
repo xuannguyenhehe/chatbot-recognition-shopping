@@ -20,8 +20,11 @@ async def create_mongo_client(config):
         print(e)
     return db
 
-from .user import User
+
+from .chat import Chat
+from .image import Image
+from .message import Message
+
 
 mongo_dbname = "chatbot"
-
-__all__ = ["User"]
+__all__ = ["Chat", "Image", "Message"]
