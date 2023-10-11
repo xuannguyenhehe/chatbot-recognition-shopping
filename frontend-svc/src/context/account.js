@@ -10,9 +10,8 @@ const Account = createSlice({
     email: "",
     role: "",
     users: "",
-    responseMessage: "",
-    statusCode: "",
     isLoading: null,
+    noTab: null,
   },
   reducers: {
     getState(state) {

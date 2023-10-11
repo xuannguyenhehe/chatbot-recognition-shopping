@@ -62,30 +62,35 @@ function* sendMessage({ payload }) {
       };
     }
     let body = {
-      username: payload.username,
       chat_id: payload.chatId,
       message: {
         message: payload.message,
-        is_from_self: true,
+        receiver: payload.receiver,
         image: body_image,
       },
     };
     let response = yield call(
-      async () => await API.post(getURL("message", "BACKEND"), body),
+      async () => await API.post(getURL("message", "ENTRYPOINT"), body),
     );
     if (response.status === 200) {
       let messages = [...state.message.messages];
-      if (response.data?.data?.length > 0) {
-        response.data.data.forEach((messageObj) => {
-          messages.push({
-            fromSelf: messageObj.is_from_self,
-            message: messageObj.message,
-            image: messageObj.path_image
-              ? process.env.REACT_APP_IMAGE_URL + messageObj.path_image
-              : null,
-          });
-        });
-      }
+      // if (response.data?.data?.length > 0) {
+      //   response.data.data.forEach((messageObj) => {
+      //     messages.push({
+      //       fromSelf: messageObj.is_from_self,
+      //       message: messageObj.message,
+      //       image: messageObj.path_image
+      //         ? process.env.REACT_APP_IMAGE_URL + messageObj.path_image
+      //         : null,
+      //     });
+      //   });
+      // }
+      messages.push({
+        sender: state.account.username,
+        receiver: payload.receiver,
+        message: payload.message,
+        image: null,
+      });
       yield put({
         type: "message/saveState",
         payload: {

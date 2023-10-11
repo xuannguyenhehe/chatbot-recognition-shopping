@@ -7,9 +7,8 @@ class MessageBase(BaseModel):
     chat_id: int
 
 class MessageInput(BaseModel):
-    message: str
+    content: str
     image: Optional[ImageInput]
-    receiver: str
 
 class MessageOutput(BaseModel):
     message: str

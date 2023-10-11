@@ -4,6 +4,7 @@ const Chat = createSlice({
   name: "chat",
   initialState: {
     chats: [],
+    contacts: [],
     isLoading: null,
   },
   reducers: {

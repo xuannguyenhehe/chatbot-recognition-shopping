@@ -1,35 +1,40 @@
 import defaultAvatar from "assets/DefaultAvatar.png";
 import loading from "assets/loader.gif";
 import ChatInput from "components/ChatInput";
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
-const ChatContainer = ({ chatId, chatName }) => {
+const ChatContainer = ({ currentChatId }) => {
   const account = useSelector((state) => state.account);
-  const [username, role] = [account.username, account.role];
+  const chats = useSelector((state) => state.chat.chats);
+  const [chatName, setChatName] = useState('');
+  const  { username } = account;
 
   const isShowLoading = useSelector((state) => state.message.isShowLoading);
   const isLoading = useSelector((state) => state.message.isLoading);
   const messages = useSelector((state) => state.message.messages);
-  console.log(messages)
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (chatId) {
+    if (currentChatId) {
       dispatch({
         type: "message/getMessages",
         payload: {
-          chatId: chatId,
-          username: username,
+          chatId: currentChatId,
         },
       });
+      chats.forEach(function(chat){
+        if (chat.id === currentChatId) {
+          setChatName(chat.name);
+        }
+    });
     }
-  }, [chatId, username, dispatch]);
+  }, [currentChatId, username, dispatch, chats]);
 
   const scrollRef = useRef(null);
 
@@ -45,9 +50,8 @@ const ChatContainer = ({ chatId, chatName }) => {
       type: "message/sendMessage",
       payload: {
         message: msg,
-        chatId: chatId,
+        chatId: currentChatId,
         image: image,
-        username: username,
       },
     });
   };
@@ -80,7 +84,7 @@ const ChatContainer = ({ chatId, chatName }) => {
               <Row 
                 ref={scrollRef} 
                 key={uuidv4()} 
-                className={username !== message.sender ? "d-flex flex-row" : "d-flex flex-row-reverse"}
+                className={username !== message.sender ? "d-flex flex-row my-2" : "d-flex flex-row-reverse my-2"}
               >
                 <Col sm={1} style={{"width": "5%"}}>
                   <img src={defaultAvatar} alt="current Chat avatar" style={{"height": "3.1rem"}} />

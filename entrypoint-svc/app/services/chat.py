@@ -5,11 +5,12 @@ from app.utils.repsonse.result import ResultResponse
 from typing import List
 from app.models.chat import Chat as ChatModel
 from fastapi import status
+import pymongo
 
 
 class ChatService(AppService):
-    def get(self, username: str) -> ResultResponse:
-        chats = ChatCRUD(self.db).get(username)
+    def get(self, username: str, is_get_last_message: bool = True) -> ResultResponse:
+        chats = ChatCRUD(self.db).get(username=username, is_get_last_message=is_get_last_message)
         return ResultResponse((None, status.HTTP_200_OK, chats))
 
     def create(self, chat: Chat, sender: str) -> ResultResponse:
@@ -33,11 +34,13 @@ class ChatCRUD(AppCRUD):
         message, status_code = self.insert("Chat", self.serialize(chat))
         return message, status_code
 
-    def get(self, username: str, name: str = None, id: int = None) -> List[Chat]:
-        query = {
-            "sender": username,
-            "is_active": True,
-        }
+    def get(self, username: str = None, name: str = None, id: int = None, is_get_last_message: bool = True) -> List[Chat]:
+        query = {}
+        if username:
+            query.update({
+                "$or": [{"sender": username}, {"receiver": username}],
+                "is_active": True,
+            })
         if name: 
             query.update({
                 "name": name,
@@ -53,11 +56,22 @@ class ChatCRUD(AppCRUD):
             "updated_date": False,
         }
         chats = list(self.db.Chat.find(query, no_query))
+        print(chats, query)
 
-        if not len(chats):
-            query['receiver'] = query['sender']
-            del query['sender']
-            chats = list(self.db.Chat.find(query, no_query))
+        if is_get_last_message:
+            for chat in chats:
+                query = {
+                    "chat_id": chat["id"],
+                    "is_active": True,
+                }
+                no_query = {
+                    "_id": False,
+                    "is_active": False,
+                }
+                last_message = list(self.db.Message.find(query, no_query)\
+                                            .sort('updated_date', pymongo.DESCENDING).limit(1))[0]
+                chat['last_message'] = last_message["message"]
+                chat['last_message_user'] = last_message["sender"]
             
         return chats
     

@@ -13,20 +13,41 @@ function* getAllChats({ payload }) {
     });
     let response = yield call(
       async () =>
-        await API.get(getURL("chat", "ENTRYPOINT")),
+        await API.get(getURL("chat", "ENTRYPOINT"), {
+          params: {
+            is_get_last_message: payload.is_get_last_message,
+          },
+        })
     );
     if (response.status === 200) {
-      yield put({
-        type: "chat/saveState",
-        payload: {
-          chats: response.data.data.map(chat => ({
-            _id: chat.id,
-            name: chat.sender === payload.username ? chat.receiver : chat.sender,
-            avatarImage: null,
-          })),
-          isLoading: false,
-        },
-      });
+      if (payload.is_get_last_message) {
+        yield put({
+          type: "chat/saveState",
+          payload: {
+            chats: response.data.data.map(chat => ({
+              _id: chat.id,
+              name: chat.sender === payload.username ? chat.receiver : chat.sender,
+              last_message: chat.last_message,
+              last_message_user: chat.last_message_user,
+              avatarImage: null,
+            })),
+            isLoading: false,
+          },
+        });
+      }
+      if (!payload.is_get_last_message) {
+        yield put({
+          type: "chat/saveState",
+          payload: {
+            contacts: response.data.data.map(chat => ({
+              _id: chat.id,
+              name: chat.sender === payload.username ? chat.receiver : chat.sender,
+              avatarImage: null,
+            })),
+            isLoading: false,
+          },
+        });
+      }
     }
   } catch (error) {
     yield put({

@@ -13,7 +13,7 @@ function Login() {
     password: "",
   });
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.user.isLoading);
+  const isLoading = useSelector((state) => state.account.isLoading);
 
   const toastOptions = {
     position: "bottom-right",

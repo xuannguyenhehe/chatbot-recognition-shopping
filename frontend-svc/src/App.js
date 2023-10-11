@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { getLocalStorage } from "utils/token";
 import Chat from "./pages/Chat";
+import Chatbot from "./pages/Chatbot";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
@@ -38,15 +39,23 @@ const App = (props) => {
   if (username) {
     return (
       <Routes>
-        <Route 
-          path="/"
-          element={
-              <Layout
-                username={username}
-              >
-                <Chat />
-              </Layout>
-            } 
+        <Route path="/" element={
+            <Layout username={username}>
+              <Chat />
+            </Layout>
+          } 
+        />
+        <Route path="/:chatId" element={
+            <Layout username={username}>
+              <Chat />
+            </Layout>
+          } 
+        />
+        <Route path="/chatbot" element={
+            <Layout username={username}>
+              <Chatbot />
+            </Layout>
+          } 
         />
       </Routes>
     );

@@ -12,13 +12,13 @@ router = APIRouter(prefix="/chat")
 
 
 @router.get("/", response_model=List[Chat], dependencies=[Depends(require_token)])
-async def get_by_user(request: Request):
+async def get_by_user(request: Request, is_get_last_message: bool = True):
     user_auth = request.state.user_auth
     access_token = user_auth['access_token']
     user_info = request.app.kc_openid.keycloak_openid.userinfo(access_token)
     username = user_info['preferred_username']
 
-    response = ChatService(request.app.db).get(username)
+    response = ChatService(request.app.db).get(username, is_get_last_message)
     return handle_result(response)
 
 

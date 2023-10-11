@@ -45,7 +45,7 @@ class IntentType(str, Enum):
 class MessageService(AppService):
     def create(self, storage: MinioConnector, chat_id: int, message_obj: MessageInput, sender: str) -> ResultResponse:
         message_response = []
-        exist_chat = ChatCRUD(self.db).get(sender, id=chat_id)
+        exist_chat = ChatCRUD(self.db).get(id=chat_id)
         if not exist_chat:
             return ResultResponse(ExceptionResponse.NoExistedError({
                 "chat id": chat_id,
@@ -71,9 +71,9 @@ class MessageService(AppService):
                 return ResultResponse(ExceptionResponse.ErrorServer(message))
         
         message_output = MessageOutput(
-            message=message_obj.message,
+            message=message_obj.content,
             path_image=path_image,
-            receiver=message_obj.receiver
+            receiver=exist_chat["receiver"] if sender == exist_chat["sender"] else exist_chat["sender"],
         )
         message_response.append(message_output.dict())
         message, status_code = MessageCRUD(self.db).create(chat_id, sender, message_output)
@@ -201,6 +201,7 @@ class MessageCRUD(AppCRUD):
             return message, status_code
         else:
             return None, sta.HTTP_200_OK
+
 
     def get(self, chat_id: int) -> List[MessageResponse]:
         query = {

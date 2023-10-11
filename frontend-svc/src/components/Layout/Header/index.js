@@ -1,8 +1,9 @@
 import Chat from "assets/chat.png";
+import { REALM_TYPES } from "constants/users";
 import { useState } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import { useTranslation } from "react-i18next";
 import { AiOutlineGlobal } from "react-icons/ai";
 import { HiOutlineBookOpen } from "react-icons/hi";
@@ -11,8 +12,10 @@ import { connect } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import styles from "./Header.module.scss";
 
+
 function Header(props) {
   const { dispatch, account } = props;
+  const { role } = account;
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState(localStorage.getItem("lang") || "EN");
   const listLanguages = [
@@ -65,14 +68,14 @@ function Header(props) {
                 </NavDropdown.Item>
               ))}
             </NavDropdown>
-            {props.username && (
-              <LinkContainer to="/documents">
+            {props.username && role === REALM_TYPES.ADMIN && (
+              <LinkContainer to="/chatbot">
                 <Nav.Link
                   active={false}
                   className={`${styles["nav-item"]} ${styles["nav-header-item"]}`}
                 >
                   <HiOutlineBookOpen className={styles["header-icon"]} />
-                  {t("head.document")}
+                  {t("head.chatbot")}
                 </Nav.Link>
               </LinkContainer>
             )}
