@@ -10,7 +10,7 @@ import { SiChatbot } from 'react-icons/si';
 import { useDispatch, useSelector } from "react-redux";
 
 
-const Contacts = ({ chats, contacts, changeChat, handleTabChange, noTab }) => {
+const Contacts = ({ chats, contacts, changeChat, handleTabChange, noTabChat }) => {
   const dispatch = useDispatch();
   const account = useSelector((state) => state.account);
   const {username} = account;
@@ -21,7 +21,7 @@ const Contacts = ({ chats, contacts, changeChat, handleTabChange, noTab }) => {
     dispatch({
       type: "account/saveState",
       payload: {
-        noTab: index,
+        noTabChat: index,
       },
     });
     handleTabChange(index);
@@ -37,7 +37,7 @@ const Contacts = ({ chats, contacts, changeChat, handleTabChange, noTab }) => {
       <Container className="p-0">
         <Row style={{"height": "75vh"}}>
           <Container>
-          {noTab === 0 && contacts.map((contact, index) => {
+          {noTabChat === 0 && contacts.map((contact, index) => {
               return (
                 <Row 
                   key={contact._id}
@@ -53,7 +53,7 @@ const Contacts = ({ chats, contacts, changeChat, handleTabChange, noTab }) => {
                 </Row>
               );
             })}
-            {noTab === 1 && chats.map((contact, index) => {
+            {noTabChat === 1 && chats.map((contact, index) => {
               return (
                 <Row 
                   key={contact._id}
@@ -86,7 +86,7 @@ const Contacts = ({ chats, contacts, changeChat, handleTabChange, noTab }) => {
                 "height": "3.1rem",
                 "width": "3.1rem",
                 "borderRadius": "50%",
-                "color": noTab === 0 ? "blue" : "white",
+                "color": noTabChat === 0 ? "blue" : "white",
               }}
               onClick={() => changeTab(0)}
             />
@@ -97,7 +97,7 @@ const Contacts = ({ chats, contacts, changeChat, handleTabChange, noTab }) => {
                 "height": "3.1rem",
                 "width": "3.1rem",
                 "borderRadius": "50%",
-                "color": noTab === 1 ? "blue" : "white",
+                "color": noTabChat === 1 ? "blue" : "white",
               }}
               onClick={() => changeTab(1)}
             />

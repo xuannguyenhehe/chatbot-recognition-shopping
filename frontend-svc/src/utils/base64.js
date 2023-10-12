@@ -116,3 +116,20 @@ export const Base64 = {
     return JSON.parse(jsonPayload);
   },
 };
+
+export const convertBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    try {
+      let fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    } catch (error) {
+      reject(error);
+    }
+  });
+};

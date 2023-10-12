@@ -39,7 +39,7 @@ function* getCurrentUserInfo({ payload }) {
             email: responseUserInfo.data.data.email,
             role: role,
             isLoading: false,
-            noTab: 1,
+            noTabChat: 1,
           },
         });
       }
@@ -166,7 +166,7 @@ function* handleLogin({ payload }) {
         payload: {
           ...response.data,
           username: payload.username,
-          noTab: 1,
+          noTabChat: 1,
         },
       });
       yield put({ type: "account/handleLoginSuccess" });

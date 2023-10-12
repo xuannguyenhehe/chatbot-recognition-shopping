@@ -11,7 +11,8 @@ const Account = createSlice({
     role: "",
     users: "",
     isLoading: null,
-    noTab: null,
+    noTabChat: null,
+    noTabChatbot: 1,
   },
   reducers: {
     getState(state) {

@@ -28,7 +28,7 @@ const ChatContainer = ({ currentChatId }) => {
           chatId: currentChatId,
         },
       });
-      chats.forEach(function(chat){
+      chats.forEach((chat) => {
         if (chat.id === currentChatId) {
           setChatName(chat.name);
         }

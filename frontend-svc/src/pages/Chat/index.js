@@ -11,7 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function Chat() {
   const account = useSelector((state) => state.account);
-  const {username, noTab} = account;
+  const {username, noTabChat} = account;
 
   const chats = useSelector((state) => state.chat.chats)
   const contacts = useSelector((state) => state.chat.contacts)
@@ -22,8 +22,8 @@ function Chat() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleTabChange = useCallback((noTab) => {
-    if (username && noTab === 0 && contacts.length === 0) {
+  const handleTabChange = useCallback((noTabChat) => {
+    if (username && noTabChat === 0 && contacts.length === 0) {
       dispatch({
         type: "chat/getAllChats",
         payload: {
@@ -32,7 +32,7 @@ function Chat() {
         },
       });
     }
-    if (username && noTab === 1 && chats.length === 0) {
+    if (username && noTabChat === 1 && chats.length === 0) {
       dispatch({
         type: "chat/getAllChats",
         payload: {
@@ -94,7 +94,7 @@ function Chat() {
               contacts={contacts}
               changeChat={handleChatChange}
               handleTabChange={handleTabChange}
-              noTab={noTab}
+              noTabChat={noTabChat}
             />
           </Col>
           
