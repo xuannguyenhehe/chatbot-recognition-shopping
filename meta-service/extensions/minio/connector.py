@@ -27,7 +27,7 @@ class MinioConnector():
     def __init__(self, config=None):
         self.client = None
         self.init_app(config)
-        self.default_buckets = "backend"
+        self.default_buckets = config["MINIO_BUCKETS"]
         self.init_bucket(config=config)
 
     def init_app(self, config):

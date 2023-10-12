@@ -9,15 +9,17 @@ class Settings(BaseSettings):
     KEYCLOAK_URL: str
     REALMS: str
 
-    # DB initialization
-    MONGO_ROOT_USERNAME = "admin"
-    MONGO_ROOT_PASSWORD = "admin"
-    MONGO_PORT = 27017
-    MONGO_HOST = "chatbot-mongo"
-    MONGO_AUTH_DATABASE = "admin"
-    MONGO_DATABASE_URI = \
-        f"mongodb://{MONGO_ROOT_USERNAME}:{MONGO_ROOT_PASSWORD}@{MONGO_HOST}:{MONGO_PORT}/?authSource=admin&readPreference=secondary&directConnection=true&ssl=false'"
+    MINIO_BUCKETS: str
+    ADMIN_MINIO_URL: str
+    MINIO_ROOT_USER: str
+    MINIO_ROOT_PASSWORD: str
 
+    # DB initialization
+    MONGO_ROOT_USERNAME: str
+    MONGO_ROOT_PASSWORD: str
+    MONGO_PORT: int
+    MONGO_HOST: str
+    MONGO_AUTH_DATABASE: str
 
 class DevelopmentConfig(Settings):
     class Config:

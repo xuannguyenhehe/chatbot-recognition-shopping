@@ -16,7 +16,7 @@ async def lifespan(app: FastAPI):
     app.kc_openid.init_app(config)
     app.kc_admin = KeycloakAdminConnector()
     app.kc_admin.init_app(config)
-    app.storage = create_minio_connector(config)
+    app.storage = await create_minio_connector(config)
     yield
 
 def create_app():

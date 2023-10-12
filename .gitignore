@@ -143,6 +143,10 @@ dmypy.json
 *.gz
 *.png
 *tf*
-*checkpoint*
+*cache*
 *db*
 .DS_Store
+*.pth
+rasa/models/
+
+docker-compose/minio/data/*

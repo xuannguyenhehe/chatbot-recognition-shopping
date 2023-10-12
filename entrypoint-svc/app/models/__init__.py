@@ -1,7 +1,9 @@
 import pymongo
 
 async def create_mongo_client(config):
-    mongo_client = pymongo.MongoClient(config["MONGO_DATABASE_URI"])
+    MONGO_DATABASE_URI = \
+        f"mongodb://{config['MONGO_ROOT_USERNAME']}:{config['MONGO_ROOT_PASSWORD']}@{config['MONGO_HOST']}:{config['MONGO_PORT']}/?authSource=admin&readPreference=secondary&directConnection=true&ssl=false'"
+    mongo_client = pymongo.MongoClient(MONGO_DATABASE_URI)
     try:
         is_live = mongo_client.admin.command('ping')
         if is_live:

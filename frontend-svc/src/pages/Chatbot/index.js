@@ -44,7 +44,7 @@ function ChatBot() {
             }}
           >
             <Container className="p-2">
-              <Button style={{"width": "100%"}} className="p-2 m-2" variant="success">
+              <Button style={{"width": "100%"}} className="p-2 m-2" variant="secondary">
                 <Row>
                   <Col sm={3}>
                     <AiFillSetting 

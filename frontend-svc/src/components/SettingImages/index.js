@@ -73,6 +73,8 @@ const SettingImages = () => {
     <Container className="p-2" style={{"maxWidth": "100%"}}>
       <Container className="d-flex justify-content-end" style={{"maxWidth": "100%"}}>
         <Button variant="warning">Change</Button>
+        <Button variant="success">Save</Button>
+        <Button variant="danger">Cancel</Button>
       </Container>
       {convertedUploadedImages.length !== 0 && (
         <Container style={{"maxWidth": "100%"}}>

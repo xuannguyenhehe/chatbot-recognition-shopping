@@ -27,11 +27,11 @@ class MinioConnector():
     def __init__(self, config=None):
         self.client = None
         self.init_app(config)
-        self.default_buckets = "backend"
+        self.default_buckets = config["MINIO_BUCKETS"]
         self.init_bucket(config=config)
 
     def init_app(self, config):
-        config.setdefault("MINIO_SECURE", True)
+        config.setdefault("MINIO_SECURE", False)
         config.setdefault("MINIO_REGION", None)
         config.setdefault("MINIO_HTTP_CLIENT", None)
         self.client = self.connect(config)
@@ -64,7 +64,7 @@ class MinioConnector():
         Args:
             buckets (list): the list of buckets to initialize.
         """
-        buckets = buckets or config["MINIO_BUCKETS"]
+        buckets = buckets or config["MINIO_BUCKETS"].split(",")
         for bucket in buckets:
             bucket = bucket.lower()
             if not self.client.bucket_exists(bucket):
