@@ -1,7 +1,7 @@
-import ChatContainer from "components/ChatContainer";
-import Contacts from "components/Contacts";
+import ChatContainer from "pages/Chat/components/ChatContainer";
+import Contacts from "pages/Chat/components/Contacts";
 import CustomSearch from "components/CustomSearch";
-import Welcome from "components/Welcome";
+import Welcome from "pages/Chat/components/Welcome";
 import { useEffect, useState, useCallback } from "react";
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';

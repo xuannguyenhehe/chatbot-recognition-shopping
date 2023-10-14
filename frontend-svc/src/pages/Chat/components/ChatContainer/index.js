@@ -1,6 +1,6 @@
 import defaultAvatar from "assets/DefaultAvatar.png";
 import loading from "assets/loader.gif";
-import ChatInput from "components/ChatInput";
+import ChatInput from "pages/Chat/components/ChatInput";
 import { useEffect, useState, useRef } from "react";
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';

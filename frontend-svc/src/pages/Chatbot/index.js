@@ -1,5 +1,5 @@
-import SettingImages from "components/SettingImages";
-import SettingQA from "components/SettingQA";
+import SettingImages from "pages/Chatbot/components/SettingImages";
+import SettingQA from "pages/Chatbot/components/SettingQA";
 import { REALM_TYPES } from "constants/users";
 import { useEffect } from "react";
 import Col from 'react-bootstrap/Col';
