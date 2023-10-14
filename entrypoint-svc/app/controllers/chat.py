@@ -8,7 +8,7 @@ from app.utils.repsonse.result import ResultResponse
 import requests
 
 
-router = APIRouter(prefix="/chat")
+router = APIRouter()
 
 
 @router.get("/", response_model=List[Chat], dependencies=[Depends(require_token)])

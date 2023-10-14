@@ -6,13 +6,21 @@ from app.controllers import inference, image
 from extensions.minio import create_minio_connector
 from extensions.vector import create_vector_search
 from app.models import create_mongo_client
+from extensions.keycloak.keycloak_openid import KeycloakOpenIDConnector
+from extensions.keycloak.keycloak_admin import KeycloakAdminConnector
 from config import config
+import os
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     app.db = await create_mongo_client(config)
     app.storage = await create_minio_connector(config)
     app.vector_search = await create_vector_search(config)
+    app.kc_openid = KeycloakOpenIDConnector()
+    app.kc_openid.init_app(config)
+    app.kc_admin = KeycloakAdminConnector()
+    app.kc_admin.init_app(config)
     yield
 
 
@@ -29,8 +37,8 @@ def create_app():
 
     # Import a module / component using its blueprint handler variable
     router = APIRouter()
-    router.include_router(inference.router)
-    router.include_router(image.router)
+    router.include_router(inference.router, prefix=os.path.join(config['APP_API_PREFIX'], 'inference'))
+    router.include_router(image.router, prefix=os.path.join(config['APP_API_PREFIX'], 'image'))
     app.include_router(router)
 
     return app

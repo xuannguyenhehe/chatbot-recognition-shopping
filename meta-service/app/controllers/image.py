@@ -1,15 +1,52 @@
-from fastapi import APIRouter, Depends
-from fastapi.responses import Response
-from app.schemas.inference import InferenceInput
+from fastapi import APIRouter, Request, UploadFile, Depends
 from app.services.image import ImageService
 from app.utils.repsonse.result import handle_result
-from extensions.minio import get_storage
+from extensions.keycloak.utils import require_token
+import base64
 
 
-router = APIRouter(prefix="/image")
+router = APIRouter()
 
-@router.get('/{path:path}')
-async def get_content_image(path: str, storage: get_storage = Depends()):
-    path = path.replace("image/", "images/")
-    image = ImageService(storage).get_image_content(path)
-    return Response(content=image.read(), media_type="image/png")
+
+@router.post('/', dependencies=[Depends(require_token)])
+async def add_images(request: Request, files: list[UploadFile]):
+    user_auth = request.state.user_auth
+    access_token = user_auth['access_token']
+    user_info = request.app.kc_openid.keycloak_openid.userinfo(access_token)
+    username = user_info['preferred_username']
+
+    images = {}
+    for file in files:
+        filename = file.filename
+        filename_elements = filename.split('.')
+        label, original_image_name = filename_elements[0], '.'.join(filename_elements[1:])
+        if label not in images:
+            images[label] = [{
+                "filename": original_image_name,
+                "content": base64.b64encode(await file.read()),
+            }]
+        else:
+            images[label].append({
+                "filename": original_image_name,
+                "content": base64.b64encode(await file.read()),
+            })
+
+    response = ImageService(
+        db=request.app.db, 
+        storage=request.app.storage
+    ).add_images(username, images)
+    return handle_result(response)
+
+
+@router.get('/', dependencies=[Depends(require_token)])
+async def get_images(request: Request):
+    user_auth = request.state.user_auth
+    access_token = user_auth['access_token']
+    user_info = request.app.kc_openid.keycloak_openid.userinfo(access_token)
+    username = user_info['preferred_username']
+
+    response = ImageService(
+        db=request.app.db, 
+        storage=request.app.storage
+    ).get_images(username)
+    return handle_result(response)

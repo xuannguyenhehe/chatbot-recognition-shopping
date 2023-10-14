@@ -10,7 +10,7 @@ starlette==0.27.0
 loguru==0.7.2
 requests==2.31.0
 
-# Meta
+# MMfashion
 torch==2.1.0
 matplotlib==3.8.0
 mmcv==1.5.0

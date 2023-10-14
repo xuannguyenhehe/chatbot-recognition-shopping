@@ -80,3 +80,7 @@ export default function urlJoin() {
 export function getURL(url, type) {
   return urlJoin(URL[type].prefix, URL[type].version, url);
 }
+
+export function getFullURL(url, type) {
+  return urlJoin(URL[type].value, URL[type].prefix, URL[type].version, url);
+}

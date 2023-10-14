@@ -2,6 +2,13 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
+    APP_ENV: str
+    APP_DEBUG: bool
+    APP_PORT: int
+    APP_HOST: str
+    APP_API_PREFIX: str
+    SERVICE_NAME: str
+
     KEYCLOAK_SECRET_KEY: str
     KEYCLOAK_ADMIN_USERNAME: str
     KEYCLOAK_ADMIN_PASSWORD: str
@@ -13,6 +20,7 @@ class Settings(BaseSettings):
     ADMIN_MINIO_URL: str
     MINIO_ROOT_USER: str
     MINIO_ROOT_PASSWORD: str
+    DEFAULT_BUCKET: str
 
     # DB initialization
     MONGO_ROOT_USERNAME: str

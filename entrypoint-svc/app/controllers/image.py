@@ -3,7 +3,7 @@ from fastapi.responses import Response
 from app.services.image import ImageService
 
 
-router = APIRouter(prefix="/image")
+router = APIRouter()
 
 
 @router.get('/{path:path}')

@@ -8,6 +8,8 @@ from extensions.keycloak.keycloak_openid import KeycloakOpenIDConnector
 from extensions.keycloak.keycloak_admin import KeycloakAdminConnector
 from extensions.minio import create_minio_connector
 from config import config
+import os
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -32,10 +34,11 @@ def create_app():
 
     # Import a module / component using its blueprint handler variable
     router = APIRouter()
-    router.include_router(keycloak.router)
-    router.include_router(chat.router)
-    router.include_router(message.router)
-    router.include_router(image.router)
+    print(os.path.join(config['APP_API_PREFIX'] + 'keycloak'))
+    router.include_router(keycloak.router, prefix=os.path.join(config['APP_API_PREFIX'], 'keycloak'))
+    router.include_router(chat.router, prefix=os.path.join(config['APP_API_PREFIX'], 'chat'))
+    router.include_router(message.router, prefix=os.path.join(config['APP_API_PREFIX'], 'message'))
+    router.include_router(image.router, prefix=os.path.join(config['APP_API_PREFIX'], 'image'))
     app.include_router(router)
 
     return app

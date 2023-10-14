@@ -14,5 +14,3 @@ if __name__ == "__main__":
 else:
     gunicorn_app = create_app()
     gunicorn_logger = logging.getLogger('gunicorn.error')
-    # gunicorn_app.logger.handlers = gunicorn_logger.handlers
-    # gunicorn_app.logger.setLevel(gunicorn_logger.level)

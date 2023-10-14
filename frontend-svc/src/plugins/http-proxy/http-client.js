@@ -3,6 +3,7 @@ import { URL } from "constants/API"
 import isRetryAllowed from "is-retry-allowed"
 import { getLocalStorage } from "utils/token"
 
+
 const RETRIES = 3
 
 const API = axios.create({
@@ -15,7 +16,14 @@ const API = axios.create({
 })
 
 const switchService = (configUrl) => {
-  return URL.ENTRYPOINT.value;
+  let prefix = configUrl.split("/")[0];
+  
+  if (prefix === URL['ENTRYPOINT'].prefix) {
+    return URL['ENTRYPOINT'].value
+  } else if (prefix === URL['META'].prefix) {
+    return URL['META'].value
+  }
+  return window.location.host;
 }
 
 API.interceptors.request.use(
@@ -26,7 +34,11 @@ API.interceptors.request.use(
         Authorization: getLocalStorage("au") ? `Bearer ${getLocalStorage("au")}` : null,
       }
     config.retryCount = config.retryCount || 0
-    config.baseURL = switchService(config.url)
+    if (config.url === "http://172.16.16.147:8003/image") {
+      config.baseURL = URL.META.value
+    } else {
+      config.baseURL = switchService(config.url)
+    }
     return config
   },
   (error) => {

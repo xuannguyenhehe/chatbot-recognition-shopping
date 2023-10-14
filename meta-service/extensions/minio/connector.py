@@ -27,7 +27,7 @@ class MinioConnector():
     def __init__(self, config=None):
         self.client = None
         self.init_app(config)
-        self.default_buckets = config["MINIO_BUCKETS"]
+        self.default_bucket = config["DEFAULT_BUCKET"]
         self.init_bucket(config=config)
 
     def init_app(self, config):
@@ -64,7 +64,7 @@ class MinioConnector():
         Args:
             buckets (list): the list of buckets to initialize.
         """
-        buckets = buckets or config["MINIO_BUCKETS"]
+        buckets = buckets or config["MINIO_BUCKETS"].split(',')
         for bucket in buckets:
             bucket = bucket.lower()
             if not self.client.bucket_exists(bucket):
@@ -195,7 +195,7 @@ class MinioConnector():
             str: object name with full path
         """
         if bucket_name is None:
-            bucket_name = self.default_buckets
+            bucket_name = self.default_bucket
 
         # check object type
         if not ObjectType.has_value(object_type):

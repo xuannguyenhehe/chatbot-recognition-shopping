@@ -4,7 +4,7 @@ from app.services.inference import InferenceService
 from app.utils.repsonse.result import handle_result
 
 
-router = APIRouter(prefix="/inference")
+router = APIRouter()
 
 
 @router.post("/")

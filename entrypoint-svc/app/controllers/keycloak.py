@@ -7,7 +7,7 @@ from app.utils.repsonse.result import ResultResponse
 import requests
 
 
-router = APIRouter(prefix="/keycloak")
+router = APIRouter()
 
 @router.post("/token")
 def get_token(request: Request, access_token: AccessToken):

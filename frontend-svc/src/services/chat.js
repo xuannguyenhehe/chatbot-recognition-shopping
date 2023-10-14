@@ -2,6 +2,8 @@ import API from "plugins/http-proxy/http-client";
 import { all, takeEvery, call, put } from "redux-saga/effects";
 import { getURL } from "utils/url";
 import notification from "components/Notification";
+import i18n from "i18n";
+
 
 function* getAllChats({ payload }) {
   try {
@@ -34,6 +36,7 @@ function* getAllChats({ payload }) {
             isLoading: false,
           },
         });
+        notification("success", i18n.t("notify.successGetChat"));
       }
       if (!payload.is_get_last_message) {
         yield put({

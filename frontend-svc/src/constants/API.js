@@ -8,5 +8,10 @@ export const URL = {
         version: process.env.REACT_APP_ENTRYPOINT_VERSION,
         prefix: process.env.REACT_APP_ENTRYPOINT_PREFIX,
         value: process.env.REACT_APP_ENTRYPOINT,
+    },
+    META: {
+        version: process.env.REACT_APP_META_VERSION,
+        prefix: process.env.REACT_APP_META_PREFIX,
+        value: process.env.REACT_APP_META,
     }
 };

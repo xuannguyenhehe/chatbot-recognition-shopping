@@ -1,5 +1,11 @@
 from pydantic import BaseModel
+from typing import List
 
 
-class ImageItem(BaseModel):
-    path: str
+class ChatBotImage(BaseModel):
+    name: str
+    urls: List[str]
+
+
+class ChatBotImages(BaseModel):
+    images: List[ChatBotImage]

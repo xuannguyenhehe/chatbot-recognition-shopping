@@ -1,7 +1,9 @@
 import pymongo
 
 async def create_mongo_client(config):
-    mongo_client = pymongo.MongoClient(config["MONGO_DATABASE_URI"])
+    MONGO_DATABASE_URI = \
+        f"mongodb://{config['MONGO_ROOT_USERNAME']}:{config['MONGO_ROOT_PASSWORD']}@{config['MONGO_HOST']}:{config['MONGO_PORT']}/?authSource=admin&readPreference=secondary&directConnection=true&ssl=false'"
+    mongo_client = pymongo.MongoClient(MONGO_DATABASE_URI)
     try:
         is_live = mongo_client.admin.command('ping')
         if is_live:
@@ -16,13 +18,13 @@ async def create_mongo_client(config):
                 test_dict = {"test": "test"}
                 test_col.insert_one(test_dict)
                 test_col.delete_one(test_dict)
+        return db
     except Exception as e:
         print(e)
-    return db
 
 
 from .image import Image
 
 
-mongo_dbname = "meta"
+mongo_dbname = "chat"
 __all__ = ["Image"]

@@ -7,31 +7,41 @@ def convert_list_object_from_string(string):
         list(map(lambda x: x.strip(), string.split(",")))
 
 class Settings(BaseSettings):
-    # SECRET_KEY = environ["SECRET_KEY"]
+    APP_ENV: str
+    APP_DEBUG: bool
+    APP_PORT: int
+    APP_HOST: str
+    APP_API_PREFIX: str
+    SERVICE_NAME: str
 
-    MODEL_SAVING_DIR = environ.get("MODEL_SAVING_DIR")
-    VECTOR_SAVING_DIR = environ.get("VECTOR_SAVING_DIR")
-
-    RASA_URL = environ.get("RASA_URL")
-    META_URL = environ.get("META_URL")
-    MMFASHION_URL = environ.get("MMFASHION_URL")
-    
-    ADMIN_MINIO_URL = environ.get("ADMIN_MINIO_URL")
-    MINIO_ROOT_USER = environ.get("MINIO_ROOT_USER")
-    MINIO_ROOT_PASSWORD = environ.get("MINIO_ROOT_PASSWORD")
-    MINIO_BUCKETS = ['rasa-service', 'meta-service', 'backend']
-    IMAGE_COLORS = ['white', 'black', 'red', 'orange', 'yellow', 'blue', 'green', 'pink', 'purple']
-
-    # DB initialization
-    MONGO_ROOT_USERNAME = "admin"
-    MONGO_ROOT_PASSWORD = "admin"
-    MONGO_PORT = 27017
-    MONGO_HOST = "chatbot-mongo"
-    MONGO_AUTH_DATABASE = "admin"
-    MONGO_DATABASE_URI = \
-        f"mongodb://{MONGO_ROOT_USERNAME}:{MONGO_ROOT_PASSWORD}@{MONGO_HOST}:{MONGO_PORT}/?authSource=admin&readPreference=secondary&directConnection=true&ssl=false'"
+    KEYCLOAK_SECRET_KEY: str
+    KEYCLOAK_ADMIN_USERNAME: str
+    KEYCLOAK_ADMIN_PASSWORD: str
+    KEYCLOAK_CLIENT_ID: str
+    KEYCLOAK_URL: str
+    REALMS: str
 
 
+    MONGO_ROOT_USERNAME: str
+    MONGO_ROOT_PASSWORD: str
+    MINIO_REGION: str
+    MONGO_PORT: int
+    MONGO_HOST: str
+    MONGO_AUTH_DATABASE: str
+
+    MINIO_ROOT_USER: str
+    MINIO_ROOT_PASSWORD: str
+    ADMIN_MINIO_URL: str
+    MINIO_BUCKETS: str
+    DEFAULT_BUCKET: str
+
+    RASA_URL: str
+    MMFASHION_URL: str
+
+    MODEL_SAVING_DIR: str
+    VECTOR_SAVING_DIR: str
+
+    IMAGE_COLORS: str
 
 class DevelopmentConfig(Settings):
     MINIO_SECURE = False

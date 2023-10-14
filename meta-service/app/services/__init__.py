@@ -14,7 +14,7 @@ class DBSessionContext(object):
         self.db = db
 
 
-class AppService():
+class AppService(DBSessionContext):
     @staticmethod
     def call_api(url: str, payload: dict = {}, method="post") -> dict:
         try:
@@ -30,7 +30,7 @@ class AppService():
                 logger.error(
                     f"[API {method}: {url} failed with status {status_code}]")  # noqa E501
                 return {}, status_code
-            if not result or not result["data"]:
+            if result == None or result["data"] == None:
                 logger.error(
                     f"[API {method}: {url} failed, response data is empty, {result}"  # noqa E501
                 )
