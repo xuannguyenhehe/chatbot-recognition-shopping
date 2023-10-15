@@ -1,5 +1,9 @@
 import io
+import math
+from collections import Counter
 
+import cv2
+import matplotlib.colors as mcolors
 import numpy as np
 import torch
 from app.modeling import ProtoNet
@@ -7,21 +11,16 @@ from app.schemas.inference import InferenceInput
 from app.services import AppService
 from app.services.image import ImageCRUD
 from app.utils.repsonse.result import ResultResponse
-from config import config
 from extensions.minio import MinioConnector
 from fastapi import status
 from PIL import Image as PILImage
-from torchvision import transforms
-
-import cv2
 from sklearn.cluster import KMeans
-from collections import Counter
-import math 
-import matplotlib.colors as mcolors
+from torchvision import transforms
 
 
 class InferenceService(AppService):
-    def __init__ (self, storage: MinioConnector, vector_search, db):
+    def __init__ (self, config, storage: MinioConnector, vector_search, db):
+        self.config = config
         checkpoint_path = config["MODEL_SAVING_DIR"]
         self.device = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu")
         self.model = ProtoNet.load_from_checkpoint(checkpoint_path, map_location=torch.device('cpu'))
@@ -93,7 +92,7 @@ class InferenceService(AppService):
         return cate, attr
 
     def get_color_image(self, image, k: int = 3):
-        colors = config["IMAGE_COLORS"]
+        colors = self.config["IMAGE_COLORS"]
         number_of_colors = len(colors)
         if k > number_of_colors:
             return []
