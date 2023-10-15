@@ -181,6 +181,13 @@ const SettingImages = () => {
                 className="mx-2"
               >Change</Button>
             )}
+            {!isUploadAction && (
+              <Button 
+                variant="danger" 
+                onClick={null}
+                className="mx-2"
+              >Train</Button>
+            )}
             {isUploadAction && (
               <Button 
                 variant="success" 

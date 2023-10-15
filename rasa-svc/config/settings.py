@@ -1,18 +1,15 @@
-from os import environ
 from pydantic import BaseSettings
 
-def convert_list_object_from_string(string):
-    """Convert a string to a list of objects"""
-    return [] if not string else \
-        list(map(lambda x: x.strip(), string.split(",")))
 
 class Settings(BaseSettings):
-    # SECRET_KEY = environ["SECRET_KEY"]
+    APP_ENV: str
+    APP_DEBUG: bool
+    APP_PORT: int
+    APP_HOST: str
+    APP_API_PREFIX: str
+    SERVICE_NAME: str
 
-    MODEL_SAVING_DIR = environ.get("MODEL_SAVING_DIR")
-
-    RASA_URL = environ.get("RASA_URL")
-    META_URL = environ.get("META_URL")
+    CHECKPOINT_PATH: str
 
 
 class DevelopmentConfig(Settings):

@@ -1,12 +1,14 @@
-from os import environ
 from pydantic import BaseSettings
 
-def convert_list_object_from_string(string):
-    """Convert a string to a list of objects"""
-    return [] if not string else \
-        list(map(lambda x: x.strip(), string.split(",")))
 
 class Settings(BaseSettings):
+    APP_ENV: str
+    APP_DEBUG: bool
+    APP_PORT: int
+    APP_HOST: str
+    APP_API_PREFIX: str
+    SERVICE_NAME: str
+
     ADMIN_MINIO_URL: str
     MINIO_ROOT_USER: str
     MINIO_ROOT_PASSWORD: str

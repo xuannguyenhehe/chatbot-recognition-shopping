@@ -1,7 +1,8 @@
+import logging
+import os
+
 import uvicorn
 from app import create_app
-import os
-import logging
 
 if __name__ == "__main__":
     ENVIRONMENT_DEBUG = os.environ.get("APP_DEBUG")
@@ -13,5 +14,3 @@ if __name__ == "__main__":
 else:
     gunicorn_app = create_app()
     gunicorn_logger = logging.getLogger('gunicorn.error')
-    # gunicorn_app.logger.handlers = gunicorn_logger.handlers
-    # gunicorn_app.logger.setLevel(gunicorn_logger.level)
