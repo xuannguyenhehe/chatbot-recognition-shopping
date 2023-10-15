@@ -20,6 +20,7 @@ class ImageService(AppService):
     def add_images(self, username: str, images: dict):
         image_objs = []
         for label, image_files in images.items():
+            ImageCRUD(self.db).delete_by_label(label)
             for image in image_files:
                 base64_image, error = self.attemp_decode(image["content"])
                 filedata = io.BytesIO(base64_image)
@@ -104,6 +105,12 @@ class ImageCRUD(AppCRUD):
         }
         images = list(self.db.Image.find(query, no_query))
         return images
+
+    def delete_by_label(self, label: str):
+        query = {
+            "label": label,
+        }
+        self.db.Image.delete_many(query)
 
 
     def get_by_index(self, index_label: int, index_image_in_label: int) -> str:

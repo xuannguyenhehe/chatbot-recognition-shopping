@@ -8,21 +8,44 @@ import i18n from "i18n";
 function* addNewUpload({ payload }) {
   try {
     let formData = new FormData();
-    payload.images.forEach((label) => {
-        label.urls.forEach((imageUrl) => {
-            formData.append("files", imageUrl.file);
+    let isErrorFlag = false;
+    let isNewUpdate = false;
+    payload.images.forEach((image) => {
+      if (image.isModified && image.label.length) {
+        image.urls.forEach((imageUrl) => {
+          let filename = imageUrl.file.name;
+          let elements = filename.split('.');
+          if (elements[0] !== image.label) {
+            filename = image.label + '.' + filename;
+          }
+          formData.append("files", imageUrl.file, filename);
         })
+        isNewUpdate = true;
+      } else if (!image.label.length) {
+        notification("error", i18n.t("notify.failEmptyLabel"));
+        isErrorFlag = true;
+      } 
     })
-    let response = yield call(
-      async () =>
-        await API.post(getURL("image", "META"), formData, {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        }),
-    );
-    if (response.status === 200) {
-      notification("success", i18n.t("notify.successAddNewUpload"));
+    if (!isErrorFlag && payload.images.length && isNewUpdate) {
+      let response = yield call(
+        async () =>
+          await API.post(getURL("image", "META"), formData, {
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+              }
+          }),
+      );
+      if (response.status === 200) {
+        notification("success", i18n.t("notify.successAddNewUpload"));
+      }
+      yield put({
+        type: "image/changeIsUploadAction",
+      });
+      yield put({
+        type: "image/getUploadedImages",
+      });
+    } else if (!isNewUpdate) {
+      notification("error", i18n.t("notify.nothingToSave"));
     }
   } catch (error) {
     notification(
@@ -41,7 +64,11 @@ function* getUploadedImages({ payload }) {
       yield put({
         type: "image/saveState",
         payload: {
-          uploadedImages: response.data.data,
+          uploadedImages: response.data.data.map((image) => ({
+            label: image.label,
+            urls: image.urls,
+            isModified: false,
+          })),
           isLoading: false,
         },
       });

@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const Image = createSlice({
   name: "image",
   initialState: {
-    tempImages: [],
     uploadedImages: [],
+    isUploadAction: false,
     isLoading: null,
   },
   reducers: {
@@ -14,6 +14,9 @@ const Image = createSlice({
     saveState(state, { payload }) {
       return {...state, ...payload}
     },
+    changeIsUploadAction(state) {
+      return {...state, isUploadAction: !state.isUploadAction}
+    }
   },
 });
 
