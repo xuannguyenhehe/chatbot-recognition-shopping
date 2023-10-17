@@ -1,6 +1,6 @@
 import API from "plugins/http-proxy/http-client";
 import { all, takeEvery, call, put, select } from "redux-saga/effects";
-import { getURL } from "utils/url";
+import { getURL, getFullURL } from "utils/url";
 
 function* getMessages({ payload }) {
   try {
@@ -26,7 +26,7 @@ function* getMessages({ payload }) {
           messages: response.data.data.map((messageObj) => ({
             message: messageObj.message,
             image: messageObj.path_image
-              ? process.env.REACT_APP_IMAGE_URL + messageObj.path_image
+              ? getFullURL('image/' + messageObj.path_image, "ENTRYPOINT")
               : null,
             sender: messageObj.sender,
             receiver: messageObj.receiver,
@@ -65,7 +65,7 @@ function* sendMessage({ payload }) {
     let body = {
       chat_user: payload.chatUser,
       message: {
-        message: payload.message,
+        content: payload.message,
         image: body_image,
       },
     };

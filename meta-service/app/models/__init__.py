@@ -27,4 +27,4 @@ from .image import Image
 
 
 mongo_dbname = "chat"
-__all__ = ["Image"]
+__all__ = ["Image", "Vector"]

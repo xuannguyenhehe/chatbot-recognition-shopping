@@ -7,6 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import ImageLoad from "components/ImageLoad";
+
 
 const ChatContainer = ({ currentChatUser, messages }) => {
   const account = useSelector((state) => state.account);
@@ -69,24 +71,32 @@ const ChatContainer = ({ currentChatUser, messages }) => {
             }}
           />
         </Col>
-      ) : <Container style={{"height": "70vh"}}>
+      ) : <Container style={{
+            "height": "70vh",
+            "overflow": "auto",
+          }}>
           {messages !== null && messages.map((message) => {
             return (
-              <Row 
+              <div 
                 ref={scrollRef} 
                 key={uuidv4()} 
                 className={username !== message.sender ? "d-flex flex-row my-2" : "d-flex flex-row-reverse my-2"}
               >
-                <Col sm={1} style={{"width": "6%"}}>
+                <Col sm={1} style={{"width": "6%"}} className="mx-2">
                   <img src={defaultAvatar} alt="current Chat avatar" style={{"height": "3.1rem"}} />
                 </Col>
                 <Col sm={8} style={username === message.sender ? {"textAlign": "end"} : null}>
                   <p className="m-0" style={{"fontWeight": "bold"}}>{username !== message.sender ? currentChatUser : username}</p>
+                  {message.image && (
+                    <ImageLoad 
+                      src={message.image}
+                    />
+                  )}
                   {message.message && (
                     <p>{message.message}</p>
                   )}
                 </Col>
-              </Row>
+              </div>
             );
           })}
           {isLoading && (

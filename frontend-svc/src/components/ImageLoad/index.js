@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Image as Img } from "react-bootstrap";
 import Resizer from "react-image-file-resizer";
 
-const ImageLoad = React.memo(({ src, placeholder, file, alt = "" }) => {
+const ImageLoad = React.memo(({ src, file, alt = "", size = 150 }) => {
   const [currentSrc, updateSrc] = useState(src);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const ImageLoad = React.memo(({ src, placeholder, file, alt = "" }) => {
     }
   }, [src, file]);
 
-  return <Img src={currentSrc ? currentSrc : src} alt={alt} width="150" height="150" />;
+  return <Img src={currentSrc ? currentSrc : src} alt={alt} width={size} height={size} />;
 });
 
 export default ImageLoad;

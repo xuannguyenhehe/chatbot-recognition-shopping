@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import Picker, { Theme } from "emoji-picker-react";
 import { BsEmojiSmileFill } from "react-icons/bs";
@@ -6,12 +6,14 @@ import { IoMdSend } from "react-icons/io";
 import ImageUploading from "react-images-uploading";
 import cameraImage from "assets/camera.png";
 import Button from 'react-bootstrap/Button';
+import ImageLoad from "components/ImageLoad";
+import { AiFillDelete } from "react-icons/ai";
 
 
 const ChatInput = ({ handleSendMessage, messages, chatUser, handleCreateNewChat }) => {
   const [msg, setMsg] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [images] = React.useState([]);
+  const [image, setImage] = useState(null);
 
   const handleEmojiPickerhideShow = () => {
     setShowEmojiPicker(!showEmojiPicker);
@@ -26,7 +28,7 @@ const ChatInput = ({ handleSendMessage, messages, chatUser, handleCreateNewChat 
   const sendChat = (event) => {
     event.preventDefault();
     if (msg.length > 0) {
-      handleSendMessage(msg, "");
+      handleSendMessage(msg, image);
       setMsg("");
     }
   };
@@ -34,7 +36,7 @@ const ChatInput = ({ handleSendMessage, messages, chatUser, handleCreateNewChat 
   const onChange = (imageList) => {
     imageList.forEach((element) => {
       if (element.dataURL) {
-        handleSendMessage("", element);
+        setImage(element)
       }
     });
   };
@@ -57,12 +59,45 @@ const ChatInput = ({ handleSendMessage, messages, chatUser, handleCreateNewChat 
           </div>
         </div>
         <form className="input-container" onSubmit={(event) => sendChat(event)}>
-          <input
-            type="text"
-            placeholder="type your message here"
-            onChange={(e) => setMsg(e.target.value)}
-            value={msg}
-          />
+          <Container 
+            style={{
+              "position": image ? "relative" : null, 
+              "width": "90%",
+              "height": image ? "170px" : "50px",
+              "backgroundColor": "#ffffff34",
+              "borderRadius": "2rem",
+            }} className="m-0 p-0">
+            <input
+              type="text"
+              placeholder="type your message here"
+              onChange={(e) => setMsg(e.target.value)}
+              value={msg}
+              style={{
+                "position": image ? "absolute" : null, 
+                "bottom": image ? "1rem": null,
+              }}
+            />
+            {image ? 
+              <span style={{
+                  "position": "absolute",
+                  "top": "-0.5rem",
+                }} className="m-3">
+                <ImageLoad src={image.dataUrl} file={image.file} size={100}/>
+                <AiFillDelete
+                  className="icon-delete"
+                  size={20}
+                  onClick={() => setImage(null)}
+                  style={{
+                    "verticalAlign": "top",
+                    "color": "#ee0033",
+                    "position": "absolute",
+                    "cursor": "pointer",
+                    "top": 0,
+                    "right": 0,
+                  }}
+                />
+              </span> : null}
+          </Container>
 
           <button type="submit">
             <IoMdSend />
@@ -71,7 +106,7 @@ const ChatInput = ({ handleSendMessage, messages, chatUser, handleCreateNewChat 
         <div className="image-send">
           <ImageUploading
             multiple={false}
-            value={images}
+            value={image}
             onChange={onChange}
             onError={handleError}
           >
@@ -170,15 +205,13 @@ const Container = styled.div`
     /* background-color: #ffffff34; */
     input {
       width: 90%;
-      height: 60%;
-      background-color: transparent;
       color: white;
       border: none;
       padding: 0.5rem 1rem;
       border-radius: 2rem;
 
       font-size: 1.1rem;
-      background-color: #ffffff34;
+      background-color: transparent;
       &::selection {
         background-color: #9a86f3;
       }

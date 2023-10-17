@@ -187,13 +187,6 @@ class MessageCRUD(AppCRUD):
                 chat_id=chat_id, 
                 sender=sender,
                 receiver=message.receiver,
-            ))
-        if message.path_image:
-            messages.append(MessageModel(
-                message="", 
-                chat_id=chat_id, 
-                sender=sender,
-                receiver=message.receiver,
                 path_image=message.path_image
             ))
         if len(messages) > 0:
