@@ -8,14 +8,14 @@ function* getMessages({ payload }) {
       type: "message/saveState",
       payload: {
         isShowLoading: true,
-        messages: [],
+        messages: null,
       },
     });
     let response = yield call(
       async () =>
         await API.get(getURL("message", "ENTRYPOINT"), {
           params: {
-            chat_id: payload.chatId,
+            chat_user: payload.chatUser,
           },
         }),
     );
@@ -40,6 +40,7 @@ function* getMessages({ payload }) {
       type: "message/saveState",
       payload: {
         isShowLoading: false,
+        messages: null,
       },
     });
   }
@@ -62,10 +63,9 @@ function* sendMessage({ payload }) {
       };
     }
     let body = {
-      chat_id: payload.chatId,
+      chat_user: payload.chatUser,
       message: {
         message: payload.message,
-        receiver: payload.receiver,
         image: body_image,
       },
     };

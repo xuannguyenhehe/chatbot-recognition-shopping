@@ -5,6 +5,7 @@ const Chat = createSlice({
   initialState: {
     chats: [],
     contacts: [],
+    searchUsers: [],
     isLoading: null,
   },
   reducers: {

@@ -1,41 +1,21 @@
 import defaultAvatar from "assets/DefaultAvatar.png";
 import loading from "assets/loader.gif";
 import ChatInput from "pages/Chat/components/ChatInput";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
-const ChatContainer = ({ currentChatId }) => {
+const ChatContainer = ({ currentChatUser, messages }) => {
   const account = useSelector((state) => state.account);
-  const chats = useSelector((state) => state.chat.chats);
-  const [chatName, setChatName] = useState('');
   const  { username } = account;
 
   const isShowLoading = useSelector((state) => state.message.isShowLoading);
   const isLoading = useSelector((state) => state.message.isLoading);
-  const messages = useSelector((state) => state.message.messages);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (currentChatId) {
-      dispatch({
-        type: "message/getMessages",
-        payload: {
-          chatId: currentChatId,
-        },
-      });
-      chats.forEach((chat) => {
-        if (chat.id === currentChatId) {
-          setChatName(chat.name);
-        }
-    });
-    }
-  }, [currentChatId, username, dispatch, chats]);
-
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -50,23 +30,34 @@ const ChatContainer = ({ currentChatId }) => {
       type: "message/sendMessage",
       payload: {
         message: msg,
-        chatId: currentChatId,
+        chatUser: currentChatUser,
         image: image,
+      },
+    });
+  };
+
+  const handleCreateNewChat = async (chatUser) => {
+    dispatch({
+      type: "chat/createNewChat",
+      payload: {
+        sender: username,
+        receiver: chatUser,
       },
     });
   };
 
   return (
     <Container>
-      <Row className="p-2">
+      <Row className="mb-2">
           <Col sm={1} style={{"width": "5%"}}>
             <img src={defaultAvatar} alt="current Chat avatar" style={{"height": "3.1rem"}} />
           </Col>
           <Col sm={10}>
-            <h3 className="m-0 p-1">{chatName}</h3>
+            <h3 className="m-0 p-1">{currentChatUser}</h3>
           </Col>
       </Row>
       <Row>
+      <hr/>
       {isShowLoading ? (
         <Col style={{"textAlign": "center",}}>
           <img 
@@ -78,18 +69,19 @@ const ChatContainer = ({ currentChatId }) => {
             }}
           />
         </Col>
-      ) : <Container className="m-2">
-          {messages.map((message) => {
+      ) : <Container style={{"height": "70vh"}}>
+          {messages !== null && messages.map((message) => {
             return (
               <Row 
                 ref={scrollRef} 
                 key={uuidv4()} 
                 className={username !== message.sender ? "d-flex flex-row my-2" : "d-flex flex-row-reverse my-2"}
               >
-                <Col sm={1} style={{"width": "5%"}}>
+                <Col sm={1} style={{"width": "6%"}}>
                   <img src={defaultAvatar} alt="current Chat avatar" style={{"height": "3.1rem"}} />
                 </Col>
                 <Col sm={8} style={username === message.sender ? {"textAlign": "end"} : null}>
+                  <p className="m-0" style={{"fontWeight": "bold"}}>{username !== message.sender ? currentChatUser : username}</p>
                   {message.message && (
                     <p>{message.message}</p>
                   )}
@@ -107,7 +99,12 @@ const ChatContainer = ({ currentChatId }) => {
           )}
         </Container>}
       </Row>
-      <ChatInput handleSendMessage={handleSendMessage} />
+      <ChatInput 
+        handleSendMessage={handleSendMessage} 
+        messages={messages} 
+        chatUser={currentChatUser}
+        handleCreateNewChat={handleCreateNewChat}
+      />
     </Container>
   );
 };

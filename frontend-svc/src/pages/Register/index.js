@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import ChatLogo from "../assets/chat.png";
+import ChatLogo from "assets/chat.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
+import { REALM_TYPES } from "constants/users";
 
 
 function Register() {
@@ -12,10 +13,18 @@ function Register() {
     username: "",
     password: "",
     confirmPassword: "",
+    role: "",
   });
-  const navigate = useNavigate();
-  const isLoading = useSelector((state) => state.user.isLoading);
+  const account = useSelector((state) => state.account);
+  const { isLoading, username } = account;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (username) {
+      navigate("/");
+    }
+  }, [navigate, username]);
 
   const toastOptions = {
     position: "bottom-right",
@@ -25,22 +34,17 @@ function Register() {
     theme: "dark",
   };
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("username")) {
-  //     navigate("/");
-  //   }
-  // }, [navigate]);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
-      const { password, username } = values;
+      const { password, username, role } = values;
       dispatch({
-        type: "user/register",
+        type: "account/handleRegister",
         payload: {
           username: username,
           password: password,
           repassword: password,
+          role: role.length ? role : REALM_TYPES.USER,
         },
       });
     }
@@ -54,10 +58,7 @@ function Register() {
     } else if (username.length < 4) {
       toast.error("Username should have at least 4 characters", toastOptions);
       return false;
-    } else if (password.length > 8) {
-      toast.error("Password should have at least 8 characters", toastOptions);
-      return false;
-    }
+    } 
     return true;
   };
 
@@ -87,7 +88,11 @@ function Register() {
             name="confirmPassword"
             onChange={(e) => setValues({ ...values, confirmPassword: e.target.value })}
           />
-          <button type="submit" disable={isLoading}>
+          <select name="role">
+            <option value={REALM_TYPES.USER} defaultValue>User</option>
+            <option value={REALM_TYPES.ADMIN}>Shop</option>
+          </select>
+          <button type="submit" disable={isLoading?.toString()}>
             Create User
           </button>
           <span>
@@ -130,7 +135,7 @@ const FormContainer = styled.div`
     border-radius: 2rem;
     padding: 3rem 5rem;
   }
-  input {
+  input, select {
     background-color: transparent;
     padding: 1rem;
     border: 0.1rem solid #4e0eff;

@@ -70,7 +70,7 @@ class ExceptionResponse(object):
             """
             No existed error
             """
-            status_code = 400
+            status_code = 404
             message = ""
             if len(context) > 0:
                 for key, value in context.items():

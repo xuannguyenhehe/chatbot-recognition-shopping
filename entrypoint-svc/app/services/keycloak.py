@@ -5,13 +5,15 @@ from app.utils.repsonse.result import ResultResponse
 from config import config
 from keycloak import KeycloakAdmin
 from keycloak.exceptions import KeycloakError
+from app.services.chat import ChatCRUD
 from loguru import logger
 
 
 class KeycloakUserService:
-    def __init__(self, kc_admin, kc_openid):
+    def __init__(self, kc_admin, kc_openid, db=None):
         self.kc_admin = kc_admin.admin
         self.kc_openid = kc_openid.keycloak_openid
+        self.db = db
 
     def get_token_creds(self, username, password):
         try:
@@ -47,10 +49,32 @@ class KeycloakUserService:
             logger.error(f"[Keycloak Error] {res}")
             return ResultResponse((res, requests.codes.bad_request))
 
-    def register_user(self, payload):
+    def register_user(self, payload, roles):
         try:
-            data = self.kc_admin.create_user(payload)
-            return ResultResponse(('Successfully create new user', requests.codes.ok, data))
+            if not isinstance(roles, list):
+                roles = [roles]
+            self.kc_admin.create_user(payload)
+
+            token_data = self.kc_openid.token(
+                username=payload["username"],
+                password=payload["credentials"][0]["value"],
+                grant_type='password'
+            )
+
+            user_info_data = self.kc_openid.userinfo(token_data["access_token"])
+
+            self.kc_admin.assign_realm_roles(
+                user_id=user_info_data["sub"],
+                roles=roles
+            )
+
+            token_data = self.kc_openid.token(
+                username=payload["username"],
+                password=payload["credentials"][0]["value"],
+                grant_type='password'
+            )
+
+            return ResultResponse(('Successfully create new user', requests.codes.ok, token_data))
         except KeycloakError as e:
             res = self.return_keycloak_error(e)
             logger.error(f"[Keycloak Error] {res}")
@@ -65,9 +89,14 @@ class KeycloakUserService:
             logger.error(f"[Keycloak Error] {res}")
             return ResultResponse((res, requests.codes.bad_request))
         
-    def get_all_name_users(self):
+    def search(self, username: str, keyword: str, limit: int, offset: int, is_realm_admin: bool):
         try:
-            datas = list(set([data['username'] for data in self.kc_admin.get_users({})]) - {'chatbot'})
+            datas = self.kc_admin.get_users({"search": keyword, "first": offset, "max": limit})
+            datas = list(set([data['username'] for data in datas]) - {'chatbot', username})
+            datas = [{
+                "name": data,
+                "is_contact": True if len(ChatCRUD(self.db).get(username=data, is_get_last_message=False)) else False
+            } for data in datas]
             return ResultResponse(('Successfully get all name users', requests.codes.ok, datas))
         except KeycloakError as e:
             res = self.return_keycloak_error(e)
@@ -129,7 +158,6 @@ class KeycloakUserService:
         if not isinstance(roles, list):
             roles = [roles]
         try:
-            print(user_id, roles)
             data = self.kc_admin.assign_realm_roles(
                 user_id=user_id,
                 roles=roles

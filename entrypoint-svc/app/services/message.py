@@ -43,12 +43,12 @@ class IntentType(str, Enum):
 
 
 class MessageService(AppService):
-    def create(self, storage: MinioConnector, chat_id: int, message_obj: MessageInput, sender: str) -> ResultResponse:
+    def create(self, storage: MinioConnector, chat_user: str, message_obj: MessageInput, sender: str) -> ResultResponse:
         message_response = []
-        exist_chat = ChatCRUD(self.db).get(id=chat_id)
+        exist_chat = ChatCRUD(self.db).get(username=sender, username2=chat_user)
         if not exist_chat:
             return ResultResponse(ExceptionResponse.NoExistedError({
-                "chat id": chat_id,
+                "chat user": chat_user,
             }))
         
         path_image = None
@@ -73,10 +73,10 @@ class MessageService(AppService):
         message_output = MessageOutput(
             message=message_obj.content,
             path_image=path_image,
-            receiver=exist_chat["receiver"] if sender == exist_chat["sender"] else exist_chat["sender"],
+            receiver=chat_user,
         )
         message_response.append(message_output.dict())
-        message, status_code = MessageCRUD(self.db).create(chat_id, sender, message_output)
+        message, status_code = MessageCRUD(self.db).create(exist_chat[0]["id"], sender, message_output)
         if status_code != sta.HTTP_200_OK:
             return ResultResponse(ExceptionResponse.ErrorServer(message))
 
@@ -134,13 +134,13 @@ class MessageService(AppService):
         #     return ResultResponse(ExceptionResponse.ErrorServer(message))
         return ResultResponse((message, status_code, message_response))
 
-    def get(self, chat_id: int, username: str) -> ResultResponse:
-        exist_chat = ChatCRUD(self.db).get(username=username, id=chat_id)
+    def get(self, username: str, chat_user: str) -> ResultResponse:
+        exist_chat = ChatCRUD(self.db).get(username=username, username2=chat_user)
         if not exist_chat:
             return ResultResponse(ExceptionResponse.NoExistedError({
-                "chat id": chat_id,
+                "chat user": chat_user,
             }))
-        messages = MessageCRUD(self.db).get(chat_id)
+        messages = MessageCRUD(self.db).get(username=username, chat_user=chat_user)
         return ResultResponse((None, sta.HTTP_200_OK, messages))
     
 
@@ -203,9 +203,12 @@ class MessageCRUD(AppCRUD):
             return None, sta.HTTP_200_OK
 
 
-    def get(self, chat_id: int) -> List[MessageResponse]:
+    def get(self, username: str, chat_user: str) -> List[MessageResponse]:
         query = {
-            "chat_id": chat_id,
+            "$or": [
+                {"sender": chat_user, "receiver": username}, 
+                {"receiver": chat_user, "sender": username}
+            ],
             "is_active": True,
         }
         no_query = {

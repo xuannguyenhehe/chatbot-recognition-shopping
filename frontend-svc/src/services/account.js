@@ -184,11 +184,69 @@ function* handleLogin({ payload }) {
   }
 }
 
+
+function* handleRegister({ payload }) {
+  try {
+    let response = yield call(
+      async () =>
+        await API.post(getURL("keycloak/register", "ENTRYPOINT"), payload),
+    );
+    if (response.status === 200) {
+      yield put({
+        type: "account/setCurrentUserInfo",
+        payload: {
+          ...response.data,
+          username: payload.username,
+          noTabChat: 1,
+        },
+      });
+      yield put({ type: "account/handleLoginSuccess" });
+      notification("success", i18n.t("notify.successLogin"));
+      window.location.href = "/";
+    }
+  } catch (error) {
+    notification(
+      "error",
+      error.response.data?.message ? error.response.data.message : error.message,
+    );
+  }
+}
+
+
+function* handleSearch({ payload }) {
+  try {
+    let response = yield call(
+      async () =>
+        await API.get(getURL("keycloak/search", "ENTRYPOINT"), {
+          params: {
+            keyword: payload.keyword,
+          }
+        }),
+    );
+    if (response.status === 200) {
+      yield put({
+        type: "chat/saveState",
+        payload: {
+          searchUsers: response.data.data,
+        },
+      });
+    }
+  } catch (error) {
+    notification(
+      "error",
+      error.response.data?.message ? error.response.data.message : error.message,
+    );
+  }
+}
+
+
 export default function* watchAll() {
   yield all([
     yield takeEvery("account/getCurrentUserInfo", getCurrentUserInfo),
     yield takeEvery("account/setCurrentUserInfo", setCurrentUserInfo),
     yield takeEvery("account/handleSignOut", handleSignOut),
     yield takeEvery("account/handleLogin", handleLogin),
+    yield takeEvery("account/handleRegister", handleRegister),
+    yield takeEvery("account/handleSearch", handleSearch),
   ]);
 }

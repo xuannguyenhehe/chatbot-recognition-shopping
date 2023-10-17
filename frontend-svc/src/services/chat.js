@@ -26,11 +26,12 @@ function* getAllChats({ payload }) {
         yield put({
           type: "chat/saveState",
           payload: {
-            chats: response.data.data.map(chat => ({
+            chats: response.data?.data?.map(chat => ({
               _id: chat.id,
               name: chat.sender === payload.username ? chat.receiver : chat.sender,
               last_message: chat.last_message,
               last_message_user: chat.last_message_user,
+              is_contact: true,
               avatarImage: null,
             })),
             isLoading: false,
@@ -42,7 +43,7 @@ function* getAllChats({ payload }) {
         yield put({
           type: "chat/saveState",
           payload: {
-            contacts: response.data.data.map(chat => ({
+            contacts: response.data?.data?.map(chat => ({
               _id: chat.id,
               name: chat.sender === payload.username ? chat.receiver : chat.sender,
               avatarImage: null,
@@ -61,57 +62,46 @@ function* getAllChats({ payload }) {
     });
     notification(
       "error",
+      error.response?.data?.message ? error.response?.data.message : error.message,
+    );
+  }
+}
+
+function* createNewChat({ payload }) {
+  try {
+    let response = yield call(
+      async () =>
+        await API.post(getURL("chat", "ENTRYPOINT"), {
+          username: payload.receiver,
+          current_entities: [],
+        })
+    );
+    if (response.status === 200) {
+      yield put({
+        type: "chat/getAllChats",
+        payload: {
+          username: payload.sender,
+          is_get_last_message: true,
+        },
+      });
+      yield put({
+        type: "message/getMessages",
+        payload: {
+          chatUser: payload.receiver,
+        },
+      });
+    }
+  } catch (error) {
+    notification(
+      "error",
       error.response.data?.message ? error.response.data.message : error.message,
     );
   }
 }
 
-// function* createNewChat({ payload }) {
-//   try {
-//     yield put({
-//       type: "user/saveState",
-//       payload: {
-//         isLoading: true,
-//       },
-//     });
-//     console.log("aaaa", getURL("/user/login", "BACKEND"));
-//     let response = yield call(
-//       async () =>
-//         await API.post("user/login", {
-//           username: payload.username,
-//           password: payload.password,
-//         }),
-//     );
-//     console.log("SSSSSSSSSSS");
-//     console.log("response", response);
-//     if (response.status === 200) {
-//       localStorage.setItem("username", payload.username);
-//       yield put({
-//         type: "user/saveState",
-//         payload: {
-//           isLoading: false,
-//         },
-//       });
-//       //   notification("success", response.data.message);
-//       window.location.href = "/";
-//     }
-//   } catch (error) {
-//     yield put({
-//       type: "user/saveState",
-//       payload: {
-//         isLoading: false,
-//       },
-//     });
-//     notification(
-//       "error",
-//       error.response.data?.message ? error.response.data.message : error.message,
-//     );
-//   }
-// }
-
 export default function* watchAll() {
   yield all([
     yield takeEvery("chat/getAllChats", getAllChats),
-    // yield takeEvery("chat/createNewChat", createNewChat),
+    yield takeEvery("chat/createNewChat", createNewChat),
   ]);
 }

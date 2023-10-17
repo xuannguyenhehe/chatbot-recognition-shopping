@@ -39,7 +39,19 @@ def register_user(request: Request, user_register: UserRegister):
             "type": "password",
         }]
     }
-    res = KeycloakUserService(request.app.kc_admin, request.app.kc_openid).register_user(payload=payload)
+    is_exist_role = False
+    role_config = None
+    for element_role in request.app.kc_admin.admin.get_realm_roles():
+        if user_register.role == element_role['name']:
+            is_exist_role = True
+            role_config = element_role
+    
+    if not is_exist_role:
+        return handle_result(ResultResponse((
+            f"No exist {user_register.role}",
+            requests.codes.unauthorized
+        )))
+    res = KeycloakUserService(request.app.kc_admin, request.app.kc_openid).register_user(payload=payload, roles=role_config)
 
     return handle_result(res)
 
@@ -116,18 +128,29 @@ def get_roles_of_user(request: Request):
     return handle_result(res)
 
 
-@router.get('/users', dependencies=[Depends(require_token)])
-def get_all_user(request: Request):
-    """Get user info
+@router.get('/search', dependencies=[Depends(require_token)])
+def search(request: Request, keyword: str, limit: int = 10, offset: int = 0):
+    """Get user info"""
+    user_auth = request.state.user_auth
+    access_token = user_auth['access_token']
+    user_info = request.app.kc_openid.keycloak_openid.userinfo(access_token)
+    username = user_info['preferred_username']
 
-    Args:
-        user_auth (dict): dict of auth, message and status_code
+    res = KeycloakUserService(request.app.kc_admin, request.app.kc_openid, request.app.db).search(
+        username=username,
+        keyword=keyword,
+        limit=limit,
+        offset=offset,
+        is_realm_admin=user_auth["is_realm_admin"],
+    )
 
-    Returns:
-        Response: Response
-    """
+    return handle_result(res)
 
-    res = KeycloakUserService(request.app.kc_admin, request.app.kc_openid)\
-        .get_all_name_users()
+
+@router.post('/logout', dependencies=[Depends(require_token)])
+def logout(request: Request):
+    """Log out user session"""
+    user_auth = request.state.user_auth
+    res = KeycloakUserService(request.app.kc_admin, request.app.kc_openid).logout(user_id=user_auth["user_id"])
 
     return handle_result(res)

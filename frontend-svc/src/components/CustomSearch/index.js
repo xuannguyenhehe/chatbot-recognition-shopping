@@ -1,16 +1,18 @@
-import { useState } from "react";
 import {
-  TextField,
-  Container,
-  InputAdornment,
-  FormLabel,
   Box,
-  Button
+  Button,
+  Container,
+  // FormLabel,
+  InputAdornment,
+  TextField
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { RiCloseCircleLine } from "react-icons/ri";
 import { HiSearchCircle } from "react-icons/hi";
+import { RiCloseCircleLine } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+
 
 const StyleSearch = styled(TextField)`
   width: 90%;
@@ -53,11 +55,11 @@ const StyleSearch = styled(TextField)`
   }
 `;
 
-const Label = styled(FormLabel)`
-  font-size: var(--header-size-s);
-  margin-bottom: 4px;
-  font-family: var(--header-font-family);
-`;
+// const Label = styled(FormLabel)`
+//   font-size: var(--header-size-s);
+//   margin-bottom: 4px;
+//   font-family: var(--header-font-family);
+// `;
 
 const SearchIcon = styled(HiSearchCircle)`
   width: 40px;
@@ -85,19 +87,33 @@ const SearchButton = styled(Button)`
 `;
 
 const CustomSearch = (props) => {
-  const { label, direction } = props;
+  const { changeform, direction, changeTab } = props;
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState("");
   const [isShow, setIsShow] = useState(true);
+  const dispatch = useDispatch();
+  
 
   const handleChange = (e) => {
-    // if (!e.target.value && value) changeform("");
     setSearchValue(e.target.value);
+    if (!e.target.value.length) {
+      dispatch({
+        type: "chat/saveState",
+        payload: {
+          searchUsers: [],
+        },
+      });
+    }
   };
 
   const clearSearch = () => {
     setSearchValue("");
-    // if (value) changeform("");
+    dispatch({
+      type: "chat/saveState",
+      payload: {
+        searchUsers: [],
+      },
+    });
   };
 
   const SearchClear = styled(InputAdornment)`
@@ -141,11 +157,12 @@ const CustomSearch = (props) => {
           placeholder={t("text.quickSearchByName")}
           value={searchValue}
           onChange={handleChange}
-          onKeyDown={(e) => null
-            // e.key === "Enter" &&
-            // searchValue !== value &&
-            // typeof changeform === "function" &&
-            // changeform(searchValue)
+          onClick={() => changeTab(0)}
+          onKeyDown={(e) =>
+            e.key === "Enter" &&
+            searchValue.length !== 0 && 
+            typeof changeform === "function" &&
+            changeform(searchValue)
           }
           InputProps={{
             startAdornment: (
@@ -160,10 +177,10 @@ const CustomSearch = (props) => {
             ),
             endAdornment: (
               <SearchButton
-                onClick={() => null
-                  // searchValue !== value &&
-                  // typeof changeform === "function" &&
-                  // changeform(searchValue)
+                onClick={() =>
+                  searchValue.length !== 0 && 
+                  typeof changeform === "function" &&
+                  changeform(searchValue)
                 }
               >
                 {t("btn.search")}

@@ -8,6 +8,7 @@ import Chat from "./pages/Chat";
 import Chatbot from "./pages/Chatbot";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Layout404 from "components/Layout/NotFoundLayout/Layout404";
 
 const App = (props) => {
   const { account, dispatch } = props;
@@ -45,7 +46,7 @@ const App = (props) => {
             </Layout>
           } 
         />
-        <Route path="/:chatId" element={
+        <Route path="/t/:chatUser" element={
             <Layout username={username}>
               <Chat />
             </Layout>
@@ -54,6 +55,12 @@ const App = (props) => {
         <Route path="/chatbot" element={
             <Layout username={username}>
               <Chatbot />
+            </Layout>
+          } 
+        />
+        <Route path="*" element={
+            <Layout username={username}>
+              <Layout404 />
             </Layout>
           } 
         />
@@ -66,7 +73,7 @@ const App = (props) => {
           path="*"
           element={
             <Loading isLoading={true} breadCrumb={[]}>
-            <Login />
+              <Login />
             </Loading>
           }
         />

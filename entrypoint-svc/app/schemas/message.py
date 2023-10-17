@@ -4,7 +4,7 @@ from typing import Optional
 from app.schemas.image import ImageInput
 
 class MessageBase(BaseModel):
-    chat_id: int
+    chat_user: str
 
 class MessageInput(BaseModel):
     content: str

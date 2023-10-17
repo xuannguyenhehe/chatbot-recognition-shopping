@@ -4,7 +4,6 @@ import Resizer from "react-image-file-resizer";
 
 const ImageLoad = React.memo(({ src, placeholder, file, alt = "" }) => {
   const [currentSrc, updateSrc] = useState(src);
-  // console.log(src, file)
 
   useEffect(() => {
     // start loading original image

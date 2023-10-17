@@ -18,6 +18,7 @@ class UserRegister(BaseModel):
     username: str
     password: str
     repassword: str
+    role: str
 
     @validator('repassword')
     def check_repassword(cls, field_value, values):

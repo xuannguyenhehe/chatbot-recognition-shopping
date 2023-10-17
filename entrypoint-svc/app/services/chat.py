@@ -1,4 +1,4 @@
-from app.schemas.chat import Chat
+from app.schemas.chat import Chat, NewChat
 from app.utils.repsonse.exceptions import ExceptionResponse
 from app.services import AppService, AppCRUD
 from app.utils.repsonse.result import ResultResponse
@@ -13,32 +13,46 @@ class ChatService(AppService):
         chats = ChatCRUD(self.db).get(username=username, is_get_last_message=is_get_last_message)
         return ResultResponse((None, status.HTTP_200_OK, chats))
 
-    def create(self, chat: Chat, sender: str) -> ResultResponse:
+    def create(self, chat: NewChat, sender: str) -> ResultResponse:
         exist_chat = ChatCRUD(self.db).get(
-            sender=sender, 
-            receiver=chat.receiver,
-            name=chat.name, 
+            username=sender, 
+            username2=chat.username,
         )
         if exist_chat:
             return ResultResponse(ExceptionResponse.ExistedError({
-                "chat": chat.name,
+                "chat": chat.username,
             }))
         message, status_code = ChatCRUD(self.db).create(chat, sender)
         return ResultResponse((message, status_code))
 
 
 class ChatCRUD(AppCRUD):
-    def create(self, chat: Chat, sender: str) -> Chat:
+    def create(self, chat: NewChat, sender: str) -> Chat:
         chat_id = self.db.Chat.count_documents({}) + 1
-        chat = ChatModel(**chat.dict(), sender=sender, id=chat_id)
+        chat = ChatModel(receiver=chat.username, sender=sender, id=chat_id)
         message, status_code = self.insert("Chat", self.serialize(chat))
         return message, status_code
 
-    def get(self, username: str = None, name: str = None, id: int = None, is_get_last_message: bool = True) -> List[Chat]:
+    def get(
+            self, 
+            username: str = None, 
+            username2: str = None, 
+            name: str = None, 
+            id: int = None, 
+            is_get_last_message: bool = True,
+        ) -> List[Chat]:
         query = {}
         if username:
             query.update({
                 "$or": [{"sender": username}, {"receiver": username}],
+                "is_active": True,
+            })
+        if username and username2:
+            query.update({
+                "$or": [
+                    {"sender": username, "receiver": username2}, 
+                    {"receiver": username, "sender": username2}, 
+                ],
                 "is_active": True,
             })
         if name: 
@@ -56,7 +70,6 @@ class ChatCRUD(AppCRUD):
             "updated_date": False,
         }
         chats = list(self.db.Chat.find(query, no_query))
-        print(chats, query)
 
         if is_get_last_message:
             for chat in chats:
@@ -69,9 +82,9 @@ class ChatCRUD(AppCRUD):
                     "is_active": False,
                 }
                 last_message = list(self.db.Message.find(query, no_query)\
-                                            .sort('updated_date', pymongo.DESCENDING).limit(1))[0]
-                chat['last_message'] = last_message["message"]
-                chat['last_message_user'] = last_message["sender"]
+                                            .sort('updated_date', pymongo.DESCENDING).limit(1))
+                chat['last_message'] = last_message[0]["message"] if len(last_message) > 0 else None
+                chat['last_message_user'] = last_message[0]["sender"] if len(last_message) > 0 else None
             
         return chats
     

@@ -3,7 +3,6 @@ import datetime
 
 class Chat(BaseModel):
     id: int
-    name: str
     sender: str
     receiver: str
     is_active: bool = True
@@ -15,7 +14,6 @@ class Chat(BaseModel):
         schema_extra = {
             "example": {
                 "id": 0,
-                "name": "abc",
                 "sender": "abc",
                 "receiver": "abc",
                 "is_active": True,

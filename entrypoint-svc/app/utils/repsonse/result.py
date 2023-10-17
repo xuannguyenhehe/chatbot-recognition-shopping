@@ -38,7 +38,7 @@ class ResultResponse(object):
         content = {}
         if hasattr(self, "message") and self.message:
             content.update({"message": self.message})
-        if self.value:
+        if self.value is not None:
             content.update({"data": self.value})
         return JSONResponse(
             status_code=self.status_code,

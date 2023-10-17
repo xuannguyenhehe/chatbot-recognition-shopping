@@ -12,15 +12,32 @@ import { useNavigate, useParams } from "react-router-dom";
 function Chat() {
   const account = useSelector((state) => state.account);
   const {username, noTabChat} = account;
+  let { chatUser } = useParams();
 
   const chats = useSelector((state) => state.chat.chats)
   const contacts = useSelector((state) => state.chat.contacts)
+  const searchUsers = useSelector((state) => state.chat.searchUsers)
+  const messages = useSelector((state) => state.message.messages);
 
-  let { chatId } = useParams();
-  const [currentChatId, setCurrentChatId] = useState(chatId ? chatId : undefined);
+  const [currentChatUser, setCurrentChatUser] = useState(chatUser ? chatUser : undefined);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (currentChatUser) {
+      dispatch({
+        type: "message/getMessages",
+        payload: {
+          chatUser: currentChatUser,
+        },
+      });
+    }
+  }, [currentChatUser, dispatch]);
+
+  useEffect(() => {
+    setCurrentChatUser(chatUser)
+  }, [chatUser])
 
   const handleTabChange = useCallback((noTabChat) => {
     if (username && noTabChat === 0 && contacts.length === 0) {
@@ -54,9 +71,28 @@ function Chat() {
   }, [username, navigate, chats.length, contacts.length, dispatch, handleTabChange]);
 
   const handleChatChange = (chat) => {
-    navigate("/" + chat._id);
-    setCurrentChatId(chat._id);
+    navigate("/t/" + chat.name);
+    setCurrentChatUser(chat.name);
   };
+
+  const changeTab = (index) => {
+    dispatch({
+      type: "account/saveState",
+      payload: {
+        noTabChat: index,
+      },
+    });
+    handleTabChange(index);
+  }
+
+  const handleSearchUsers = (keyword) => {
+    dispatch({
+      type: "account/handleSearch",
+      payload: {
+        keyword: keyword,
+      },
+    });
+  }
 
   return (
       <Container style={{
@@ -81,20 +117,20 @@ function Chat() {
                 }}
             >
                 <CustomSearch
-                    label={"Search"}
-                    // value={formik.values.name_like}
-                    // changeform={(value) => {
-                    //     handleChangeForm(value, "name_like");
-                    // }}
-                    direction={"left"}
+                  changeform={handleSearchUsers}
+                  direction={"left"}
+                  changeTab={changeTab}
                 />
             </Container>
             <Contacts
               chats={chats}
               contacts={contacts}
+              chatUser={chatUser}
+              searchUsers={searchUsers}
               changeChat={handleChatChange}
               handleTabChange={handleTabChange}
               noTabChat={noTabChat}
+              messages={messages}
             />
           </Col>
           
@@ -105,11 +141,15 @@ function Chat() {
                     "border": "1px solid #303030",
                     "borderRadius": "3px"
                 }}
+                className="p-4"
             >
-                {currentChatId === undefined ? (
+                {currentChatUser === undefined ? (
                     <Welcome currentChatUsername={username} />
                 ) : (
-                    <ChatContainer currentChatId={currentChatId} />
+                    <ChatContainer 
+                      currentChatUser={currentChatUser} 
+                      messages={messages}
+                    />
                 )}
             </Col>
         </Row>

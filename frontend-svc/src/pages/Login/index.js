@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import ChatLogo from "../assets/chat.png";
+import ChatLogo from "assets/chat.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -72,7 +72,7 @@ function Login() {
             onChange={(e) => setValues({ ...values, password: e.target.value })}
           />
 
-          <button type="submit" disable={isLoading}>Login</button>
+          <button type="submit" disable={isLoading?.toString()}>Login</button>
           <span>
             Dont' have an account? <Link to="/register">Register</Link>
           </span>
