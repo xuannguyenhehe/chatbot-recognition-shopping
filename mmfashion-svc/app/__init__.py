@@ -16,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 async def lifespan(app: FastAPI):
     app.storage = await create_minio_connector(config)
     app.apc_service = AttributePredictCoarseService(storage=app.storage, config=config)
-    app.cap_service = CategoryAttributePredictService(storage=app.storage, config=config)
+    # app.cap_service = CategoryAttributePredictService(storage=app.storage, config=config)
     yield
 
 def create_app():
@@ -33,7 +33,7 @@ def create_app():
     # Import a module / component using its blueprint handler variable
     router = APIRouter()
     router.include_router(attribute_predict_coarse.router, prefix=os.path.join(config['APP_API_PREFIX'], 'apc'))
-    router.include_router(category_attribute_predict.router, prefix=os.path.join(config['APP_API_PREFIX'], 'cap'))
+    # router.include_router(category_attribute_predict.router, prefix=os.path.join(config['APP_API_PREFIX'], 'cap'))
     app.include_router(router)
 
     return app

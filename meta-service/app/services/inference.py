@@ -28,22 +28,26 @@ class InferenceService(AppService):
         self.vector_search = vector_search
         self.db = db
 
+
+    def get_colors(self, path_image: str, k: int = 5):
+        image = self.storage.get_object_from_path(path_image)
+        img_io = io.BytesIO(image)
+        image = PILImage.open(img_io).convert('RGB')
+        colors = self.get_color_image(image)
+        return ResultResponse((None, status.HTTP_200_OK, colors))
+
+
     def get_result(self, input: InferenceInput, k: int = 5) -> ResultResponse:
         path_image = input.path_image
-        entities = input.entities
-        require_cates = [entity["value"] for entity in entities if entity["entity"] == "cate"]
-        require_attrs = [entity["value"] for entity in entities if entity["entity"] == "attr"]
-        require_colors = [entity["value"] for entity in entities if entity["entity"] == "color"]
+        colors = input.colors
+        category = input.category
+        attribute = input.attribute
         results = []
 
         if path_image:
             image = self.storage.get_object_from_path(path_image)
             img_io = io.BytesIO(image)
             image = PILImage.open(img_io).convert('RGB')
-
-            if len(entities) > 0:
-                cate, attr = self.get_info_cate_attr_image(path_image)
-                color = self.get_color_image(image)
 
             image = image.resize((224, 224))
             tensor_image = transforms.ToTensor()(image).unsqueeze(0)
@@ -63,33 +67,25 @@ class InferenceService(AppService):
                     index_image_in_label = full_index % dist_shape[0]
                     path_image, cate_image, attr_image, color_image = ImageCRUD(self.db)\
                                             .get_by_index(index_label, index_image_in_label)
-                    common_cate = set(cate["top 5"]).intersection(cate_image["top 5"])
-                    common_attr = set(attr["top 10"]).intersection(attr_image["top 10"])
-                    common_color = set(color).intersection(color_image)
+                    common_cate = set(category["top 5"]).intersection(cate_image["top 5"])
+                    common_attr = set(attribute["top 10"]).intersection(attr_image["top 10"])
+                    common_color = set(colors).intersection(color_image)
                     if len(common_cate) > 0 and len(common_attr) > 0 and len(common_color) > 0:
                         results.append(path_image)
                 query_old += query_new
                 query_new += (k - len(results))
         else:
             images = ImageCRUD(self.db).query_by_cate_attr_color(
-                cate=require_cates,
-                attr=require_attrs,
-                color=require_colors,
+                cate=category,
+                attr=attribute,
+                color=colors,
                 k=k,
             )
             results = [image["path"] for image in images]
 
         return ResultResponse((None, status.HTTP_200_OK, results))
-    
-    def get_info_cate_attr_image(self, path_image: str):
-        url = "/api/mmfashion-service/v1/cap"
-        payload = {
-            "path_image": path_image,
-        }
-        data, _ = self.call_api(url, payload, "post")
-        attr = data["attr"]
-        cate = data["cate"]
-        return cate, attr
+
+
 
     def get_color_image(self, image, k: int = 3):
         colors = self.config["IMAGE_COLORS"]

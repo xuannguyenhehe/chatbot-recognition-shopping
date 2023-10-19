@@ -7,6 +7,7 @@ class Chat(BaseModel):
     receiver: str
     is_active: bool = True
     current_entities: list = []
+    current_intents: list = []
     created_date: datetime.datetime = datetime.datetime.now()
     updated_date: datetime.datetime = datetime.datetime.now()
 

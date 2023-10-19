@@ -1,6 +1,13 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
+
 
 class InferenceInput(BaseModel):
-    entities: list
     path_image: Optional[str]
+    colors: Optional[List[str]]
+    category: Optional[str]
+    attribute: Optional[str]
+
+
+class InferenceColorInput(BaseModel):
+    path_image: str

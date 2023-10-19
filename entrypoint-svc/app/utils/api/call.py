@@ -19,12 +19,15 @@ def get_base_url(url: str) -> str:
     Returns:
         str: full base url
     """
-    if url.startswith("/api/meta-service/v1"):
-        url = url.replace("/api/meta-service/v1", "")
+    if url.startswith("/meta/v1"):
+        url = url.replace("/meta/v1", "")
         base_url = urljoin(config["META_URL"], url)
-    elif url.startswith("/api/rasa-service/v1"):
-        url = url.replace("/api/rasa-service/v1", "")
+    elif url.startswith("/rasa/v1"):
+        url = url.replace("/rasa/v1", "")
         base_url = urljoin(config["RASA_URL"], url)
+    elif url.startswith("/mmfashion/v1"):
+        url = url.replace("/mmfashion/v1", "")
+        base_url = urljoin(config["MMFASHION_URL"], url)
     else:
         base_url = url
     return base_url

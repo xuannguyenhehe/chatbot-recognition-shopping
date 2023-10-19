@@ -25,4 +25,4 @@ accesslog = "-" if ENVIRONMENT_DEBUG else "/var/log/gunicorn.access.log"
 # Error log - records Gunicorn server goings-on
 errorlog = "-" if ENVIRONMENT_DEBUG else "/var/log/gunicorn.error.log"
 
-workers = max_workers()
+workers = 2

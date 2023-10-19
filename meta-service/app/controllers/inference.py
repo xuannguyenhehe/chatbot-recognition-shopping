@@ -1,4 +1,4 @@
-from app.schemas.inference import InferenceInput
+from app.schemas.inference import InferenceInput, InferenceColorInput
 from app.services.inference import InferenceService
 from app.utils.repsonse.result import handle_result
 from fastapi import APIRouter, Request
@@ -9,6 +9,11 @@ router = APIRouter()
 @router.post("/")
 async def get_recommend(input: InferenceInput, request: Request):
     response = request.app.inference_server.get_result(input)
+    return handle_result(response)
+
+@router.post("/color")
+async def get_color(input: InferenceInput, request: Request):
+    response = request.app.inference_server.get_colors(input)
     return handle_result(response)
 
 

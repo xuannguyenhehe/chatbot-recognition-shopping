@@ -29,6 +29,11 @@ class Settings(BaseSettings):
     MONGO_HOST: str
     MONGO_AUTH_DATABASE: str
 
+    # OTHER
+    META_URL: str
+    RASA_URL: str
+    MMFASHION_URL: str
+
 class DevelopmentConfig(Settings):
     class Config:
         env_file = "docker/.env.development"

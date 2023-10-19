@@ -80,7 +80,36 @@ class MessageService(AppService):
         if status_code != sta.HTTP_200_OK:
             return ResultResponse(ExceptionResponse.ErrorServer(message))
 
-        # intent, entities = self.get_intent_entities_message(sender, message_obj.message)
+        current_intents = exist_chat[0]["current_intents"]
+        intent, entities = self.get_intent_entities_message(message_obj.content)
+        if intent == IntentType.GREET:
+            if not len(current_intents):
+                text = self.get_answer_message(
+                    username=sender,
+                    message=message_obj.message,
+                )
+                images = []
+                options = []
+            else:
+                text = "Bạn có muốn bắt đầu lại cuộc trò chuyện?"
+                images = []
+                options = {
+                    "Có": "Shop có thể giúp gì cho bạn?",
+                    "Yes": "Bạn có thể nhắc lại yêu cầu của bạn không?"
+                }
+        elif intent == IntentType.ASK_TYPE:
+            entities = [{entity["entity"]: entity["value"]} for entity in entities]
+
+            colors = entities["color"] if "color" in entities else self.get_color_image(path_image)
+            category = entities["cate"] if "cate" in entities else self.get_category_image(path_image)
+            attribute = entities["attr"] if "attr" in entities else self.get_attribute_image(path_image)
+
+            response_recommend_images = self.get_recommend_images(path_image, colors, category, attribute)
+        else:
+            text = "Shop không hiểu yêu cầu của bạn. Bạn có thể lặp lại yêu cầu của bạn không?"
+            images = []
+            options = []
+
         # if intent in IntentType.list():
         #     if path_image or intent == IntentType.HAVE_NO_IMAGE:
         #         entities = exist_chat[0]["current_entities"]
@@ -144,10 +173,9 @@ class MessageService(AppService):
         return ResultResponse((None, sta.HTTP_200_OK, messages))
     
 
-    def get_intent_entities_message(self, username: str, message: str) -> str:
-        url = "/api/rasa-service/v1/answer/intent"
+    def get_intent_entities_message(self, message: str) -> str:
+        url = "/rasa/v1/answer/intent"
         payload = {
-            "sender": username,
             "message": message,
         }
         data, _ = self.call_api(url, payload, "post")
@@ -155,8 +183,9 @@ class MessageService(AppService):
         entities = data["entities"]
         return intent, entities
     
+
     def get_answer_message(self, username: str, message: str) -> str:
-        url = "/api/rasa-service/v1/answer"
+        url = "/rasa/v1/answer"
         payload = {
             "sender": username,
             "message": message,
@@ -168,15 +197,45 @@ class MessageService(AppService):
             text = None
         return text
     
-    def get_recommend_images(self, entities: list, path_image: str) -> List[str]:
-        url = "/api/meta-service/v1/inference"
+    
+    def get_category_image(self, path_image: str) -> List[str]:
+        url = "/mmfashion/v1/apc"
         payload = {
-            "entities": entities,
+            "path_image": path_image,
+        }
+        data, _ = self.call_api(url, payload, "post")
+        return data
+    
+
+    def get_attribute_image(self, path_image: str) -> List[str]:
+        url = "/mmfashion/v1/cap"
+        payload = {
+            "path_image": path_image,
+        }
+        data, _ = self.call_api(url, payload, "post")
+        return data
+    
+
+    def get_color_image(self, path_image: str) -> List[str]:
+        url = "/meta/v1/inference/color"
+        payload = {
             "path_image": path_image,
         }
         data, _ = self.call_api(url, payload, "post")
         return data
 
+
+    def get_recommend_images(self, path_image, colors, category, attribute):
+        url = "/meta/v1/inference"
+        payload = {
+            "path_image": path_image,
+            "colors": colors,
+            "category": category,
+            "attribute": attribute,
+        }
+        data, _ = self.call_api(url, payload, "post")
+        return data
+    
 
 class MessageCRUD(AppCRUD):
     def create(self, chat_id: int, sender: str, message: MessageOutput) -> MessageResponse:
