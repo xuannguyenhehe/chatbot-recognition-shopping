@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-
+import random
 
 class CatePredictor(object):
 
@@ -21,7 +21,21 @@ class CatePredictor(object):
         self.tops_type = tops_type
 
     def get_cate_name(self, pred_idx):
-        return [self.cate_idx2name[idx] for idx in pred_idx]\
+        return [self.cate_idx2name[idx] for idx in pred_idx]
+    
+    def get_random(self):
+        result = {}
+        for topk in self.tops_type:
+            idxes = []
+            for _ in range(topk):
+                random_index = random.randint(0, len(self.cate_idx2name) - 1)
+                idxes.append(random_index)
+
+            top_result = {
+                f"top {topk}": self.get_cate_name(idxes),
+            }
+            result.update(top_result)
+        return result
 
     def show_prediction(self, pred):
         if isinstance(pred, torch.Tensor):

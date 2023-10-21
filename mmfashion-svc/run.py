@@ -9,6 +9,8 @@ if __name__ == "__main__":
     ENVIRONMENT_HOST = os.environ.get("APP_HOST")
     uvicorn.run(
         "run:create_app",
+        host='0.0.0.0',
+        port=8004,
     )
 else:
     gunicorn_app = create_app()

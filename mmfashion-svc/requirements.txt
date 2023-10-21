@@ -21,3 +21,4 @@ torchvision==0.16.0
 
 # Other
 minio==7.1.17
+bentoml==1.1.7

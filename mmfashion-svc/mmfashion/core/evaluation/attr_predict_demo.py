@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+import random
 
 
 class AttrPredictor(object):
@@ -20,6 +21,20 @@ class AttrPredictor(object):
 
     def get_attr_name(self, pred_idx):
         return [self.attr_idx2name[idx] for idx in pred_idx]
+    
+    def get_random(self):
+        result = {}
+        for topk in self.tops_type:
+            idxes = []
+            for _ in range(topk):
+                random_index = random.randint(0, len(self.attr_idx2name) - 1)
+                idxes.append(random_index)
+
+            top_result = {
+                f"top {topk}": self.get_attr_name(idxes),
+            }
+            result.update(top_result)
+        return result
 
     def show_prediction(self, pred):
         if isinstance(pred, torch.Tensor):
