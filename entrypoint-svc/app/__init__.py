@@ -34,7 +34,6 @@ def create_app():
 
     # Import a module / component using its blueprint handler variable
     router = APIRouter()
-    print(os.path.join(config['APP_API_PREFIX'] + 'keycloak'))
     router.include_router(keycloak.router, prefix=os.path.join(config['APP_API_PREFIX'], 'keycloak'))
     router.include_router(chat.router, prefix=os.path.join(config['APP_API_PREFIX'], 'chat'))
     router.include_router(message.router, prefix=os.path.join(config['APP_API_PREFIX'], 'message'))

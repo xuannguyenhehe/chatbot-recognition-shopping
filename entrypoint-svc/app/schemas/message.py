@@ -1,7 +1,10 @@
-from pydantic import BaseModel
 import datetime
 from typing import Optional
+
+from pydantic import BaseModel
+
 from app.schemas.image import ImageInput
+
 
 class MessageBase(BaseModel):
     chat_user: str

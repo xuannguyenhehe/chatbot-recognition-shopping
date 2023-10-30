@@ -1,11 +1,13 @@
-import io
 import base64
-import uuid
+import io
 import os
-from PIL import Image as PILImage
-from app.services import AppService, AppCRUD
-from app.models.image import Image
+import uuid
 from typing import Tuple
+
+from PIL import Image as PILImage
+
+from app.models.image import Image
+from app.services import AppCRUD, AppService
 
 
 class ImageService(AppService):

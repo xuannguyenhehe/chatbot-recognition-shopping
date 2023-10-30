@@ -1,12 +1,12 @@
-from fastapi import APIRouter, Request, Depends
+from typing import List
+
+import requests
+from fastapi import APIRouter, Depends, Request
+
 from app.schemas.chat import Chat, NewChat
 from app.services.chat import ChatService
-from app.utils.repsonse.result import handle_result
+from app.utils.repsonse.result import ResultResponse, handle_result
 from extensions.keycloak.utils import require_token
-from typing import List
-from app.utils.repsonse.result import ResultResponse
-import requests
-
 
 router = APIRouter()
 

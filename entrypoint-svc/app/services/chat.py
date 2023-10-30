@@ -1,11 +1,13 @@
-from app.schemas.chat import Chat, NewChat
-from app.utils.repsonse.exceptions import ExceptionResponse
-from app.services import AppService, AppCRUD
-from app.utils.repsonse.result import ResultResponse
 from typing import List
-from app.models.chat import Chat as ChatModel
-from fastapi import status
+
 import pymongo
+from fastapi import status
+
+from app.models.chat import Chat as ChatModel
+from app.schemas.chat import Chat, NewChat
+from app.services import AppCRUD, AppService
+from app.utils.repsonse.exceptions import ExceptionResponse
+from app.utils.repsonse.result import ResultResponse
 
 
 class ChatService(AppService):

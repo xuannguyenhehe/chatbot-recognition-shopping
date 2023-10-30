@@ -1,11 +1,12 @@
 import json
 
 import requests
-from app.schemas.inference import InferenceInput, IntentInput
-from app.utils.repsonse.result import ResultResponse
 from fastapi import status
 from rasa.core.agent import Agent
 from rasa.core.channels import UserMessage
+
+from app.schemas.inference import InferenceInput, IntentInput
+from app.utils.repsonse.result import ResultResponse
 
 
 class InferenceService():

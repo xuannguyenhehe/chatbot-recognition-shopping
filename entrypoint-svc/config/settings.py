@@ -32,7 +32,7 @@ class Settings(BaseSettings):
     # OTHER
     META_URL: str
     RASA_URL: str
-    MMFASHION_URL: str
+    INFERENCE_URL: str
 
 class DevelopmentConfig(Settings):
     class Config:

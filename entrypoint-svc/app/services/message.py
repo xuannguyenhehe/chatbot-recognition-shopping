@@ -1,9 +1,12 @@
+import base64
 import io
 import json
 import sys
 from enum import Enum
 from typing import List
-import base64
+
+from fastapi import status as sta
+from PIL import Image as PILImage
 
 from app.models.image import Image as ImageModel
 from app.models.message import Message as MessageModel
@@ -14,8 +17,6 @@ from app.services.image import ImageCRUD
 from app.utils.repsonse.exceptions import ExceptionResponse
 from app.utils.repsonse.result import ResultResponse
 from extensions.minio.connector import MinioConnector, ObjectType
-from fastapi import status as sta
-from PIL import Image as PILImage
 
 
 class IntentType(str, Enum):
@@ -86,7 +87,7 @@ class MessageService(AppService):
             if not len(current_intents):
                 text = self.get_answer_message(
                     username=sender,
-                    message=message_obj.message,
+                    message=message_obj.content,
                 )
                 images = []
                 options = []
@@ -98,13 +99,31 @@ class MessageService(AppService):
                     "Yes": "Bạn có thể nhắc lại yêu cầu của bạn không?"
                 }
         elif intent == IntentType.ASK_TYPE:
-            entities = [{entity["entity"]: entity["value"]} for entity in entities]
+            entities = {entity["entity"]: entity["value"] for entity in entities}
 
-            colors = entities["color"] if "color" in entities else self.get_color_image(path_image)
-            category = entities["cate"] if "cate" in entities else self.get_category_image(path_image)
-            attribute = entities["attr"] if "attr" in entities else self.get_attribute_image(path_image)
+            colors = None
+            if "color" in entities:
+                colors = entities["color"]
+            elif path_image:
+                colors = self.get_color_image(path_image)
+
+            category = None
+            if "cate" in entities:
+                category = entities["cate"] 
+            elif path_image:
+                category = self.get_category_image(path_image)
+
+            attribute = None
+            if "attr" in entities:
+                attribute = entities["attr"] 
+            elif path_image:
+                attribute = self.get_attribute_image(path_image)
 
             response_recommend_images = self.get_recommend_images(path_image, colors, category, attribute)
+            print('colors', colors)
+            print('category', category)
+            print('attribute', attribute)
+            print('response_recommend_images', response_recommend_images)
         else:
             text = "Shop không hiểu yêu cầu của bạn. Bạn có thể lặp lại yêu cầu của bạn không?"
             images = []
@@ -217,7 +236,7 @@ class MessageService(AppService):
     
 
     def get_color_image(self, path_image: str) -> List[str]:
-        url = "/meta/v1/inference/color"
+        url = "/inference/v1/color-inference"
         payload = {
             "path_image": path_image,
         }
@@ -231,7 +250,7 @@ class MessageService(AppService):
             "path_image": path_image,
             "colors": colors,
             "category": category,
-            "attribute": attribute,
+            "attribute": attribute["attr"],
         }
         data, _ = self.call_api(url, payload, "post")
         return data

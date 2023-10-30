@@ -1,12 +1,13 @@
 import ast
 
 import requests
-from app.utils.repsonse.result import ResultResponse
-from config import config
 from keycloak import KeycloakAdmin
 from keycloak.exceptions import KeycloakError
-from app.services.chat import ChatCRUD
 from loguru import logger
+
+from app.services.chat import ChatCRUD
+from app.utils.repsonse.result import ResultResponse
+from config import config
 
 
 class KeycloakUserService:

@@ -1,5 +1,10 @@
 import pymongo
 
+from .chat import Chat
+from .image import Image
+from .message import Message
+
+
 async def create_mongo_client(config):
     MONGO_DATABASE_URI = \
         f"mongodb://{config['MONGO_ROOT_USERNAME']}:{config['MONGO_ROOT_PASSWORD']}@{config['MONGO_HOST']}:{config['MONGO_PORT']}/?authSource=admin&readPreference=secondary&directConnection=true&ssl=false'"
@@ -23,9 +28,6 @@ async def create_mongo_client(config):
     return db
 
 
-from .chat import Chat
-from .image import Image
-from .message import Message
 
 
 mongo_dbname = "chatbot"

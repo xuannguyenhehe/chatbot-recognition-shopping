@@ -1,6 +1,8 @@
-from pydantic import BaseModel
-from typing import Optional
 import datetime
+from typing import Optional
+
+from pydantic import BaseModel
+
 
 class Message(BaseModel):
     message: str

@@ -1,9 +1,10 @@
 import inspect
 
-from app.utils.repsonse.exceptions import ExceptionBase
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from loguru import logger
+
+from app.utils.repsonse.exceptions import ExceptionBase
 
 
 class ResultResponse(object):

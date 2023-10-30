@@ -1,11 +1,12 @@
-from fastapi import APIRouter, Request, Depends
 from typing import List
-from app.schemas.message import MessageResponse, CreatedMessages
-from app.utils.repsonse.result import handle_result
-from extensions.keycloak.utils import require_token
-from app.services.message import MessageService
-from app.utils.repsonse.result import ResultResponse
+
 import requests
+from fastapi import APIRouter, Depends, Request
+
+from app.schemas.message import CreatedMessages, MessageResponse
+from app.services.message import MessageService
+from app.utils.repsonse.result import ResultResponse, handle_result
+from extensions.keycloak.utils import require_token
 
 router = APIRouter()
 

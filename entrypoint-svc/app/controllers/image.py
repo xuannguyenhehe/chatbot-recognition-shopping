@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import Response
-from app.services.image import ImageService
 
+from app.services.image import ImageService
 
 router = APIRouter()
 

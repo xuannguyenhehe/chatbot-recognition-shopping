@@ -3,10 +3,11 @@ from typing import Tuple
 from urllib.parse import urljoin
 
 import requests
-from config import config
 from loguru import logger
 from requests.adapters import HTTPAdapter
 from urllib3.util import Retry
+
+from config import config
 
 TIMEOUT = 10
 
@@ -20,14 +21,11 @@ def get_base_url(url: str) -> str:
         str: full base url
     """
     if url.startswith("/meta/v1"):
-        url = url.replace("/meta/v1", "")
         base_url = urljoin(config["META_URL"], url)
     elif url.startswith("/rasa/v1"):
-        url = url.replace("/rasa/v1", "")
         base_url = urljoin(config["RASA_URL"], url)
-    elif url.startswith("/mmfashion/v1"):
-        url = url.replace("/mmfashion/v1", "")
-        base_url = urljoin(config["MMFASHION_URL"], url)
+    elif url.startswith("/inference/v1"):
+        base_url = urljoin(config["INFERENCE_URL"], url)
     else:
         base_url = url
     return base_url

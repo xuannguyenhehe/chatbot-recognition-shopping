@@ -1,0 +1,1 @@
+exec gunicorn -c './config/gunicornconf.py' run:gunicorn_app

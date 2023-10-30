@@ -1,11 +1,10 @@
-from app.schemas.keycloak import AccessToken, UserRegister, RoleByUser
-from app.services.keycloak import KeycloakUserService
-from app.utils.repsonse.result import handle_result
-from extensions.keycloak.utils import require_token
-from fastapi import APIRouter, Request, Depends
-from app.utils.repsonse.result import ResultResponse
 import requests
+from fastapi import APIRouter, Depends, Request
 
+from app.schemas.keycloak import AccessToken, RoleByUser, UserRegister
+from app.services.keycloak import KeycloakUserService
+from app.utils.repsonse.result import ResultResponse, handle_result
+from extensions.keycloak.utils import require_token
 
 router = APIRouter()
 
