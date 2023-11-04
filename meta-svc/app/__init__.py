@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 
 from app.controllers import image, inference
 from app.models import create_mongo_client
+from app.services.inference import InferenceService
 from config import config
 from extensions.keycloak.keycloak_admin import KeycloakAdminConnector
 from extensions.keycloak.keycloak_openid import KeycloakOpenIDConnector
@@ -17,6 +18,7 @@ async def lifespan(app: FastAPI):
     app.db = await create_mongo_client(config)
     app.storage = await create_minio_connector(config)
     app.vector_search = await create_vector_search(config)
+    app.inference_server = InferenceService(config, app.storage, app.vector_search, app.db)
     app.kc_openid = KeycloakOpenIDConnector()
     app.kc_openid.init_app(config)
     app.kc_admin = KeycloakAdminConnector()

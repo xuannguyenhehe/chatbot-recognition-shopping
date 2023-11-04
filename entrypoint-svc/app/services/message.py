@@ -107,19 +107,20 @@ class MessageService(AppService):
             elif path_image:
                 colors = self.get_color_image(path_image)
 
+            category_attribute = self.get_category_attribute_prediction(path_image)
             category = None
             if "cate" in entities:
                 category = entities["cate"] 
             elif path_image:
-                category = self.get_category_image(path_image)
+                category = category_attribute['cate']
 
             attribute = None
             if "attr" in entities:
                 attribute = entities["attr"] 
             elif path_image:
-                attribute = self.get_attribute_image(path_image)
+                attribute = category_attribute['attr']
 
-            response_recommend_images = self.get_recommend_images(path_image, colors, category, attribute)
+            response_recommend_images = self.get_recommend_images(chat_user, path_image, colors, category, attribute)
             print('colors', colors)
             print('category', category)
             print('attribute', attribute)
@@ -217,17 +218,8 @@ class MessageService(AppService):
         return text
     
     
-    def get_category_image(self, path_image: str) -> List[str]:
-        url = "/mmfashion/v1/apc"
-        payload = {
-            "path_image": path_image,
-        }
-        data, _ = self.call_api(url, payload, "post")
-        return data
-    
-
-    def get_attribute_image(self, path_image: str) -> List[str]:
-        url = "/mmfashion/v1/cap"
+    def get_category_attribute_prediction(self, path_image: str):
+        url = "/inference/v1/category-attribute-inference"
         payload = {
             "path_image": path_image,
         }
@@ -244,13 +236,14 @@ class MessageService(AppService):
         return data
 
 
-    def get_recommend_images(self, path_image, colors, category, attribute):
+    def get_recommend_images(self, chat_user, path_image, colors, category, attribute):
         url = "/meta/v1/inference"
         payload = {
+            "username": chat_user,
             "path_image": path_image,
             "colors": colors,
             "category": category,
-            "attribute": attribute["attr"],
+            "attribute": attribute,
         }
         data, _ = self.call_api(url, payload, "post")
         return data

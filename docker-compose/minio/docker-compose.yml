@@ -4,6 +4,7 @@ name: "chatbot"
 
 services:
   s3:
+    container_name: chatbot-s3
     image: minio/minio:latest
     ports:
       - "9000:9000"

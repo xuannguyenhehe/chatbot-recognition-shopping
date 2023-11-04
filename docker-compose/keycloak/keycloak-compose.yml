@@ -14,8 +14,8 @@ services:
       DB_VENDOR: POSTGRES
       DB_USER: ${DATABASE_USER}
       DB_PASSWORD: ${DATABASE_PASSWORD}
-      # KEYCLOAK_USER: ${KEYCLOAK_USER}
-      # KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+      KEYCLOAK_USER: ${KEYCLOAK_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
       KEYCLOAK_IMPORT: /opt/jboss/keycloak/imports/realm-export-chatbot.json
       PROXY_ADDRESS_FORWARDING: "true" # very important when using reverse proxy
     volumes:

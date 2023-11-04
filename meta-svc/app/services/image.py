@@ -1,15 +1,19 @@
 import base64
 import io
 import os
+import pickle
 import sys
 import uuid
 from typing import List, Tuple
 
 import requests
+import torch
 from PIL import Image as PILImage
 
 from app.models.image import Image
+from app.models.vector import Vector
 from app.services import AppCRUD, AppService
+from app.services.vector import VectorCRUD
 from app.utils.repsonse.result import ResultResponse
 from extensions.minio.connector import MinioConnector, ObjectType
 
@@ -21,6 +25,7 @@ class ImageService(AppService):
 
     def add_images(self, username: str, images: dict):
         image_objs = []
+        vector_images = []
         for label, image_files in images.items():
             ImageCRUD(self.db).delete_by_label(label)
             for image in image_files:
@@ -33,6 +38,15 @@ class ImageService(AppService):
                     data=filedata,
                     object_type=ObjectType.IMAGE,
                 )
+
+                category_attribute_image = self.get_category_attribute_prediction(image_path)
+                attribute_image = category_attribute_image['attr']
+                category_image = category_attribute_image['cate']
+                color_image = self.get_color_image(image_path)
+
+                vector_image = torch.tensor(self.get_vector_prediction(image_path)["vector"])
+                vector_images.append(vector_image)
+
                 image_width, image_height = PILImage.open(filedata).size
                 image_obj = Image(
                     uuid=image_uuid,
@@ -43,9 +57,25 @@ class ImageService(AppService):
                     volume=sys.getsizeof(base64_image),
                     username=username,
                     label=label,
-                    meta_data=image.get("meta_data")
+                    meta_data=image.get("meta_data"),
+                    pseudo_cate=category_image,
+                    pseudo_attr=attribute_image,
+                    pseudo_color=color_image,
                 )
                 image_objs.append(image_obj)
+
+        vector_images = torch.cat(vector_images, dim=0)
+        serialized_vectors = pickle.dumps(vector_images)
+        vector_path = self.storage.save_object(
+            file_name=f"vector_{username}.bin",
+            data=io.BytesIO(serialized_vectors),
+            object_type=ObjectType.VECTOR,
+        )
+        vector_obj = Vector(
+            path=vector_path,
+            username=username,
+        )
+        message, status_code = VectorCRUD(self.db).create(vector_obj)
 
         message, status_code = ImageCRUD(self.db).create(image_objs)
         return ResultResponse((message, status_code))
@@ -87,6 +117,30 @@ class ImageService(AppService):
             return base64_image, None
         except Exception as e:
             return None, str(e)
+        
+    def get_vector_prediction(self, path_image: str):
+        url = "/inference/v1/meta-inference"
+        payload = {
+            "path_image": path_image,
+        }
+        data, _ = self.call_api(url, payload, "post")
+        return data
+
+    def get_category_attribute_prediction(self, path_image: str):
+        url = "/inference/v1/category-attribute-inference"
+        payload = {
+            "path_image": path_image,
+        }
+        data, _ = self.call_api(url, payload, "post")
+        return data
+    
+    def get_color_image(self, path_image: str) -> List[str]:
+        url = "/inference/v1/color-inference"
+        payload = {
+            "path_image": path_image,
+        }
+        data, _ = self.call_api(url, payload, "post")
+        return data
         
 
 class ImageCRUD(AppCRUD):

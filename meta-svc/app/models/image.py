@@ -13,6 +13,9 @@ class Image(BaseModel):
     volume: int
     username: str
     label: str
+    pseudo_cate: dict
+    pseudo_attr: dict
+    pseudo_color: list
     is_active: bool = True
     created_date: datetime.datetime = datetime.datetime.now()
     updated_date: datetime.datetime = datetime.datetime.now()

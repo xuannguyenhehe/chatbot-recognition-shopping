@@ -15,6 +15,7 @@ from extensions.minio.utils import make_dirname, split_bucket_path
 class ObjectType(str, Enum):
     IMAGE = "images"
     CHECKPOINT = "checkpoints"
+    VECTOR = "vectors"
 
     @staticmethod
     def list():

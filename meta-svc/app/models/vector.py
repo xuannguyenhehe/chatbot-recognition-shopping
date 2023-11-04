@@ -4,7 +4,7 @@ import uuid
 from pydantic import BaseModel
 
 
-class Image(BaseModel):
+class Vector(BaseModel):
     path: str
     username: str
     is_active: bool = True

@@ -17,4 +17,4 @@ services:
 networks:
   chatbot_default:
     name: chatbot_default
-    driver: bridge
+    external: true
