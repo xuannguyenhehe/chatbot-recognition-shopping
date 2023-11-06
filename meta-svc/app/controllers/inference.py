@@ -9,6 +9,8 @@ router = APIRouter()
 
 @router.post("/")
 async def get_recommend(input: InferenceInput, request: Request):
-    inference_server: InferenceService = request.app.inference_server
-    response = inference_server.get_result(input)
+    response = InferenceService(
+        vector_search=request.app.vector_search,
+        storage=request.app.storage
+    ).get_result(input)
     return handle_result(response)

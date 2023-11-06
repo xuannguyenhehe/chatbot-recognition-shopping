@@ -33,7 +33,7 @@ async def add_images(request: Request, files: list[UploadFile]):
             })
 
     response = ImageService(
-        db=request.app.db, 
+        vector_search=request.app.vector_search,
         storage=request.app.storage
     ).add_images(username, images)
     return handle_result(response)
@@ -47,7 +47,7 @@ async def get_images(request: Request):
     username = user_info['preferred_username']
 
     response = ImageService(
-        db=request.app.db, 
+        vector_search=request.app.vector_search,
         storage=request.app.storage
     ).get_images(username)
     return handle_result(response)

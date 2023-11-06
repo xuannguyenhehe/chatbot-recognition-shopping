@@ -2,10 +2,10 @@ import datetime
 import uuid
 
 from pydantic import BaseModel
+from typing import Any
 
 
-class Image(BaseModel):
-    uuid: str = str(uuid.uuid4())
+class ImageVector(BaseModel):
     path: str
     name: str
     height: int
@@ -13,26 +13,10 @@ class Image(BaseModel):
     volume: int
     username: str
     label: str
+    vector: Any
     pseudo_cate: dict
     pseudo_attr: dict
-    pseudo_color: list
+    pseudo_color: dict
     is_active: bool = True
-    created_date: datetime.datetime = datetime.datetime.now()
-    updated_date: datetime.datetime = datetime.datetime.now()
-
-    class Config:
-        schema_extra = {
-            "example": {
-                "uuid": str(uuid.uuid4()),
-                "path": "/",
-                "name": "abc.jpg",
-                "height": "100",
-                "width": "100",
-                "volume": "100",
-                "username": "abc",
-                "label": "shirt",
-                "is_active": True,
-                "created_date": datetime.datetime.now(),
-                "updated_date": datetime.datetime.now(),
-            }
-        }
+    created_date: str = str(datetime.datetime.now())
+    updated_date: str = str(datetime.datetime.now())

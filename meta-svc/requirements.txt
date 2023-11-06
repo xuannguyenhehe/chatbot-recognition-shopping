@@ -11,19 +11,12 @@ loguru==0.7.2
 requests==2.31.0
 
 # Meta
-torch==2.1.0
-matplotlib==3.8.0
 numpy==1.26.0
-scikit-image==0.22.0
-seaborn==0.13.0
-beanie==1.22.6
 uuid==1.30
 python-keycloak==2.6.0
 python-multipart==0.0.6
-
-# Database
-dnspython==2.4.2
-pymongo==4.5.0
+pymilvus==2.3.2
+pillow==10.0.1
 
 # Other
 minio==7.1.17

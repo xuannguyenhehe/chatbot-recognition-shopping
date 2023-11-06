@@ -23,14 +23,6 @@ class Settings(BaseSettings):
     KEYCLOAK_URL: str
     REALMS: str
 
-
-    MONGO_ROOT_USERNAME: str
-    MONGO_ROOT_PASSWORD: str
-    MINIO_REGION: str
-    MONGO_PORT: int
-    MONGO_HOST: str
-    MONGO_AUTH_DATABASE: str
-
     MINIO_ROOT_USER: str
     MINIO_ROOT_PASSWORD: str
     ADMIN_MINIO_URL: str
@@ -46,6 +38,14 @@ class Settings(BaseSettings):
     IMAGE_COLORS: str
 
     INFERENCE_URL: str
+
+    MILVUS_HOST: str
+    MILVUS_PORT: int
+    VECTOR_DIMENSION: int
+    INDEX_FILE_SIZE: int
+    METRIC_TYPE: str
+    DEFAULT_TABLE: str
+    TOP_K: int
 
 class DevelopmentConfig(Settings):
     MINIO_SECURE = False

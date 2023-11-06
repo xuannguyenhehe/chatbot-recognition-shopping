@@ -9,7 +9,7 @@ from urllib3.util import Retry
 
 from config import config
 
-TIMEOUT = 10
+TIMEOUT = 100
 
 def get_base_url(url: str) -> str:
     """Get base url according to prefix of url

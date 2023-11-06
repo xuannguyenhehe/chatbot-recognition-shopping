@@ -151,3 +151,4 @@ rasa/models/
 
 docker-compose/minio/data/*
 docker-compose/milvus/data/*
+docker-compose/mongo/data/*

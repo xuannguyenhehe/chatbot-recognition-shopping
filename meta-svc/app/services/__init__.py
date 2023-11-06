@@ -1,7 +1,6 @@
 import json
 from urllib.parse import urlencode
 
-import pymongo
 import requests
 from fastapi import status
 from loguru import logger
@@ -11,8 +10,8 @@ from app.utils.api.call import API
 
 
 class DBSessionContext(object):
-    def __init__(self, db: pymongo.database.Database):
-        self.db = db
+    def __init__(self):
+        pass
 
 
 class AppService(DBSessionContext):

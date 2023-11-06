@@ -1,4 +1,5 @@
 import pymongo
+from loguru import logger
 
 from .chat import Chat
 from .image import Image
@@ -12,7 +13,7 @@ async def create_mongo_client(config):
     try:
         is_live = mongo_client.admin.command('ping')
         if is_live:
-            print("Pinged your deployment. You successfully connected to MongoDB!")
+            logger.info("Pinged your deployment. You successfully connected to MongoDB!")
         else:
             raise
         db = mongo_client[mongo_dbname]
@@ -24,7 +25,7 @@ async def create_mongo_client(config):
                 test_col.insert_one(test_dict)
                 test_col.delete_one(test_dict)
     except Exception as e:
-        print(e)
+        logger.error(e)
     return db
 
 

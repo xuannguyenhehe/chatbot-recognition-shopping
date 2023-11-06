@@ -269,7 +269,7 @@ class MinioConnector():
                 ))
             return True
         except Exception as e:
-            print(e)
+            logger.error(e)
             return False
 
 

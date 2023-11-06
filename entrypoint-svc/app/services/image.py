@@ -20,33 +20,6 @@ class ImageService(AppService):
         img_io = io.BytesIO(image)
         return img_io
     
-    def save_image(self, image):
-        print("image", image)
-        # base64_image, error = self.attemp_decode(image["content"])
-        # filedata = io.BytesIO(base64_image)
-        # image_uuid = str(uuid.uuid4())
-        # image_name = self.make_image_name(image["filename"], image_uuid)
-        # image_path = save_object(
-        #     self.storage,
-        #     file_name=image_name,
-        #     data=filedata,
-        #     object_type=ObjectType.IMAGE,
-        # )
-        # image_width, image_height = PILImage.open(filedata).size
-        # image_obj = Image(
-        #     uuid=image_uuid,
-        #     path=image_path,
-        #     name=image_name,
-        #     usage=usage,
-        #     height=image_height,
-        #     width=image_width,
-        #     volume=sys.getsizeof(base64_image),
-        #     batch_id=batch.id,
-        #     user_id=user_id,
-        #     meta_data=image.get("meta_data")
-        # )
-        return ""
-    
     @staticmethod
     def attemp_decode(base64_string):
         try:

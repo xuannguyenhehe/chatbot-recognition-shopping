@@ -11,6 +11,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
     ports:
       - ${MONGO_OS_PORT}:${MONGO_DEFAULT_PORT}
+    volumes:
+      - ./data:/data/db
     networks:
       - chatbot_default
 

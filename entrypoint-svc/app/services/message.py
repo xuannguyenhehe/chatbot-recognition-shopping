@@ -103,28 +103,26 @@ class MessageService(AppService):
 
             colors = None
             if "color" in entities:
-                colors = entities["color"]
+                colors = [entities["color"]]
             elif path_image:
                 colors = self.get_color_image(path_image)
 
-            category_attribute = self.get_category_attribute_prediction(path_image)
+            if path_image:
+                category_attribute = self.get_category_attribute_prediction(path_image)
+
             category = None
             if "cate" in entities:
-                category = entities["cate"] 
+                category = [entities["cate"]]
             elif path_image:
-                category = category_attribute['cate']
+                category = category_attribute['cate']['top 5']
 
             attribute = None
             if "attr" in entities:
-                attribute = entities["attr"] 
+                attribute = [entities["attr"]]
             elif path_image:
-                attribute = category_attribute['attr']
+                attribute = category_attribute['attr']['top 5']
 
             response_recommend_images = self.get_recommend_images(chat_user, path_image, colors, category, attribute)
-            print('colors', colors)
-            print('category', category)
-            print('attribute', attribute)
-            print('response_recommend_images', response_recommend_images)
         else:
             text = "Shop không hiểu yêu cầu của bạn. Bạn có thể lặp lại yêu cầu của bạn không?"
             images = []
