@@ -12,5 +12,3 @@ async def get_color(input: InferenceInput, request: Request):
     inference_server: ColorInferenceService = request.app.color_inference_server
     response = inference_server.get_colors(input.path_image)
     return handle_result(response)
-
-

@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Request
 
 from app.schemas.inference import InferenceInput
+from app.services.category_attribute_inference import \
+    CategoryAttributePredictService
 from app.utils.repsonse.result import handle_result
-from app.services.category_attribute_inference import CategoryAttributePredictService
 
 router = APIRouter()
 

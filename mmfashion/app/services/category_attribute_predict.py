@@ -1,16 +1,16 @@
 import io
 
 import torch
-from app.utils.repsonse.result import ResultResponse
-from extensions.minio import MinioConnector
 from fastapi import status
 from mmcv import Config
 from mmcv.runner import load_checkpoint
-from settings import config
 
+from app.utils.repsonse.result import ResultResponse
+from extensions.minio import MinioConnector
 from mmfashion.core import AttrPredictor, CatePredictor
 from mmfashion.models import build_predictor
 from mmfashion.utils import get_img_tensor
+from settings import config
 
 
 class CategoryAttributePredictService():
@@ -45,6 +45,3 @@ class CategoryAttributePredictService():
             "attr": result_attr,
             "cate": result_cate,
         }))
-
-
-

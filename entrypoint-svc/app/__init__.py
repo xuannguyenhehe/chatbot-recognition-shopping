@@ -1,14 +1,15 @@
 import os
 from contextlib import asynccontextmanager
 
+from fastapi import APIRouter, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.controllers import chat, image, keycloak, message
 from app.models import create_mongo_client
 from config import config
 from extensions.keycloak.keycloak_admin import KeycloakAdminConnector
 from extensions.keycloak.keycloak_openid import KeycloakOpenIDConnector
 from extensions.minio import create_minio_connector
-from fastapi import APIRouter, FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 
 
 @asynccontextmanager

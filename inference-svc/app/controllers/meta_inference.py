@@ -12,6 +12,3 @@ async def get_recommend(input: InferenceInput, request: Request):
     inference_server: MetaInferenceService = request.app.meta_inference_server
     response = inference_server.get_result(input.path_image)
     return handle_result(response)
-
-
-

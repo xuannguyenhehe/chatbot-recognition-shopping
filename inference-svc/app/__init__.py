@@ -4,7 +4,8 @@ from contextlib import asynccontextmanager
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.controllers import color_inference, meta_inference, attribute_inference, category_attribute_inference
+from app.controllers import (attribute_inference, category_attribute_inference,
+                             color_inference, meta_inference)
 from app.services.attribute_inference import AttributePredictCoarseService
 from app.services.category_attribute_inference import \
     CategoryAttributePredictService

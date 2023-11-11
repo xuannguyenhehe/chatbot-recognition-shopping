@@ -1,11 +1,14 @@
 from contextlib import asynccontextmanager
 
-from app.controllers import attribute_predict_coarse, category_attribute_predict
-from app.services.attribute_predict_coarse import AttributePredictCoarseService
-from app.services.category_attribute_predict import CategoryAttributePredictService
-from extensions.minio import create_minio_connector
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+from app.controllers import (attribute_predict_coarse,
+                             category_attribute_predict)
+from app.services.attribute_predict_coarse import AttributePredictCoarseService
+from app.services.category_attribute_predict import \
+    CategoryAttributePredictService
+from extensions.minio import create_minio_connector
 
 
 @asynccontextmanager

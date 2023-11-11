@@ -14,7 +14,6 @@ from .builder import (build_attr_predictor, build_backbone,
                       build_triplet_net, build_tryon, build_type_specific_net,
                       build_unet_skip_connection_block,
                       build_visibility_classifier)
-# yapf:enable
 from .concats import *  # noqa: F401, F403
 from .embed_extractor import *  # noqa: F401, F403
 from .fashion_recommender import *  # noqa: F401, F403

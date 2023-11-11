@@ -1,18 +1,21 @@
 import os
 from contextlib import asynccontextmanager
 
+from fastapi import APIRouter, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.controllers import image, inference
+from app.models import create_mongo_client
 from config import config
 from extensions.keycloak.keycloak_admin import KeycloakAdminConnector
 from extensions.keycloak.keycloak_openid import KeycloakOpenIDConnector
-from extensions.minio import create_minio_connector
 from extensions.milvus import create_milvus_connector
-from fastapi import APIRouter, FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from extensions.minio import create_minio_connector
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    app.db = await create_mongo_client(config)
     app.storage = await create_minio_connector(config)
     app.vector_search = await create_milvus_connector(config)
     app.kc_openid = KeycloakOpenIDConnector()

@@ -2,6 +2,7 @@ import logging
 import os
 
 import uvicorn
+
 from app import create_app
 
 if __name__ == "__main__":

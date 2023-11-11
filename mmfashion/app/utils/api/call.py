@@ -3,10 +3,11 @@ from typing import Tuple
 from urllib.parse import urljoin
 
 import requests
-from config import config
 from loguru import logger
 from requests.adapters import HTTPAdapter
 from urllib3.util import Retry
+
+from config import config
 
 TIMEOUT = 10
 

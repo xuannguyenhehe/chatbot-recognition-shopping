@@ -1,16 +1,16 @@
 import io
 
 import torch
-from app.utils.repsonse.result import ResultResponse
-from extensions.minio import MinioConnector
 from fastapi import status
 from mmcv import Config
 from mmcv.runner import load_checkpoint
-from settings import config
 
+from app.utils.repsonse.result import ResultResponse
+from extensions.minio import MinioConnector
 from mmfashion.core import AttrPredictor
 from mmfashion.models import build_predictor
 from mmfashion.utils import get_img_tensor
+from settings import config
 
 
 class AttributePredictCoarseService():
@@ -40,6 +40,3 @@ class AttributePredictCoarseService():
         attr_predictor = AttrPredictor(self.cfg.data.test)
         result = attr_predictor.show_prediction(attr_prob)
         return ResultResponse((None, status.HTTP_200_OK, result))
-
-
-

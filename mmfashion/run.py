@@ -1,7 +1,9 @@
-import uvicorn
-from app import create_app
-import os
 import logging
+import os
+
+import uvicorn
+
+from app import create_app
 
 if __name__ == "__main__":
     ENVIRONMENT_DEBUG = os.environ.get("APP_DEBUG")

@@ -50,4 +50,3 @@ class MetaInferenceService(AppService):
         }
 
         return ResultResponse((None, status.HTTP_200_OK, result))
-

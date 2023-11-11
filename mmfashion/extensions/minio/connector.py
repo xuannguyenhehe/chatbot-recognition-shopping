@@ -4,11 +4,12 @@ from typing import List, Union
 from urllib import parse
 
 import minio
-from extensions.minio.utils import make_dirname, split_bucket_path
 from loguru import logger
 from minio.commonconfig import CopySource
 from minio.error import S3Error
 from minio.versioningconfig import ENABLED, VersioningConfig
+
+from extensions.minio.utils import make_dirname, split_bucket_path
 
 
 class ObjectType(str, Enum):

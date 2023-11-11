@@ -1,8 +1,7 @@
 import datetime
-import uuid
+from typing import Any
 
 from pydantic import BaseModel
-from typing import Any
 
 
 class ImageVector(BaseModel):

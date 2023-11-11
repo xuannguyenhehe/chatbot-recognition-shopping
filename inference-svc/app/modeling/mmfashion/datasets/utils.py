@@ -1,4 +1,5 @@
 from __future__ import division
+
 from collections.abc import Sequence
 
 import mmcv

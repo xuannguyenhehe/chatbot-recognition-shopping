@@ -94,10 +94,16 @@ class MessageService(AppService):
             else:
                 text = "Bạn có muốn bắt đầu lại cuộc trò chuyện?"
                 images = []
-                options = {
-                    "Có": "Shop có thể giúp gì cho bạn?",
-                    "Yes": "Bạn có thể nhắc lại yêu cầu của bạn không?"
-                }
+                options = [
+                    {
+                        "received_answer": "Có",
+                        "next_question": "Shop có thể giúp gì cho bạn?",
+                    },
+                    {
+                        "received_answer": "Không",
+                        "next_question": "Bạn có thể nhắc lại yêu cầu của bạn không?",
+                    },
+                ]
         elif intent == IntentType.ASK_TYPE:
             entities = {entity["entity"]: entity["value"] for entity in entities}
 
@@ -122,7 +128,8 @@ class MessageService(AppService):
             elif path_image:
                 attribute = category_attribute['attr']['top 5']
 
-            response_recommend_images = self.get_recommend_images(chat_user, path_image, colors, category, attribute)
+            text = "Bạn sản phẩm nào bạn thích nhất?"
+            images = self.get_recommend_images(chat_user, path_image, colors, category, attribute)
         else:
             text = "Shop không hiểu yêu cầu của bạn. Bạn có thể lặp lại yêu cầu của bạn không?"
             images = []

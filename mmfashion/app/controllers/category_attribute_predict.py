@@ -1,6 +1,7 @@
+from fastapi import APIRouter, Request
+
 from app.schemas.inference import InferenceInput
 from app.utils.repsonse.result import handle_result
-from fastapi import APIRouter, Request
 
 router = APIRouter(prefix="/cap")
 

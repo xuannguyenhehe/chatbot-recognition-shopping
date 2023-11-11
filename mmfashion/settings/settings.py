@@ -1,5 +1,7 @@
 from os import environ
+
 from pydantic import BaseSettings
+
 
 def convert_list_object_from_string(string):
     """Convert a string to a list of objects"""

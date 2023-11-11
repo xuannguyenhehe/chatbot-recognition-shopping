@@ -1,11 +1,12 @@
 import os
 from contextlib import asynccontextmanager
 
+from fastapi import APIRouter, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.controllers import inference
 from app.services.inference import InferenceService
 from config import config
-from fastapi import APIRouter, FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 
 
 @asynccontextmanager
