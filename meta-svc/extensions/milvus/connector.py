@@ -152,7 +152,7 @@ class MilvusConnector:
             expr = f"username == '{username}'",
             offset = 0,
             limit = 10, 
-            output_fields = ["path", "label"],
+            output_fields = ["id", "path", "label"],
         )
         return res
     
@@ -160,10 +160,22 @@ class MilvusConnector:
         results = self.collection.query(
             expr = f"username == '{username}'",
             offset = 0,
-            output_fields = ["path", "label"],
+            output_fields = ["id", "path", "label"],
         )
         ids = [result['id'] for result in results]
         self.collection.delete(f"id in {ids}")
+
+    def delete_images(self, ids):
+        results = self.collection.query(
+            expr = f"id in {ids}",
+            offset = 0,
+            output_fields = ["path", "label"],
+        )
+        exist_ids = [result['id'] for result in results]
+        different_ids = list(set(ids) - set(exist_ids))
+        self.collection.delete(f"id in {ids}")
+
+        return different_ids
     
     def query_images(
             self, 

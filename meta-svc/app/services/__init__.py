@@ -10,8 +10,8 @@ from app.utils.api.call import API
 
 
 class DBSessionContext(object):
-    def __init__(self):
-        pass
+    def __init__(self, db = None):
+        self.db = db
 
 
 class AppService(DBSessionContext):
@@ -83,3 +83,6 @@ class AppCRUD(DBSessionContext):
 
     def serialize_list(self, data) -> list:
         return [self.serialize(m) for m in data]
+    
+    def count(self, collection_name: str, data: dict = {}) -> int:
+        return self.db[collection_name].count_documents(data)

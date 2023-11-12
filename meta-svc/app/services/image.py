@@ -9,16 +9,18 @@ import requests
 from PIL import Image as PILImage
 
 from app.models.image import ImageVector
-from app.services import AppService
+from app.services import AppService, AppCRUD
 from app.utils.repsonse.result import ResultResponse
 from extensions.milvus.connector import MilvusConnector
 from extensions.minio.connector import MinioConnector, ObjectType
+from app.schemas.info_image import InfoImages, MetaClothes
 
 
 class ImageService(AppService):
-    def __init__ (self, vector_search: MilvusConnector, storage: MinioConnector):
+    def __init__ (self, vector_search: MilvusConnector, storage: MinioConnector, db):
         self.storage = storage
         self.vector_search = vector_search
+        self.db = db
 
     def add_images(self, username: str, images: dict):
         image_objs = []
@@ -68,11 +70,14 @@ class ImageService(AppService):
         images = self.vector_search.get_images(username)
         for image in images:
             if image['label'] not in results:
-                results[image['label']] = [image['path']]
+                results[image['label']] = {}
+                results[image['label']]["path"] = [image['path']]
+                results[image['label']]["id"] = [image['id']]
             else:
-                results[image['label']].append(image['path'])
+                results[image['label']]["path"].append(image['path'])
+                results[image['label']]["id"].append(image['id'])
         
-        results = [{"label": label, "urls": urls} for label, urls in results.items()]
+        results = [{"label": label, "urls": urls["path"], "ids": urls["id"]} for label, urls in results.items()]
 
         return ResultResponse(("Get full image urls success", requests.codes.ok, results))
         
@@ -123,3 +128,44 @@ class ImageService(AppService):
         }
         data, _ = self.call_api(url, payload, "post")
         return {"top 3": data}
+    
+    def save_info_images(self, username: str, infos: InfoImages):
+        ls_info = []
+        message, status_code = MetaClothesCRUD(self.db).delele_by_username(username)
+        for info in infos:
+            info = MetaClothes(
+                username=username,
+                label=info.label,
+                stocking=info.stocking,
+                description=info.description,
+            )
+            ls_info.append(info)
+        message, status_code = MetaClothesCRUD(self.db).create(ls_info)
+        return ResultResponse((message, status_code))
+
+
+class MetaClothesCRUD(AppCRUD):
+    def create(self, infos: List[MetaClothes]):
+        message, status_code = self.insert("MetaClothes", self.serialize_list(infos))
+        return message, status_code
+    
+    def update(self, label: str, stocking: int = 0, description: str = ""):
+        query_data = {
+            "label": label,
+        }
+        update_data = {}
+        if stocking:
+            update_data.update({"stocking": stocking})
+        if description:
+            update_data.update({"description": description})
+
+        message, status_code = self.update("MetaClothes", query_data, update_data)
+        return message, status_code
+    
+    def count(self):
+        return self.count("MetaClothes")
+    
+
+    def delele_by_username(self, username: str):
+        message, status_code = self.delete("MetaClothes", {"username": username}) 
+        return message, status_code

@@ -47,6 +47,13 @@ class Settings(BaseSettings):
     DEFAULT_TABLE: str
     TOP_K: int
 
+        # DB initialization
+    MONGO_ROOT_USERNAME: str
+    MONGO_ROOT_PASSWORD: str
+    MONGO_PORT: int
+    MONGO_HOST: str
+    MONGO_AUTH_DATABASE: str
+
 class DevelopmentConfig(Settings):
     MINIO_SECURE = False
     KEYCLOAK_SECURE = False
