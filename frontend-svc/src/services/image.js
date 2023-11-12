@@ -10,6 +10,7 @@ function* addNewUpload({ payload }) {
     let formData = new FormData();
     let isErrorFlag = false;
     let isNewUpdate = false;
+    let infoImages = [];
     payload.images.forEach((image) => {
       if (image.isModified && image.label.length) {
         image.urls.forEach((imageUrl) => {
@@ -19,6 +20,11 @@ function* addNewUpload({ payload }) {
             filename = image.label + '.' + filename;
           }
           formData.append("files", imageUrl.file, filename);
+        })
+        infoImages.push({
+          label: image.label,
+          stocking: image.stocking,
+          description: image.description,
         })
         isNewUpdate = true;
       } else if (!image.label.length) {
@@ -36,7 +42,15 @@ function* addNewUpload({ payload }) {
           }),
       );
       if (response.status === 200) {
-        notification("success", i18n.t("notify.successAddNewUpload"));
+        let responseInfos = yield call(
+          async () =>
+            await API.post(getURL("image/infos", "META"), {
+              infos: infoImages
+            }),
+        );
+        if (responseInfos.status === 200) {
+          notification("success", i18n.t("notify.successAddNewUpload"));
+        }
       }
       yield put({
         type: "image/changeIsUploadAction",
@@ -67,6 +81,9 @@ function* getUploadedImages({ payload }) {
           uploadedImages: response.data.data.map((image) => ({
             label: image.label,
             urls: image.urls,
+            ids: image.ids,
+            stocking: image?.stocking ? image.stocking : 0,
+            description: image?.description ? image.description : "",
             isModified: false,
           })),
           isLoading: false,

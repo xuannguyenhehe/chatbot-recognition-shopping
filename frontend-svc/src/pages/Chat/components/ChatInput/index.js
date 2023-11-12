@@ -1,42 +1,66 @@
-import { useState } from "react";
-import styled from "styled-components";
+import cameraImage from "assets/camera.png";
+import ImageLoad from "components/ImageLoad";
 import Picker, { Theme } from "emoji-picker-react";
+import { useState, useCallback } from "react";
+import Button from 'react-bootstrap/Button';
+import { AiFillDelete } from "react-icons/ai";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
 import ImageUploading from "react-images-uploading";
-import cameraImage from "assets/camera.png";
-import Button from 'react-bootstrap/Button';
-import ImageLoad from "components/ImageLoad";
-import { AiFillDelete } from "react-icons/ai";
+import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
 
-const ChatInput = ({ handleSendMessage, messages, chatUser, handleCreateNewChat }) => {
-  const [msg, setMsg] = useState("");
+const ChatInput = ({ handleSendMessage, messages, chatUser, handleCreateNewChat}) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [image, setImage] = useState(null);
+  const dispatch = useDispatch();
+
+  const currentMessage = useSelector((state) => state.message.currentMessage);
+  const currentImage = useSelector((state) => state.message.currentImage);
 
   const handleEmojiPickerhideShow = () => {
     setShowEmojiPicker(!showEmojiPicker);
   };
 
   const handleEmojiClick = (emojiObject, event) => {
-    let message = msg;
+    let message = currentMessage;
     message += emojiObject.emoji;
-    setMsg(message);
+    handleChangeMessage(message);
   };
 
   const sendChat = (event) => {
     event.preventDefault();
-    if (msg.length > 0) {
-      handleSendMessage(msg, image);
-      setMsg("");
+    if (currentMessage.length > 0) {
+      if (currentImage) {
+        handleSendMessage(currentMessage, currentImage, true);
+      } else{
+        handleSendMessage(currentMessage, currentImage, false);
+      }
     }
-  };
+  };  
+
+  const handleChangeMessage = useCallback((message) => {
+    dispatch({
+      type: "message/saveState",
+      payload: {
+        currentMessage: message,
+      },
+    });
+  }, [dispatch])
+
+  const handleChangeImage = useCallback((image) => {
+    dispatch({
+      type: "message/saveState",
+      payload: {
+        currentImage: image,
+      },
+    });
+  }, [dispatch])
 
   const onChange = (imageList) => {
     imageList.forEach((element) => {
       if (element.dataURL) {
-        setImage(element)
+        handleChangeImage(element)
       }
     });
   };
@@ -61,32 +85,32 @@ const ChatInput = ({ handleSendMessage, messages, chatUser, handleCreateNewChat 
         <form className="input-container" onSubmit={(event) => sendChat(event)}>
           <Container 
             style={{
-              "position": image ? "relative" : null, 
+              "position": currentImage ? "relative" : null, 
               "width": "90%",
-              "height": image ? "170px" : "50px",
+              "height": currentImage ? "170px" : "50px",
               "backgroundColor": "#ffffff34",
               "borderRadius": "2rem",
             }} className="m-0 p-0">
             <input
               type="text"
               placeholder="type your message here"
-              onChange={(e) => setMsg(e.target.value)}
-              value={msg}
+              onChange={(e) => handleChangeMessage(e.target.value)}
+              value={currentMessage}
               style={{
-                "position": image ? "absolute" : null, 
-                "bottom": image ? "1rem": null,
+                "position": currentImage ? "absolute" : null, 
+                "bottom": currentImage ? "1rem": null,
               }}
             />
-            {image ? 
+            {currentImage ? 
               <span style={{
                   "position": "absolute",
                   "top": "-0.5rem",
                 }} className="m-3">
-                <ImageLoad src={image.dataUrl} file={image.file} size={100}/>
+                <ImageLoad src={currentImage.dataUrl} file={currentImage.file} size={100}/>
                 <AiFillDelete
                   className="icon-delete"
                   size={20}
-                  onClick={() => setImage(null)}
+                  onClick={() => handleChangeImage(null)}
                   style={{
                     "verticalAlign": "top",
                     "color": "#ee0033",
@@ -106,7 +130,7 @@ const ChatInput = ({ handleSendMessage, messages, chatUser, handleCreateNewChat 
         <div className="image-send">
           <ImageUploading
             multiple={false}
-            value={image}
+            value={currentImage}
             onChange={onChange}
             onError={handleError}
           >

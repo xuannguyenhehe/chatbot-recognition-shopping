@@ -4,8 +4,11 @@ const Message = createSlice({
   name: "message",
   initialState: {
     messages: null,
+    currentMessage: "",
+    currentImage: null,
     isLoading: null,
     isShowLoading: null,
+    isShowImageUploadArea: false,
   },
   reducers: {
     getState(state) {

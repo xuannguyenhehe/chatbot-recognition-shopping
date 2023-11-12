@@ -30,6 +30,10 @@ function* getMessages({ payload }) {
               : null,
             sender: messageObj.sender,
             receiver: messageObj.receiver,
+            options: messageObj?.options?.length 
+              ? messageObj.options.map((option) => getFullURL('image/' + option, "ENTRYPOINT")) 
+              : null,
+            is_option_action: messageObj?.is_option_action,
           })),
           isShowLoading: false,
         },
@@ -56,46 +60,67 @@ function* sendMessage({ payload }) {
       },
     });
     let body_image = null;
+    let isForceSend = payload.isForceSend;
     if (payload.image) {
       body_image = {
         data: payload?.image.dataURL,
         filename: payload?.image.file.name,
       };
+      isForceSend = true;
     }
-    let body = {
-      chat_user: payload.chatUser,
-      message: {
-        content: payload.message,
-        image: body_image,
-      },
+
+    let messages = [...state.message.messages];
+    let intent = null;
+    let bodyIntent = {
+      message: payload.message,
     };
-    let response = yield call(
-      async () => await API.post(getURL("message", "ENTRYPOINT"), body),
+    let responseIntent = yield call(
+      async () => await API.post(getFullURL("answer/intent", "RASA"), bodyIntent),
     );
-    if (response.status === 200) {
-      let messages = [...state.message.messages];
-      // if (response.data?.data?.length > 0) {
-      //   response.data.data.forEach((messageObj) => {
-      //     messages.push({
-      //       fromSelf: messageObj.is_from_self,
-      //       message: messageObj.message,
-      //       image: messageObj.path_image
-      //         ? process.env.REACT_APP_IMAGE_URL + messageObj.path_image
-      //         : null,
-      //     });
-      //   });
-      // }
-      messages.push({
-        sender: state.account.username,
-        receiver: payload.receiver,
-        message: payload.message,
-        image: null,
-      });
+    if (responseIntent.status === 200) {
+      intent = responseIntent.data.data.intent.name;
+    }
+
+    if ((intent === "ask_type" && isForceSend) || intent !== "ask_type") {
+      let bodyMessage = {
+        chat_user: payload.chatUser,
+        message: {
+          content: payload.message,
+          image: body_image,
+        },
+      };
+      let responseMessage = yield call(
+        async () => await API.post(getURL("message", "ENTRYPOINT"), bodyMessage),
+      );
+      if (responseMessage.status === 200) { 
+        responseMessage.data.data.forEach((message) => {
+          messages.push({
+            sender: message.sender,
+            receiver: message.receiver,
+            message: message.message,
+            image: message?.path_image ? getFullURL('image/' + message.path_image, "ENTRYPOINT") : null,
+            options: message?.options?.length 
+              ? message.options.map((option) => getFullURL('image/' + option, "ENTRYPOINT")) 
+              : null,
+            is_option_action: true,
+          });
+        })
+        yield put({
+          type: "message/saveState",
+          payload: {
+            messages: messages,
+            isLoading: false,
+            currentMessage: "",
+            currentImage: null,
+          },
+        });
+      }
+    } else {
       yield put({
         type: "message/saveState",
         payload: {
-          messages: messages,
           isLoading: false,
+          isShowImageUploadArea: true,
         },
       });
     }
