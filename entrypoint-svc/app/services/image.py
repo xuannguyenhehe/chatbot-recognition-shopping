@@ -40,24 +40,3 @@ class ImageCRUD(AppCRUD):
         message, status_code = self.insert("Image", self.serialize(image))
         return message, status_code
 
-#     def get(self, username: str, name: str = None, id: int = None) -> List[Chat]:
-#         query = {
-#             "username": username,
-#             "is_active": True,
-#         }
-#         if name: 
-#             query.update({
-#                 "name": name,
-#             })
-#         if id: 
-#             query.update({
-#                 "id": id,
-#             })
-#         no_query = {
-#             "_id": False,
-#             "is_active": False,
-#             "created_date": False,
-#             "updated_date": False,
-#         }
-#         chats = list(self.db.Chat.find(query, no_query))
-#         return chats

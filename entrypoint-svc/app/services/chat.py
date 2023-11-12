@@ -73,6 +73,8 @@ class ChatCRUD(AppCRUD):
         }
         chats = list(self.db.Chat.find(query, no_query))
 
+        self.db.Message
+
         if is_get_last_message:
             for chat in chats:
                 query = {

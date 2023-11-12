@@ -16,6 +16,8 @@ class MessageInput(BaseModel):
 class MessageOutput(BaseModel):
     message: str
     path_image: Optional[str]
+    options: Optional[list] = None
+    sender: str
     receiver: str
 
 class CreatedMessages(MessageBase):

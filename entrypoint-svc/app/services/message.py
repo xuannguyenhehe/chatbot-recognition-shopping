@@ -74,6 +74,7 @@ class MessageService(AppService):
         message_output = MessageOutput(
             message=message_obj.content,
             path_image=path_image,
+            sender=sender,
             receiver=chat_user,
         )
         message_response.append(message_output.dict())
@@ -81,29 +82,13 @@ class MessageService(AppService):
         if status_code != sta.HTTP_200_OK:
             return ResultResponse(ExceptionResponse.ErrorServer(message))
 
-        current_intents = exist_chat[0]["current_intents"]
         intent, entities = self.get_intent_entities_message(message_obj.content)
         if intent == IntentType.GREET:
-            if not len(current_intents):
-                text = self.get_answer_message(
-                    username=sender,
-                    message=message_obj.content,
-                )
-                images = []
-                options = []
-            else:
-                text = "Bạn có muốn bắt đầu lại cuộc trò chuyện?"
-                images = []
-                options = [
-                    {
-                        "received_answer": "Có",
-                        "next_question": "Shop có thể giúp gì cho bạn?",
-                    },
-                    {
-                        "received_answer": "Không",
-                        "next_question": "Bạn có thể nhắc lại yêu cầu của bạn không?",
-                    },
-                ]
+            text = self.get_answer_message(
+                username=sender,
+                message=message_obj.content,
+            )
+            options = None
         elif intent == IntentType.ASK_TYPE:
             entities = {entity["entity"]: entity["value"] for entity in entities}
 
@@ -128,64 +113,30 @@ class MessageService(AppService):
             elif path_image:
                 attribute = category_attribute['attr']['top 5']
 
-            text = "Bạn sản phẩm nào bạn thích nhất?"
             images = self.get_recommend_images(chat_user, path_image, colors, category, attribute)
+            if len(images) > 0:
+                text = "Sản phẩm nào làm bạn thích nhất?"
+                options = images
+            else:
+                text = "Thật tiếc chúng tôi không có sản phẩm nào giống miêu tả của bạn"
+                options = None
         else:
-            text = "Shop không hiểu yêu cầu của bạn. Bạn có thể lặp lại yêu cầu của bạn không?"
-            images = []
-            options = []
+            text = """
+                Shop không hiểu yêu cầu của bạn. Bạn có thể lặp lại yêu cầu của bạn theo cú pháp sau không? 
+                "Tôi cần mua/quan tâm loại áo/quần/váy có màu/loại/kiểu như này không?"
+            """
+            options = None
+        
+        message_output = MessageOutput(
+            message=text,
+            path_image=None,
+            sender=chat_user,
+            receiver=sender,
+            options=options,
+        )
+        message_response.append(message_output.dict())
+        message, status_code = MessageCRUD(self.db).create(exist_chat[0]["id"], chat_user, message_output)
 
-        # if intent in IntentType.list():
-        #     if path_image or intent == IntentType.HAVE_NO_IMAGE:
-        #         entities = exist_chat[0]["current_entities"]
-        #         response_recommend_images = self.get_recommend_images(entities, path_image)
-        #         if len(response_recommend_images) > 0:
-        #             message_output = MessageOutput(
-        #                 message=IntentType.ANSWER_TYPE,
-        #                 is_from_self=False,
-        #             )
-        #             message, status_code = MessageCRUD(self.db).create(chat_id, username, message_output)
-        #             message_response.append(message_output.dict())
-        #             for path_image in response_recommend_images:
-        #                 message_output = MessageOutput(
-        #                     message="",
-        #                     path_image=path_image,
-        #                     is_from_self=False,
-        #                 )
-        #                 message, status_code = MessageCRUD(self.db).create(chat_id, username, message_output)
-        #                 if status_code != sta.HTTP_200_OK:
-        #                     return ResultResponse(ExceptionResponse.ErrorServer(message))                    
-        #                 message_response.append(message_output.dict())
-        #         else:
-        #             message_output = MessageOutput(
-        #                 message=IntentType.SORRY_TYPE,
-        #                 is_from_self=False,
-        #             )
-        #             message, status_code = MessageCRUD(self.db).create(chat_id, username, message_output)
-        #             message_response.append(message_output.dict())
-        #     else:
-        #         text = self.get_answer_message(
-        #             username=username,
-        #             message=message_obj.message,
-        #         )
-        #         if text:
-        #             message_output = MessageOutput(
-        #                 message=text,
-        #                 is_from_self=False,
-        #             )
-        #             message, status_code = MessageCRUD(self.db).create(chat_id, username, message_output)
-        #             if status_code != sta.HTTP_200_OK:
-        #                 return ResultResponse(ExceptionResponse.ErrorServer(message))
-        #             message_response.append(message_output.dict())
-
-        #         if intent == IntentType.ASK_TYPE and len(entities) > 0:
-        #             message, status_code = ChatCRUD(self.db).update_current_entities(chat_id, username, entities)
-        #         elif intent == IntentType.DENY:
-        #             message, status_code = ChatCRUD(self.db).update_current_entities(chat_id, username, [])
-
-        #     return ResultResponse((None, status_code, message_response))
-        # else:
-        #     return ResultResponse(ExceptionResponse.ErrorServer(message))
         return ResultResponse((message, status_code, message_response))
 
     def get(self, username: str, chat_user: str) -> ResultResponse:
@@ -263,7 +214,9 @@ class MessageCRUD(AppCRUD):
                 chat_id=chat_id, 
                 sender=sender,
                 receiver=message.receiver,
-                path_image=message.path_image
+                path_image=message.path_image,
+                options=message.options,
+                is_option_action=True if message.options else None,
             ))
         if len(messages) > 0:
             message, status_code = self.insert("Message", self.serialize_list(messages))
