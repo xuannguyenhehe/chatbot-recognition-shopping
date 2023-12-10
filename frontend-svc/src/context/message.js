@@ -5,7 +5,10 @@ const Message = createSlice({
   initialState: {
     messages: null,
     currentMessage: "",
+    backupMessage: null,
     currentImage: null,
+    backupImage: null,
+    currentOptions: null,
     isLoading: null,
     isShowLoading: null,
     isShowImageUploadArea: false,

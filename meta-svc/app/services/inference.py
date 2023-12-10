@@ -18,6 +18,7 @@ class InferenceService(AppService):
         pseudo_colors: list = input.colors
         pseudo_category: list = input.category
         pseudo_attribute: list = input.attribute
+        offset = input.offset
         results = []
 
         vector = None
@@ -30,6 +31,7 @@ class InferenceService(AppService):
             pseudo_category=pseudo_category,
             pseudo_colors=pseudo_colors,
             vector=vector,
+            offset=offset,
         )
 
         return ResultResponse((None, status.HTTP_200_OK, results))

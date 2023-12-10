@@ -1,4 +1,3 @@
-// import ImagesUploading from "components/ImageUploading";
 import DragDropImage from "assets/maxresdefault.jpg";
 import ImageLoad from "components/ImageLoad";
 import notification from "components/Notification";
@@ -6,7 +5,7 @@ import i18n from "i18n";
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Figure, Form, Image, Row } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import { AiFillDelete } from "react-icons/ai";
 import ReactImagesUploading from "react-images-uploading";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +14,7 @@ import { getFullURL } from "utils/url";
 
 
 const SettingImages = () => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const image = useSelector((state) => state.image);
   const { uploadedImages, isUploadAction } = image;
   const dispatch = useDispatch();
@@ -26,7 +25,7 @@ const SettingImages = () => {
         type: "image/getUploadedImages",
       });
     }
-  }, [dispatch]);
+  }, [dispatch, uploadedImages.length]);
 
   const formatImageList = async (list, setList) => {
     let check = {};
@@ -172,10 +171,10 @@ const SettingImages = () => {
     let temp = convertedTempImages.map((x) => x);
     let newImageName = event.target.value;
     let imageAvailableNames = temp.map((image) => image[type]);
-    if (imageAvailableNames.includes(newImageName) && type == "label") {
+    if (imageAvailableNames.includes(newImageName) && type === "label") {
       notification("error", i18n.t("notify.failExistLabelName"));
     } else {
-      temp[indexLabel][type] = type != "stocking" ? event.target.value : parseInt(event.target.value);
+      temp[indexLabel][type] = type !== "stocking" ? event.target.value : parseInt(event.target.value);
       temp[indexLabel].isModified = true;
       setConvertedTempImages(temp);
     }

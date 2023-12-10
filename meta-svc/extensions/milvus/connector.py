@@ -156,6 +156,15 @@ class MilvusConnector:
         )
         return res
     
+    def get_label_by_path(self, username, path_image):
+        res = self.collection.query(
+            expr = f"username == '{username}' and path == '{path_image}'",
+            offset = 0,
+            limit = 10, 
+            output_fields = ["label"],
+        )
+        return res
+    
     def delete_all_images(self, username):
         results = self.collection.query(
             expr = f"username == '{username}'",
@@ -184,6 +193,7 @@ class MilvusConnector:
             pseudo_category: dict, 
             pseudo_colors: dict, 
             vector: list = None,
+            offset: int = 0,
         ):
         expr = f"username == '{username}'"
         if pseudo_attribute:
@@ -197,6 +207,7 @@ class MilvusConnector:
                 data=[vector],
                 anns_field="vector",
                 param={"metric_type": "L2", "params": {"nprobe": 10}},
+                offset=offset,
                 limit=5,
                 expr=expr,
                 output_fields=["path"],

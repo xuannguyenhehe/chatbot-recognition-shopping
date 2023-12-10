@@ -31,7 +31,7 @@ function* getMessages({ payload }) {
             sender: messageObj.sender,
             receiver: messageObj.receiver,
             options: messageObj?.options?.length 
-              ? messageObj.options.map((option) => getFullURL('image/' + option, "ENTRYPOINT")) 
+              ? messageObj.options.map((option) => option.includes('/') ? getFullURL('image/' + option, "ENTRYPOINT") : option) 
               : null,
             is_option_action: messageObj?.is_option_action,
           })),
@@ -70,6 +70,7 @@ function* sendMessage({ payload }) {
     }
 
     let messages = [...state.message.messages];
+    let currentOptions = null;
     let intent = null;
     let bodyIntent = {
       message: payload.message,
@@ -89,19 +90,26 @@ function* sendMessage({ payload }) {
           image: body_image,
         },
       };
+      if (payload?.isBackup !== null) {
+        bodyMessage.is_backup = payload.isBackup
+      }
+      if (payload?.offsetImage !== null) {
+        bodyMessage.offset_image = payload.offsetImage
+      }
       let responseMessage = yield call(
         async () => await API.post(getURL("message", "ENTRYPOINT"), bodyMessage),
       );
       if (responseMessage.status === 200) { 
         responseMessage.data.data.forEach((message) => {
+          currentOptions = message?.options?.length 
+            ? message.options.map((option) => option.includes('/') ? getFullURL('image/' + option, "ENTRYPOINT") : option) 
+            : null;
           messages.push({
             sender: message.sender,
             receiver: message.receiver,
             message: message.message,
             image: message?.path_image ? getFullURL('image/' + message.path_image, "ENTRYPOINT") : null,
-            options: message?.options?.length 
-              ? message.options.map((option) => getFullURL('image/' + option, "ENTRYPOINT")) 
-              : null,
+            options: currentOptions,
             is_option_action: true,
           });
         })
@@ -111,7 +119,10 @@ function* sendMessage({ payload }) {
             messages: messages,
             isLoading: false,
             currentMessage: "",
+            backupMessage: payload.message,
             currentImage: null,
+            backupImage: payload?.image,
+            currentOptions: currentOptions,
           },
         });
       }
@@ -134,9 +145,105 @@ function* sendMessage({ payload }) {
   }
 }
 
+function* sendChoseImageMessage({ payload }) {
+  const state = yield select();
+  try {
+    yield put({
+      type: "message/saveState",
+      payload: {
+        isLoading: true,
+      },
+    });
+    let messages = [...state.message.messages];
+    let bodyMessage = {
+      chat_user: payload.chatUser,
+      path_image: payload.pathImage,
+    };
+    let responseMessage = yield call(
+      async () => await API.post(getURL("message/choose_image", "ENTRYPOINT"), bodyMessage),
+    );
+    if (responseMessage.status === 200) { 
+      responseMessage.data.data.forEach((message) => {
+        messages.push({
+          sender: message.sender,
+          receiver: message.receiver,
+          message: message.message,
+          image: message?.path_image ? getFullURL('image/' + message.path_image, "ENTRYPOINT") : null,
+          options: message?.options,
+          is_option_action: true,
+        });
+      })
+      yield put({
+        type: "message/saveState",
+        payload: {
+          messages: messages,
+          isLoading: false,
+          currentMessage: "",
+          currentImage: null,
+        },
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: "message/saveState",
+      payload: {
+        isLoading: false,
+      },
+    });
+  }
+}
+
+function* sendSpecifiedMessage({ payload }) {
+  const state = yield select();
+  try {
+    yield put({
+      type: "message/saveState",
+      payload: {
+        isLoading: true,
+      },
+    });
+    let messages = [...state.message.messages];
+    let bodyMessage = {
+      chat_user: payload.chatUser,
+      message: payload.message,
+    };
+    let responseMessage = yield call(
+      async () => await API.post(getURL("message/specified", "ENTRYPOINT"), bodyMessage),
+    );
+    if (responseMessage.status === 200) { 
+      responseMessage.data.data.forEach((message) => {
+        messages.push({
+          sender: message.sender,
+          receiver: message.receiver,
+          message: message.message,
+          image: null,
+        });
+      })
+      yield put({
+        type: "message/saveState",
+        payload: {
+          messages: messages,
+          isLoading: false,
+          currentMessage: "",
+          currentImage: null,
+        },
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: "message/saveState",
+      payload: {
+        isLoading: false,
+      },
+    });
+  }
+}
+
 export default function* watchAll() {
   yield all([
     yield takeEvery("message/getMessages", getMessages),
     yield takeEvery("message/sendMessage", sendMessage),
+    yield takeEvery("message/sendChoseImageMessage", sendChoseImageMessage),
+    yield takeEvery("message/sendSpecifiedMessage", sendSpecifiedMessage),
   ]);
 }

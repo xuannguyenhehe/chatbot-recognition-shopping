@@ -44,7 +44,7 @@ class IntentType(str, Enum):
 
 
 class MessageService(AppService):
-    def create(self, storage: MinioConnector, chat_user: str, message_obj: MessageInput, sender: str) -> ResultResponse:
+    def create(self, storage: MinioConnector, chat_user: str, message_obj: MessageInput, sender: str, is_backup: bool = False, offset_image: int = 0) -> ResultResponse:
         message_response = []
         exist_chat = ChatCRUD(self.db).get(username=sender, username2=chat_user)
         if not exist_chat:
@@ -53,7 +53,7 @@ class MessageService(AppService):
             }))
         
         path_image = None
-        if message_obj.image:
+        if message_obj.image and not is_backup:
             filename = message_obj.image.filename
             base64_image = message_obj.image.data.split(',')[1]
             base64_image = base64.b64decode(base64_image)
@@ -77,10 +77,11 @@ class MessageService(AppService):
             sender=sender,
             receiver=chat_user,
         )
-        message_response.append(message_output.dict())
-        message, status_code = MessageCRUD(self.db).create(exist_chat[0]["id"], sender, message_output)
-        if status_code != sta.HTTP_200_OK:
-            return ResultResponse(ExceptionResponse.ErrorServer(message))
+        if not is_backup:
+            message_response.append(message_output.dict())
+            message, status_code = MessageCRUD(self.db).create(exist_chat[0]["id"], sender, message_output)
+            if status_code != sta.HTTP_200_OK:
+                return ResultResponse(ExceptionResponse.ErrorServer(message))
 
         intent, entities = self.get_intent_entities_message(message_obj.content)
         if intent == IntentType.GREET:
@@ -113,7 +114,7 @@ class MessageService(AppService):
             elif path_image:
                 attribute = category_attribute['attr']['top 5']
 
-            images = self.get_recommend_images(chat_user, path_image, colors, category, attribute)
+            images = self.get_recommend_images(chat_user, path_image, colors, category, attribute, is_backup, offset_image)
             if len(images) > 0:
                 text = "Sản phẩm nào làm bạn thích nhất?"
                 options = images
@@ -138,6 +139,41 @@ class MessageService(AppService):
         message, status_code = MessageCRUD(self.db).create(exist_chat[0]["id"], chat_user, message_output)
 
         return ResultResponse((message, status_code, message_response))
+    
+    def create_choose_image_message(self, chat_user, path_image, sender):
+        exist_chat = ChatCRUD(self.db).get(username=sender, username2=chat_user)
+        if not exist_chat:
+            return ResultResponse(ExceptionResponse.NoExistedError({
+                "chat user": chat_user,
+            }))
+        
+        path_image = '/'.join(path_image.split('/')[-6:])
+        info = self.get_info_image(chat_user, path_image)
+        message_output = MessageOutput(
+            message=f"Loại {info['label']} hiện còn {info['stocking']} vật phẩm. Đây là mô tả về sản phẩm này: {info['description']}. Bạn muốn mua nó không?",
+            path_image=path_image,
+            sender=chat_user,
+            receiver=sender,
+            options=["Có", "Không"]
+        )
+        message, status_code = MessageCRUD(self.db).create(exist_chat[0]["id"], chat_user, message_output)
+        return ResultResponse((message, status_code, [message_output]))
+    
+    def create_specified_message(self, chat_user, message, sender):
+        exist_chat = ChatCRUD(self.db).get(username=sender, username2=chat_user)
+        if not exist_chat:
+            return ResultResponse(ExceptionResponse.NoExistedError({
+                "chat user": chat_user,
+            }))
+        
+        message_output = MessageOutput(
+            message=message,
+            path_image=None,
+            sender=chat_user,
+            receiver=sender,
+        )
+        message, status_code = MessageCRUD(self.db).create(exist_chat[0]["id"], chat_user, message_output)
+        return ResultResponse((message, status_code, [message_output]))
 
     def get(self, username: str, chat_user: str) -> ResultResponse:
         exist_chat = ChatCRUD(self.db).get(username=username, username2=chat_user)
@@ -192,7 +228,7 @@ class MessageService(AppService):
         return data
 
 
-    def get_recommend_images(self, chat_user, path_image, colors, category, attribute):
+    def get_recommend_images(self, chat_user, path_image, colors, category, attribute, is_backup, offset_image):
         url = "/meta/v1/inference"
         payload = {
             "username": chat_user,
@@ -201,7 +237,20 @@ class MessageService(AppService):
             "category": category,
             "attribute": attribute,
         }
+        if is_backup:
+            payload.update({
+                "offset": offset_image,
+            })
         data, _ = self.call_api(url, payload, "post")
+        return data
+    
+    def get_info_image(self, chat_user, path_image):
+        url = "/meta/v1/image/info"
+        payload = {
+            "username": chat_user,
+            "path_image": path_image,
+        }
+        data, _ = self.call_api(url, payload, "get")
         return data
     
 

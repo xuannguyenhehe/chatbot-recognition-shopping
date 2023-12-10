@@ -58,6 +58,15 @@ async def save_info_images(request: Request, infos: InfoImages):
     ).save_info_images(username, infos.infos)
     return handle_result(response)
 
+@router.get('/info')
+async def get_info_image(request: Request, path_image: str, username: str):
+    response = ImageService(
+        vector_search=request.app.vector_search,
+        storage=request.app.storage,
+        db=request.app.db,
+    ).get_info_image(username, path_image)
+    return handle_result(response)
+
 
 @router.get('/', dependencies=[Depends(require_token)])
 async def get_images(request: Request):

@@ -142,6 +142,15 @@ class ImageService(AppService):
             ls_info.append(info)
         message, status_code = MetaClothesCRUD(self.db).create(ls_info)
         return ResultResponse((message, status_code))
+    
+    def get_info_image(self, username: str, path_image: str):
+        print("path_image", path_image)
+        print("username", username)
+        labels = self.vector_search.get_label_by_path(username, path_image)
+        res = MetaClothesCRUD(self.db).get_info(username, labels[0]['label'])
+        message = f"Get info with path image {path_image}"
+        status_code = requests.codes.ok
+        return ResultResponse((message, status_code, res))
 
 
 class MetaClothesCRUD(AppCRUD):
@@ -169,3 +178,17 @@ class MetaClothesCRUD(AppCRUD):
     def delele_by_username(self, username: str):
         message, status_code = self.delete("MetaClothes", {"username": username}) 
         return message, status_code
+    
+    def get_info(self, username: str, label: str):
+        res = list(self.db.MetaClothes.find(
+            {
+                'username': username,
+                'label': label,
+            },
+            {
+                "_id": False,
+            }
+        ))
+        if len(res) > 0:
+            return res[0]
+        return None

@@ -9,3 +9,4 @@ class InferenceInput(BaseModel):
     colors: Optional[List[str]]
     category: Optional[List[str]]
     attribute: Optional[List[str]]
+    offset: Optional[int]
