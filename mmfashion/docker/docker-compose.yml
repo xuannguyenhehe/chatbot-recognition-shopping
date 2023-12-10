@@ -1,0 +1,33 @@
+version: '3.7'
+
+name: "chatbot"
+
+services:
+  mmfashion:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      network: host
+    container_name: mmfashion
+    restart: unless-stopped
+    env_file: .env.development
+    networks:
+      - chatbot_default
+    volumes:
+      - ../app:/mmfashion/app
+      - ../extensions:/mmfashion/extensions
+      - ../mmfashion:/mmfashion/mmfashion
+      - ../settings:/settings/config
+      - ../configs:/mmfashion/configs
+      - ../data:/mmfashion/data
+      - ./log:/var/log
+    ports:
+      - 8004:8004
+
+networks:
+  chatbot_default:
+    name: chatbot_default
+    external: true
+  host:
+    name: host
+    external: true

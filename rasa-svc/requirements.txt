@@ -1,0 +1,14 @@
+# Default
+uvicorn==0.23.2
+gunicorn==21.2.0
+fastapi==0.103.2
+uvloop==0.17.0
+httptools==0.6.0
+pydantic[dotenv]==1.10
+python-dotenv==1.0.0
+starlette==0.27.0
+loguru==0.7.2
+requests==2.31.0
+
+# Rasa
+rasa[meta]==3.6.12

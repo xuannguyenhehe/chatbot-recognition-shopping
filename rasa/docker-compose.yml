@@ -1,0 +1,24 @@
+version: '3.7'
+
+name: "chatbot"
+
+services:
+  rasa:
+    build:
+      context: .
+      dockerfile: Dockerfile.rasa
+      network: host
+    container_name: chatbot-rasa
+    restart: unless-stopped
+    networks:
+      - chatbot_default
+    ports:
+      - 8000:8000
+
+networks:
+  chatbot_default:
+    name: chatbot_default
+    external: true
+  host:
+    name: host
+    external: true

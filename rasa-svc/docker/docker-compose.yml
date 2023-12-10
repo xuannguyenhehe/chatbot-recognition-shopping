@@ -1,0 +1,29 @@
+version: '3.7'
+
+name: "chatbot"
+
+services:
+  rasa-service:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.rasa
+      network: host
+    container_name: rasa-service
+    restart: unless-stopped
+    env_file: .env.development
+    networks:
+      - chatbot_default
+    volumes:
+      - ../app:/rasa-service/app
+      - ../extensions:/rasa-service/extensions
+      - ../config:/rasa-service/config
+    ports:
+      - 8002:8002
+
+networks:
+  chatbot_default:
+    name: chatbot_default
+    external: true
+  host:
+    name: host
+    external: true

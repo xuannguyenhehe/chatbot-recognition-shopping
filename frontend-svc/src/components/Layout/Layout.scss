@@ -1,0 +1,15 @@
+.main {
+  width: 100%;
+  background-color: #f8f9fa;
+}
+
+@media (min-width: 1200px) {
+  .col-xl-2 {
+    flex: 0 0 20%;
+    max-width: 20%
+  }
+  .col-xl-10 {
+    flex: 0 0 80%;
+    max-width: 80%
+  }
+}

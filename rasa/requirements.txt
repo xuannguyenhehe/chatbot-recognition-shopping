@@ -1,0 +1,4 @@
+# Install rasa according below instruction: https://forum.rasa.com/t/an-unofficial-guide-to-installing-rasa-on-an-m1-macbook/51342
+# Install with python 3.9
+# After installed, uninstall websockets and reinstall again with version 10.0
+rasa==3.5.3

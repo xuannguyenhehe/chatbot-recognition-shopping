@@ -1,0 +1,22 @@
+version: '3.7'
+
+name: "chatbot"
+
+services:
+  mongo:
+    image: mongo:4.2.12
+    container_name: chatbot-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    ports:
+      - ${MONGO_OS_PORT}:${MONGO_DEFAULT_PORT}
+    volumes:
+      - ./data:/data/db
+    networks:
+      - chatbot_default
+
+networks:
+  chatbot_default:
+    name: chatbot_default
+    external: true

@@ -1,3 +1,11 @@
+backend/model/*
+backend/data/*
+backend/yolov5/data/*
+backend/yolov5/models/*
+DS_Store
+.DS_Store
+*.ipynb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,3 +135,20 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.vscode
+*.jpg
+*.json
+*.pkl
+*.index
+*.gz
+*.png
+*tf*
+*cache*
+*db*
+.DS_Store
+*.pth
+rasa/models/
+
+docker-compose/minio/data/*
+docker-compose/milvus/data/*
+docker-compose/mongo/data/*
