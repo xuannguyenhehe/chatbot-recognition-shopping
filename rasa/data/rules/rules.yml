@@ -1,0 +1,72 @@
+version: "2.0"
+
+rules:
+
+- rule: Hỏi bạn cần giúp gì
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+
+- rule: Hỏi về yêu cầu của người mua
+  steps:
+  - intent: ask_type
+  - action: utter_wait
+  # - action: action_get_info_clothes
+
+- rule: Hỏi người dùng muốn mua khi nhận phản hồi tích cực
+  steps:
+  - intent: mood_positive_response
+  - action: utter_happy
+  - action: utter_buy
+
+- rule: Hỏi người dùng có muốn giúp thêm gì khi muốn mua
+  steps:
+    - action: utter_buy
+    - intent: mood_great
+    - action: utter_happy
+    - action: utter_help_more
+
+- rule: Hỏi người dùng có muốn giúp thêm gì khi không muốn mua
+  steps:
+    - action: utter_buy
+    - intent: mood_unhappy
+    - action: utter_regret
+    - action: utter_help_more
+
+- rule: Đề xuất mới cho người dùng khi phản hồi tiêu cực
+  steps:
+  - intent: mood_negative_response
+  - action: utter_type
+
+- rule: Khi không muốn hỏi thêm gì
+  steps:
+    - action: utter_help_more
+    - intent: mood_unhappy
+    - action: utter_goodbye
+
+- rule: Khi muốn hỏi thêm gì
+  steps:
+    - action: utter_help_more
+    - intent: mood_great
+    - action: utter_help
+
+- rule: Tạm biệt người dung
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Khi chờ và có phản hồi tích cực
+  steps: 
+  - action: utter_wait
+  # - action: action_get_info_clothes
+  - intent: mood_positive_response
+  - action: utter_happy
+  - action: utter_buy
+
+- rule: Khi chờ và có phản hồi tiêu cực
+  steps:
+  - action: utter_wait
+  # - action: action_get_info_clothes
+  - intent: mood_negative_response
+  - action: utter_type

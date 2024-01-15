@@ -4,6 +4,8 @@ from loguru import logger
 from .chat import Chat
 from .image import Image
 from .message import Message
+from .qa import QA
+from .rasa import RasaCheckpoint
 
 
 async def create_mongo_client(config):
@@ -32,4 +34,4 @@ async def create_mongo_client(config):
 
 
 mongo_dbname = "chatbot"
-__all__ = ["Chat", "Image", "Message"]
+__all__ = ["Chat", "Image", "Message", "QA", "RasaCheckpoint"]

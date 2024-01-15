@@ -13,8 +13,8 @@ services:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
     volumes:
-      - "./data:/data"
-    command: server --address ":9099" --console-address ":9000" /data
+      - "./data:/minio_data"
+    command: server --address ":9099" --console-address ":9000" /minio_data
     restart: always # necessary since it's failing to start sometimes
 
 # x-minio-common: &minio-common

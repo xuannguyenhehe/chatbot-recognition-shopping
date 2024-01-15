@@ -58,6 +58,12 @@ const App = (props) => {
             </Layout>
           } 
         />
+        <Route path="/qa" element={
+            <Layout username={username}>
+              <Chatbot />
+            </Layout>
+          } 
+        />
         <Route path="*" element={
             <Layout username={username}>
               <Layout404 />

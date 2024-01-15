@@ -7,6 +7,8 @@ from app.schemas.inference import InferenceInput, IntentInput
 from app.utils.repsonse.result import ResultResponse
 from rasa.core.agent import Agent
 from rasa.core.channels import UserMessage
+from rasa.core.events import ActionExecuted, SessionStarted
+from rasa.nlu.components import Component
 
 
 class InferenceService():

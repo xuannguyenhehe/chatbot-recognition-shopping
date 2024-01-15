@@ -1,13 +1,13 @@
 import SettingImages from "pages/Chatbot/components/SettingImages";
 import SettingQA from "pages/Chatbot/components/SettingQA";
 import { REALM_TYPES } from "constants/users";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { AiFillSetting } from 'react-icons/ai';
 import { GiArtificialIntelligence } from 'react-icons/gi';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
@@ -16,6 +16,7 @@ function ChatBot() {
   const account = useSelector((state) => state.account);
   const {username, role, noTabChatbot} = account;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!username) {
@@ -25,6 +26,15 @@ function ChatBot() {
       navigate("/");
     }
   }, [navigate, username, role]);
+
+  const onChangeTab = useCallback((noTab) => {
+    dispatch({
+      type: "account/saveState",
+      payload: {
+        noTabChatbot: noTab,
+      },
+    });
+  }, [dispatch]);
 
   return (
       <Container style={{
@@ -44,7 +54,7 @@ function ChatBot() {
             }}
           >
             <Container className="p-2">
-              <Button style={{"width": "100%"}} className="p-2 m-2" variant="secondary">
+              <Button style={{"width": "100%"}} className="p-2 m-2" variant={noTabChatbot === 1 ? "secondary": "info"} onClick={() => onChangeTab(0)}>
                 <Row>
                   <Col sm={3}>
                     <AiFillSetting 
@@ -58,7 +68,7 @@ function ChatBot() {
                   <Col sm={9}>Question & Answer</Col>
                 </Row>
               </Button>
-              <Button style={{"width": "100%"}} className="p-2 m-2"  variant="info">
+              <Button style={{"width": "100%"}} className="p-2 m-2"  variant={noTabChatbot === 0 ? "secondary": "info"} onClick={() => onChangeTab(1)}>
                 <Row>
                   <Col sm={3}>
                     <GiArtificialIntelligence 

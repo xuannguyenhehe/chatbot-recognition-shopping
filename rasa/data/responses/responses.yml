@@ -1,0 +1,34 @@
+version: "2.0"
+
+responses: 
+  utter_greet:
+    - text: 'Chào bạn' 
+    
+  utter_help:  
+    - text: 'Shop giúp được gì cho bạn?'
+
+  utter_type:
+    - text: 'Shop gợi ý cho bạn những sản phẩm khác nhé?'
+
+  utter_happy:
+    - text: 'Cảm ơn bạn đã tin tưởng shop!'
+
+  utter_buy:
+    - text: 'Bạn có muốn mua sản phẩm này không?'
+
+  utter_unhappy:
+    - text: 'Shop rất tiếc về sự nhầm lẫn này :('
+
+  utter_goodbye:
+    - text: 'Hẹn gặp lại bạn nhé!'
+
+  utter_help_more:
+    - text: 'Bạn cần shop giúp gì thêm không ạ?'
+
+  utter_wait:
+    - text: 'Bạn đợi shop một chút để kiểm tra nhé!'
+
+  utter_regret:
+    - text: 'Tiếc quá ạ! Shop sẽ cố gắng hơn nữa ạ!'
+
+  

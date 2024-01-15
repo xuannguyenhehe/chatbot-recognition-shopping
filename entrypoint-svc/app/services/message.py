@@ -114,7 +114,9 @@ class MessageService(AppService):
             elif path_image:
                 attribute = category_attribute['attr']['top 5']
 
-            images = self.get_recommend_images(chat_user, path_image, colors, category, attribute, is_backup, offset_image)
+            print(chat_user, path_image, colors, category, attribute, is_backup, offset_image)
+
+            images = self.get_recommend_images(chat_user, path_image, colors, [], ['maxi_length'], is_backup, offset_image)
             if len(images) > 0:
                 text = "Sản phẩm nào làm bạn thích nhất?"
                 options = images

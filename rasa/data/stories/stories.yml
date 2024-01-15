@@ -1,0 +1,138 @@
+version: "2.0"
+
+stories:
+
+- story: chào hỏi
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: ask_type
+  - action: utter_wait
+  # - action: action_get_info_clothes
+
+- story: chào hỏi và khách ok
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: ask_type
+  - action: utter_wait
+  # - action: action_get_info_clothes
+  - intent: mood_positive_response
+  - action: utter_happy
+  - action: utter_buy
+
+- story: chào hỏi và khách ok rồi hỏi mua, vẫn oke
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: ask_type
+  - action: utter_wait
+  # - action: action_get_info_clothes
+  - intent: mood_positive_response
+  - action: utter_happy
+  - action: utter_buy
+  - intent: mood_great
+  - action: utter_happy
+  - action: utter_help_more
+
+- story: chào hỏi và khách không ok
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: ask_type
+  - action: utter_wait
+  # - action: action_get_info_clothes
+  - intent: mood_negative_response
+  - action: utter_type
+
+- story: chào hỏi và khách không ok, hỏi gợi ý tiếp không, vẫn không
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: ask_type
+  - action: utter_wait
+  # - action: action_get_info_clothes
+  - intent: mood_negative_response
+  - action: utter_type
+  - intent: mood_unhappy
+  - action: utter_regret
+
+- story: chào hỏi và khách không ok, hỏi gợi ý tiếp không, và có
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_help
+  - intent: ask_type
+  - action: utter_wait
+  # - action: action_get_info_clothes
+  - intent: mood_negative_response
+  - action: utter_type
+  - intent: utter_greet
+  - action: utter_wait
+
+- story: khách không ok, hỏi tìm tiếp, ok, chờ
+  steps:
+  - intent: mood_negative_response
+  - action: utter_type
+  - intent: mood_great
+  - action: utter_wait
+
+- story: khách không ok, hỏi tìm tiếp, không, tiếc
+  steps:
+  - intent: mood_negative_response
+  - action: utter_type
+  - intent: mood_unhappy
+  - action: utter_regret
+
+- story: khách ok, có mua, cần gì nữa, không, tạm biệt
+  steps:
+  - intent: mood_positive_response
+  - action: utter_happy
+  - action: utter_buy
+  - intent: mood_great
+  - action: utter_happy
+  - action: utter_help_more
+  - intent: mood_unhappy
+  - action: utter_goodbye
+
+- story: khách ok, có mua, cần gì nữa, cần, hỏi loại, chờ tìm
+  steps:
+  - intent: mood_positive_response
+  - action: utter_happy
+  - action: utter_buy
+  - intent: mood_great
+  - action: utter_happy
+  - action: utter_help_more
+  - intent: mood_great
+  - action: utter_help
+  - intent: ask_type
+  - action: utter_wait
+
+- story: khách ok, không mua, cần gì nữa, không, tạm biệt
+  steps:
+  - intent: mood_positive_response
+  - action: utter_happy
+  - action: utter_buy
+  - intent: mood_unhappy
+  - action: utter_regret
+  - action: utter_help_more
+  - intent: mood_unhappy
+  - action: utter_goodbye
+
+- story: khách ok, không mua, cần gì nữa, cần, hỏi loại, chờ tìm
+  steps:
+  - intent: mood_positive_response
+  - action: utter_happy
+  - action: utter_buy
+  - intent: mood_unhappy
+  - action: utter_regret
+  - action: utter_help_more
+  - intent: mood_great
+  - action: utter_help
+  - intent: ask_type
+  - action: utter_wait

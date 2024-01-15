@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Rasa Core Visualisation</title>
+    <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.min.js"></script>
+    <script src="https://dagrejs.github.io/project/dagre/latest/dagre.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://dagrejs.github.io/project/graphlib-dot/v0.6.3/graphlib-dot.js"></script>
+</head>
+<body>
+<div id="errormsg" style="color: #b00"></div>
+<svg>
+    <style id="graph-style">
+        .node.invisible > rect {
+            display: none;
+        }
+
+        .node.start > rect {
+            fill: #7f7;
+            rx: 30;
+            ry: 18;
+        }
+
+        .node.end > rect {
+            fill: #f77;
+            rx: 30;
+            ry: 18;
+        }
+
+        .node:not(.active) > rect, .node:not(.active) > .label {
+            opacity: 0.4;
+        }
+
+        .edgePath:not(.active) path {
+            opacity: 0.4;
+        }
+
+        .node.ellipsis > rect {
+            fill: #CCC;
+        }
+
+        .node.intent > rect {
+            fill: #7ff;
+        }
+
+        .node.dashed > rect {
+            stroke-dasharray: 5;
+        }
+
+        text {
+            font-weight: 300;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serf, serif;
+            font-size: 14px;
+            color: #1f1d1d;
+        }
+
+        .node rect {
+            stroke: #444;
+            fill: #fff;
+            stroke-width: 1.5px;
+        }
+
+        .edgePath path {
+            stroke: #333;
+            stroke-width: 1.5px;
+        }
+
+        svg {
+            position: fixed;
+            top: 10px;
+            left: 0;
+            height: 100%;
+            width: 100%
+        }
+    </style>
+    <g></g>
+</svg>
+<script>
+
+  function serveGraph() {
+    let oldInputGraphValue;
+
+    const url = 'visualization.dot';
+    const refreshInterval = 500;
+
+    // trigger a refresh by fetching an updated graph
+    setInterval(function () {
+      fetch(url).then(r => r.text()).then(dot => {
+        document.getElementById('errormsg').innerHTML = '';
+        if (oldInputGraphValue === dot) return;
+
+        oldInputGraphValue = dot;
+        drawGraph(dot);
+      }).catch(err => {
+        document.getElementById('errormsg').innerHTML =
+          'Failed to update plot. (' + err.message + ')';
+      });
+    }, refreshInterval);
+  }
+
+  function drawGraph(graph) {
+    let g = graphlibDot.read(graph);
+    // Set margins, if not present
+    if (!g.graph().hasOwnProperty("marginx") &&
+      !g.graph().hasOwnProperty("marginy")) {
+      g.graph().marginx = 20;
+      g.graph().marginy = 20;
+    }
+    g.graph().transition = function (selection) {
+      return selection.transition().duration(300);
+    };
+    // Render the graph into svg g
+    d3.select("svg g").call(render, g);
+  }
+  // Set up zoom support
+  const svg = d3.select("svg"),
+    inner = d3.select("svg g"),
+    zoom = d3.zoom().on("zoom", function () {
+      inner.attr("transform", d3.event.transform);
+    });
+  svg.call(zoom);
+
+  // Create and configure the renderer
+  const render = dagreD3.render();
+
+  let isClient = false;
+  isClient = true;
+
+  if (isClient) {
+    // Mark all nodes and their edges as active
+    cssRules = document.getElementById('graph-style').sheet.cssRules;
+    cssRules[3].style.opacity = 1;
+    cssRules[4].style.opacity = 1;
+
+    let graph;
+    graph = `digraph  {
+0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
+"-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
+1 [class="", fontsize=12, label=utter_greet];
+2 [class="", fontsize=12, label=utter_help];
+3 [class="", fontsize=12, label=utter_wait];
+7 [class="", fontsize=12, label=utter_happy];
+8 [class="", fontsize=12, label=utter_buy];
+14 [class="", fontsize=12, label=utter_happy];
+15 [class="", fontsize=12, label=utter_help_more];
+19 [class="", fontsize=12, label=utter_type];
+24 [class="", fontsize=12, label=utter_regret];
+29 [class="", fontsize=12, label=utter_wait];
+30 [class="", fontsize=12, label=utter_type];
+38 [class="", fontsize=12, label=utter_goodbye];
+47 [class="", fontsize=12, label=utter_regret];
+56 [class="", fontsize=12, label="..."];
+57 [class="", fontsize=12, label=utter_wait];
+62 [class="", fontsize=12, label=utter_type];
+65 [class="", fontsize=12, label=utter_help];
+72 [class="", fontsize=12, label=utter_buy];
+82 [class="", fontsize=12, label=utter_help_more];
+89 [class=intent, fillcolor=lightblue, label="hello cửa hàng của bạn", shape=rect, style=filled];
+90 [class=intent, fillcolor=lightblue, label="Mìn rất buồn bã với phản hồi tiêu cực từ shop", shape=rect, style=filled];
+91 [class=intent, fillcolor=lightblue, label="Tốt quá ạ admin, mình rất vui mừng với phản hồi", shape=rect, style=filled];
+92 [class=intent, fillcolor=lightblue, label="Toi muốn mua loại Quần nỉ ngắn này còn hàng như hình không ạ", shape=rect, style=filled];
+93 [class=intent, fillcolor=lightblue, label="Rất hài lòng với sự phản hồi và kết quả tư vấn từ shop", shape=rect, style=filled];
+94 [class=intent, fillcolor=lightblue, label="T rất buồn vì đã nhận được phản hồi tiêu cực.", shape=rect, style=filled];
+95 [class=intent, fillcolor=lightblue, label="cho mình 1 cái nha bạn ơi", shape=rect, style=filled];
+96 [class=intent, fillcolor=lightblue, label="không chấp nhận được", shape=rect, style=filled];
+97 [class=intent, fillcolor=lightblue, label="không đúng ý tưởng", shape=rect, style=filled];
+98 [class=intent, fillcolor=lightblue, label="t lấy nha", shape=rect, style=filled];
+99 [class=intent, fillcolor=lightblue, label="không vừa ý", shape=rect, style=filled];
+100 [class=intent, fillcolor=lightblue, label="/utter_greet", shape=rect, style=filled];
+101 [class=intent, fillcolor=lightblue, label="dé", shape=rect, style=filled];
+102 [class=intent, fillcolor=lightblue, label="không vừa ý", shape=rect, style=filled];
+103 [class=intent, fillcolor=lightblue, label=goodmorning, shape=rect, style=filled];
+104 [class=intent, fillcolor=lightblue, label="Còn kiểu váy sơ mi màu đen thoải mái không tiệm", shape=rect, style=filled];
+105 [class=intent, fillcolor=lightblue, label="Okela, sự phản hồi của chủ cửa hàng thực sự làm t vui.", shape=rect, style=filled];
+106 [class=intent, fillcolor=lightblue, label="bye bye", shape=rect, style=filled];
+107 [class=intent, fillcolor=lightblue, label="Thật tệ, t không đồng ý với đánh giá tiêu cực này.", shape=rect, style=filled];
+108 [class=intent, fillcolor=lightblue, label="Rất hài lòng với sự phản hồi và kết quả tư vấn từ shop", shape=rect, style=filled];
+109 [class=intent, fillcolor=lightblue, label="T rất buồn bã với phản hồi tiêu cực từ ad.", shape=rect, style=filled];
+110 [class=intent, fillcolor=lightblue, label="có nha sốp", shape=rect, style=filled];
+111 [class=intent, fillcolor=lightblue, label="so sad", shape=rect, style=filled];
+112 [class=intent, fillcolor=lightblue, label="không tốt lắm", shape=rect, style=filled];
+113 [class=intent, fillcolor=lightblue, label=perfect, shape=rect, style=filled];
+0 -> 56  [class="", key=NONE, label=""];
+0 -> 89  [class="", key=0];
+0 -> 90  [class="", key=0];
+0 -> 91  [class="", key=0];
+1 -> 2  [class="", key=NONE, label=""];
+1 -> 65  [class="", key=NONE, label=""];
+2 -> 92  [class="", key=0];
+3 -> "-1"  [class="", key=NONE, label=""];
+3 -> 93  [class="", key=0];
+3 -> 94  [class="", key=0];
+7 -> 8  [class="", key=NONE, label=""];
+8 -> "-1"  [class="", key=NONE, label=""];
+8 -> 95  [class="", key=0];
+8 -> 96  [class="", key=0];
+14 -> 15  [class="", key=NONE, label=""];
+15 -> "-1"  [class="", key=NONE, label=""];
+15 -> 97  [class="", key=0];
+15 -> 98  [class="", key=0];
+19 -> "-1"  [class="", key=NONE, label=""];
+19 -> 99  [class="", key=0];
+19 -> 100  [class="", key=0];
+24 -> "-1"  [class="", key=NONE, label=""];
+29 -> "-1"  [class="", key=NONE, label=""];
+30 -> 101  [class="", key=0];
+30 -> 102  [class="", key=0];
+38 -> "-1"  [class="", key=NONE, label=""];
+47 -> 15  [class="", key=NONE, label=""];
+56 -> 57  [class="", key=NONE, label=""];
+56 -> 72  [class="", key=NONE, label=""];
+56 -> 82  [class="", key=NONE, label=""];
+56 -> 103  [class="", key=0];
+56 -> 104  [class="", key=0];
+56 -> 105  [class="", key=0];
+56 -> 106  [class="", key=0];
+56 -> 107  [class="", key=0];
+57 -> 108  [class="", key=0];
+57 -> 109  [class="", key=0];
+62 -> "-1"  [class="", key=NONE, label=""];
+65 -> "-1"  [class="", key=NONE, label=""];
+72 -> 110  [class="", key=0];
+72 -> 111  [class="", key=0];
+82 -> 112  [class="", key=0];
+82 -> 113  [class="", key=0];
+89 -> 1  [class="", key=0];
+90 -> 30  [class="", key=0];
+91 -> 7  [class="", key=0];
+92 -> 3  [class="", key=0];
+93 -> 7  [class="", key=0];
+94 -> 19  [class="", key=0];
+95 -> 14  [class="", key=0];
+96 -> 47  [class="", key=0];
+97 -> 38  [class="", key=0];
+98 -> 2  [class="", key=0];
+99 -> 24  [class="", key=0];
+100 -> 29  [class="", key=0];
+101 -> 29  [class="", key=0];
+102 -> 24  [class="", key=0];
+103 -> 1  [class="", key=0];
+104 -> 29  [class="", key=0];
+105 -> 7  [class="", key=0];
+106 -> 38  [class="", key=0];
+107 -> 62  [class="", key=0];
+108 -> 7  [class="", key=0];
+109 -> 62  [class="", key=0];
+110 -> 14  [class="", key=0];
+111 -> 47  [class="", key=0];
+112 -> 38  [class="", key=0];
+113 -> 65  [class="", key=0];
+}
+`;
+    drawGraph(graph);
+  } else {
+    serveGraph();
+  }
+
+
+</script>
+</body>
+</html>

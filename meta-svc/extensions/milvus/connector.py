@@ -201,18 +201,20 @@ class MilvusConnector:
         if pseudo_category:
             expr += f" and json_contains_any(pseudo_cate['top 5'], {pseudo_category})"
         if pseudo_colors:
-            expr += f" and json_contains_any(pseudo_colors['top 3'], {pseudo_colors})"
+            expr += f" and json_contains_any(pseudo_color['top 3'], {pseudo_colors})"
+
+        print(expr)
         if vector:
             results = self.collection.search(
                 data=[vector],
                 anns_field="vector",
-                param={"metric_type": "L2", "params": {"nprobe": 10}},
+                param={"metric_type": "L2"},
                 offset=offset,
-                limit=5,
+                limit=50,
                 expr=expr,
-                output_fields=["path"],
+                output_fields=["path", "label"],
             )
-            results = [hit.entity.get('path') for result in results for hit in result]
+            results = [(hit.entity.get('path'), hit.entity.get('label')) for result in results for hit in result]
         else:
             results = self.collection.query(
                 expr=expr, 

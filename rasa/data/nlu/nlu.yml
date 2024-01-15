@@ -1,0 +1,2243 @@
+version: "2.0"
+
+nlu:
+
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - xin chào
+    - chào em
+    - chào anh
+    - hé lô
+    - chào ad
+    - chào shop
+    - hi shop
+    - hi ad
+    - hello shop
+    - good morning cửa hàng
+    - hey admin
+    - chào cửa hàng
+    - hé lô shop
+    - chào ad
+    - hi shop
+    - hello admin
+    - good evening cửa hàng
+    - xin chào ad
+    - chào bạn cửa hàng
+    - hey shop
+    - let's go admin
+    - hi admin
+    - hello cửa hàng
+    - chào shop nhé
+    - chào ad thân yêu
+    - chào cửa hàng của tôi
+    - hey cửa hàng
+    - goodmorning shop
+    - goodevening admin
+    - good afternoon cửa hàng
+    - xin chào shop
+    - chào ad ơi
+    - let's go cửa hàng
+    - hello shop thân yêu
+    - hé lô admin
+    - chào bạn ad
+    - chào shop thôi nào
+    - hi cửa hàng
+    - chào ad quý
+    - hey admin thân yêu
+    - hello cửa hàng của bạn
+    - good evening shop
+    - chào ad nhé
+    - xin chào admin
+    - chào bạn cửa hàng ơi
+    - hi shop thân yêu
+    - chào ad đẹp trai
+    - hey cửa hàng nhé
+    - chào admin thôi
+    - hello shop thôi nào
+    - hé lô ad
+    - chào cửa hàng đẹp trai
+    - chào ad của tôi
+    - hi admin thân yêu
+    - let's go cửa hàng ơi
+    - goodmorning shop thân yêu
+    - hello cửa hàng thân yêu
+    - chào ad ơi là ad
+    - hey shop của tôi
+    - chào admin đẹp trai
+    - hi cửa hàng của bạn
+    - chào ad như chào người yêu
+    - hello shop của tôi
+    - hé lô cửa hàng
+    - xin chào admin thân yêu
+    - chào ad của shop
+    - chào bạn cửa hàng ơi
+    - good evening shop thân yêu
+    - chào ad của cửa hàng
+    - hi shop đẹp trai
+    - let's go admin thân yêu
+    - chào cửa hàng như chào bạn bè
+    - hey ad ơi
+    - chào admin như chào người thân
+    - chào bạn shop của tôi
+    - hello cửa hàng thôi nhé
+    - hé lô ad đẹp trai
+    - hi cửa hàng như chào người quen
+    - chào ad thần thánh
+    - let's go shop
+    - chào bạn cửa hàng đẹp trai
+    - xin chào admin đẹp trai
+    - hey cửa hàng như chào gia đình
+    - chào ad quí phái
+    - goodmorning shop thân yêu
+    - hello cửa hàng của tôi
+    - hi ad như chào đối tác
+    - chào bạn shop nhé
+    - chào ad xinh đẹp
+    - hé lô cửa hàng thân yêu
+    - chào admin đẹp trai nhất
+    - hey shop thân yêu nhất
+    - chào ad như chào ông bà
+    - hello cửa hàng đẹp trai nhất
+    - hi admin như chào đồng đội
+    - let's go shop thân yêu
+    - chào bạn cửa hàng đẹp nhất
+    - xin chào ad đẹp nhất
+    - chào admin thân yêu nhất
+    - hey cửa hàng đẹp nhất
+
+
+- intent: goodbye
+  examples: |
+    - good by
+    - good night
+    - bye
+    - goodbye
+    - bye bye
+    - see you later
+    - tạm biệt
+    - cảm ơn shop nhaaaaa
+    - thank shop nhaaaaaa
+    - xia xìaaaaa
+    - xia xìa
+    - bai shop
+    - bai bai shop
+    - củm ơn nhìu
+    - farewell ad
+    - goodbye bạn
+    - adios cửa hàng
+    - cheerio shop
+    - tạm biệt bạn
+    - peace out admin
+    - see you later cửa hàng
+    - bai bai sốp
+    - cảm ơn ad
+    - tạm biệt cửa hàng
+    - bai cửa hàng
+    - farewell bạn
+    - bai ad
+    - goodbye admin
+    - adios bạn
+    - cheerio cửa hàng
+    - see you later shop
+    - peace out cửa hàng
+    - so long admin
+    - tạm biệt shop
+    - goodbye ad
+    - bai bạn
+    - farewell shop
+    - see you around cửa hàng
+    - cheerio ad
+    - goodbye cửa hàng
+    - adios ad
+    - so long bạn
+    - farewell ad
+    - see you later bạn
+    - bai shop
+    - cheerio bạn
+    - goodbye cửa hàng
+    - adios cửa hàng
+    - tạm biệt bạn
+    - farewell shop
+    - bai bạn
+    - see you later ad
+    - cheerio ad
+    - so long shop
+    - peace out ad
+    - tạm biệt ad
+    - farewell bạn
+    - goodbye admin
+    - adios shop
+    - see you later admin
+    - bai cửa hàng
+    - cheerio cửa hàng
+    - so long cửa hàng
+    - farewell ad
+    - tạm biệt admin
+    - peace out bạn
+    - goodbye ad
+    - cheerio bạn
+    - bai ad
+    - tạm biệt bạn
+    - farewell cửa hàng
+    - adios ad
+    - bai cửa hàng
+    - so long bạn
+    - see you later admin
+    - cheerio ad
+    - goodbye cửa hàng
+    - tạm biệt cửa hàng
+    - peace out admin
+    - farewell ad
+    - bai bạn
+    - adios cửa hàng
+    - see you later shop
+    - cheerio shop
+    - goodbye bạn
+    - tạm biệt shop
+    - farewell shop
+    - so long admin
+    - bai ad
+    - peace out shop
+    - see you later bạn
+    - tạm biệt ad
+    - cheerio bạn
+    - goodbye cửa hàng
+    - adios bạn
+    - farewell shop
+    - bai ad
+    - so long cửa hàng
+    - peace out bạn
+    - tạm biệt bạn
+    - cheerio cửa hàng
+    - see you later ad
+    - goodbye ad
+    - bai shop
+    - farewell bạn
+
+
+- intent: mood_great
+  examples: |
+    - oke
+    - đẹp lắm
+    - uy tín
+    - great
+    - tốt lắm
+    - đẹp quá
+    - hay ghê
+    - extremely good
+    - okeeee
+    - okela
+    - perfect
+    - wonderful
+    - so so perfect
+    - yes
+    - ok
+    - okieeee
+    - thích
+    - so good
+    - ô kê
+    - dé
+    - có nhé
+    - quất ạ
+    - ok luôn
+    - oki luôn
+    - ok ạ
+    - mua ạ
+    - đồng ý ạ
+    - okela ạ
+    - okela luôn
+    - cho 1 cái nhé
+    - tui mua ạ 
+    - tui muốn 1 cái
+    - t oke ạ
+    - t quất nhé
+    - đồng ý 2 tay
+    - oke con dê nhé
+    - oke nhé
+    - oki nhé
+    - okay ạ
+    - tui oke nhé
+    - mình mua nhé
+    - mình ok á
+    - mìn mua nha
+    - tôi mua nha
+    - cho mình 1 cái
+    - cho mình 1 cái nhé
+    - cho mình 1 cái nha
+    - cho mình 1 cái nha bạn
+    - cho mình 1 cái nha bạn ơi
+    - oki ạ
+    - oki luôn ạ
+    - okay nha
+    - okay luôn
+    - đồng ý nha
+    - mua nha
+    - mua nha sốp
+    - cho 1 cái nha sốp
+    - cho 1 cái nha sốp ơi
+    - ô ki sốp
+    - ô kê la
+    - có nha
+    - có nhe
+    - có nhé
+    - có ạ
+    - có nha sốp
+    - có luôn
+    - có luôn ạ
+    - quất luôn
+    - toi mua nhé
+    - cho toi 1 cái
+    - dé sốp
+    - cho tôi 1 cái nha shop
+    - oke shop
+    - mua đi ạ 
+    - mua nha
+    - cho 1 cái
+    - tôi lấy nhé
+    - tui lấy nhé
+    - t lấy nhé
+    - t lấy nha
+    - cho tui 1 cái
+    - cho tui 1 cái nhé
+    - cho tui 1 cái nha
+    - o kê shop
+    - ô kê sốp
+    - quất đi ạ
+
+- intent: mood_positive_response
+  examples: |
+    - Đúng rồi, sản phẩm đẹp quá.
+    - Chòi, sản phẩm rất đẹp và chất lượng.
+    - Chùi ui, kết quả tư vấn từ ad rất tốt.
+    - T đồng ý, sản phẩm đẹp và uy tín.
+    - Kết quả tư vấn và gợi ý từ ad thực sự làm t hài lòng.
+    - Rất hài lòng với sự phản hồi và kết quả tư vấn từ bạn.
+    - T rất vui vì đã nhận được phản hồi tích cực.
+    - Kết quả tư vấn và gợi ý từ ad làm t hài lòng.
+    - Sản phẩm thực sự ngon đó.
+    - Hay quá chất lượng sản phẩm rất đẹp.
+    - Okieeee, kết quả tư vấn từ ad làm t hết sức hạnh phúc.
+    - Sự phản hồi và kết quả tư vấn từ ad khiến t hết sức hạnh phúc.
+    - Woaaaaa, mình rất vui mừng với phản hồi.
+    - Toẹt, chất lượng sản phẩm rất tốt.
+    - Sản phẩm đẹp và uy tín, t rất hài lòng!
+    - T thích thú với kết quả tư vấn của chủ cửa hàng.
+    - T đồng ý, mỗi sản phẩm đều đẹp và tốt lắm.
+    - Tôi đồng ý, chủ cửa hàng phản hồi chất lượng quá.
+    - Sự tận tình và chất lượng sản phẩm đều xuất sắc.
+    - Thật ô kê, t đồng ý với đánh giá tích cực này.
+    - Okela, rất vui vì đã nhận được phản hồi tích cực.
+    - T rất vui mừng với phản hồi tích cực từ ad.
+    - Okela, sự phản hồi của chủ cửa hàng thực sự làm t vui.
+    - Sự phản hồi tích cực từ ad khiến t hết sức hạnh phúc.
+    - Okieeee, tình cảm từ ad làm t hết sức vui mừng.
+    - Quoaaaaaa, chất lượng và dịch vụ đều tốt.
+    - Đúng rồi, sản phẩm đẹp quá, sốp
+    - Cửa hàng, sản phẩm rất đẹp và chất lượng
+    - Hay quá sốp, kết quả tư vấn từ sốp rất tốt
+    - Mìn đồng ý, sản phẩm đẹp và uy tín
+    - Kết quả tư vấn và gợi ý từ cửa hàng thực sự làm mìn hài lòng
+    - Rất hài lòng với sự phản hồi và kết quả tư vấn từ shop
+    - Mìn rất vui vì đã nhận được phản hồi tích cực
+    - Kết quả tư vấn và gợi ý từ admin làm mìn hài lòng
+    - Sản phẩm thực sự ngon đó, cảm ơn cửa hàng
+    - Uiiiii sốp, chất lượng sản phẩm rất đẹp
+    - Okieeee, kết quả tư vấn từ shop làm mìn hết sức hạnh phúc
+    - Sự phản hồi và kết quả tư vấn từ sốp khiến mìn hết sức hạnh phúc
+    - Tốt quá ạ admin, mình rất vui mừng với phản hồi
+    - Ôiiiiiiii, chất lượng sản phẩm rất tốt
+    - Sản phẩm đẹp và uy tín, mìn rất hài lòng
+    - Mìn thích thú với kết quả tư vấn của cửa hàng
+    - Mìn đồng ý, mỗi sản phẩm đều đẹp và tốt lắm
+    - Tôi đồng ý, cửa hàng phản hồi nhiệt tình
+    - Sự tận tình và chất lượng sản phẩm đều xuất sắc
+    - Thật ô kê, mìn đồng ý với đánh giá tích cực này
+    - Okela, rất vui vì đã nhận được phản hồi tích cực
+    - Mìn rất vui mừng với phản hồi tích cực từ shop
+    - Okela, sự phản hồi của cửa hàng thực sự làm mìn vui
+    - Sự phản hồi tích cực từ admin khiến mìn hết sức hạnh phúc.
+    - Okieeee, tình cảm từ shop làm mìn hết sức vui mừng
+    - Ui, chất lượng và dịch vụ đều tốt
+
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+    - buồn vậy
+    - tệ quá
+    - không được
+    - không đúng ý 
+    - sai rồi
+    - không phải rồi
+    - chắc là không ạ
+    - vậy được rồi ạ
+    - không cần ạ
+    - ngày hôm nay không đúng ý
+    - tôi cảm thấy sai lầm
+    - tôi không hài lòng
+    - tôi thấy mọi thứ sai sai
+    - không chấp nhận được
+    - tôi không thấy đúng
+    - không ổn
+    - không tốt lắm
+    - rất không đúng
+    - không hạnh phúc với kết quả
+    - không thấy đúng đắn
+    - quá sai
+    - không vừa ý
+    - tôi thấy hết sức sai
+    - không chấp nhận được tí nào
+    - tôi không thấy thoải mái với điều này
+    - không thích
+    - không vừa lòng
+    - không hài lòng tí nào
+    - không chấp nhận được lắm
+    - quá trớn
+    - không đạt mong đợi
+    - không hài lòng chút nào
+    - quá mệt mỏi với tình hình này
+    - không thấy hài lòng tí nào
+    - không ổn lắm
+    - không chấp nhận được chút nào
+    - tôi cảm thấy sai lầm lớn
+    - không đúng đắn
+    - không hài lòng chút nào
+    - không vừa lòng lắm
+    - không đúng ý tưởng
+    - không tốt
+    - không chấp nhận được tí nào
+    - tôi cảm thấy mọi thứ đều sai
+    - không hài lòng lắm
+    - không vừa lòng tí nào
+    - không hài lòng với kết quả
+    - không đúng ý tưởng
+    - không chấp nhận được chút nào
+    - không tốt lắm
+    - không hạnh phúc với mọi thứ
+    - không thấy hài lòng chút nào
+    - không vừa lòng với kết quả
+    - không chấp nhận được tí nào
+    - không ổn lắm
+    - tôi không hài lòng với điều này
+
+- intent: mood_negative_response
+  examples: |
+    - Đúng rồi, sản phẩm xấu quá.
+    - Chòi, sản phẩm rất xấu và kém chất lượng.
+    - Chùi ui, kết quả tư vấn từ ad rất kém.
+    - T không đồng ý, sản phẩm xấu và không uy tín.
+    - Kết quả tư vấn và gợi ý từ ad thực sự làm t không hài lòng.
+    - Rất không hài lòng với sự phản hồi và kết quả tư vấn từ bạn.
+    - T rất buồn vì đã nhận được phản hồi tiêu cực.
+    - Kết quả tư vấn và gợi ý từ ad làm t không hài lòng.
+    - Sản phẩm thực sự kém đó.
+    - Dở quá, chất lượng sản phẩm rất kém.
+    - Okieeee, kết quả tư vấn từ ad làm t rất buồn.
+    - Sự phản hồi và kết quả tư vấn từ ad khiến t rất buồn.
+    - Woaaaaa, mình rất buồn bã với phản hồi.
+    - Toẹt, chất lượng sản phẩm rất tệ.
+    - Sản phẩm xấu và không uy tín, t rất không hài lòng!
+    - T thất vọng với kết quả tư vấn của chủ cửa hàng.
+    - T không đồng ý, mỗi sản phẩm đều xấu và tệ lắm.
+    - Tôi không đồng ý, chủ cửa hàng phản hồi kém quá.
+    - Sự lạnh lùng và chất lượng sản phẩm đều kém.
+    - Thật tệ, t không đồng ý với đánh giá tiêu cực này.
+    - Okela, rất buồn vì đã nhận được phản hồi tiêu cực.
+    - T rất buồn bã với phản hồi tiêu cực từ ad.
+    - Okela, sự phản hồi của chủ cửa hàng khiến t buồn.
+    - Sự phản hồi tiêu cực từ ad khiến t rất buồn bã.
+    - Okieeee, tình cảm từ ad làm t hết sức buồn bã.
+    - Quoaaaaaa, chất lượng và dịch vụ đều kém.
+    - Đúng rồi, sản phẩm xấu quá, sốp
+    - Cửa hàng, sản phẩm rất xấu và kém chất lượng
+    - Dở quá sốp, kết quả tư vấn từ sốp rất tệ
+    - Mìn không đồng ý, sản phẩm xấu và không uy tín
+    - Kết quả tư vấn và gợi ý từ cửa hàng thực sự làm mìn không hài lòng
+    - Rất không hài lòng với sự phản hồi và kết quả tư vấn từ shop
+    - Mìn rất buồn vì đã nhận được phản hồi tiêu cực
+    - Kết quả tư vấn và gợi ý từ admin làm mìn không hài lòng
+    - Sản phẩm thực sự kém đó, cảm ơn cửa hàng
+    - Uiiiii sốp, chất lượng sản phẩm rất xấu
+    - Okieeee, kết quả tư vấn từ shop làm mìn rất buồn
+    - Sự phản hồi và kết quả tư vấn từ sốp khiến mìn rất buồn
+    - Tệ quá ạ admin, mình rất buồn bã với phản hồi
+    - Ôiiiiiiii, chất lượng sản phẩm rất kém
+    - Sản phẩm xấu và không uy tín, mìn rất không hài lòng
+    - Mìn thất vọng với kết quả tư vấn của cửa hàng
+    - Mìn không đồng ý, mỗi sản phẩm đều xấu và tệ lắm
+    - Tôi không đồng ý, cửa hàng phản hồi lạnh lùng quá
+    - Sự lạnh lùng và chất lượng sản phẩm đều kém
+    - Thật tệ, mìn không đồng ý với đánh giá tiêu cực này
+    - Okela, rất buồn vì đã nhận được phản hồi tiêu cực
+    - Mìn rất buồn bã với phản hồi tiêu cực từ shop
+    - Okela, sự phản hồi của cửa hàng khiến mìn buồn
+    - Sự phản hồi tiêu cực từ admin khiến mìn rất buồn bã.
+    - Okieeee, tình cảm từ shop làm mìn hết sức buồn bã
+    - Ui, chất lượng và dịch vụ đều tệ
+
+- intent: ask_type
+  examples: |
+    - Tôi muốn mua loại [áo]{"entity": "cate", "value": "T-Shirt"} giống như vậy nè
+    - Shop có [áo]{"entity": "cate", "value": "T-Shirt"} kiểu [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không ạ
+    - Có loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} [tay dài]{"entity": "attr", "value": "Shirt"} không shop
+    - Có mẫu [áo thun]{"entity": "cate", "value": "T-Shirt"} [loại cô ton]{"entity": "attr", "value": "cotton"} [màu đỏ]{"entity": "color", "value": "red"} không dị
+    - [Áo]{"entity": "cate", "value": "T-Shirt"} [trắng]{"entity": "color", "value": "white"} mà [ngắn tay]{"entity": "attr", "value": "short_sleeve"} để đi học còn hàng không ạ
+    - Shop còn loại [áo]{"entity": "cate", "value": "T-Shirt"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không shop
+    - Tôi muốn mua [áo]{"entity": "cate", "value": "T-Shirt"} [trắng]{"entity": "color", "value": "white"} [kiểu sọc]{"entity": "attr", "value": "striped"} giống như vậy nè.
+    - Có [áo]{"entity": "cate", "value": "T-Shirt"} [dài tay]{"entity": "attr", "value": "long_sleeve"} [màu đỏ]{"entity": "color", "value": "red"} không ạ?
+    - Shop có [áo]{"entity": "cate", "value": "T-Shirt"} [chất liệu da]{"entity": "attr", "value":"leather"} kiểu [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không ạ?
+    - Có mẫu [áo thun]{"entity": "cate", "value": "T-Shirt"} [kiểu hoa lá hoè]{"entity": "attr", "value": "floral"} [đỏ đỏ]{"entity": "color", "value": "red"} không dị?
+    - Shop còn loại [áo]{"entity": "cate", "value": "T-Shirt"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [kiểu lưới]{"entity": "attr", "value": "lattice"} không ạ?
+    - [Áo]{"entity": "cate", "value": "T-Shirt"} [màu đỏ]{"entity": "color", "value": "red"} [hơi trơn]{"entity": "attr", "value": "solid"} giống như hình có không ạ?
+    - Có [áo]{"entity": "cate", "value": "T-Shirt"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} có [màu đen]{"entity": "color", "value": "black"} không shop?
+    - Shop còn [áo]{"entity": "cate", "value": "T-Shirt"} [chất liệu da]{"entity": "attr", "value":"leather"} [màu cam]{"entity": "color", "value": "orange"} nào đẹp không ạ?
+    - [Áo]{"entity": "cate", "value": "T-Shirt"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [xanh lá]{"entity": "color", "value": "green"} để đi học còn hàng không ạ?
+    - Có loại [áo]{"entity": "cate", "value": "T-Shirt"} [kiểu denim]{"entity": "attr", "value": "denim"} [màu trắng]{"entity": "color", "value": "white"} không dị?
+    - [Áo]{"entity": "cate", "value": "T-Shirt"} [chất liệu da]{"entity": "attr", "value":"leather"} [màu vàng]{"entity": "color", "value": "yellow"} mà shop đẹp không ạ?
+    - Có [áo]{"entity": "cate", "value": "T-Shirt"} [ôm ôm]{"entity": "attr", "value": "tight"} [đen]{"entity": "color", "value": "black"} như hình không shop?
+    - [Áo]{"entity": "cate", "value": "T-Shirt"} [hơi sọc]{"entity": "attr", "value": "striped"} [màu trắng]{"entity": "color", "value": "white"} có còn không ạ?
+    - Có [áo]{"entity": "cate", "value": "T-Shirt"} [màu mè]{"entity": "attr", "value": "floral"} mà [màu đen]{"entity": "color", "value": "black"} không dị?
+    
+    - Tôi muốn mua kiểu [áo sơ mi]{"entity": "cate", "value": "Shirt"} tương tự như này á
+    - Tôi muốn mua mẫu [áo thun]{"entity": "cate", "value": "Shirt"} trong hình á
+    - Loại [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} này còn hàng như hình không ạ
+    - [Áo]{"entity": "cate", "value": "Shirt"} này còn hàng loại này không shop
+    - Có [áo]{"entity": "cate", "value": "Shirt"} [tay dài]{"entity": "attr", "value": "long_sleeve"} không shop
+    - Có mẫu [áo thun]{"entity": "cate", "value": "Shirt"} [loại cô ton]{"entity": "attr", "value": "cotton"} [màu đỏ]{"entity": "color", "value": "red"} không dị
+    - [Áo]{"entity": "cate", "value": "Shirt"} [trắng]{"entity": "color", "value": "white"} mà [ngắn tay]{"entity": "attr", "value": "short_sleeve"} để đi học còn hàng không ạ
+    - Shop còn loại [áo]{"entity": "cate", "value": "Shirt"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không shop
+    - Tôi muốn mua [áo]{"entity": "cate", "value": "Shirt"} [trắng]{"entity": "color", "value": "white"} [kiểu sọc]{"entity": "attr", "value": "striped"} giống như vậy nè.
+    - Có [áo]{"entity": "cate", "value": "Shirt"} [dài tay]{"entity": "attr", "value": "long_sleeve"} [màu đỏ]{"entity": "color", "value": "red"} không ạ?
+    - Shop có [áo]{"entity": "cate", "value": "Shirt"} [chất liệu da]{"entity": "attr", "value":"leather"} kiểu [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không ạ?
+    - Có mẫu [áo thun]{"entity": "cate", "value": "Shirt"} [kiểu hoa lá hoè]{"entity": "attr", "value": "floral"} [đỏ đỏ]{"entity": "color", "value": "red"} không dị?
+    - Shop còn loại [áo]{"entity": "cate", "value": "Shirt"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [kiểu lưới]{"entity": "attr", "value": "lattice"} không ạ?
+    - [Áo]{"entity": "cate", "value": "Shirt"} [màu đỏ]{"entity": "color", "value": "red"} [hơi trơn]{"entity": "attr", "value": "solid"} giống như hình có không ạ?
+    - Có [áo]{"entity": "cate", "value": "Shirt"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} có [màu đen]{"entity": "color", "value": "black"} không shop?
+    - Shop còn [áo]{"entity": "cate", "value": "Shirt"} [chất liệu da]{"entity": "attr", "value":"leather"} [màu cam]{"entity": "color", "value": "orange"} nào đẹp không ạ?
+    - [Áo]{"entity": "cate", "value": "Shirt"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [xanh lá]{"entity": "color", "value": "green"} để đi học còn hàng không ạ?
+    - Có loại [áo]{"entity": "cate", "value": "Shirt"} [kiểu denim]{"entity": "attr", "value": "denim"} [màu trắng]{"entity": "color", "value": "white"} không dị?
+    - [Áo]{"entity": "cate", "value": "Shirt"} [chất liệu da]{"entity": "attr", "value":"leather"} [màu vàng]{"entity": "color", "value": "yellow"} mà shop đẹp không ạ?
+    - Có [áo]{"entity": "cate", "value": "Shirt"} [ôm ôm]{"entity": "attr", "value": "tight"} [đen]{"entity": "color", "value": "black"} như hình không shop?
+   
+    - Shop còn loại [mũ]{"entity": "cate", "value": "Anorak"} [hồng]{"entity": "color", "value": "pink"} [dạng len]{"entity": "attr", "value": "knit"} như bên dưới á
+    - Ad có kiểu [áo hở lưng]{"entity": "cate", "value": "Halter"} [hoa hoè]{"entity": "attr", "value": "floral"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} như trên hong á
+    - Tôi muốn mua [hoodie]{"entity": "cate", "value": "Hoodie"} [không có cổ]{"entity": "attr", "value": "no_neckline"} và nó màu [tím]{"entity": "color", "value": "purple"} như này ạ
+    - [Áo khoác]{"entity": "cate", "value": "Jacket"} [vàng đậm]{"entity": "color", "value": "yellow"} [denim]{"entity": "attr", "value": "denim"} có loại nào giống hình không
+
+    - Shop còn chiếc [quần ống rộng]{"entity": "cate", "value": "Culottes"} nào ở hình không ạ
+    - Shop còn chiếc [quần tự chế]{"entity": "cate", "value": "Cutoffs"} tương tự không ạ
+    - Ad có kiểu [quần ống loe]{"entity": "cate", "value": "Gauchos"} giống vậy không á
+    - Tôi muốn mua loại [quần Jeggings]{"entity": "cate", "value": "Jeggings"} này còn hàng như hình không ạ
+    - Tôi muốn mua loại [quần sọt]{"entity": "cate", "value": "Shorts"} này
+    - Tôi muốn mua mẫu [quần lửng]{"entity": "cate", "value": "Capris"} như này có không ạ
+    - Ad còn mẫu [quần bó sát]{"entity": "cate", "value": "Jodhpurs"} không ạ
+    - Ad còn mẫu [quần jeans]{"entity": "cate", "value": "Jeans"} tương tự như không ạ
+    - [Quần thun ống rộng]{"entity": "cate", "value": "Joggers"} này còn hàng không dị 
+
+    - Tôi muốn mua kiểu [quần dệt chéo]{"entity": "cate", "value": "Chinos"} tương tự như này á
+    - Ad có kiểu [quần bó sát chân]{"entity": "cate", "value": "Leggings"} như  không á
+    - Tôi muốn mua mẫu [váy xà rông]{"entity": "cate", "value": "Sarong"} như này ạ
+    - [Váy]{"entity": "cate", "value": "Skirt"} này còn mẫu không thế
+
+    - Shop còn hàng [áo thể thao]{"entity": "cate", "value": "Jersey"} [kiểu suông]{"entity": "attr", "value": "loose"} nào tương tự không ạ
+    - Kiểu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} loại [phủ lông]{"entity": "attr", "value": "faux"} [màu đen]{"entity": "color", "value": "black"} còn hàng k shop
+    - Còn kiểu [áo len dày]{"entity": "cate", "value": "Peacoat"} [màu hồng]{"entity": "color", "value": "pink"} [chất liệu len]{"entity": "attr", "value": "knit"} như hình shop
+
+    - Shop còn loại [đầm]{"entity": "cate", "value": "Dress"} này không ạ
+    - Tôi muốn mua kiểu [đầm rộng]{"entity": "cate", "value": "Caftan"} này á shop
+    - Còn kiểu [đầm bình thường]{"entity": "cate", "value": "Dress"} như này không
+
+    - Tôi muốn mua loại [áo Poncho]{"entity": "cate", "value": "Poncho"} này
+    - Shop còn mẫu [áo len có mũ]{"entity": "cate", "value": "Hoodie"} không ạ
+
+    - Shop có [loại blazer]{"entity": "cate", "value": "Blazer"} [đen màu]{"entity": "color", "value": "black"} loại [vải voan]{"entity": "attr", "value": "chiffon"} không á
+    - Có loại [áo bánh bèo]{"entity": "cate", "value": "Blouse"} màu [trơn]{"entity": "attr", "value": "solid"} [xanh lá]{"entity": "color", "value": "green"} không shop
+    - Có mẫu {"entity": "cate", "value": "Bomber"} kiểu [sọc]{"entity": "attr", "value": "striped"} với màu [lục]{"entity": "color", "value": "blue"} không dị
+    - [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} mà [ngắn tay]{"entity": "attr", "value": "short_sleeve"} để đi học còn hàng không ạ
+    - Shop còn loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} dạng [ca rô]{"entity": "attr", "value": "Flannel"} nào mà đẹp đẹp màu [cam]{"entity": "color", "value": "orange"} [đỏ]{"entity": "color", "value": "red"} không shop
+
+    - Tôi muốn mua kiểu [mũ]{"entity": "cate", "value": "Anorak"} [hồng]{"entity": "color", "value": "pink"} [dạng len]{"entity": "attr", "value": "knit"} này á mà không biết lựa như thế nào
+    - Ad có kiểu [áo hở lưng]{"entity": "cate", "value": "Halter"} [hoa hoè]{"entity": "attr", "value": "floral"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} xinh không shop
+    - Lựa dùm mẫu [hoodie]{"entity": "cate", "value": "Hoodie"} [không có cổ]{"entity": "attr", "value": "no_neckline"} và nó màu [tím]{"entity": "color", "value": "purple"} đi shop
+    - [Áo khoác]{"entity": "cate", "value": "Jacket"} [vàng đậm]{"entity": "color", "value": "yellow"} [denim]{"entity": "attr", "value": "denim"} có loại nào ok không shop
+
+    - Shop còn loại [áo thể thao]{"entity": "cate", "value": "Jersey"} [kiểu suông]{"entity": "attr", "value": "loose"} nào đẹp không ạ
+    - Lựa giúp tôi cái kiểu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} loại [phủ lông]{"entity": "attr", "value": "faux"} [màu đen]{"entity": "color", "value": "black"} đi shop
+    - Còn kiểu [áo len dày]{"entity": "cate", "value": "Peacoat"} [màu hồng]{"entity": "color", "value": "pink"} [chất liệu len]{"entity": "attr", "value": "knit"} không shop
+
+    - Shop còn loại [áo choàng]{"entity": "cate", "value": "Poncho"} [thoải mái]{"entity": "attr", "value": "conventional"} [dài qua đầu gối]{"entity": "attr", "value": "maxi_length"} á shop
+    - Shop có mẫu [sweater]{"entity": "cate", "value": "Sweater"} nào [có hình]{"entity": "attr", "value": "graphic"} [màu trắng]{"entity": "color", "value": "white"} đẹp đẹp không dị
+
+    - Shop có [áo ba lổ]{"entity": "cate", "value": "Tank"} [sát nách]{"entity": "attr", "value": "sleeveless"} [màu lam]{"entity": "color", "value": "green"} không á
+    - Có loại [áo Tee]{"entity": "cate", "value": "Tee"} [dạng ôm]{"entity": "attr", "value": "tight"} [xếp ly]{"entity": "attr", "value": "pleated"} không shop
+    - Có mẫu [crop top]{"entity": "cate", "value": "Top"} [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} với [màu vàng]{"entity": "color", "value": "yellow"} không dị
+    - [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} mà [dạng thêu]{"entity": "attr", "value": "embroidered"} để đi học còn hàng không ạ
+    - Shop có [áo giữ ấm]{"entity": "cate", "value": "Coat"} [dài tay]{"entity": "attr", "value": "long_sleeve"} [màu xanh lá]{"entity": "color", "value": "green"} không á
+    - Có loại [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} [form rộng]{"entity": "attr", "value": "loose"} không shop
+
+    - Shop còn chiếc [quần tây]{"entity": "cate", "value": "pants"} [màu tím]{"entity": "color", "value": "purple"} hợp trend bây giờ không ạ
+    - Shop còn mẫu [quần]{"entity": "cate", "value": "pants"} [dài]{"entity": "attr", "value": "maxi_length"} [kiểu văn phòng]{"entity": "attr", "value": "conventional"} không ạ
+    - Ad có kiểu [quần kaki]{"entity": "cate", "value": "pants"} mà nó [màu trắng]{"entity": "color", "value": "white"} không á
+    - Có loại [quần lửng]{"entity": "cate", "value": "Capris"} [ngắn]{"entity": "attr", "value": "mini_length"} mặc [mát mẻ]{"entity": "attr", "value": "conventional"} không shop
+    - Tôi đang có nhu cầu mua loại [quần sọt]{"entity": "cate", "value": "Shorts"} [ngắn]{"entity": "attr", "value": "mini_length"} hợp xu hướng đi shop
+    - Shop tư vấn mua mẫu [quần lửng]{"entity": "cate", "value": "quần"} nào đẹp với ạ [màu xanh nước biển]{"entity": "color", "value": "blue"} nha
+    - Ad còn mẫu [quần jean]{"entity": "cate", "value": "Jeans"} [xanh]{"entity": "color", "value": "blue"} không ạ
+    - Ad còn mẫu [quần váy]{"entity": "cate", "value": "Skirt"} [đen]{"entity": "color", "value": "black"} [kiểu dài]{"entity": "attr", "value": "maxi_length"} không dị
+    - [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} cái nào đẹp [dạng rộng rãi]{"entity": "attr", "value": "loose"} vậy shop
+    - [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} cái nào đẹp [dạng ôm]{"entity": "attr", "value": "tight"} vậy shop
+
+    - Shop còn loại [quần lót]{"entity": "cate", "value": "Trunks"} sexy [màu cam]{"entity": "color", "value": "orange"} không shop
+    - Shop còn loại [đồ coverup]{"entity": "cate", "value": "Coverup"} [đa dạng]{"entity": "attr", "value": "conventional"} á shop
+    - Shop có mẫu [đồ bay]{"entity": "cate", "value": "Jumpsuit"} [dạng sọc]{"entity": "attr", "value": "striped"} nào không
+
+    - Tôi muốn mua kiểu [váy]{"entity": "cate", "value": "Skirt"} [có in hình]{"entity": "attr", "value": "graphic"} này á mà không biết lựa như thế nào
+    - Ad có kiểu [áo choàng Robe]{"entity": "cate", "value": "Robe"} [cổ vuông]{"entity": "attr", "value": "square_neckline"} xinh [màu trắng]{"entity": "color", "value": "white"} không shop
+    - Lựa dùm mẫu [váy sơ mi]{"entity": "cate", "value": "Shirtdress"} [màu đỏ]{"entity": "color", "value": "red"} đi shop
+    - [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [cam]{"entity": "color", "value": "orange"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} có loại nào ok không shop
+
+    - Shop còn loại [đầm]{"entity": "cate", "value": "Dress"} nào [hồng hồng]{"entity": "color", "value": "pink"} [trơn]{"entity": "attr", "value": "solid"} đẹp không ạ
+    - Lựa giúp tôi cái kiểu [đầm rộng]{"entity": "cate", "value": "Caftan"} [có hoa]{"entity": "attr", "value": "floral"} đi shop
+    - Còn kiểu [đầm không tay]{"entity": "cate", "value": "Cape"} [màu vàng]{"entity": "color", "value": "yellow"} [dạng lưới]{"entity": "attr", "value": "lattice"} không shop
+
+    - Shop còn loại [đầm ngủ]{"entity": "cate", "value": "Nightdress"} [ôm sát người]{"entity": "attr", "value": "tight"} á shop
+    - Shop có mẫu [Kimono]{"entity": "cate", "value": "Kimono"} [có hình lưới]{"entity": "attr", "value": "lattice"} nào cute không dị
+
+    - Shop còn loại [onesie]{"entity": "cate", "value": "Onesie"} [rộng rãi]{"entity": "attr", "value": "conventional"} [vàng đậm]{"entity": "color", "value": "yellow"} á shop
+    - Shop có mẫu [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} [kiểu không váy]{"entity": "attr", "value": "no_dress"} nào cute không dị
+
+    - Có loại [đồ bay]{"entity": "cate", "value": "chiffon"} [vải voan]{"entity": "attr", "value": "chiffon"} không admin
+    - admin có [mũ]{"entity": "cate", "value": "Anorak"} [tím]{"entity": "color", "value": "purple"} loại [dạng ôm]{"entity": "attr", "value": "tight"} không á
+    - Lựa giúp tui cái kiểu [váy sơ mi]{"entity": "cate", "value": "Shirtdress"} [dạng ôm]{"entity": "attr", "value": "tight"} đi ad
+    - Loại [loại cô ton]{"entity": "attr", "value": "cotton"} này còn hàng như hình không ạ
+    - [onesie]{"entity": "cate", "value": "Onesie"} [trơn]{"entity": "attr", "value": "solid"} mà [hoa hoè]{"entity": "attr", "value": "floral"} để đi học còn hàng không ạ
+    - mìn muốn mua kiểu [quần]{"entity": "cate", "value": "pants"} này á Admin
+    - Shop còn loại [áo thun]{"entity": "cate", "value": "T-Shirt"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} á Sốp
+    - ad có [áo giữ ấm]{"entity": "cate", "value": "Coat"} [màu đen]{"entity": "color", "value": "black"} loại [kiểu suông]{"entity": "attr", "value": "loose"} không á
+    - [quần sọt]{"entity": "cate", "value": "Shorts"} [màu hồng]{"entity": "color", "value": "pink"} [ca rô]{"entity": "attr", "value": "ca rô"} có loại nào ok không Sốp
+    - Còn kiểu [áo hở lưng]{"entity": "cate", "value": "Halter"} [tím]{"entity": "color", "value": "purple"} [có in hình]{"entity": "attr", "value": "graphic"} không shop
+    - tui muốn mua loại [quần kaki]{"entity": "cate", "value": "pants"} này
+    - Shop có mẫu [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} [tay dài]{"entity": "attr", "value": "Shirt"} nào không
+    - Admin còn mẫu [áo thun]{"entity": "cate", "value": "T-Shirt"} không ạ
+    - mình muốn mua mẫu [Váy]{"entity": "cate", "value": "Skirt"} trong hình á
+    - [Kimono]{"entity": "cate", "value": "Kimono"} [tím]{"entity": "color", "value": "purple"} mà [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} để đi học còn hàng không ạ
+    - Có loại [áo thể thao]{"entity": "cate", "value": "Jersey"} [phủ lông]{"entity": "attr", "value": "faux"} không admin
+    - Có mẫu [áo ba lổ]{"entity": "cate", "value": "Tank"} [chất liệu len]{"entity": "attr", "value": "knit"} với [màu trắng]{"entity": "color", "value": "white"} không dị
+    - [hoodie]{"entity": "cate", "value": "Hoodie"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} mà [ngắn tay]{"entity": "attr", "value": "short_sleeve"} để đi học còn hàng không ạ
+    - tôi muốn mua kiểu [áo thể thao]{"entity": "cate", "value": "Jersey"} [dạng ôm]{"entity": "attr", "value": "tight"} này á mà không biết lựa như thế nào
+    - Lựa dùm mẫu [Áo]{"entity": "cate", "value": "Shirt"} [lục]{"entity": "color", "value": "blue"} đi Sốp
+    - Toi muốn mua kiểu [quần ống loe]{"entity": "cate", "value": "Gauchos"} này á admin
+    - Có loại [áo ba lổ]{"entity": "cate", "value": "Tank"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} không Sốp
+    - Admin còn chiếc [quần sọt]{"entity": "cate", "value": "Shorts"} nào ở hình không ạ
+    - Mình muốn mua kiểu [quần bó sát chân]{"entity": "cate", "value": "Leggings"} này á Ad
+    - Shop có mẫu [áo choàng]{"entity": "cate", "value": "Poncho"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} [dài tay]{"entity": "attr", "value": "long_sleeve"} nào cute không dị
+    - Admin còn loại [áo choàng]{"entity": "cate", "value": "Poncho"} [ôm sát người]{"entity": "attr", "value": "tight"} [hoa hoè]{"entity": "attr", "value": "floral"} á Ad
+    - ad còn mẫu [Quần thun ống rộng]{"entity": "cate", "value": "Joggers"} không ạ
+    - sốp có kiểu [quần jean]{"entity": "cate", "value": "Jeans"} như  không á
+    - admin còn loại [đầm]{"entity": "cate", "value": "Dress"} [sát nách]{"entity": "attr", "value": "sleeveless"} á Tiệm
+    - shop tư vấn mua mẫu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} nào đẹp với ạ [màu tím]{"entity": "color", "value": "purple"} nha
+    - [sweater]{"entity": "cate", "value": "Sweater"} này còn hàng không dị
+    - Admin còn chiếc [đầm rộng]{"entity": "cate", "value": "Caftan"} [màu đỏ]{"entity": "color", "value": "red"} hợp trend bây giờ không ạ
+    - Còn kiểu [onesie]{"entity": "cate", "value": "Onesie"} [xanh lá]{"entity": "color", "value": "green"} [dạng len]{"entity": "attr", "value": "knit"} không Tiệm
+    - toi muốn mua loại [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} này còn hàng như hình không ạ
+    - Tui muốn mua mẫu [quần bó sát chân]{"entity": "cate", "value": "Leggings"} như này ạ
+    - shop còn mẫu [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} [đỏ]{"entity": "color", "value": "red"} [kiểu dài]{"entity": "attr", "value": "maxi_length"} không dị
+    - Shop còn chiếc [quần sọt]{"entity": "cate", "value": "Shorts"} [vàng đậm]{"entity": "color", "value": "yellow"} hợp trend bây giờ không ạ
+    - Còn kiểu [quần lửng]{"entity": "cate", "value": "Capris"} [xanh lá]{"entity": "color", "value": "green"} [kiểu suông]{"entity": "attr", "value": "loose"} không admin
+    - Có mẫu [sweater]{"entity": "cate", "value": "Sweater"} [dạng rộng rãi]{"entity": "attr", "value": "loose"} với [cam]{"entity": "color", "value": "orange"} không dị
+    - tui muốn mua kiểu [quần tự chế]{"entity": "cate", "value": "Cutoffs"} tương tự như này á
+    - Tôi muốn mua mẫu [váy xà rông]{"entity": "cate", "value": "Sarong"} trong hình á
+    - Ad có kiểu [áo Poncho]{"entity": "cate", "value": "Poncho"} giống vậy không á
+    - [áo sơ mi]{"entity": "cate", "value": "Shirt"} cái nào đẹp [sọc]{"entity": "attr", "value": "striped"} vậy shop
+    - Có loại [áo hở lưng]{"entity": "cate", "value": "Halter"} [cổ vuông]{"entity": "attr", "value": "square_neckline"} không Admin
+    - [áo hở lưng]{"entity": "cate", "value": "Halter"} này còn hàng loại này không sốp
+    - ad còn loại [onesie]{"entity": "cate", "value": "Onesie"} [màu hồng]{"entity": "color", "value": "pink"} [phủ lông]{"entity": "attr", "value": "faux"} như bên dưới á
+    - Admin còn loại [Kimono]{"entity": "cate", "value": "Kimono"} dạng [form rộng]{"entity": "attr", "value": "loose"} nào mà đẹp đẹp màu [màu hồng]{"entity": "color", "value": "pink"} [tím]{"entity": "color", "value": "purple"} không cửa hàng
+    - ad có kiểu [áo giữ ấm]{"entity": "cate", "value": "Coat"} [form rộng]{"entity": "attr", "value": "loose"} xinh [màu cam]{"entity": "color", "value": "orange"} không Shop
+    - [áo len có mũ]{"entity": "cate", "value": "Hoodie"} [đen]{"entity": "color", "value": "black"} mà [loại cô ton]{"entity": "attr", "value": "cotton"} để đi học còn hàng không ạ
+    - Shop còn chiếc [quần sọt]{"entity": "cate", "value": "Shorts"} nào ở hình không ạ
+    - sốp còn mẫu [áo ba lổ]{"entity": "cate", "value": "Tank"} [màu trắng]{"entity": "color", "value": "white"} [có hình lưới]{"entity": "attr", "value": "lattice"} không dị
+    - Lựa dùm mẫu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [màu đen]{"entity": "color", "value": "black"} đi Sốp
+    - Lựa dùm mẫu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [phủ lông]{"entity": "attr", "value": "faux"} và nó màu [màu xanh lá]{"entity": "color", "value": "green"} đi Ad
+    - Có mẫu [áo len dày]{"entity": "cate", "value": "Peacoat"} [phủ lông]{"entity": "attr", "value": "faux"} với [màu vàng]{"entity": "color", "value": "yellow"} không dị
+    - Có loại [Quần nỉ ngắn]{"entity": "cate", "value": "conventional"} [đa dạng]{"entity": "attr", "value": "conventional"} không shop
+    - mình muốn mua loại [áo len dày]{"entity": "cate", "value": "Peacoat"} này
+    - Shop có kiểu [áo choàng]{"entity": "cate", "value": "Poncho"} giống vậy không á
+    - Tuih muốn mua kiểu [áo Tee]{"entity": "cate", "value": "Tee"} tương tự như này á
+    - Cửa hàng còn mẫu [đồ coverup]{"entity": "cate", "value": "Coverup"} [màu cam]{"entity": "color", "value": "orange"} [ngắn]{"entity": "attr", "value": "mini_length"} không dị
+    - admin còn mẫu [quần Jeggings]{"entity": "cate", "value": "Jeggings"} [vàng đậm]{"entity": "color", "value": "yellow"} [có hình]{"entity": "attr", "value": "graphic"} không dị
+    - [áo ba lổ]{"entity": "cate", "value": "Tank"} này còn hàng không dị
+    - Admin còn loại [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} á Admin
+    - mìn muốn mua kiểu [áo thun]{"entity": "cate", "value": "T-Shirt"} [vải voan]{"entity": "attr", "value": "chiffon"} này á mà không biết lựa như thế nào
+    - tiệm còn mẫu [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} [dạng len]{"entity": "attr", "value": "knit"} [loại cô ton]{"entity": "attr", "value": "cotton"} không ạ
+    - Còn kiểu [Kimono]{"entity": "cate", "value": "Kimono"} [vàng đậm]{"entity": "color", "value": "yellow"} [có hoa]{"entity": "attr", "value": "floral"} không ad
+    - Toi muốn mua [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} [denim]{"entity": "attr", "value": "denim"} và nó màu [màu xanh lá]{"entity": "color", "value": "green"} như này ạ
+    - Ad còn loại [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không Cửa hàng
+    - [đồ bay]{"entity": "cate", "value": "Jumpsuit"} [dạng lưới]{"entity": "attr", "value": "lattice"} mà [ngắn]{"entity": "attr", "value": "mini_length"} để đi học còn hàng không ạ
+    - Sốpmin có kiểu [áo thể thao]{"entity": "cate", "value": "Jersey"} như  không á
+    - [áo choàng Robe]{"entity": "cate", "value": "Robe"} cái nào đẹp [ngắn tay]{"entity": "attr", "value": "short_sleeve"} vậy admin
+    - tiệm có kiểu [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [có hình]{"entity": "attr", "value": "graphic"} như trên hong á
+    - Có mẫu {"entity": "cate", "value": "Bomber"} kiểu [ngắn tay]{"entity": "attr", "value": "short_sleeve"} với màu [màu nâu]{"entity": "color", "value": "nâu"} không dị
+    - sốp còn loại [quần lửng]{"entity": "cate", "value": "Capris"} [dạng len]{"entity": "attr", "value": "knit"} [dạng thêu]{"entity": "attr", "value": "embroidered"} á sốp
+    - [áo len dày]{"entity": "cate", "value": "Peacoat"} này còn hàng không dị
+    - [sweater]{"entity": "cate", "value": "Sweater"} này còn hàng loại này không shop
+    - [Áo khoác]{"entity": "cate", "value": "Jacket"} [màu xanh lá]{"entity": "color", "value": "green"} [dạng ôm]{"entity": "attr", "value": "dạng ôm"} có loại nào giống hình không
+    - shop có kiểu [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} [đa dạng]{"entity": "attr", "value": "conventional"} [không có cổ]{"entity": "attr", "value": "no_neckline"} như trên hong á
+    - Có loại [đầm bình thường]{"entity": "cate", "value": "Dress"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không shop
+    - admin còn loại [quần]{"entity": "cate", "value": "pants"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không shop
+    - Còn kiểu [mũ]{"entity": "cate", "value": "Anorak"} như này không
+    - Cửa hàng có kiểu [áo]{"entity": "cate", "value": "T-Shirt"} như  không á
+    - Mình muốn mua loại [đồ coverup]{"entity": "cate", "value": "Coverup"} giống như vậy nè
+    - Có loại [quần ống loe]{"entity": "cate", "value": "Gauchos"} màu [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [đỏ]{"entity": "color", "value": "red"} không Cửa hàng
+    - shop còn loại [áo thun]{"entity": "cate", "value": "Shirt"} [ôm sát người]{"entity": "attr", "value": "tight"} á Shop
+    - shop có mẫu [áo sơ mi]{"entity": "cate", "value": "áo sơ mi"} [rộng rãi]{"entity": "attr", "value": "conventional"} nào cute không dị
+    - Loại [ngắn]{"entity": "attr", "value": "mini_length"} này còn hàng như hình không ạ
+    - mìn muốn mua mẫu [quần lót]{"entity": "cate", "value": "Trunks"} trong hình á
+    - tôih muốn mua loại [onesie]{"entity": "cate", "value": "Onesie"} giống như vậy nè
+    - Mìn muốn mua [áo sơ mi]{"entity": "cate", "value": "Shirt"} [kiểu dài]{"entity": "attr", "value": "maxi_length"} và nó màu [màu lam]{"entity": "color", "value": "green"} như này ạ
+    - Shop còn mẫu [hoodie]{"entity": "cate", "value": "Hoodie"} [trắng]{"entity": "color", "value": "white"} không ạ
+    - cửa hàng có kiểu [quần dệt chéo]{"entity": "cate", "value": "Chinos"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} xinh [màu trắng]{"entity": "color", "value": "white"} không Ad
+    - Shop còn mẫu [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} tương tự như không ạ
+    - tui đang có nhu cầu mua loại [áo bánh bèo]{"entity": "cate", "value": "Blouse"} [có hoa]{"entity": "attr", "value": "floral"} hợp xu hướng đi Admin
+    - Mìn muốn mua loại [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} này
+    - Shop có [áo len có mũ]{"entity": "cate", "value": "Hoodie"} kiểu [tay dài]{"entity": "attr", "value": "Shirt"} không ạ
+    - Ad có mẫu [mũ]{"entity": "cate", "value": "Anorak"} [form rộng]{"entity": "attr", "value": "loose"} nào không
+    - shop còn loại [váy xà rông]{"entity": "cate", "value": "Sarong"} [cam]{"entity": "color", "value": "orange"} [không có cổ]{"entity": "attr", "value": "no_neckline"} như bên dưới á
+    - Có loại [quần ống loe]{"entity": "cate", "value": "Gauchos"} [sát nách]{"entity": "attr", "value": "sleeveless"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} không admin
+    - Ad còn loại [hoodie]{"entity": "cate", "value": "Hoodie"} [dạng len]{"entity": "attr", "value": "knit"} á admin
+    - shop còn loại [Váy chơi hè]{"entity": "cate", "value": "Sundress"} này không ạ
+    - Shop còn loại [quần]{"entity": "cate", "value": "pants"} nào [đen màu]{"entity": "color", "value": "black"} [mát mẻ]{"entity": "attr", "value": "conventional"} đẹp không ạ
+    - cửa hàng còn loại [áo len có mũ]{"entity": "cate", "value": "Hoodie"} này không ạ
+    - Còn kiểu [crop top]{"entity": "cate", "value": "Top"} [màu tím]{"entity": "color", "value": "purple"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không cửa hàng
+    - Còn kiểu [quần jean]{"entity": "cate", "value": "Jeans"} [màu trắng]{"entity": "color", "value": "white"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} không admin
+    - admin có [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} [màu lam]{"entity": "color", "value": "green"} loại [trên đầu gối]{"entity": "attr", "value": "mini_length"} không á
+    - Shop còn chiếc [áo choàng]{"entity": "cate", "value": "Poncho"} [đỏ]{"entity": "color", "value": "red"} hợp trend bây giờ không ạ
+    - Admin còn chiếc [Áo]{"entity": "cate", "value": "T-Shirt"} [trắng]{"entity": "color", "value": "white"} hợp trend bây giờ không ạ
+    - Sốp có mẫu [quần Jeggings]{"entity": "cate", "value": "Jeggings"} nào [cổ vuông]{"entity": "attr", "value": "square_neckline"} [đen màu]{"entity": "color", "value": "black"} đẹp đẹp không dị
+    - Ad còn loại [quần jeans]{"entity": "cate", "value": "Jeans"} [tay dài]{"entity": "attr", "value": "Shirt"} [vàng đậm]{"entity": "color", "value": "yellow"} á Admin
+    - shop có mẫu [quần sọt]{"entity": "cate", "value": "Shorts"} [ca rô]{"entity": "attr", "value": "Flannel"} [kiểu suông]{"entity": "attr", "value": "loose"} nào cute không dị
+    - [đồ bay]{"entity": "cate", "value": "Jumpsuit"} cái nào đẹp [sọc]{"entity": "attr", "value": "striped"} vậy ad
+    - Tôi muốn mua [quần sọt]{"entity": "cate", "value": "Shorts"} [dạng len]{"entity": "attr", "value": "knit"} và nó màu [màu đen]{"entity": "color", "value": "black"} như này ạ
+    - Admin còn mẫu [quần sọt]{"entity": "cate", "value": "Shorts"} không ạ
+    - shop còn loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} sexy [màu nâu]{"entity": "color", "value": "nâu"} không Admin
+    - Admin còn hàng [áo sơ mi]{"entity": "cate", "value": "Shirt"} [kiểu không váy]{"entity": "attr", "value": "no_dress"} nào tương tự không ạ
+    - Có mẫu [quần]{"entity": "cate", "value": "pants"} [dài tay]{"entity": "attr", "value": "long_sleeve"} với [màu đen]{"entity": "color", "value": "black"} không dị
+    - [quần Jeggings]{"entity": "cate", "value": "Jeggings"} cái nào đẹp [sọc]{"entity": "attr", "value": "striped"} vậy ad
+    - Shop có mẫu [áo bánh bèo]{"entity": "cate", "value": "Blouse"} nào [dài tay]{"entity": "attr", "value": "long_sleeve"} [hồng]{"entity": "color", "value": "pink"} đẹp đẹp không dị
+    - shop còn loại [quần tây]{"entity": "cate", "value": "pants"} [rộng rãi]{"entity": "attr", "value": "conventional"} [hồng hồng]{"entity": "color", "value": "pink"} á sốp
+    - admin còn hàng [áo thun]{"entity": "cate", "value": "Shirt"} [dài]{"entity": "attr", "value": "maxi_length"} nào tương tự không ạ
+    - tôih muốn mua loại [quần jeans]{"entity": "cate", "value": "Jeans"} giống như vậy nè
+    - Shop còn chiếc [quần ống loe]{"entity": "cate", "value": "Gauchos"} nào ở hình không ạ
+    - Còn kiểu [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [màu xanh lá]{"entity": "color", "value": "green"} [mát mẻ]{"entity": "attr", "value": "conventional"} không Admin
+    - Còn kiểu [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} [lục]{"entity": "color", "value": "blue"} [dạng len]{"entity": "attr", "value": "knit"} không ad
+    - Admin tư vấn mua mẫu [áo]{"entity": "cate", "value": "T-Shirt"} nào đẹp với ạ [vàng đậm]{"entity": "color", "value": "yellow"} nha
+    - tui muốn mua kiểu [quần Jeggings]{"entity": "cate", "value": "Jeggings"} [trơn]{"entity": "attr", "value": "solid"} này á mà không biết lựa như thế nào
+    - [hoodie]{"entity": "cate", "value": "Hoodie"} [hồng]{"entity": "color", "value": "pink"} [ca rô]{"entity": "attr", "value": "Flannel"} có loại nào ok không Admin
+    - Mình muốn mua loại [Kimono]{"entity": "cate", "value": "Kimono"} giống như vậy nè
+    - Có mẫu [loại blazer]{"entity": "cate", "value": "Blazer"} [không có cổ]{"entity": "attr", "value": "no_neckline"} với [màu nâu]{"entity": "color", "value": "nâu"} không dị
+    - Sốp còn chiếc [áo Poncho]{"entity": "cate", "value": "Poncho"} tương tự không ạ
+    - [onesie]{"entity": "cate", "value": "Onesie"} này còn hàng loại này không Ad
+    - Sốp có kiểu [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} [mát mẻ]{"entity": "attr", "value": "conventional"} [kiểu văn phòng]{"entity": "attr", "value": "conventional"} xinh không Admin
+    - Admin còn loại [quần ống loe]{"entity": "cate", "value": "Gauchos"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [vàng đậm]{"entity": "color", "value": "yellow"} á Admin
+    - ad còn loại [áo len dày]{"entity": "cate", "value": "Peacoat"} [có in hình]{"entity": "attr", "value": "graphic"} [rộng rãi]{"entity": "attr", "value": "conventional"} á cửa hàng
+    - tôi muốn mua [đầm không tay]{"entity": "cate", "value": "Cape"} [hoa hoè]{"entity": "attr", "value": "floral"} và nó màu [hồng]{"entity": "color", "value": "pink"} như này ạ
+    - Lựa dùm mẫu [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} [màu hồng]{"entity": "color", "value": "pink"} đi ad
+    - Có loại [đầm không tay]{"entity": "cate", "value": "Cape"} [thoải mái]{"entity": "attr", "value": "knit"} mặc [dạng len]{"entity": "attr", "value": "knit"} không Admin
+    - Shop có kiểu [quần lửng]{"entity": "cate", "value": "quần"} [kiểu suông]{"entity": "attr", "value": "loose"} xinh [tím]{"entity": "color", "value": "purple"} không Shop
+    - Admin còn mẫu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [màu trắng]{"entity": "color", "value": "white"} [dạng lưới]{"entity": "attr", "value": "lattice"} không dị
+    - admin còn hàng [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} [hoa hoè]{"entity": "attr", "value": "floral"} nào tương tự không ạ
+    - Toi muốn mua kiểu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [ôm sát người]{"entity": "attr", "value": "tight"} này á mà không biết lựa như thế nào
+    - sốp còn loại [quần Jeggings]{"entity": "cate", "value": "Jeggings"} này không ạ
+    - [đầm ngủ]{"entity": "cate", "value": "Nightdress"} [cam]{"entity": "color", "value": "orange"} [phủ lông]{"entity": "attr", "value": "faux"} có loại nào ok không ad
+    - Ad có [đầm không tay]{"entity": "cate", "value": "Cape"} [màu cam]{"entity": "color", "value": "orange"} loại [phủ lông]{"entity": "attr", "value": "faux"} không á
+    - ad còn chiếc [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} tương tự không ạ
+    - mìn muốn mua loại [áo choàng]{"entity": "cate", "value": "Poncho"} này còn hàng như hình không ạ
+    - Lựa dùm mẫu [quần lót]{"entity": "cate", "value": "Trunks"} [dạng len]{"entity": "attr", "value": "knit"} và nó màu [màu hồng]{"entity": "color", "value": "pink"} đi ad
+    - Mìn muốn mua kiểu [áo ba lổ]{"entity": "cate", "value": "Tank"} [dạng ôm]{"entity": "attr", "value": "tight"} này á mà không biết lựa như thế nào
+    - Lựa giúp toi cái kiểu [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} loại [kiểu văn phòng]{"entity": "attr", "value": "conventional"} [màu lam]{"entity": "color", "value": "green"} đi Admin
+    - Toi muốn mua mẫu [áo bánh bèo]{"entity": "cate", "value": "Blouse"} như này ạ
+    - toi muốn mua kiểu [quần]{"entity": "cate", "value": "pants"} này á Admin
+    - [quần ống rộng]{"entity": "cate", "value": "Culottes"} mà [dạng ôm]{"entity": "attr", "value": "tight"} để đi học còn hàng không ạ
+    - Shop còn loại [áo Poncho]{"entity": "cate", "value": "Poncho"} này không ạ
+    - mìn muốn mua mẫu [hoodie]{"entity": "cate", "value": "Hoodie"} như này có không ạ
+    - [áo thể thao]{"entity": "cate", "value": "Jersey"} [kiểu suông]{"entity": "attr", "value": "loose"} mà [hoa hoè]{"entity": "attr", "value": "floral"} để đi học còn hàng không ạ
+    - [đầm rộng]{"entity": "cate", "value": "Caftan"} này còn mẫu không thế
+    - Ad có kiểu [đầm]{"entity": "cate", "value": "Dress"} [ngắn]{"entity": "attr", "value": "mini_length"} xinh [đen]{"entity": "color", "value": "black"} không Ad
+    - Lựa dùm mẫu [Áo]{"entity": "cate", "value": "T-Shirt"} [kiểu suông]{"entity": "attr", "value": "loose"} và nó màu [cam]{"entity": "color", "value": "orange"} đi admin
+    - Lựa giúp Tôi cái kiểu [quần Jeggings]{"entity": "cate", "value": "Jeggings"} [đa dạng]{"entity": "attr", "value": "conventional"} đi Admin
+    - Ad còn mẫu [đầm không tay]{"entity": "cate", "value": "Cape"} [màu lam]{"entity": "color", "value": "green"} [ôm sát người]{"entity": "attr", "value": "tight"} không dị
+    - Tôi muốn mua [áo sơ mi]{"entity": "cate", "value": "Shirt"} [dạng sọc]{"entity": "attr", "value": "striped"} và nó màu [đỏ]{"entity": "color", "value": "red"} như này ạ
+    - Còn kiểu [áo thể thao]{"entity": "cate", "value": "Jersey"} [màu hồng]{"entity": "color", "value": "pink"} [có hình lưới]{"entity": "attr", "value": "lattice"} như hình ad
+    - Có loại [áo]{"entity": "cate", "value": "T-Shirt"} [có hình]{"entity": "attr", "value": "graphic"} [sọc]{"entity": "attr", "value": "striped"} không ad
+    - Còn kiểu [áo thể thao]{"entity": "cate", "value": "Jersey"} như này không
+    - Có mẫu [Áo]{"entity": "cate", "value": "Shirt"} [có hoa]{"entity": "attr", "value": "floral"} với [trắng]{"entity": "color", "value": "white"} không dị
+    - Lựa dùm mẫu [quần lửng]{"entity": "cate", "value": "quần"} [kiểu suông]{"entity": "attr", "value": "loose"} và nó màu [cam]{"entity": "color", "value": "orange"} đi shop
+    - [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [denim]{"entity": "attr", "value": "denim"} mà [không có cổ]{"entity": "attr", "value": "no_neckline"} để đi học còn hàng không ạ
+    - Lựa giúp tôi cái kiểu [Váy chơi hè]{"entity": "cate", "value": "Sundress"} loại [kiểu suông]{"entity": "attr", "value": "loose"} [đỏ]{"entity": "color", "value": "red"} đi Admin
+    - Shop có kiểu [áo len có mũ]{"entity": "cate", "value": "Hoodie"} mà nó [tím]{"entity": "color", "value": "purple"} không á
+    - Tôi muốn mua loại [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} này
+    - [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} này còn mẫu không thế
+    - Mình muốn mua loại [sweater]{"entity": "cate", "value": "Sweater"} này còn hàng như hình không ạ
+    - Loại [denim]{"entity": "attr", "value": "denim"} này còn hàng như hình không ạ
+    - Admin có [áo giữ ấm]{"entity": "cate", "value": "Coat"} kiểu [chất liệu len]{"entity": "attr", "value": "knit"} không ạ
+    - ad còn loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} [màu vàng]{"entity": "color", "value": "yellow"} [dạng thêu]{"entity": "attr", "value": "embroidered"} như bên dưới á
+    - Lựa giúp Tôi cái kiểu [đầm]{"entity": "cate", "value": "Dress"} [thoải mái]{"entity": "attr", "value": "conventional"} đi admin
+    - Ad còn loại [váy xà rông]{"entity": "cate", "value": "Sarong"} dạng [mát mẻ]{"entity": "attr", "value": "conventional"} nào mà đẹp đẹp màu [hồng]{"entity": "color", "value": "pink"} [vàng đậm]{"entity": "color", "value": "yellow"} không ad
+    - Có loại [áo thể thao]{"entity": "cate", "value": "Jersey"} màu [sọc]{"entity": "attr", "value": "striped"} [vàng đậm]{"entity": "color", "value": "yellow"} không tiệm
+    - shop có mẫu [áo len có mũ]{"entity": "cate", "value": "áo len có mũ"} [sọc]{"entity": "attr", "value": "striped"} nào cute không dị
+    - [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} này còn hàng không dị
+    - [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [màu vàng]{"entity": "color", "value": "yellow"} [chất liệu len]{"entity": "attr", "value": "chất liệu len"} có loại nào giống hình không
+    - Shop có kiểu [áo thun]{"entity": "cate", "value": "Shirt"} [dài]{"entity": "attr", "value": "maxi_length"} [có hoa]{"entity": "attr", "value": "floral"} như trên hong á
+    - tui muốn mua kiểu [quần tây]{"entity": "cate", "value": "pants"} [trơn]{"entity": "attr", "value": "solid"} này á mà không biết lựa như thế nào
+    - Shop còn mẫu [đầm rộng]{"entity": "cate", "value": "Caftan"} tương tự như không ạ
+    - Còn kiểu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [màu đen]{"entity": "color", "value": "black"} [hoa hoè]{"entity": "attr", "value": "floral"} không admin
+    - Lựa dùm mẫu [áo Tee]{"entity": "cate", "value": "Tee"} [màu nâu]{"entity": "color", "value": "nâu"} đi Shop
+    - [quần ống rộng]{"entity": "cate", "value": "Culottes"} [màu đỏ]{"entity": "color", "value": "red"} [sát nách]{"entity": "attr", "value": "sát nách"} có loại nào giống hình không
+    - Ad còn loại [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [loại cô ton]{"entity": "attr", "value": "cotton"} [màu đen]{"entity": "color", "value": "black"} á Shop
+    - Lựa dùm mẫu [quần dệt chéo]{"entity": "cate", "value": "Chinos"} [kiểu dài]{"entity": "attr", "value": "maxi_length"} và nó màu [hồng hồng]{"entity": "color", "value": "pink"} đi shop
+    - Có loại [quần jean]{"entity": "cate", "value": "Jeans"} [rộng rãi]{"entity": "attr", "value": "conventional"} [kiểu không váy]{"entity": "attr", "value": "no_dress"} không Admin
+    - Shop còn loại [quần jeans]{"entity": "cate", "value": "Jeans"} [kiểu văn phòng]{"entity": "attr", "value": "conventional"} nào đẹp không ạ
+    - Còn kiểu [áo thun]{"entity": "cate", "value": "T-Shirt"} [màu vàng]{"entity": "color", "value": "yellow"} [trơn]{"entity": "attr", "value": "solid"} như hình Ad
+    - Có loại [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} màu [dạng ôm]{"entity": "attr", "value": "tight"} [màu xanh lá]{"entity": "color", "value": "green"} không Shop
+    - admin còn loại [quần lửng]{"entity": "cate", "value": "Capris"} nào [màu xanh lá]{"entity": "color", "value": "green"} [cổ vuông]{"entity": "attr", "value": "square_neckline"} đẹp không ạ
+    - Có mẫu {"entity": "cate", "value": "Bomber"} kiểu [ca rô]{"entity": "attr", "value": "Flannel"} với màu [vàng đậm]{"entity": "color", "value": "yellow"} không dị
+    - Lựa giúp Mìnhh cái kiểu [quần lót]{"entity": "cate", "value": "Trunks"} loại [trên đầu gối]{"entity": "attr", "value": "mini_length"} [vàng đậm]{"entity": "color", "value": "yellow"} đi Admin
+    - tui muốn mua loại [quần bó sát]{"entity": "cate", "value": "Jodhpurs"} này
+    - tôi đang có nhu cầu mua loại [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} [kiểu suông]{"entity": "attr", "value": "loose"} hợp xu hướng đi ad
+    - Lựa dùm mẫu [đầm]{"entity": "cate", "value": "Dress"} [phủ lông]{"entity": "attr", "value": "faux"} và nó màu [màu nâu]{"entity": "color", "value": "nâu"} đi ad
+    - sốp còn loại [quần lửng]{"entity": "cate", "value": "quần"} [kiểu dài]{"entity": "attr", "value": "maxi_length"} nào đẹp không ạ
+    - Kiểu [đầm không tay]{"entity": "cate", "value": "Cape"} loại [sát nách]{"entity": "attr", "value": "sleeveless"} [trắng]{"entity": "color", "value": "white"} còn hàng k Ad
+    - Admin còn mẫu [váy xà rông]{"entity": "cate", "value": "Sarong"} [tím]{"entity": "color", "value": "purple"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} không dị
+    - Có loại [áo len dày]{"entity": "cate", "value": "floral"} [hoa hoè]{"entity": "attr", "value": "floral"} không Admin
+    - Shop còn loại [quần tự chế]{"entity": "cate", "value": "Cutoffs"} này không ạ
+    - [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} này còn hàng không dị
+    - Sốp còn loại [áo choàng]{"entity": "cate", "value": "Poncho"} sexy [đỏ]{"entity": "color", "value": "red"} không Sốp
+    - sốp có [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} [không có cổ]{"entity": "attr", "value": "no_neckline"} [màu đỏ]{"entity": "color", "value": "red"} không á
+    - Có loại [áo len dày]{"entity": "cate", "value": "Peacoat"} [dạng ôm]{"entity": "attr", "value": "tight"} mặc [có hình lưới]{"entity": "attr", "value": "lattice"} không shop
+    - Shop có [quần kaki]{"entity": "cate", "value": "pants"} [loại cô ton]{"entity": "attr", "value": "cotton"} [trắng]{"entity": "color", "value": "white"} không á
+    - [áo giữ ấm]{"entity": "cate", "value": "Coat"} này còn hàng loại này không Ad
+    - Còn kiểu [quần lửng]{"entity": "cate", "value": "Capris"} như này không
+    - tôi muốn mua kiểu [quần váy]{"entity": "cate", "value": "Skirt"} tương tự như này á
+    - [quần]{"entity": "cate", "value": "pants"} này còn mẫu không thế
+    - Ad có mẫu [áo bánh bèo]{"entity": "cate", "value": "Blouse"} [dài]{"entity": "attr", "value": "maxi_length"} nào không
+    - [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} này còn hàng không dị
+    - Admin có kiểu [quần lửng]{"entity": "cate", "value": "Capris"} [kiểu suông]{"entity": "attr", "value": "loose"} [sát nách]{"entity": "attr", "value": "sleeveless"} xinh không Ad
+    - cửa hàng còn chiếc [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} nào ở hình không ạ
+    - cửa hàng tư vấn mua mẫu [quần lửng]{"entity": "cate", "value": "quần"} nào đẹp với ạ [cam]{"entity": "color", "value": "orange"} nha
+    - Ad còn chiếc [áo choàng Robe]{"entity": "cate", "value": "Robe"} tương tự không ạ
+    - Sốp có kiểu [đầm rộng]{"entity": "cate", "value": "Caftan"} mà nó [trắng]{"entity": "color", "value": "white"} không á
+    - Ad còn chiếc [Áo]{"entity": "cate", "value": "T-Shirt"} nào ở hình không ạ
+    - Shop có mẫu [áo Tee]{"entity": "cate", "value": "Tee"} [kiểu văn phòng]{"entity": "attr", "value": "conventional"} [form rộng]{"entity": "attr", "value": "loose"} nào cute không dị
+    - [quần lót]{"entity": "cate", "value": "Trunks"} cái nào đẹp [thoải mái]{"entity": "attr", "value": "conventional"} vậy admin
+    - Có mẫu {"entity": "cate", "value": "Bomber"} kiểu [có hình]{"entity": "attr", "value": "graphic"} với màu [cam]{"entity": "color", "value": "orange"} không dị
+    - Sốp còn loại [quần Jeggings]{"entity": "cate", "value": "Jeggings"} [không có cổ]{"entity": "attr", "value": "no_neckline"} á Ad
+    - Admin còn loại [đầm]{"entity": "cate", "value": "Dress"} này không ạ
+    - Có loại [sweater]{"entity": "cate", "value": "mini_length"} [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} không shop
+    - ad có mẫu [quần ống rộng]{"entity": "cate", "value": "Culottes"} [chất liệu len]{"entity": "attr", "value": "knit"} nào không
+    - admin còn loại [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} [ca rô]{"entity": "attr", "value": "Flannel"} [rộng rãi]{"entity": "attr", "value": "conventional"} á Admin
+    - Có mẫu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [kiểu suông]{"entity": "attr", "value": "loose"} [tím]{"entity": "color", "value": "purple"} không dị
+    - [áo thun]{"entity": "cate", "value": "Shirt"} này còn mẫu không thế
+    - Có loại [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} không Ad
+    - ad có kiểu [váy sơ mi]{"entity": "cate", "value": "Shirtdress"} giống vậy không á
+    - Mình muốn mua [áo len dày]{"entity": "cate", "value": "Peacoat"} [form rộng]{"entity": "attr", "value": "loose"} và nó màu [màu nâu]{"entity": "color", "value": "nâu"} như này ạ
+    - Toi đang có nhu cầu mua loại [váy xà rông]{"entity": "cate", "value": "Sarong"} [phủ lông]{"entity": "attr", "value": "faux"} hợp xu hướng đi Cửa hàng
+    - Admin còn mẫu [áo Poncho]{"entity": "cate", "value": "Poncho"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không ạ
+    - [mũ]{"entity": "cate", "value": "Anorak"} mà [hoa hoè]{"entity": "attr", "value": "floral"} để đi học còn hàng không ạ
+    - Ad có kiểu [quần sọt]{"entity": "cate", "value": "Shorts"} [loại cô ton]{"entity": "attr", "value": "cotton"} [ca rô]{"entity": "attr", "value": "Flannel"} như trên hong á
+    - Lựa giúp Tui cái kiểu [áo len dày]{"entity": "cate", "value": "Peacoat"} [loại cô ton]{"entity": "attr", "value": "cotton"} đi Admin
+    - Admin còn hàng [quần lót]{"entity": "cate", "value": "Trunks"} [dạng thêu]{"entity": "attr", "value": "embroidered"} nào tương tự không ạ
+    - Tuih muốn mua mẫu [Áo]{"entity": "cate", "value": "Shirt"} trong hình á
+    - Lựa giúp toi cái kiểu [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} [dài]{"entity": "attr", "value": "maxi_length"} đi Ad
+    - Lựa giúp Tôi cái kiểu [quần Jeggings]{"entity": "cate", "value": "Jeggings"} loại [dạng lưới]{"entity": "attr", "value": "lattice"} [vàng đậm]{"entity": "color", "value": "yellow"} đi shop
+    - Có mẫu {"entity": "cate", "value": "Bomber"} kiểu [dạng sọc]{"entity": "attr", "value": "striped"} với màu [màu cam]{"entity": "color", "value": "orange"} không dị
+    - Admin có mẫu [quần bó sát chân]{"entity": "cate", "value": "quần bó sát chân"} [form rộng]{"entity": "attr", "value": "loose"} nào cute không dị
+    - [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [cam]{"entity": "color", "value": "orange"} mà [kiểu văn phòng]{"entity": "attr", "value": "conventional"} để đi học còn hàng không ạ
+    - cửa hàng còn loại [đầm]{"entity": "cate", "value": "Dress"} dạng [dạng thêu]{"entity": "attr", "value": "embroidepink"} nào mà đẹp đẹp màu [tím]{"entity": "color", "value": "purple"} [hồng]{"entity": "color", "value": "pink"} không cửa hàng
+    - Còn kiểu [quần jean]{"entity": "cate", "value": "Jeans"} [màu đen]{"entity": "color", "value": "black"} [dạng thêu]{"entity": "attr", "value": "embroidered"} không Cửa hàng
+    - tui muốn mua mẫu [quần ống loe]{"entity": "cate", "value": "Gauchos"} như này có không ạ
+    - Có loại [đầm]{"entity": "cate", "value": "Dress"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không shop
+    - cửa hàng có kiểu [Quần thun ống rộng]{"entity": "cate", "value": "Joggers"} như  không á
+    - Có loại [váy sơ mi]{"entity": "cate", "value": "Shirtdress"} [dài qua đầu gối]{"entity": "attr", "value": "maxi_length"} [dạng rộng rãi]{"entity": "attr", "value": "loose"} không sốp
+    - [áo Tee]{"entity": "cate", "value": "Tee"} cái nào đẹp [có hình lưới]{"entity": "attr", "value": "lattice"} vậy Ad
+    - Mìn muốn mua loại [Áo khoác]{"entity": "cate", "value": "Jacket"} này còn hàng như hình không ạ
+    - ad còn loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} này không ạ
+    - Tôi muốn mua loại [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} này
+    - shop có kiểu [Váy]{"entity": "cate", "value": "Skirt"} [rộng rãi]{"entity": "attr", "value": "conventional"} [rộng rãi]{"entity": "attr", "value": "conventional"} xinh không ad
+    - [áo Poncho]{"entity": "cate", "value": "Poncho"} [ngắn]{"entity": "attr", "value": "mini_length"} mà [dạng ôm]{"entity": "attr", "value": "tight"} để đi học còn hàng không ạ
+    - Lựa dùm mẫu [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [chất liệu len]{"entity": "attr", "value": "knit"} và nó màu [màu hồng]{"entity": "color", "value": "pink"} đi admin
+    - shop còn mẫu [quần tây]{"entity": "cate", "value": "pants"} tương tự như không ạ
+    - Admin còn loại [onesie]{"entity": "cate", "value": "Onesie"} dạng [dạng sọc]{"entity": "attr", "value": "striped"} nào mà đẹp đẹp màu [màu xanh lá]{"entity": "color", "value": "green"} [tím]{"entity": "color", "value": "purple"} không shop
+    - [onesie]{"entity": "cate", "value": "Onesie"} [tím]{"entity": "color", "value": "purple"} [cổ vuông]{"entity": "attr", "value": "square_neckline"} có loại nào ok không admin
+    - Admin còn mẫu [quần sọt]{"entity": "cate", "value": "Shorts"} [trơn]{"entity": "attr", "value": "solid"} [loại cô ton]{"entity": "attr", "value": "cotton"} không ạ
+    - Có loại [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} màu [dài qua đầu gối]{"entity": "attr", "value": "maxi_length"} [đen]{"entity": "color", "value": "black"} không Admin
+    - shop có [áo len dày]{"entity": "cate", "value": "Peacoat"} kiểu [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} không ạ
+    - Tiệm có kiểu [áo len dày]{"entity": "cate", "value": "Peacoat"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} như trên hong á
+    - Admin có mẫu [áo thun]{"entity": "cate", "value": "T-Shirt"} [loại cô ton]{"entity": "attr", "value": "cotton"} [xếp ly]{"entity": "attr", "value": "pleated"} nào cute không dị
+    - Ad có mẫu [quần váy]{"entity": "cate", "value": "quần váy"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} nào cute không dị
+    - [quần váy]{"entity": "cate", "value": "Skirt"} này còn hàng không dị
+    - Mình muốn mua kiểu [loại blazer]{"entity": "cate", "value": "Blazer"} tương tự như này á
+    - admin có [quần jeans]{"entity": "cate", "value": "Jeans"} kiểu [dạng len]{"entity": "attr", "value": "knit"} không ạ
+    - [Váy chơi hè]{"entity": "cate", "value": "Sundress"} này còn hàng loại này không Admin
+    - Admin có mẫu [áo choàng]{"entity": "cate", "value": "Poncho"} nào [phủ lông]{"entity": "attr", "value": "faux"} [hồng]{"entity": "color", "value": "pink"} đẹp đẹp không dị
+    - Mình muốn mua loại [quần dệt chéo]{"entity": "cate", "value": "Chinos"} này
+    - Shop còn mẫu [áo bánh bèo]{"entity": "cate", "value": "Blouse"} [dạng lưới]{"entity": "attr", "value": "lattice"} [chất liệu len]{"entity": "attr", "value": "knit"} không ạ
+    - Admin có [áo giữ ấm]{"entity": "cate", "value": "Coat"} [màu hồng]{"entity": "color", "value": "pink"} loại [xếp ly]{"entity": "attr", "value": "pleated"} không á
+    - Sốp còn mẫu [quần kaki]{"entity": "cate", "value": "pants"} [màu đen]{"entity": "color", "value": "black"} [kiểu văn phòng]{"entity": "attr", "value": "conventional"} không dị
+    - admin có [Kimono]{"entity": "cate", "value": "Kimono"} [hồng]{"entity": "color", "value": "pink"} loại [đa dạng]{"entity": "attr", "value": "conventional"} không á
+    - [đồ bay]{"entity": "cate", "value": "Jumpsuit"} cái nào đẹp [chất liệu len]{"entity": "attr", "value": "knit"} vậy Tiệm
+    - Có loại [Quần thun ống rộng]{"entity": "cate", "value": "Joggers"} [không có cổ]{"entity": "attr", "value": "no_neckline"} mặc [cổ vuông]{"entity": "attr", "value": "square_neckline"} không Cửa hàng
+    - ad có [đầm ngủ]{"entity": "cate", "value": "Nightdress"} [có hình lưới]{"entity": "attr", "value": "lattice"} [màu trắng]{"entity": "color", "value": "white"} không á
+    - Sốp có kiểu [hoodie]{"entity": "cate", "value": "Hoodie"} [denim]{"entity": "attr", "value": "denim"} [dạng ôm]{"entity": "attr", "value": "tight"} như trên hong á
+    - Admin còn loại [áo hở lưng]{"entity": "cate", "value": "Halter"} nào [hồng]{"entity": "color", "value": "pink"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} đẹp không ạ
+    - tôi muốn mua kiểu [mũ]{"entity": "cate", "value": "Anorak"} tương tự như này á
+    - Còn kiểu [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} [màu hồng]{"entity": "color", "value": "pink"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} như hình shop
+    - ad còn loại [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} sexy [tím]{"entity": "color", "value": "purple"} không Sốp
+    - Ad có kiểu [quần tự chế]{"entity": "cate", "value": "Cutoffs"} giống vậy không á
+    - Loại [sát nách]{"entity": "attr", "value": "sleeveless"} này còn hàng như hình không ạ
+    - Có loại [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [loại cô ton]{"entity": "attr", "value": "cotton"} [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} không Ad
+    - admin còn loại [crop top]{"entity": "cate", "value": "Top"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không admin
+    - Shop có mẫu [quần sọt]{"entity": "cate", "value": "Shorts"} nào [sọc]{"entity": "attr", "value": "striped"} [đen]{"entity": "color", "value": "black"} đẹp đẹp không dị
+    - shop có [quần sọt]{"entity": "cate", "value": "Shorts"} kiểu [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không ạ
+    - Tôi muốn mua mẫu [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} trong hình á
+    - Cửa hàng còn loại [Kimono]{"entity": "cate", "value": "Kimono"} [tím]{"entity": "color", "value": "purple"} [có hoa]{"entity": "attr", "value": "floral"} như bên dưới á
+    - [áo len dày]{"entity": "cate", "value": "Peacoat"} này còn mẫu không thế
+    - admin có kiểu [Áo khoác]{"entity": "cate", "value": "Jacket"} [có hình lưới]{"entity": "attr", "value": "lattice"} [phủ lông]{"entity": "attr", "value": "faux"} như trên hong á
+    - Tôi muốn mua mẫu [áo thun]{"entity": "cate", "value": "Shirt"} như này ạ
+    - admin còn loại [áo thể thao]{"entity": "cate", "value": "Jersey"} dạng [form rộng]{"entity": "attr", "value": "loose"} nào mà đẹp đẹp màu [màu cam]{"entity": "color", "value": "orange"} [hồng]{"entity": "color", "value": "pink"} không Cửa hàng
+    - Lựa dùm mẫu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [kiểu dài]{"entity": "attr", "value": "maxi_length"} và nó màu [màu hồng]{"entity": "color", "value": "pink"} đi shop
+    - tui muốn mua mẫu [áo sơ mi]{"entity": "cate", "value": "Shirt"} như này ạ
+    - ad còn mẫu [quần Jeggings]{"entity": "cate", "value": "Jeggings"} tương tự như không ạ
+    - Ad có mẫu [quần bó sát]{"entity": "cate", "value": "Jodhpurs"} nào [trơn]{"entity": "attr", "value": "solid"} [hồng hồng]{"entity": "color", "value": "pink"} đẹp đẹp không dị
+    - sốp có mẫu [quần]{"entity": "cate", "value": "pants"} nào [dạng ôm]{"entity": "attr", "value": "tight"} [màu hồng]{"entity": "color", "value": "pink"} đẹp đẹp không dị
+    - Có mẫu [áo thun]{"entity": "cate", "value": "T-Shirt"} [dạng len]{"entity": "attr", "value": "knit"} với [lục]{"entity": "color", "value": "blue"} không dị
+    - ad còn hàng [áo len dày]{"entity": "cate", "value": "Peacoat"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} nào tương tự không ạ
+    - shop có mẫu [quần lửng]{"entity": "cate", "value": "Capris"} [chất liệu len]{"entity": "attr", "value": "knit"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} nào cute không dị
+    - ad có [áo]{"entity": "cate", "value": "T-Shirt"} [màu hồng]{"entity": "color", "value": "pink"} loại [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} không á
+    - Tôi muốn mua mẫu [quần tự chế]{"entity": "cate", "value": "Cutoffs"} như này ạ
+    - Có mẫu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [denim]{"entity": "attr", "value": "denim"} [vàng đậm]{"entity": "color", "value": "yellow"} không dị
+    - [quần váy]{"entity": "cate", "value": "Skirt"} cái nào đẹp [cổ vuông]{"entity": "attr", "value": "square_neckline"} vậy ad
+    - admin còn loại [Áo]{"entity": "cate", "value": "T-Shirt"} dạng [kiểu suông]{"entity": "attr", "value": "loose"} nào mà đẹp đẹp màu [vàng đậm]{"entity": "color", "value": "yellow"} [đen]{"entity": "color", "value": "black"} không Sốp
+    - Kiểu [onesie]{"entity": "cate", "value": "Onesie"} loại [mát mẻ]{"entity": "attr", "value": "conventional"} [xanh]{"entity": "color", "value": "blue"} còn hàng k Admin
+    - Shop có kiểu [Áo khoác]{"entity": "cate", "value": "Jacket"} [trên đầu gối]{"entity": "attr", "value": "solid"} [trơn]{"entity": "attr", "value": "solid"} xinh không Admin
+    - tôi muốn mua mẫu [váy xà rông]{"entity": "cate", "value": "Sarong"} trong hình á
+    - Shop có [áo len dày]{"entity": "cate", "value": "Peacoat"} [trắng]{"entity": "color", "value": "white"} loại [trơn]{"entity": "attr", "value": "solid"} không á
+    - Tôi muốn mua mẫu [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} như này có không ạ
+    - sốp còn loại [quần ống rộng]{"entity": "cate", "value": "Culottes"} [xanh]{"entity": "color", "value": "blue"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} như bên dưới á
+    - [đầm]{"entity": "cate", "value": "Dress"} này còn hàng loại này không admin
+    - Mình muốn mua mẫu [mũ]{"entity": "cate", "value": "Anorak"} như này ạ
+    - shop còn mẫu [đầm ngủ]{"entity": "cate", "value": "Nightdress"} [vàng đậm]{"entity": "color", "value": "yellow"} không ạ
+    - Có loại [quần lửng]{"entity": "cate", "value": "short_sleeve"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không Admin
+    - shop còn loại [quần váy]{"entity": "cate", "value": "Skirt"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} á Shop
+    - Lựa giúp mìn cái kiểu [sweater]{"entity": "cate", "value": "Sweater"} loại [không có cổ]{"entity": "attr", "value": "no_neckline"} [xanh lá]{"entity": "color", "value": "green"} đi Admin
+    - Mìn muốn mua kiểu [quần bó sát]{"entity": "cate", "value": "Jodhpurs"} [cam]{"entity": "color", "value": "orange"} [rộng rãi]{"entity": "attr", "value": "conventional"} này á mà không biết lựa như thế nào
+    - Có loại [crop top]{"entity": "cate", "value": "knit"} [dạng len]{"entity": "attr", "value": "knit"} không shop
+    - Có loại [áo thun]{"entity": "cate", "value": "T-Shirt"} [có hình lưới]{"entity": "attr", "value": "lattice"} mặc [kiểu không váy]{"entity": "attr", "value": "no_dress"} không Admin
+    - Shop còn hàng [áo]{"entity": "cate", "value": "T-Shirt"} [kiểu suông]{"entity": "attr", "value": "loose"} nào tương tự không ạ
+    - Còn kiểu [mũ]{"entity": "cate", "value": "Anorak"} [hồng]{"entity": "color", "value": "pink"} [không có cổ]{"entity": "attr", "value": "no_neckline"} không shop
+    - Tôi muốn mua loại [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} này
+    - Có mẫu [quần sọt]{"entity": "cate", "value": "Shorts"} [kiểu dài]{"entity": "attr", "value": "maxi_length"} với [màu hồng]{"entity": "color", "value": "pink"} không dị
+    - admin tư vấn mua mẫu [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} nào đẹp với ạ [cam]{"entity": "color", "value": "orange"} nha
+    - [áo sơ mi]{"entity": "cate", "value": "Shirt"} cái nào đẹp [có hoa]{"entity": "attr", "value": "floral"} vậy Admin
+    - Tui muốn mua kiểu [Váy chơi hè]{"entity": "cate", "value": "Sundress"} tương tự như này á
+    - mình muốn mua loại [quần ống rộng]{"entity": "cate", "value": "Culottes"} này
+    - Có loại [sweater]{"entity": "cate", "value": "Sweater"} [vải voan]{"entity": "attr", "value": "chiffon"} không shop
+    - Ad có [hoodie]{"entity": "cate", "value": "Hoodie"} [dài]{"entity": "attr", "value": "maxi_length"} [màu nâu]{"entity": "color", "value": "nâu"} không á
+    - Ad còn loại [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} nào [màu tím]{"entity": "color", "value": "purple"} [ca rô]{"entity": "attr", "value": "Flannel"} đẹp không ạ
+    - Admin còn mẫu [Quần thun ống rộng]{"entity": "cate", "value": "Joggers"} [màu trắng]{"entity": "color", "value": "white"} không ạ
+    - Tuih muốn mua kiểu [quần lửng]{"entity": "cate", "value": "quần"} [có in hình]{"entity": "attr", "value": "graphic"} này á mà không biết lựa như thế nào
+    - [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} này còn hàng không dị
+    - Có mẫu [áo thun]{"entity": "cate", "value": "T-Shirt"} [tay dài]{"entity": "attr", "value": "Shirt"} [xanh]{"entity": "color", "value": "blue"} không dị
+    - Có loại [áo ba lổ]{"entity": "cate", "value": "Tank"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} không admin
+    - Ad có mẫu [hoodie]{"entity": "cate", "value": "Hoodie"} [dài tay]{"entity": "attr", "value": "long_sleeve"} nào không
+    - Có loại [đồ bay]{"entity": "cate", "value": "Jumpsuit"} [dạng len]{"entity": "attr", "value": "knit"} mặc [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không Cửa hàng
+    - Sốp tư vấn mua mẫu [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} nào đẹp với ạ [hồng hồng]{"entity": "color", "value": "pink"} nha
+    - admin còn hàng [quần lửng]{"entity": "cate", "value": "Capris"} [trơn]{"entity": "attr", "value": "solid"} nào tương tự không ạ
+    - Toi muốn mua loại [áo Tee]{"entity": "cate", "value": "Tee"} này còn hàng như hình không ạ
+    - Lựa giúp tôi cái kiểu [Váy]{"entity": "cate", "value": "Skirt"} [dài tay]{"entity": "attr", "value": "long_sleeve"} đi Ad
+    - Tui muốn mua mẫu [Áo khoác]{"entity": "cate", "value": "Jacket"} như này có không ạ
+    - Còn kiểu [áo len dày]{"entity": "cate", "value": "Peacoat"} [hồng]{"entity": "color", "value": "pink"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} không Ad
+    - Cửa hàng còn mẫu [Áo]{"entity": "cate", "value": "Shirt"} không ạ
+    - Ad còn mẫu [quần lửng]{"entity": "cate", "value": "quần"} không ạ
+    - [áo sơ mi]{"entity": "cate", "value": "Shirt"} này còn mẫu không thế
+    - Tôi muốn mua kiểu [áo sơ mi]{"entity": "cate", "value": "Shirt"} này á shop
+    - [đồ coverup]{"entity": "cate", "value": "Coverup"} này còn hàng loại này không ad
+    - admin còn loại [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [ngắn]{"entity": "attr", "value": "mini_length"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} á Admin
+    - Sốp có mẫu [áo thun]{"entity": "cate", "value": "Shirt"} [kiểu văn phòng]{"entity": "attr", "value": "conventional"} [thoải mái]{"entity": "attr", "value": "conventional"} nào cute không dị
+    - Shop còn loại [áo]{"entity": "cate", "value": "T-Shirt"} nào [trắng]{"entity": "color", "value": "white"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} đẹp không ạ
+    - Kiểu [đầm bình thường]{"entity": "cate", "value": "Dress"} loại [có hình lưới]{"entity": "attr", "value": "lattice"} [màu trắng]{"entity": "color", "value": "white"} còn hàng k Admin
+    - tiệm có kiểu [váy xà rông]{"entity": "cate", "value": "Sarong"} mà nó [màu xanh lá]{"entity": "color", "value": "green"} không á
+    - Còn kiểu [đầm ngủ]{"entity": "cate", "value": "Nightdress"} như này không
+    - [quần lửng]{"entity": "cate", "value": "Capris"} [màu đỏ]{"entity": "color", "value": "red"} [ngắn]{"entity": "attr", "value": "mini_length"} có loại nào ok không shop
+    - Tôi muốn mua [mũ]{"entity": "cate", "value": "Anorak"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} và nó màu [màu đen]{"entity": "color", "value": "black"} như này ạ
+    - ad có kiểu [áo len dày]{"entity": "cate", "value": "Peacoat"} [phủ lông]{"entity": "attr", "value": "faux"} [tay dài]{"entity": "attr", "value": "Shirt"} xinh không ad
+    - [áo thể thao]{"entity": "cate", "value": "Jersey"} này còn hàng loại này không admin
+    - admin có mẫu [Quần thun ống rộng]{"entity": "cate", "value": "Quần thun ống rộng"} [dạng ôm]{"entity": "attr", "value": "tight"} nào cute không dị
+    - Còn kiểu [áo len có mũ]{"entity": "cate", "value": "Hoodie"} [màu lam]{"entity": "color", "value": "green"} [mát mẻ]{"entity": "attr", "value": "conventional"} không Admin
+    - Lựa giúp Tôi cái kiểu [áo bánh bèo]{"entity": "cate", "value": "Blouse"} loại [kiểu ngắn]{"entity": "attr", "value": "mini_length"} [đen màu]{"entity": "color", "value": "black"} đi admin
+    - Mình muốn mua kiểu [áo Tee]{"entity": "cate", "value": "Tee"} [chất liệu len]{"entity": "attr", "value": "knit"} này á mà không biết lựa như thế nào
+    - Tui muốn mua kiểu [áo len dày]{"entity": "cate", "value": "Peacoat"} tương tự như này á
+    - Tiệm còn chiếc [áo thể thao]{"entity": "cate", "value": "Jersey"} tương tự không ạ
+    - Cửa hàng còn hàng [váy xà rông]{"entity": "cate", "value": "Sarong"} [dạng len]{"entity": "attr", "value": "knit"} nào tương tự không ạ
+    - tui muốn mua loại [Váy]{"entity": "cate", "value": "Skirt"} giống như vậy nè
+    - Có loại [quần lửng]{"entity": "cate", "value": "quần"} [tay dài]{"entity": "attr", "value": "Shirt"} mặc [trên đầu gối]{"entity": "attr", "value": "mini_length"} không shop
+    - [áo sơ mi]{"entity": "cate", "value": "Shirt"} [xanh]{"entity": "color", "value": "blue"} [ca rô]{"entity": "attr", "value": "ca rô"} có loại nào ok không ad
+    - shop còn loại [váy sơ mi]{"entity": "cate", "value": "Shirtdress"} [ngắn]{"entity": "attr", "value": "mini_length"} nào đẹp không ạ
+    - Shop còn hàng [hoodie]{"entity": "cate", "value": "Hoodie"} [form rộng]{"entity": "attr", "value": "loose"} nào tương tự không ạ
+    - [quần tây]{"entity": "cate", "value": "pants"} cái nào đẹp [sọc]{"entity": "attr", "value": "striped"} vậy sốp
+    - [sweater]{"entity": "cate", "value": "Sweater"} [màu đen]{"entity": "color", "value": "black"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} có loại nào ok không Admin
+    - Còn kiểu [quần lót]{"entity": "cate", "value": "Trunks"} [màu đỏ]{"entity": "color", "value": "red"} [dạng rộng rãi]{"entity": "attr", "value": "loose"} như hình Ad
+    - admin còn loại [áo choàng Robe]{"entity": "cate", "value": "Robe"} nào [màu trắng]{"entity": "color", "value": "white"} [denim]{"entity": "attr", "value": "denim"} đẹp không ạ
+    - toi muốn mua loại [váy sơ mi]{"entity": "cate", "value": "Shirtdress"} giống như vậy nè
+    - Admin còn chiếc [đầm bình thường]{"entity": "cate", "value": "Dress"} [cam]{"entity": "color", "value": "orange"} hợp trend bây giờ không ạ
+    - Có loại [áo hở lưng]{"entity": "cate", "value": "Halter"} [ngắn]{"entity": "attr", "value": "mini_length"} [có hình lưới]{"entity": "attr", "value": "lattice"} không ad
+    - Loại [ngắn tay]{"entity": "attr", "value": "short_sleeve"} này còn hàng như hình không ạ
+    - cửa hàng còn mẫu [quần ống rộng]{"entity": "cate", "value": "Culottes"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} [kiểu suông]{"entity": "attr", "value": "loose"} không ạ
+    - [mũ]{"entity": "cate", "value": "Anorak"} [màu xanh lá]{"entity": "color", "value": "green"} [kiểu văn phòng]{"entity": "attr", "value": "conventional"} có loại nào ok không Tiệm
+    - Ad còn chiếc [áo hở lưng]{"entity": "cate", "value": "Halter"} [màu hồng]{"entity": "color", "value": "pink"} hợp trend bây giờ không ạ
+    - Tôih muốn mua kiểu [Áo]{"entity": "cate", "value": "T-Shirt"} tương tự như này á
+    - Admin có kiểu [quần bó sát chân]{"entity": "cate", "value": "Leggings"} như  không á
+    - Có mẫu [mũ]{"entity": "cate", "value": "Anorak"} [dạng len]{"entity": "attr", "value": "knit"} với [vàng đậm]{"entity": "color", "value": "yellow"} không dị
+    - Admin còn loại [đồ bay]{"entity": "cate", "value": "Jumpsuit"} [phủ lông]{"entity": "attr", "value": "faux"} [màu đen]{"entity": "color", "value": "black"} á shop
+    - tiệm còn mẫu [áo choàng]{"entity": "cate", "value": "Poncho"} [đen]{"entity": "color", "value": "black"} không ạ
+    - Lựa giúp Tôi cái kiểu [quần lót]{"entity": "cate", "value": "Trunks"} loại [có hình]{"entity": "attr", "value": "graphic"} [đen]{"entity": "color", "value": "black"} đi Admin
+    - [áo len dày]{"entity": "cate", "value": "Peacoat"} này còn hàng không dị
+    - Lựa giúp tui cái kiểu [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} đi admin
+    - ad còn loại [loại blazer]{"entity": "cate", "value": "Blazer"} nào [màu hồng]{"entity": "color", "value": "pink"} [dạng sọc]{"entity": "attr", "value": "striped"} đẹp không ạ
+    - shop còn loại [áo hở lưng]{"entity": "cate", "value": "Halter"} này không ạ
+    - toi muốn mua [áo Poncho]{"entity": "cate", "value": "Poncho"} [dạng rộng rãi]{"entity": "attr", "value": "loose"} và nó màu [lục]{"entity": "color", "value": "blue"} như này ạ
+    - ad tư vấn mua mẫu [mũ]{"entity": "cate", "value": "Anorak"} nào đẹp với ạ [màu vàng]{"entity": "color", "value": "yellow"} nha
+    - tui muốn mua kiểu [đồ coverup]{"entity": "cate", "value": "Coverup"} tương tự như này á
+    - [đầm không tay]{"entity": "cate", "value": "Cape"} [màu vàng]{"entity": "color", "value": "yellow"} [dạng len]{"entity": "attr", "value": "dạng len"} có loại nào giống hình không
+    - Còn kiểu [hoodie]{"entity": "cate", "value": "Hoodie"} như này không
+    - Có loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} [loại cô ton]{"entity": "attr", "value": "cotton"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} không ad
+    - Có loại [đồ coverup]{"entity": "cate", "value": "striped"} [sọc]{"entity": "attr", "value": "striped"} không ad
+    - ad còn loại [áo ba lổ]{"entity": "cate", "value": "Tank"} [màu trắng]{"entity": "color", "value": "white"} [phủ lông]{"entity": "attr", "value": "faux"} như bên dưới á
+    - [áo hở lưng]{"entity": "cate", "value": "Halter"} [vàng đậm]{"entity": "color", "value": "yellow"} [ngắn]{"entity": "attr", "value": "ngắn"} có loại nào giống hình không
+    - Sốp còn loại [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} [xanh]{"entity": "color", "value": "blue"} [dài tay]{"entity": "attr", "value": "long_sleeve"} như bên dưới á
+    - Admin còn loại [quần dệt chéo]{"entity": "cate", "value": "Chinos"} này không ạ
+    - ad có mẫu [quần ống rộng]{"entity": "cate", "value": "Culottes"} nào [tay dài]{"entity": "attr", "value": "Shirt"} [xanh]{"entity": "color", "value": "blue"} đẹp đẹp không dị
+    - Có loại [Váy]{"entity": "cate", "value": "Skirt"} [rộng rãi]{"entity": "attr", "value": "conventional"} [kiểu không váy]{"entity": "attr", "value": "no_dress"} không ad
+    - sốp còn mẫu [quần lửng]{"entity": "cate", "value": "quần"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} [ca rô]{"entity": "attr", "value": "Flannel"} không ạ
+    - Tôi muốn mua kiểu [váy]{"entity": "cate", "value": "Skirt"} này á ad
+    - admin còn loại [quần jean]{"entity": "cate", "value": "Jeans"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} á ad
+    - [quần lửng]{"entity": "cate", "value": "quần"} [màu trắng]{"entity": "color", "value": "white"} mà [kiểu văn phòng]{"entity": "attr", "value": "conventional"} để đi học còn hàng không ạ
+    - Adminmin còn mẫu [áo len dày]{"entity": "cate", "value": "Peacoat"} [hồng hồng]{"entity": "color", "value": "pink"} không ạ
+    - Ad còn loại [Váy]{"entity": "cate", "value": "Skirt"} [kiểu dài]{"entity": "attr", "value": "maxi_length"} á Shop
+    - Ad có kiểu [quần váy]{"entity": "cate", "value": "Skirt"} [xếp ly]{"entity": "attr", "value": "pleated"} [tay dài]{"entity": "attr", "value": "Shirt"} xinh không Cửa hàng
+    - shop còn loại [quần]{"entity": "cate", "value": "pants"} này không ạ
+    - [áo thun]{"entity": "cate", "value": "T-Shirt"} này còn hàng không dị
+    - Admin có kiểu [đồ coverup]{"entity": "cate", "value": "Coverup"} [dạng len]{"entity": "attr", "value": "knit"} xinh [màu xanh lá]{"entity": "color", "value": "green"} không shop
+    - Shop còn chiếc [Váy]{"entity": "cate", "value": "Skirt"} nào ở hình không ạ
+    - Lựa giúp Mìn cái kiểu [Váy]{"entity": "cate", "value": "Skirt"} [denim]{"entity": "attr", "value": "denim"} đi Admin
+    - [crop top]{"entity": "cate", "value": "Top"} này còn mẫu không thế
+    - shop có kiểu [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [ngắn]{"entity": "attr", "value": "mini_length"} như trên hong á
+    - Loại [không có cổ]{"entity": "attr", "value": "no_neckline"} này còn hàng như hình không ạ
+    - Có mẫu [đầm]{"entity": "cate", "value": "Dress"} [form rộng]{"entity": "attr", "value": "loose"} [màu nâu]{"entity": "color", "value": "nâu"} không dị
+    - ad còn mẫu [sweater]{"entity": "cate", "value": "Sweater"} không ạ
+    - Ad còn loại [đồ coverup]{"entity": "cate", "value": "Coverup"} [phủ lông]{"entity": "attr", "value": "faux"} [dạng ôm]{"entity": "attr", "value": "tight"} á shop
+    - [quần]{"entity": "cate", "value": "pants"} cái nào đẹp [hoa hoè]{"entity": "attr", "value": "floral"} vậy ad
+    - Ad có kiểu [quần tây]{"entity": "cate", "value": "pants"} như  không á
+    - Lựa giúp tôi cái kiểu [quần ống loe]{"entity": "cate", "value": "Gauchos"} [dài qua đầu gối]{"entity": "attr", "value": "maxi_length"} đi admin
+    - Sốp còn chiếc [quần lửng]{"entity": "cate", "value": "quần"} tương tự không ạ
+    - Sốp còn mẫu [Kimono]{"entity": "cate", "value": "Kimono"} không ạ
+    - [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} [đen màu]{"entity": "color", "value": "black"} mà [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} để đi học còn hàng không ạ
+    - admin có mẫu [mũ]{"entity": "cate", "value": "Anorak"} nào [phủ lông]{"entity": "attr", "value": "faux"} [tím]{"entity": "color", "value": "purple"} đẹp đẹp không dị
+    - tôih muốn mua kiểu [áo]{"entity": "cate", "value": "T-Shirt"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} này á mà không biết lựa như thế nào
+    - Lựa dùm mẫu [quần ống rộng]{"entity": "cate", "value": "Culottes"} [xanh lá]{"entity": "color", "value": "green"} đi cửa hàng
+    - toi muốn mua mẫu [Áo]{"entity": "cate", "value": "T-Shirt"} trong hình á
+    - Ad còn loại [đầm không tay]{"entity": "cate", "value": "Cape"} [kiểu suông]{"entity": "attr", "value": "loose"} á Sốp
+    - tôi muốn mua kiểu [Váy chơi hè]{"entity": "cate", "value": "Sundress"} này á Shop
+    - Tui muốn mua loại [onesie]{"entity": "cate", "value": "Onesie"} này
+    - tớ đang có nhu cầu mua loại [áo choàng]{"entity": "cate", "value": "Poncho"} [tay dài]{"entity": "attr", "value": "Shirt"} hợp xu hướng đi shop
+    - Lựa dùm mẫu [áo]{"entity": "cate", "value": "T-Shirt"} [ngắn]{"entity": "attr", "value": "mini_length"} và nó màu [vàng đậm]{"entity": "color", "value": "yellow"} đi Sốp
+    - Có loại [quần bó sát]{"entity": "cate", "value": "Jodhpurs"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} mặc [dài]{"entity": "attr", "value": "maxi_length"} không Admin
+    - Cửa hàng có [áo giữ ấm]{"entity": "cate", "value": "Coat"} kiểu [trơn]{"entity": "attr", "value": "solid"} không ạ
+    - Toi muốn mua mẫu [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} trong hình á
+    - [áo sơ mi]{"entity": "cate", "value": "Shirt"} [màu lam]{"entity": "color", "value": "green"} mà [kiểu ngắn]{"entity": "attr", "value": "mini_length"} để đi học còn hàng không ạ
+    - Loại [trên đầu gối]{"entity": "attr", "value": "mini_length"} này còn hàng như hình không ạ
+    - Có loại [Áo len dẹt hở]{"entity": "cate", "value": "lattice"} [dạng lưới]{"entity": "attr", "value": "lattice"} không Admin
+    - Ad còn hàng [quần lửng]{"entity": "cate", "value": "Capris"} [thoải mái]{"entity": "attr", "value": "conventional"} nào tương tự không ạ
+    - Lựa dùm mẫu [quần Jeggings]{"entity": "cate", "value": "Jeggings"} [dạng len]{"entity": "attr", "value": "knit"} và nó màu [cam]{"entity": "color", "value": "orange"} đi ad
+    - Shop có mẫu [mũ]{"entity": "cate", "value": "Anorak"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} [rộng rãi]{"entity": "attr", "value": "conventional"} nào cute không dị
+    - ad còn mẫu [áo]{"entity": "cate", "value": "T-Shirt"} không ạ
+    - Lựa dùm mẫu [quần dệt chéo]{"entity": "cate", "value": "Chinos"} [màu đen]{"entity": "color", "value": "black"} đi Ad
+    - Có mẫu [áo hở lưng]{"entity": "cate", "value": "Halter"} [rộng rãi]{"entity": "attr", "value": "conventional"} với [màu đỏ]{"entity": "color", "value": "red"} không dị
+    - admin có [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} [màu trắng]{"entity": "color", "value": "white"} loại [không có cổ]{"entity": "attr", "value": "no_neckline"} không á
+    - [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} [hồng]{"entity": "color", "value": "pink"} mà [denim]{"entity": "attr", "value": "denim"} để đi học còn hàng không ạ
+    - [quần kaki]{"entity": "cate", "value": "pants"} này còn hàng không dị
+    - Cửa hàng có kiểu [loại blazer]{"entity": "cate", "value": "Blazer"} mà nó [màu nâu]{"entity": "color", "value": "nâu"} không á
+    - [áo choàng]{"entity": "cate", "value": "Poncho"} [màu lam]{"entity": "color", "value": "green"} mà [form rộng]{"entity": "attr", "value": "loose"} để đi học còn hàng không ạ
+    - Có loại [đầm không tay]{"entity": "cate", "value": "Cape"} [hoa hoè]{"entity": "attr", "value": "floral"} không Cửa hàng
+    - Sốp có mẫu [quần sọt]{"entity": "cate", "value": "Shorts"} [dạng ôm]{"entity": "attr", "value": "tight"} [ngắn]{"entity": "attr", "value": "mini_length"} nào cute không dị
+    - Có loại [hoodie]{"entity": "cate", "value": "Hoodie"} màu [cổ vuông]{"entity": "attr", "value": "square_neckline"} [cam]{"entity": "color", "value": "orange"} không Shop
+    - Ad còn mẫu [áo len dày]{"entity": "cate", "value": "Peacoat"} không ạ
+    - Admin còn loại [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} sexy [màu lam]{"entity": "color", "value": "green"} không Admin
+    - Admin còn mẫu [váy sơ mi]{"entity": "cate", "value": "Shirtdress"} [ôm sát người]{"entity": "attr", "value": "tight"} [có hình]{"entity": "attr", "value": "graphic"} không ạ
+    - Còn kiểu [quần lửng]{"entity": "cate", "value": "Capris"} [màu hồng]{"entity": "color", "value": "pink"} [kiểu không váy]{"entity": "attr", "value": "no_dress"} không shop
+    - admin còn loại [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} nào [màu cam]{"entity": "color", "value": "orange"} [sát nách]{"entity": "attr", "value": "sleeveless"} đẹp không ạ
+    - shop có kiểu [áo giữ ấm]{"entity": "cate", "value": "Coat"} như  không á
+    - Tiệm còn mẫu [hoodie]{"entity": "cate", "value": "Hoodie"} [màu đỏ]{"entity": "color", "value": "red"} [ôm sát người]{"entity": "attr", "value": "tight"} không dị
+    - Lựa dùm mẫu [đồ bay]{"entity": "cate", "value": "Jumpsuit"} [dạng thêu]{"entity": "attr", "value": "embroidered"} và nó màu [màu vàng]{"entity": "color", "value": "yellow"} đi shop
+    - [mũ]{"entity": "cate", "value": "Anorak"} [trơn]{"entity": "attr", "value": "solid"} mà [dạng lưới]{"entity": "attr", "value": "lattice"} để đi học còn hàng không ạ
+    - [áo choàng Robe]{"entity": "cate", "value": "Robe"} [màu trắng]{"entity": "color", "value": "white"} mà [kiểu văn phòng]{"entity": "attr", "value": "conventional"} để đi học còn hàng không ạ
+    - Admin còn chiếc [áo sơ mi]{"entity": "cate", "value": "Shirt"} [đen màu]{"entity": "color", "value": "black"} hợp trend bây giờ không ạ
+    - [quần bó sát chân]{"entity": "cate", "value": "Leggings"} [trắng]{"entity": "color", "value": "white"} [sát nách]{"entity": "attr", "value": "sát nách"} có loại nào ok không Ad
+    - admin có kiểu [loại blazer]{"entity": "cate", "value": "Blazer"} [không có cổ]{"entity": "attr", "value": "no_neckline"} [loại cô ton]{"entity": "attr", "value": "cotton"} xinh không admin
+    - ad có mẫu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [phủ lông]{"entity": "attr", "value": "faux"} nào không
+    - tớ muốn mua mẫu [mũ]{"entity": "cate", "value": "Anorak"} như này ạ
+    - Admin còn mẫu [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} không ạ
+    - admin có [đầm ngủ]{"entity": "cate", "value": "Nightdress"} kiểu [dài qua đầu gối]{"entity": "attr", "value": "maxi_length"} không ạ
+    - Shop còn loại [Áo]{"entity": "cate", "value": "T-Shirt"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} nào đẹp không ạ
+    - sốp có kiểu [áo]{"entity": "cate", "value": "T-Shirt"} mà nó [hồng]{"entity": "color", "value": "pink"} không á
+    - Admin còn loại [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [dạng rộng rãi]{"entity": "attr", "value": "loose"} á Admin
+    - Còn kiểu [sweater]{"entity": "cate", "value": "Sweater"} như này không
+    - shop còn loại [quần sọt]{"entity": "cate", "value": "Shorts"} này không ạ
+    - [quần váy]{"entity": "cate", "value": "Skirt"} này còn mẫu không thế
+    - Tôi muốn mua mẫu [áo sơ mi]{"entity": "cate", "value": "Shirt"} trong hình á
+    - tôi muốn mua loại [đầm rộng]{"entity": "cate", "value": "Caftan"} này còn hàng như hình không ạ
+    - admin còn chiếc [áo hở lưng]{"entity": "cate", "value": "Halter"} tương tự không ạ
+    - ad có mẫu [áo Tee]{"entity": "cate", "value": "Tee"} nào [kiểu dài]{"entity": "attr", "value": "maxi_length"} [hồng]{"entity": "color", "value": "pink"} đẹp đẹp không dị
+    - tôi muốn mua kiểu [áo choàng]{"entity": "cate", "value": "Poncho"} này á admin
+    - Mìnhh muốn mua kiểu [sweater]{"entity": "cate", "value": "Sweater"} tương tự như này á
+    - ad còn hàng [quần dệt chéo]{"entity": "cate", "value": "Chinos"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} nào tương tự không ạ
+    - ad còn mẫu [quần kaki]{"entity": "cate", "value": "pants"} không ạ
+    - Shop còn loại [áo]{"entity": "cate", "value": "T-Shirt"} [dài]{"entity": "attr", "value": "maxi_length"} nào đẹp không ạ
+    - Còn kiểu [quần bó sát]{"entity": "cate", "value": "Jodhpurs"} [màu xanh lá]{"entity": "color", "value": "green"} [denim]{"entity": "attr", "value": "denim"} không cửa hàng
+    - Shop còn loại [quần]{"entity": "cate", "value": "pants"} dạng [phủ lông]{"entity": "attr", "value": "faux"} nào mà đẹp đẹp màu [màu đen]{"entity": "color", "value": "black"} [hồng]{"entity": "color", "value": "pink"} không admin
+    - Còn kiểu [quần jeans]{"entity": "cate", "value": "Jeans"} [hồng hồng]{"entity": "color", "value": "pink"} [có hình lưới]{"entity": "attr", "value": "lattice"} như hình Shop
+    - Còn kiểu [váy sơ mi]{"entity": "cate", "value": "Shirtdress"} [màu đen]{"entity": "color", "value": "black"} [thoải mái]{"entity": "attr", "value": "conventional"} không tiệm
+    - Ad còn mẫu [áo thun]{"entity": "cate", "value": "T-Shirt"} tương tự như không ạ
+    - Tiệm còn loại [áo thun]{"entity": "cate", "value": "Shirt"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [trắng]{"entity": "color", "value": "white"} á tiệm
+    - Còn kiểu [quần jeans]{"entity": "cate", "value": "Jeans"} [hồng]{"entity": "color", "value": "pink"} [ca rô]{"entity": "attr", "value": "Flannel"} không ad
+    - Admin còn loại [quần lửng]{"entity": "cate", "value": "Capris"} sexy [cam]{"entity": "color", "value": "orange"} không ad
+    - Lựa dùm mẫu [mũ]{"entity": "cate", "value": "Anorak"} [lục]{"entity": "color", "value": "blue"} đi cửa hàng
+    - Lựa giúp Tôi cái kiểu [áo Poncho]{"entity": "cate", "value": "Poncho"} [dạng ôm]{"entity": "attr", "value": "tight"} đi Admin
+    - Tôi muốn mua loại [Quần thun ống rộng]{"entity": "cate", "value": "Joggers"} này
+    - [áo ba lổ]{"entity": "cate", "value": "Tank"} cái nào đẹp [rộng rãi]{"entity": "attr", "value": "conventional"} vậy ad
+    - Có mẫu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [rộng rãi]{"entity": "attr", "value": "conventional"} [đen]{"entity": "color", "value": "black"} không dị
+    - [áo thể thao]{"entity": "cate", "value": "Jersey"} [hồng]{"entity": "color", "value": "pink"} mà [dạng ôm]{"entity": "attr", "value": "tight"} để đi học còn hàng không ạ
+    - tớ muốn mua kiểu [mũ]{"entity": "cate", "value": "Anorak"} này á Cửa hàng
+    - Kiểu [quần lót]{"entity": "cate", "value": "Trunks"} loại [denim]{"entity": "attr", "value": "denim"} [màu xanh lá]{"entity": "color", "value": "green"} còn hàng k Admin
+    - Ad còn mẫu [áo]{"entity": "cate", "value": "T-Shirt"} [dài tay]{"entity": "attr", "value": "long_sleeve"} [kiểu suông]{"entity": "attr", "value": "loose"} không ạ
+    - Admin còn chiếc [quần lửng]{"entity": "cate", "value": "Capris"} [vàng đậm]{"entity": "color", "value": "yellow"} hợp trend bây giờ không ạ
+    - Toi muốn mua [váy xà rông]{"entity": "cate", "value": "Sarong"} [chất liệu len]{"entity": "attr", "value": "knit"} và nó màu [màu xanh lá]{"entity": "color", "value": "green"} như này ạ
+    - [áo sơ mi]{"entity": "cate", "value": "Shirt"} [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} mà [dài]{"entity": "attr", "value": "maxi_length"} để đi học còn hàng không ạ
+    - Sốp có mẫu [đầm]{"entity": "cate", "value": "Dress"} [dạng len]{"entity": "attr", "value": "knit"} [phủ lông]{"entity": "attr", "value": "faux"} nào cute không dị
+    - Admin còn loại [đầm ngủ]{"entity": "cate", "value": "Nightdress"} sexy [vàng đậm]{"entity": "color", "value": "yellow"} không sốp
+    - ad còn loại [Áo]{"entity": "cate", "value": "Shirt"} [không có cổ]{"entity": "attr", "value": "no_neckline"} [trơn]{"entity": "attr", "value": "solid"} á ad
+    - Shop còn mẫu [áo Poncho]{"entity": "cate", "value": "Poncho"} không ạ
+    - Kiểu [đầm bình thường]{"entity": "cate", "value": "Dress"} loại [dạng ôm]{"entity": "attr", "value": "tight"} [màu đen]{"entity": "color", "value": "black"} còn hàng k cửa hàng
+    - Có mẫu [quần]{"entity": "cate", "value": "pants"} [có hình]{"entity": "attr", "value": "graphic"} với [đỏ]{"entity": "color", "value": "red"} không dị
+    - Admin có kiểu [áo sơ mi]{"entity": "cate", "value": "Shirt"} như  không á
+    - ad còn loại [áo]{"entity": "cate", "value": "T-Shirt"} [dạng sọc]{"entity": "attr", "value": "striped"} [màu đỏ]{"entity": "color", "value": "red"} á ad
+    - toi muốn mua loại [quần sọt]{"entity": "cate", "value": "Shorts"} này còn hàng như hình không ạ
+    - Loại [có hình]{"entity": "attr", "value": "graphic"} này còn hàng như hình không ạ
+    - tớ muốn mua loại [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} giống như vậy nè
+    - toi muốn mua loại [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} này
+    - Adminmin có kiểu [quần jeans]{"entity": "cate", "value": "Jeans"} [dạng len]{"entity": "attr", "value": "knit"} xinh [màu vàng]{"entity": "color", "value": "yellow"} không ad
+    - Adminmin còn mẫu [áo sơ mi]{"entity": "cate", "value": "Shirt"} tương tự như không ạ
+    - Có mẫu [áo len có mũ]{"entity": "cate", "value": "Hoodie"} [mát mẻ]{"entity": "attr", "value": "conventional"} với [màu hồng]{"entity": "color", "value": "pink"} không dị
+    - Còn kiểu [đầm]{"entity": "cate", "value": "Dress"} [lục]{"entity": "color", "value": "blue"} [dài tay]{"entity": "attr", "value": "long_sleeve"} không admin
+    - adminmin có kiểu [áo len dày]{"entity": "cate", "value": "Peacoat"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} [denim]{"entity": "attr", "value": "denim"} xinh không Tiệm
+    - Ad còn mẫu [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} [chất liệu len]{"entity": "attr", "value": "knit"} [ngắn]{"entity": "attr", "value": "mini_length"} không ạ
+    - Tôi muốn mua kiểu [đầm ngủ]{"entity": "cate", "value": "Nightdress"} tương tự như này á
+    - Cửa hàng còn mẫu [quần sọt]{"entity": "cate", "value": "Shorts"} [xanh]{"entity": "color", "value": "blue"} không ạ
+    - Còn kiểu [Áo]{"entity": "cate", "value": "T-Shirt"} [cam]{"entity": "color", "value": "orange"} [ôm sát người]{"entity": "attr", "value": "tight"} không ad
+    - shop còn mẫu [áo len dày]{"entity": "cate", "value": "Peacoat"} [đen]{"entity": "color", "value": "black"} không ạ
+    - sốp còn mẫu [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} tương tự như không ạ
+    - Tui muốn mua kiểu [quần]{"entity": "cate", "value": "pants"} tương tự như này á
+    - ad có kiểu [áo]{"entity": "cate", "value": "T-Shirt"} [ngắn]{"entity": "attr", "value": "mini_length"} xinh [màu nâu]{"entity": "color", "value": "nâu"} không admin
+    - shop có kiểu [quần Jeggings]{"entity": "cate", "value": "Jeggings"} như  không á
+    - Tui muốn mua mẫu [quần sọt]{"entity": "cate", "value": "Shorts"} như này có không ạ
+    - Có mẫu [áo giữ ấm]{"entity": "cate", "value": "Coat"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} với [màu xanh lá]{"entity": "color", "value": "green"} không dị
+    - Kiểu [đầm]{"entity": "cate", "value": "Dress"} loại [sọc]{"entity": "attr", "value": "striped"} [đen màu]{"entity": "color", "value": "black"} còn hàng k Tiệm
+    - ad có [quần kaki]{"entity": "cate", "value": "pants"} [denim]{"entity": "attr", "value": "denim"} [vàng đậm]{"entity": "color", "value": "yellow"} không á
+    - Lựa dùm mẫu [crop top]{"entity": "cate", "value": "Top"} [trắng]{"entity": "color", "value": "white"} đi admin
+    - [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} này còn hàng loại này không sốp
+    - [mũ]{"entity": "cate", "value": "Anorak"} [tím]{"entity": "color", "value": "purple"} mà [dạng sọc]{"entity": "attr", "value": "striped"} để đi học còn hàng không ạ
+    - Tiệm có mẫu [áo ba lổ]{"entity": "cate", "value": "Tank"} [ngắn]{"entity": "attr", "value": "mini_length"} nào không
+    - Ad có mẫu [đầm rộng]{"entity": "cate", "value": "Caftan"} [dạng ôm]{"entity": "attr", "value": "tight"} [form rộng]{"entity": "attr", "value": "loose"} nào cute không dị
+    - admin có [hoodie]{"entity": "cate", "value": "Hoodie"} [vàng đậm]{"entity": "color", "value": "yellow"} loại [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} không á
+    - Còn kiểu [crop top]{"entity": "cate", "value": "Top"} [màu xanh lá]{"entity": "color", "value": "green"} [dài qua đầu gối]{"entity": "attr", "value": "maxi_length"} không Sốp
+    - toi muốn mua kiểu [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} tương tự như này á
+    - Admin còn mẫu [Áo]{"entity": "cate", "value": "Shirt"} [màu nâu]{"entity": "color", "value": "nâu"} [loại cô ton]{"entity": "attr", "value": "cotton"} không dị
+    - Có loại [váy]{"entity": "cate", "value": "Skirt"} màu [kiểu ngắn]{"entity": "attr", "value": "mini_length"} [tím]{"entity": "color", "value": "purple"} không Cửa hàng
+    - Admin còn mẫu [áo thể thao]{"entity": "cate", "value": "Jersey"} không ạ
+    - Mình muốn mua mẫu [đầm rộng]{"entity": "cate", "value": "Caftan"} như này ạ
+    - Tôi muốn mua [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [dạng thêu]{"entity": "attr", "value": "embroidered"} và nó màu [màu đỏ]{"entity": "color", "value": "red"} như này ạ
+    - tui muốn mua [áo]{"entity": "cate", "value": "T-Shirt"} [dạng rộng rãi]{"entity": "attr", "value": "loose"} và nó màu [hồng]{"entity": "color", "value": "pink"} như này ạ
+    - Shop còn loại [đầm không tay]{"entity": "cate", "value": "Cape"} nào [màu hồng]{"entity": "color", "value": "pink"} [dạng ôm]{"entity": "attr", "value": "tight"} đẹp không ạ
+    - [áo len có mũ]{"entity": "cate", "value": "Hoodie"} cái nào đẹp [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} vậy ad
+    - [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} [phủ lông]{"entity": "attr", "value": "faux"} mà [có hình lưới]{"entity": "attr", "value": "lattice"} để đi học còn hàng không ạ
+    - shop còn loại [áo len dày]{"entity": "cate", "value": "Peacoat"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không Shop
+    - Kiểu [crop top]{"entity": "cate", "value": "Top"} loại [dạng sọc]{"entity": "attr", "value": "striped"} [màu cam]{"entity": "color", "value": "orange"} còn hàng k shop
+    - ad còn mẫu [quần lửng]{"entity": "cate", "value": "quần"} không ạ
+    - shop còn chiếc [Váy chơi hè]{"entity": "cate", "value": "Sundress"} tương tự không ạ
+    - Shop có kiểu [quần]{"entity": "cate", "value": "pants"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} xinh [hồng]{"entity": "color", "value": "pink"} không ad
+    - Admin còn loại [đầm]{"entity": "cate", "value": "Dress"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} á admin
+    - Có mẫu {"entity": "cate", "value": "Bomber"} kiểu [sọc]{"entity": "attr", "value": "striped"} với màu [xanh]{"entity": "color", "value": "blue"} không dị
+    - Sốp có kiểu [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} [sọc]{"entity": "attr", "value": "striped"} xinh [trắng]{"entity": "color", "value": "white"} không shop
+    - Admin còn hàng [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [rộng rãi]{"entity": "attr", "value": "conventional"} nào tương tự không ạ
+    - Shop có kiểu [hoodie]{"entity": "cate", "value": "Hoodie"} như  không á
+    - Lựa giúp Tui cái kiểu [đầm]{"entity": "cate", "value": "Dress"} loại [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} [màu xanh lá]{"entity": "color", "value": "green"} đi admin
+    - Có mẫu {"entity": "cate", "value": "Bomber"} kiểu [dạng lưới]{"entity": "attr", "value": "lattice"} với màu [màu xanh lá]{"entity": "color", "value": "green"} không dị
+    - shop còn loại [áo]{"entity": "cate", "value": "T-Shirt"} [trơn]{"entity": "attr", "value": "solid"} nào đẹp không ạ
+    - Shop còn loại [loại blazer]{"entity": "cate", "value": "Blazer"} này không ạ
+    - Có mẫu [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [dạng ôm]{"entity": "attr", "value": "tight"} với [màu xanh lá]{"entity": "color", "value": "green"} không dị
+    - ad còn mẫu [loại blazer]{"entity": "cate", "value": "Blazer"} [có hình lưới]{"entity": "attr", "value": "lattice"} [ngắn]{"entity": "attr", "value": "mini_length"} không ạ
+    - Ad có kiểu [quần lót]{"entity": "cate", "value": "Trunks"} giống vậy không á
+    - shop còn loại [quần dệt chéo]{"entity": "cate", "value": "Chinos"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} nào đẹp không ạ
+    - Có loại [đầm ngủ]{"entity": "cate", "value": "Nightdress"} [có hình]{"entity": "attr", "value": "graphic"} không shop
+    - Tui muốn mua loại [quần dệt chéo]{"entity": "cate", "value": "Chinos"} này
+    - [áo thể thao]{"entity": "cate", "value": "Jersey"} cái nào đẹp [thoải mái]{"entity": "attr", "value": "conventional"} vậy Ad
+    - Sốp còn mẫu [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} không ạ
+    - Ad còn loại [quần sọt]{"entity": "cate", "value": "Shorts"} này không ạ
+    - Còn kiểu [áo choàng]{"entity": "cate", "value": "Poncho"} [màu cam]{"entity": "color", "value": "orange"} [denim]{"entity": "attr", "value": "denim"} không shop
+    - Kiểu [quần ống loe]{"entity": "cate", "value": "Gauchos"} loại [sát nách]{"entity": "attr", "value": "sleeveless"} [màu đen]{"entity": "color", "value": "black"} còn hàng k Sốp
+    - ad còn loại [quần lửng]{"entity": "cate", "value": "Capris"} [vàng đậm]{"entity": "color", "value": "yellow"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} như bên dưới á
+    - Lựa dùm mẫu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [đen màu]{"entity": "color", "value": "black"} đi Cửa hàng
+    - Toi muốn mua loại [Kimono]{"entity": "cate", "value": "Kimono"} này
+    - Loại [xếp ly]{"entity": "attr", "value": "pleated"} này còn hàng như hình không ạ
+    - tui muốn mua mẫu [đầm không tay]{"entity": "cate", "value": "Cape"} như này có không ạ
+    - Admin tư vấn mua mẫu [đầm]{"entity": "cate", "value": "Dress"} nào đẹp với ạ [tím]{"entity": "color", "value": "purple"} nha
+    - Lựa giúp tôi cái kiểu [áo thun]{"entity": "cate", "value": "Shirt"} loại [dạng rộng rãi]{"entity": "attr", "value": "loose"} [màu đen]{"entity": "color", "value": "black"} đi Sốp
+    - [áo hở lưng]{"entity": "cate", "value": "Halter"} [chất liệu len]{"entity": "attr", "value": "knit"} mà [dài qua đầu gối]{"entity": "attr", "value": "maxi_length"} để đi học còn hàng không ạ
+    - Còn kiểu [đầm]{"entity": "cate", "value": "Dress"} [màu nâu]{"entity": "color", "value": "nâu"} [có hình]{"entity": "attr", "value": "graphic"} như hình ad
+    - Lựa giúp Mình cái kiểu [Váy chơi hè]{"entity": "cate", "value": "Sundress"} loại [dạng thêu]{"entity": "attr", "value": "embroidered"} [màu nâu]{"entity": "color", "value": "nâu"} đi ad
+    - ad có mẫu [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} nào [không có cổ]{"entity": "attr", "value": "no_neckline"} [màu xanh lá]{"entity": "color", "value": "green"} đẹp đẹp không dị
+    - Ad còn mẫu [Quần thun ống rộng]{"entity": "cate", "value": "Joggers"} tương tự như không ạ
+    - shop còn loại [Váy chơi hè]{"entity": "cate", "value": "Sundress"} này không ạ
+    - admin có [đầm bình thường]{"entity": "cate", "value": "Dress"} kiểu [trên đầu gối]{"entity": "attr", "value": "mini_length"} không ạ
+    - admin có kiểu [quần kaki]{"entity": "cate", "value": "pants"} [có hoa]{"entity": "attr", "value": "floral"} xinh [lục]{"entity": "color", "value": "blue"} không Admin
+    - Lựa giúp mình cái kiểu [Váy]{"entity": "cate", "value": "Skirt"} [dài tay]{"entity": "attr", "value": "long_sleeve"} đi Ad
+    - Ad còn loại [áo len có mũ]{"entity": "cate", "value": "Hoodie"} [mát mẻ]{"entity": "attr", "value": "conventional"} nào đẹp không ạ
+    - [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [màu nâu]{"entity": "color", "value": "nâu"} [đa dạng]{"entity": "attr", "value": "đa dạng"} có loại nào giống hình không
+    - [áo bánh bèo]{"entity": "cate", "value": "Blouse"} này còn hàng loại này không Admin
+    - Có loại [đầm rộng]{"entity": "cate", "value": "Caftan"} màu [đa dạng]{"entity": "attr", "value": "conventional"} [màu hồng]{"entity": "color", "value": "pink"} không ad
+    - Lựa dùm mẫu [áo thun]{"entity": "cate", "value": "Shirt"} [loại cô ton]{"entity": "attr", "value": "cotton"} và nó màu [vàng đậm]{"entity": "color", "value": "yellow"} đi Admin
+    - Admin có mẫu [loại blazer]{"entity": "cate", "value": "loại blazer"} [kiểu suông]{"entity": "attr", "value": "loose"} nào cute không dị
+    - Tiệm còn loại [đầm rộng]{"entity": "cate", "value": "Caftan"} [rộng rãi]{"entity": "attr", "value": "conventional"} á Ad
+    - Tớ muốn mua mẫu [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} trong hình á
+    - sốp còn mẫu [loại blazer]{"entity": "cate", "value": "Blazer"} không ạ
+    - [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} cái nào đẹp [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} vậy ad
+    - tui muốn mua mẫu [quần lót]{"entity": "cate", "value": "Trunks"} như này có không ạ
+    - [áo sơ mi]{"entity": "cate", "value": "Shirt"} mà [kiểu suông]{"entity": "attr", "value": "loose"} để đi học còn hàng không ạ
+    - ad có [đồ bay]{"entity": "cate", "value": "Jumpsuit"} [chất liệu len]{"entity": "attr", "value": "knit"} [xanh lá]{"entity": "color", "value": "green"} không á
+    - Lựa dùm mẫu [quần bó sát chân]{"entity": "cate", "value": "Leggings"} [màu vàng]{"entity": "color", "value": "yellow"} đi admin
+    - Có loại [áo len có mũ]{"entity": "cate", "value": "Hoodie"} [thoải mái]{"entity": "attr", "value": "loose"} mặc [form rộng]{"entity": "attr", "value": "loose"} không admin
+    - tôi đang có nhu cầu mua loại [quần ống loe]{"entity": "cate", "value": "Gauchos"} [ngắn]{"entity": "attr", "value": "mini_length"} hợp xu hướng đi Admin
+    - Sốp có kiểu [áo giữ ấm]{"entity": "cate", "value": "Coat"} giống vậy không á
+    - Có loại [đầm rộng]{"entity": "cate", "value": "Caftan"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} mặc [kiểu ngắn]{"entity": "attr", "value": "mini_length"} không admin
+    - Lựa dùm mẫu [áo thun]{"entity": "cate", "value": "T-Shirt"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} và nó màu [màu trắng]{"entity": "color", "value": "white"} đi Admin
+    - Còn kiểu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [đỏ]{"entity": "color", "value": "red"} [thoải mái]{"entity": "attr", "value": "conventional"} không Ad
+    - [áo]{"entity": "cate", "value": "T-Shirt"} này còn mẫu không thế
+    - [áo thun]{"entity": "cate", "value": "Shirt"} [đỏ]{"entity": "color", "value": "red"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} có loại nào ok không Cửa hàng
+    - Tôi muốn mua [quần dệt chéo]{"entity": "cate", "value": "Chinos"} [ôm sát người]{"entity": "attr", "value": "tight"} và nó màu [đỏ]{"entity": "color", "value": "red"} như này ạ
+    - admin có mẫu [áo choàng]{"entity": "cate", "value": "Poncho"} nào [dạng lưới]{"entity": "attr", "value": "lattice"} [màu hồng]{"entity": "color", "value": "pink"} đẹp đẹp không dị
+    - Còn kiểu [áo len dày]{"entity": "cate", "value": "Peacoat"} [vàng đậm]{"entity": "color", "value": "yellow"} [có hoa]{"entity": "attr", "value": "floral"} như hình cửa hàng
+    - Ad có [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [sọc]{"entity": "attr", "value": "striped"} [màu đỏ]{"entity": "color", "value": "red"} không á
+    - ad có [sweater]{"entity": "cate", "value": "Sweater"} kiểu [kiểu không váy]{"entity": "attr", "value": "no_dress"} không ạ
+    - tôi muốn mua loại [áo hở lưng]{"entity": "cate", "value": "Halter"} giống như vậy nè
+    - [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} này còn mẫu không thế
+    - Admin còn loại [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} nào [vàng đậm]{"entity": "color", "value": "yellow"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} đẹp không ạ
+    - Tui muốn mua mẫu [quần váy]{"entity": "cate", "value": "Skirt"} như này ạ
+    - Mình muốn mua mẫu [Váy chơi hè]{"entity": "cate", "value": "Sundress"} trong hình á
+    - Có loại [áo khoác liền mũ]{"entity": "cate", "value": "chiffon"} [vải voan]{"entity": "attr", "value": "chiffon"} không Ad
+    - Admin có kiểu [áo giữ ấm]{"entity": "cate", "value": "Coat"} như  không á
+    - ad còn loại [Áo khoác]{"entity": "cate", "value": "Jacket"} này không ạ
+    - Ad có [áo hở lưng]{"entity": "cate", "value": "Halter"} [màu đỏ]{"entity": "color", "value": "red"} loại [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không á
+    - shop còn loại [quần dệt chéo]{"entity": "cate", "value": "Chinos"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không shop
+    - Lựa dùm mẫu [áo bánh bèo]{"entity": "cate", "value": "Blouse"} [màu hồng]{"entity": "color", "value": "pink"} đi ad
+    - toi muốn mua kiểu [quần tự chế]{"entity": "cate", "value": "Cutoffs"} này á cửa hàng
+    - ad có mẫu [Áo khoác]{"entity": "cate", "value": "Jacket"} [dạng rộng rãi]{"entity": "attr", "value": "loose"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} nào cute không dị
+    - Có mẫu {"entity": "cate", "value": "Bomber"} kiểu [denim]{"entity": "attr", "value": "denim"} với màu [đen]{"entity": "color", "value": "black"} không dị
+    - shop còn chiếc [áo thể thao]{"entity": "cate", "value": "Jersey"} nào ở hình không ạ
+    - Admin còn loại [áo thun]{"entity": "cate", "value": "Shirt"} [dài tay]{"entity": "attr", "value": "long_sleeve"} nào đẹp không ạ
+    - cửa hàng có mẫu [đầm ngủ]{"entity": "cate", "value": "Nightdress"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} nào không
+    - Admin còn chiếc [mũ]{"entity": "cate", "value": "Anorak"} nào ở hình không ạ
+    - ad có mẫu [đầm không tay]{"entity": "cate", "value": "Cape"} [sát nách]{"entity": "attr", "value": "sleeveless"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} nào cute không dị
+    - tui muốn mua mẫu [quần sọt]{"entity": "cate", "value": "Shorts"} như này có không ạ
+    - [quần lửng]{"entity": "cate", "value": "quần"} [tím]{"entity": "color", "value": "purple"} mà [hoa hoè]{"entity": "attr", "value": "floral"} để đi học còn hàng không ạ
+    - Còn kiểu [áo ba lổ]{"entity": "cate", "value": "Tank"} [màu hồng]{"entity": "color", "value": "pink"} [dạng ôm]{"entity": "attr", "value": "tight"} không admin
+    - [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [màu nâu]{"entity": "color", "value": "nâu"} [thoải mái]{"entity": "attr", "value": "thoải mái"} có loại nào giống hình không
+    - [áo choàng Robe]{"entity": "cate", "value": "Robe"} [trắng]{"entity": "color", "value": "white"} [phủ lông]{"entity": "attr", "value": "phủ lông"} có loại nào ok không Admin
+    - Tôi muốn mua kiểu [Kimono]{"entity": "cate", "value": "Kimono"} tương tự như này á
+    - tôi muốn mua [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [phủ lông]{"entity": "attr", "value": "faux"} và nó màu [vàng đậm]{"entity": "color", "value": "yellow"} như này ạ
+    - Shop còn mẫu [áo choàng Robe]{"entity": "cate", "value": "Robe"} [màu tím]{"entity": "color", "value": "purple"} [dài tay]{"entity": "attr", "value": "long_sleeve"} không dị
+    - Còn kiểu [áo hở lưng]{"entity": "cate", "value": "Halter"} như này không
+    - Admin còn loại [áo bánh bèo]{"entity": "cate", "value": "Blouse"} [có hình lưới]{"entity": "attr", "value": "lattice"} nào đẹp không ạ
+    - admin còn loại [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [rộng rãi]{"entity": "attr", "value": "conventional"} á ad
+    - Lựa giúp Toi cái kiểu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [có hình lưới]{"entity": "attr", "value": "lattice"} đi shop
+    - [đầm rộng]{"entity": "cate", "value": "Caftan"} này còn hàng loại này không shop
+    - Có loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} [dạng thêu]{"entity": "attr", "value": "embroidered"} mặc [kiểu ngắn]{"entity": "attr", "value": "mini_length"} không admin
+    - tui muốn mua loại [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} giống như vậy nè
+    - Có loại [quần ống rộng]{"entity": "cate", "value": "Culottes"} [hoa hoè]{"entity": "attr", "value": "floral"} không Admin
+    - Cửa hàng có [áo Tee]{"entity": "cate", "value": "Tee"} [chất liệu len]{"entity": "attr", "value": "knit"} [màu trắng]{"entity": "color", "value": "white"} không á
+    - [quần kaki]{"entity": "cate", "value": "pants"} này còn hàng loại này không ad
+    - [áo]{"entity": "cate", "value": "T-Shirt"} [kiểu suông]{"entity": "attr", "value": "loose"} mà [kiểu văn phòng]{"entity": "attr", "value": "conventional"} để đi học còn hàng không ạ
+    - shop còn loại [sweater]{"entity": "cate", "value": "Sweater"} [dạng ôm]{"entity": "attr", "value": "tight"} [phủ lông]{"entity": "attr", "value": "faux"} á admin
+    - Admin có [hoodie]{"entity": "cate", "value": "Hoodie"} [ngắn]{"entity": "attr", "value": "mini_length"} [hồng]{"entity": "color", "value": "pink"} không á
+    - Ad còn loại [đầm không tay]{"entity": "cate", "value": "Cape"} [thoải mái]{"entity": "attr", "value": "conventional"} á Admin
+    - Tôi muốn mua kiểu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [ngắn]{"entity": "attr", "value": "mini_length"} này á mà không biết lựa như thế nào
+    - admin còn loại [quần lửng]{"entity": "cate", "value": "Capris"} này không ạ
+    - Có loại [mũ]{"entity": "cate", "value": "Anorak"} màu [denim]{"entity": "attr", "value": "denim"} [màu xanh lá]{"entity": "color", "value": "green"} không tiệm
+    - Còn kiểu [đầm rộng]{"entity": "cate", "value": "Caftan"} như này không
+    - Shop còn loại [áo]{"entity": "cate", "value": "T-Shirt"} [có in hình]{"entity": "attr", "value": "graphic"} [dạng thêu]{"entity": "attr", "value": "embroidered"} á ad
+    - Tôi muốn mua mẫu [váy sơ mi]{"entity": "cate", "value": "Shirtdress"} như này có không ạ
+    - Loại [dạng sọc]{"entity": "attr", "value": "striped"} này còn hàng như hình không ạ
+    - [áo thể thao]{"entity": "cate", "value": "Jersey"} cái nào đẹp [kiểu suông]{"entity": "attr", "value": "loose"} vậy Shop
+    - cửa hàng còn mẫu [quần bó sát]{"entity": "cate", "value": "Jodhpurs"} không ạ
+    - Tui đang có nhu cầu mua loại [áo]{"entity": "cate", "value": "T-Shirt"} [không có cổ]{"entity": "attr", "value": "no_neckline"} hợp xu hướng đi Shop
+    - Lựa giúp Tôi cái kiểu [quần ống loe]{"entity": "cate", "value": "Gauchos"} loại [phủ lông]{"entity": "attr", "value": "faux"} [đen]{"entity": "color", "value": "black"} đi sốp
+    - ad có [quần Jeggings]{"entity": "cate", "value": "Jeggings"} [vàng đậm]{"entity": "color", "value": "yellow"} loại [ca rô]{"entity": "attr", "value": "Flannel"} không á
+    - [Áo]{"entity": "cate", "value": "T-Shirt"} [màu đen]{"entity": "color", "value": "black"} [ngắn tay]{"entity": "attr", "value": "ngắn tay"} có loại nào ok không Ad
+    - [quần lửng]{"entity": "cate", "value": "quần"} [cam]{"entity": "color", "value": "orange"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} có loại nào ok không admin
+    - Còn kiểu [đồ bay]{"entity": "cate", "value": "Jumpsuit"} [màu nâu]{"entity": "color", "value": "nâu"} [không có cổ]{"entity": "attr", "value": "no_neckline"} như hình Cửa hàng
+    - shop còn loại [Áo]{"entity": "cate", "value": "T-Shirt"} [vải voan]{"entity": "attr", "value": "chiffon"} [màu cam]{"entity": "color", "value": "orange"} á Sốp
+    - Tôi muốn mua kiểu [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} tương tự như này á
+    - Còn kiểu [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} [hồng]{"entity": "color", "value": "pink"} [rộng rãi]{"entity": "attr", "value": "conventional"} không ad
+    - shop còn mẫu [quần tự chế]{"entity": "cate", "value": "Cutoffs"} [cam]{"entity": "color", "value": "orange"} không ạ
+    - Có loại [loại blazer]{"entity": "cate", "value": "Blazer"} [sọc]{"entity": "attr", "value": "striped"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} không Admin
+    - [váy]{"entity": "cate", "value": "Skirt"} mà [đa dạng]{"entity": "attr", "value": "conventional"} để đi học còn hàng không ạ
+    - ad có mẫu [quần jean]{"entity": "cate", "value": "quần jean"} [không có cổ]{"entity": "attr", "value": "no_neckline"} nào cute không dị
+    - Shop còn loại [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} [sọc]{"entity": "attr", "value": "striped"} nào đẹp không ạ
+    - ad còn loại [áo]{"entity": "cate", "value": "T-Shirt"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không ad
+    - Toi muốn mua loại [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} này còn hàng như hình không ạ
+    - sốp còn loại [áo thể thao]{"entity": "cate", "value": "Jersey"} [xanh]{"entity": "color", "value": "blue"} [dạng len]{"entity": "attr", "value": "knit"} như bên dưới á
+    - Sốp còn mẫu [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} [trắng]{"entity": "color", "value": "white"} không ạ
+    - Tôi muốn mua mẫu [Kimono]{"entity": "cate", "value": "Kimono"} như này ạ
+    - Có mẫu [Kimono]{"entity": "cate", "value": "Kimono"} [tay dài]{"entity": "attr", "value": "Shirt"} [màu đỏ]{"entity": "color", "value": "red"} không dị
+    - [áo thun]{"entity": "cate", "value": "Shirt"} này còn hàng loại này không ad
+    - Shop còn loại [áo bánh bèo]{"entity": "cate", "value": "Blouse"} [thoải mái]{"entity": "attr", "value": "conventional"} á Admin
+    - Còn kiểu [quần tự chế]{"entity": "cate", "value": "Cutoffs"} [tím]{"entity": "color", "value": "purple"} [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} như hình shop
+    - Ad còn mẫu [đầm ngủ]{"entity": "cate", "value": "Nightdress"} [đen]{"entity": "color", "value": "black"} không ạ
+    - Còn kiểu [áo thể thao]{"entity": "cate", "value": "Jersey"} [tím]{"entity": "color", "value": "purple"} [có in hình]{"entity": "attr", "value": "graphic"} như hình admin
+    - toih đang có nhu cầu mua loại [áo ba lổ]{"entity": "cate", "value": "Tank"} [chất liệu len]{"entity": "attr", "value": "knit"} hợp xu hướng đi ad
+    - admin còn mẫu [crop top]{"entity": "cate", "value": "Top"} [không có cổ]{"entity": "attr", "value": "no_neckline"} [kiểu không váy]{"entity": "attr", "value": "no_dress"} không ạ
+    - Có loại [áo khoác không tay]{"entity": "cate", "value": "faux"} [phủ lông]{"entity": "attr", "value": "faux"} không Admin
+    - Có loại [đồ bay]{"entity": "cate", "value": "Jumpsuit"} [kiểu dài]{"entity": "attr", "value": "maxi_length"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} không Admin
+    - tôi muốn mua kiểu [quần]{"entity": "cate", "value": "pants"} tương tự như này á
+    - admin còn loại [áo thể thao]{"entity": "cate", "value": "Jersey"} sexy [màu cam]{"entity": "color", "value": "orange"} không ad
+    - tiệm có kiểu [mũ]{"entity": "cate", "value": "Anorak"} [ngắn]{"entity": "attr", "value": "loose"} [kiểu suông]{"entity": "attr", "value": "loose"} như trên hong á
+    - Lựa dùm mẫu [Áo]{"entity": "cate", "value": "Shirt"} [màu lam]{"entity": "color", "value": "green"} đi admin
+    - Admin còn loại [quần tây]{"entity": "cate", "value": "pants"} [ôm sát người]{"entity": "attr", "value": "tight"} á Admin
+    - shop còn loại [quần ống loe]{"entity": "cate", "value": "Gauchos"} [lục]{"entity": "color", "value": "blue"} [dạng sọc]{"entity": "attr", "value": "striped"} như bên dưới á
+    - ad còn loại [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} [hồng hồng]{"entity": "color", "value": "pink"} [kiểu suông]{"entity": "attr", "value": "loose"} như bên dưới á
+    - ad có mẫu [quần tự chế]{"entity": "cate", "value": "quần tự chế"} [dạng ôm]{"entity": "attr", "value": "tight"} nào cute không dị
+    - Tôi muốn mua loại [Áo]{"entity": "cate", "value": "Shirt"} này
+    - mìnhh muốn mua kiểu [Áo khoác]{"entity": "cate", "value": "Jacket"} [màu đen]{"entity": "color", "value": "black"} [trơn]{"entity": "attr", "value": "solid"} này á mà không biết lựa như thế nào
+    - shop còn mẫu [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} [denim]{"entity": "attr", "value": "denim"} [dạng ôm]{"entity": "attr", "value": "tight"} không ạ
+    - toi muốn mua kiểu [áo giữ ấm]{"entity": "cate", "value": "Coat"} tương tự như này á
+    - [sweater]{"entity": "cate", "value": "Sweater"} này còn hàng không dị
+    - shop có mẫu [quần sọt]{"entity": "cate", "value": "Shorts"} [đa dạng]{"entity": "attr", "value": "conventional"} nào không
+    - Tui muốn mua kiểu [quần ống rộng]{"entity": "cate", "value": "Culottes"} tương tự như này á
+    - Còn kiểu [đầm rộng]{"entity": "cate", "value": "Caftan"} [màu đen]{"entity": "color", "value": "black"} [form rộng]{"entity": "attr", "value": "loose"} không shop
+    - cửa hàng có kiểu [Váy]{"entity": "cate", "value": "Skirt"} [phủ lông]{"entity": "attr", "value": "faux"} [ngắn]{"entity": "attr", "value": "mini_length"} như trên hong á
+    - [áo sơ mi]{"entity": "cate", "value": "Shirt"} mà [thoải mái]{"entity": "attr", "value": "conventional"} để đi học còn hàng không ạ
+    - Shop có mẫu [quần]{"entity": "cate", "value": "pants"} nào [trên đầu gối]{"entity": "attr", "value": "mini_length"} [hồng]{"entity": "color", "value": "pink"} đẹp đẹp không dị
+    - shop có [váy xà rông]{"entity": "cate", "value": "Sarong"} kiểu [dài]{"entity": "attr", "value": "maxi_length"} không ạ
+    - shop còn mẫu [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} [tay dài]{"entity": "attr", "value": "Shirt"} [dạng ôm]{"entity": "attr", "value": "tight"} không ạ
+    - Có loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} [dạng len]{"entity": "attr", "value": "knit"} không ad
+    - Ad có mẫu [Áo cổ lọ]{"entity": "cate", "value": "Áo cổ lọ"} [kiểu không váy]{"entity": "attr", "value": "no_dress"} nào cute không dị
+    - [đầm]{"entity": "cate", "value": "Dress"} mà [không có cổ]{"entity": "attr", "value": "no_neckline"} để đi học còn hàng không ạ
+    - Còn kiểu [áo Poncho]{"entity": "cate", "value": "Poncho"} [màu cam]{"entity": "color", "value": "orange"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} không shop
+    - [đồ coverup]{"entity": "cate", "value": "Coverup"} cái nào đẹp [dạng lưới]{"entity": "attr", "value": "lattice"} vậy admin
+    - tôi muốn mua kiểu [quần lót]{"entity": "cate", "value": "Trunks"} tương tự như này á
+    - [Áo khoác]{"entity": "cate", "value": "Jacket"} [dạng len]{"entity": "attr", "value": "knit"} mà [sọc]{"entity": "attr", "value": "striped"} để đi học còn hàng không ạ
+    - Admin còn mẫu [Áo khoác]{"entity": "cate", "value": "Jacket"} [đỏ]{"entity": "color", "value": "red"} không ạ
+    - Có loại [quần tây]{"entity": "cate", "value": "lattice"} [dạng lưới]{"entity": "attr", "value": "lattice"} không Ad
+    - Có loại [áo choàng Robe]{"entity": "cate", "value": "Robe"} [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} không Tiệm
+    - Có loại [quần sọt]{"entity": "cate", "value": "Shorts"} [không có cổ]{"entity": "attr", "value": "no_neckline"} không Ad
+    - Có loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} [dạng lưới]{"entity": "attr", "value": "lattice"} không Shop
+    - mình muốn mua mẫu [quần jeans]{"entity": "cate", "value": "Jeans"} như này ạ
+    - tớ muốn mua loại [quần sọt]{"entity": "cate", "value": "Shorts"} này còn hàng như hình không ạ
+    - tớ muốn mua loại [áo]{"entity": "cate", "value": "T-Shirt"} giống như vậy nè
+    - admin có mẫu [Áo khoác]{"entity": "cate", "value": "Áo khoác"} [trơn]{"entity": "attr", "value": "solid"} nào cute không dị
+    - Có loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} mặc [dạng rộng rãi]{"entity": "attr", "value": "loose"} không ad
+    - Tôi muốn mua kiểu [áo thun]{"entity": "cate", "value": "Shirt"} tương tự như này á
+    - ad có [Áo khoác]{"entity": "cate", "value": "Jacket"} kiểu [kiểu ngắn]{"entity": "attr", "value": "mini_length"} không ạ
+    - [đầm]{"entity": "cate", "value": "Dress"} [màu đỏ]{"entity": "color", "value": "red"} [có in hình]{"entity": "attr", "value": "có in hình"} có loại nào giống hình không
+    - Ad có kiểu [Áo khoác]{"entity": "cate", "value": "Jacket"} [ngắn hết cỡ]{"entity": "attr", "value": "cotton"} [loại cô ton]{"entity": "attr", "value": "cotton"} như trên hong á
+    - Có mẫu [quần lửng]{"entity": "cate", "value": "quần"} [có hoa]{"entity": "attr", "value": "floral"} [màu đỏ]{"entity": "color", "value": "red"} không dị
+    - [áo thể thao]{"entity": "cate", "value": "Jersey"} [màu đen]{"entity": "color", "value": "black"} [phủ lông]{"entity": "attr", "value": "phủ lông"} có loại nào ok không Ad
+    - Toi muốn mua loại [Váy chơi hè]{"entity": "cate", "value": "Sundress"} này
+    - Có loại [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [cổ vuông]{"entity": "attr", "value": "square_neckline"} không shop
+    - Còn kiểu [mũ]{"entity": "cate", "value": "Anorak"} [xanh]{"entity": "color", "value": "blue"} [tay dài]{"entity": "attr", "value": "Shirt"} như hình Ad
+    - Kiểu [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} loại [ngắn]{"entity": "attr", "value": "mini_length"} [màu nâu]{"entity": "color", "value": "nâu"} còn hàng k Sốp
+    - Tôih muốn mua kiểu [đầm]{"entity": "cate", "value": "Dress"} tương tự như này á
+    - Lựa giúp toi cái kiểu [Váy chơi hè]{"entity": "cate", "value": "Sundress"} loại [dạng len]{"entity": "attr", "value": "knit"} [màu trắng]{"entity": "color", "value": "white"} đi admin
+    - Admin có kiểu [đầm]{"entity": "cate", "value": "Dress"} [dạng sọc]{"entity": "attr", "value": "striped"} [kiểu dài]{"entity": "attr", "value": "maxi_length"} như trên hong á
+    - Shop còn chiếc [quần kaki]{"entity": "cate", "value": "pants"} tương tự không ạ
+    - Loại [chất liệu len]{"entity": "attr", "value": "knit"} này còn hàng như hình không ạ
+    - Ad có [quần lửng]{"entity": "cate", "value": "Capris"} [vàng đậm]{"entity": "color", "value": "yellow"} loại [kiểu suông]{"entity": "attr", "value": "loose"} không á
+    - Ad có kiểu [áo choàng Robe]{"entity": "cate", "value": "Robe"} [denim]{"entity": "attr", "value": "denim"} xinh [màu đỏ]{"entity": "color", "value": "red"} không ad
+    - shop có kiểu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [ngắn]{"entity": "attr", "value": "mini_length"} xinh [tím]{"entity": "color", "value": "purple"} không ad
+    - [quần sọt]{"entity": "cate", "value": "Shorts"} [màu trắng]{"entity": "color", "value": "white"} mà [denim]{"entity": "attr", "value": "denim"} để đi học còn hàng không ạ
+    - Còn kiểu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [cam]{"entity": "color", "value": "orange"} [chất liệu len]{"entity": "attr", "value": "knit"} như hình Admin
+    - Lựa giúp mìnhh cái kiểu [đầm]{"entity": "cate", "value": "Dress"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} đi Admin
+    - Lựa dùm mẫu [quần bó sát]{"entity": "cate", "value": "Jodhpurs"} [denim]{"entity": "attr", "value": "denim"} và nó màu [hồng hồng]{"entity": "color", "value": "pink"} đi admin
+    - Admin còn loại [đầm]{"entity": "cate", "value": "Dress"} [không có cổ]{"entity": "attr", "value": "no_neckline"} nào đẹp không ạ
+    - Sốp còn loại [áo thể thao]{"entity": "cate", "value": "Jersey"} [dạng ôm]{"entity": "attr", "value": "tight"} á Shop
+    - Còn kiểu [hoodie]{"entity": "cate", "value": "Hoodie"} như này không
+    - Sốp có kiểu [crop top]{"entity": "cate", "value": "Top"} giống vậy không á
+    - tôi muốn mua kiểu [áo thể thao]{"entity": "cate", "value": "Jersey"} [màu đỏ]{"entity": "color", "value": "red"} [xếp ly]{"entity": "attr", "value": "pleated"} này á mà không biết lựa như thế nào
+    - Còn kiểu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [đen]{"entity": "color", "value": "black"} [kiểu suông]{"entity": "attr", "value": "loose"} không ad
+    - Tôi muốn mua kiểu [quần]{"entity": "cate", "value": "pants"} [màu cam]{"entity": "color", "value": "orange"} [kiểu suông]{"entity": "attr", "value": "loose"} này á mà không biết lựa như thế nào
+    - Tui muốn mua loại [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} này
+    - tiệm còn chiếc [áo Tee]{"entity": "cate", "value": "Tee"} nào ở hình không ạ
+    - shop còn mẫu [Áo]{"entity": "cate", "value": "T-Shirt"} không ạ
+    - Còn kiểu [đồ coverup]{"entity": "cate", "value": "Coverup"} [đỏ]{"entity": "color", "value": "red"} [dài qua đầu gối]{"entity": "attr", "value": "maxi_length"} không admin
+    - Admin còn loại [quần ống loe]{"entity": "cate", "value": "Gauchos"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không admin
+    - Có mẫu [mũ]{"entity": "cate", "value": "Anorak"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} với [lục]{"entity": "color", "value": "blue"} không dị
+    - [Áo]{"entity": "cate", "value": "Shirt"} cái nào đẹp [sọc]{"entity": "attr", "value": "striped"} vậy sốp
+    - Còn kiểu [Kimono]{"entity": "cate", "value": "Kimono"} [hồng]{"entity": "color", "value": "pink"} [dạng thêu]{"entity": "attr", "value": "embroidered"} không Ad
+    - Tôi muốn mua kiểu [đầm không tay]{"entity": "cate", "value": "Cape"} [màu tím]{"entity": "color", "value": "purple"} [kiểu suông]{"entity": "attr", "value": "loose"} này á mà không biết lựa như thế nào
+    - Ad còn chiếc [Áo]{"entity": "cate", "value": "T-Shirt"} [xanh lá]{"entity": "color", "value": "green"} hợp trend bây giờ không ạ
+    - tiệm có kiểu [loại blazer]{"entity": "cate", "value": "Blazer"} giống vậy không á
+    - Mình muốn mua kiểu [áo Tee]{"entity": "cate", "value": "Tee"} này á ad
+    - Có loại [quần sọt]{"entity": "cate", "value": "Shorts"} màu [rộng rãi]{"entity": "attr", "value": "conventional"} [hồng]{"entity": "color", "value": "pink"} không sốp
+    - Admin còn loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} [không có cổ]{"entity": "attr", "value": "no_neckline"} [vàng đậm]{"entity": "color", "value": "yellow"} á Admin
+    - mìn muốn mua [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} [kiểu suông]{"entity": "attr", "value": "loose"} và nó màu [vàng đậm]{"entity": "color", "value": "yellow"} như này ạ
+    - Cửa hàng có mẫu [đầm rộng]{"entity": "cate", "value": "đầm rộng"} [kiểu văn phòng]{"entity": "attr", "value": "conventional"} nào cute không dị
+    - tôi muốn mua mẫu [quần lửng]{"entity": "cate", "value": "quần"} như này có không ạ
+    - Kiểu [áo sơ mi]{"entity": "cate", "value": "Shirt"} loại [hoa hoè]{"entity": "attr", "value": "floral"} [màu vàng]{"entity": "color", "value": "yellow"} còn hàng k ad
+    - Ad còn loại [đầm]{"entity": "cate", "value": "Dress"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} nào đẹp không ạ
+    - toi muốn mua kiểu [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} này á Shop
+    - Tôi muốn mua loại [áo thể thao]{"entity": "cate", "value": "Jersey"} này
+    - Cửa hàng còn loại [quần jean]{"entity": "cate", "value": "Jeans"} [chất liệu len]{"entity": "attr", "value": "knit"} [có in hình]{"entity": "attr", "value": "graphic"} á shop
+    - Admin có kiểu [áo hở lưng]{"entity": "cate", "value": "Halter"} giống vậy không á
+    - Lựa giúp tôi cái kiểu [quần sọt]{"entity": "cate", "value": "Shorts"} loại [có hình lưới]{"entity": "attr", "value": "lattice"} [màu trắng]{"entity": "color", "value": "white"} đi Admin
+    - Admin còn loại [quần ống loe]{"entity": "cate", "value": "Gauchos"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không Ad
+    - Shopmin còn mẫu [áo]{"entity": "cate", "value": "T-Shirt"} tương tự như không ạ
+    - ad còn chiếc [quần jean]{"entity": "cate", "value": "Jeans"} tương tự không ạ
+    - Có loại [loại blazer]{"entity": "cate", "value": "Blazer"} [tay dài]{"entity": "attr", "value": "Shirt"} mặc [kiểu suông]{"entity": "attr", "value": "loose"} không ad
+    - Shop còn loại [váy sơ mi]{"entity": "cate", "value": "Shirtdress"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} á admin
+    - tôih muốn mua [Áo khoác]{"entity": "cate", "value": "Jacket"} [ôm sát người]{"entity": "attr", "value": "tight"} và nó màu [màu tím]{"entity": "color", "value": "purple"} như này ạ
+    - Tui muốn mua kiểu [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} tương tự như này á
+    - Tiệm có kiểu [Quần thun ống rộng]{"entity": "cate", "value": "Joggers"} [kiểu không váy]{"entity": "attr", "value": "no_dress"} xinh [hồng hồng]{"entity": "color", "value": "pink"} không admin
+    - Tiệm có kiểu [onesie]{"entity": "cate", "value": "Onesie"} giống vậy không á
+    - tui muốn mua loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} này
+    - [quần bó sát chân]{"entity": "cate", "value": "Leggings"} cái nào đẹp [ca rô]{"entity": "attr", "value": "Flannel"} vậy shop
+    - [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} cái nào đẹp [kiểu suông]{"entity": "attr", "value": "loose"} vậy Admin
+    - ad còn loại [Váy]{"entity": "cate", "value": "Skirt"} [xếp ly]{"entity": "attr", "value": "pleated"} á shop
+    - tôi muốn mua mẫu [váy xà rông]{"entity": "cate", "value": "Sarong"} như này ạ
+    - [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} cái nào đẹp [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} vậy Shop
+    - Shop có kiểu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} như  không á
+    - mìnhh muốn mua mẫu [áo Poncho]{"entity": "cate", "value": "Poncho"} như này ạ
+    - Cửa hàng có kiểu [Quần thun ống rộng]{"entity": "cate", "value": "Joggers"} [cổ vuông]{"entity": "attr", "value": "square_neckline"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} như trên hong á
+    - Sốp tư vấn mua mẫu [Jeans jeans]{"entity": "cate", "value": "Jeans"} nào đẹp với ạ [màu cam]{"entity": "color", "value": "orange"} nha
+    - Lựa dùm mẫu [quần lửng]{"entity": "cate", "value": "Capris"} [dài]{"entity": "attr", "value": "maxi_length"} và nó màu [lục]{"entity": "color", "value": "blue"} đi Admin
+    - admin còn loại [quần Jeggings]{"entity": "cate", "value": "Jeggings"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không admin
+    - shop có kiểu [đầm ngủ]{"entity": "cate", "value": "Nightdress"} [kiểu văn phòng]{"entity": "attr", "value": "conventional"} xinh [màu đen]{"entity": "color", "value": "black"} không Shop
+    - Có loại [crop top]{"entity": "cate", "value": "Top"} [ôm sát người]{"entity": "attr", "value": "tight"} không admin
+    - sốp còn mẫu [đồ bay]{"entity": "cate", "value": "Jumpsuit"} tương tự như không ạ
+    - Có loại [áo]{"entity": "cate", "value": "T-Shirt"} [ôm sát người]{"entity": "attr", "value": "tight"} mặc [trơn]{"entity": "attr", "value": "solid"} không ad
+    - [quần bó sát]{"entity": "cate", "value": "Jodhpurs"} [màu hồng]{"entity": "color", "value": "pink"} [ca rô]{"entity": "attr", "value": "ca rô"} có loại nào giống hình không
+    - Sốp còn hàng [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} [dạng ôm]{"entity": "attr", "value": "tight"} nào tương tự không ạ
+    - Ad có mẫu [đầm rộng]{"entity": "cate", "value": "Caftan"} [dài]{"entity": "attr", "value": "maxi_length"} [có hình]{"entity": "attr", "value": "graphic"} nào cute không dị
+    - Có loại [áo]{"entity": "cate", "value": "T-Shirt"} [có hoa]{"entity": "attr", "value": "floral"} không Sốp
+    - Có loại [áo len dày]{"entity": "cate", "value": "Peacoat"} [hoa hoè]{"entity": "attr", "value": "floral"} không sốp
+    - shop còn loại [đầm bình thường]{"entity": "cate", "value": "Dress"} này không ạ
+    - ad có kiểu [váy]{"entity": "cate", "value": "Skirt"} [hoa hoè]{"entity": "attr", "value": "floral"} xinh [màu vàng]{"entity": "color", "value": "yellow"} không Ad
+    - Có loại [hoodie]{"entity": "cate", "value": "Hoodie"} [thoải mái]{"entity": "attr", "value": "maxi_length"} mặc [dài]{"entity": "attr", "value": "maxi_length"} không Shop
+    - ad còn chiếc [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} nào ở hình không ạ
+    - Admin có mẫu [quần sọt]{"entity": "cate", "value": "Shorts"} [không có cổ]{"entity": "attr", "value": "no_neckline"} nào không
+    - admin còn chiếc [áo len dày]{"entity": "cate", "value": "Peacoat"} tương tự không ạ
+    - admin còn loại [áo Poncho]{"entity": "cate", "value": "Poncho"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không admin
+    - [Áo len dẹt hở]{"entity": "cate", "value": "Cardigan"} này còn mẫu không thế
+    - Shop còn loại [Áo khoác]{"entity": "cate", "value": "Jacket"} [màu đen]{"entity": "color", "value": "black"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} như bên dưới á
+    - tôi muốn mua mẫu [Áo]{"entity": "cate", "value": "Shirt"} như này ạ
+    - shop có mẫu [áo sơ mi]{"entity": "cate", "value": "Shirt"} nào [hoa hoè]{"entity": "attr", "value": "floral"} [hồng]{"entity": "color", "value": "pink"} đẹp đẹp không dị
+    - [váy xà rông]{"entity": "cate", "value": "Sarong"} [màu đen]{"entity": "color", "value": "black"} [phủ lông]{"entity": "attr", "value": "faux"} có loại nào ok không ad
+    - Admin có mẫu [váy]{"entity": "cate", "value": "Skirt"} nào [ngắn]{"entity": "attr", "value": "mini_length"} [đen màu]{"entity": "color", "value": "black"} đẹp đẹp không dị
+    - Shop còn loại [quần tự chế]{"entity": "cate", "value": "Cutoffs"} sexy [cam]{"entity": "color", "value": "orange"} không Ad
+    - ad còn loại [áo Tee]{"entity": "cate", "value": "Tee"} nào [màu trắng]{"entity": "color", "value": "white"} [rộng rãi]{"entity": "attr", "value": "conventional"} đẹp không ạ
+    - Cửa hàng có [Kimono]{"entity": "cate", "value": "Kimono"} kiểu [có hình lưới]{"entity": "attr", "value": "lattice"} không ạ
+    - Có loại [quần jeans]{"entity": "cate", "value": "Jeans"} màu [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [xanh]{"entity": "color", "value": "blue"} không Tiệm
+    - [quần sọt]{"entity": "cate", "value": "Shorts"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} mà [ngắn]{"entity": "attr", "value": "mini_length"} để đi học còn hàng không ạ
+    - shop có mẫu [áo len dày]{"entity": "cate", "value": "Peacoat"} [ngắn]{"entity": "attr", "value": "mini_length"} [có hoa]{"entity": "attr", "value": "floral"} nào cute không dị
+    - Có mẫu [áo thể thao]{"entity": "cate", "value": "Jersey"} [có in hình]{"entity": "attr", "value": "graphic"} [xanh lá]{"entity": "color", "value": "green"} không dị
+    - Sốp còn mẫu [hoodie]{"entity": "cate", "value": "Hoodie"} [vàng đậm]{"entity": "color", "value": "yellow"} không ạ
+    - [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} này còn hàng không dị
+    - Tôi muốn mua kiểu [quần bó sát chân]{"entity": "cate", "value": "Leggings"} tương tự như này á
+    - [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} này còn hàng không dị
+    - shop còn mẫu [Áo khoác]{"entity": "cate", "value": "Jacket"} tương tự như không ạ
+    - Ad còn mẫu [áo len có mũ]{"entity": "cate", "value": "Hoodie"} tương tự như không ạ
+    - tôi muốn mua kiểu [sweater]{"entity": "cate", "value": "Sweater"} [màu đỏ]{"entity": "color", "value": "red"} [vải voan]{"entity": "attr", "value": "chiffon"} này á mà không biết lựa như thế nào
+    - mình muốn mua kiểu [quần tây]{"entity": "cate", "value": "pants"} tương tự như này á
+    - sốp còn loại [áo thể thao]{"entity": "cate", "value": "Jersey"} sexy [tím]{"entity": "color", "value": "purple"} không admin
+    - Tuih đang có nhu cầu mua loại [Áo]{"entity": "cate", "value": "Shirt"} [dài]{"entity": "attr", "value": "maxi_length"} hợp xu hướng đi Sốp
+    - Ad có [áo Tee]{"entity": "cate", "value": "Tee"} [hoa hoè]{"entity": "attr", "value": "floral"} [màu hồng]{"entity": "color", "value": "pink"} không á
+    - Tôi muốn mua kiểu [áo Poncho]{"entity": "cate", "value": "Poncho"} tương tự như này á
+    - Còn kiểu [áo]{"entity": "cate", "value": "T-Shirt"} [màu cam]{"entity": "color", "value": "orange"} [form rộng]{"entity": "attr", "value": "loose"} như hình Sốp
+    - mìn muốn mua mẫu [áo]{"entity": "cate", "value": "T-Shirt"} như này có không ạ
+    - Sốp có kiểu [quần sọt]{"entity": "cate", "value": "Shorts"} [dạng ôm]{"entity": "attr", "value": "tight"} [không có cổ]{"entity": "attr", "value": "no_neckline"} xinh không Admin
+    - shop có [quần kaki]{"entity": "cate", "value": "pants"} [sát nách]{"entity": "attr", "value": "sleeveless"} [màu đỏ]{"entity": "color", "value": "red"} không á
+    - Lựa dùm mẫu [Áo khoác]{"entity": "cate", "value": "Jacket"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} và nó màu [hồng]{"entity": "color", "value": "pink"} đi Sốp
+    - ad có mẫu [đầm]{"entity": "cate", "value": "Dress"} [chất liệu len]{"entity": "attr", "value": "knit"} nào không
+    - Admin còn mẫu [áo bánh bèo]{"entity": "cate", "value": "Blouse"} [xanh]{"entity": "color", "value": "blue"} [form rộng]{"entity": "attr", "value": "loose"} không dị
+    - Ad có kiểu [áo Poncho]{"entity": "cate", "value": "Poncho"} mà nó [màu tím]{"entity": "color", "value": "purple"} không á
+    - sốp còn loại [đầm rộng]{"entity": "cate", "value": "Caftan"} nào [vàng đậm]{"entity": "color", "value": "yellow"} [phủ lông]{"entity": "attr", "value": "faux"} đẹp không ạ
+    - Lựa giúp tôi cái kiểu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} loại [dạng len]{"entity": "attr", "value": "knit"} [hồng hồng]{"entity": "color", "value": "pink"} đi Ad
+    - shop tư vấn mua mẫu [quần lửng]{"entity": "cate", "value": "quần"} nào đẹp với ạ [đen màu]{"entity": "color", "value": "black"} nha
+    - Cửa hàng có [quần lửng]{"entity": "cate", "value": "quần"} [tím]{"entity": "color", "value": "purple"} loại [kiểu ngắn]{"entity": "attr", "value": "mini_length"} không á
+    - Toi muốn mua loại [loại blazer]{"entity": "cate", "value": "Blazer"} giống như vậy nè
+    - Ad còn mẫu [onesie]{"entity": "cate", "value": "Onesie"} [màu xanh lá]{"entity": "color", "value": "green"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} không dị
+    - [quần lửng]{"entity": "cate", "value": "Capris"} [màu hồng]{"entity": "color", "value": "pink"} [denim]{"entity": "attr", "value": "denim"} có loại nào ok không ad
+    - Tôi muốn mua kiểu [áo thun]{"entity": "cate", "value": "Shirt"} này á shop
+    - Admin còn loại [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} [denim]{"entity": "attr", "value": "denim"} [dạng thêu]{"entity": "attr", "value": "embroidered"} á shop
+    - Có loại [loại blazer]{"entity": "cate", "value": "Blazer"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} mặc [dài tay]{"entity": "attr", "value": "long_sleeve"} không tiệm
+    - Ad có [áo giữ ấm]{"entity": "cate", "value": "Coat"} [kiểu văn phòng]{"entity": "attr", "value": "conventional"} [màu cam]{"entity": "color", "value": "orange"} không á
+    - [áo giữ ấm]{"entity": "cate", "value": "Coat"} [màu đen]{"entity": "color", "value": "black"} [ngắn]{"entity": "attr", "value": "ngắn"} có loại nào ok không shop
+    - ad còn mẫu [quần sọt]{"entity": "cate", "value": "Shorts"} tương tự như không ạ
+    - Ad còn mẫu [quần tây]{"entity": "cate", "value": "pants"} không ạ
+    - Shop còn mẫu [áo bánh bèo]{"entity": "cate", "value": "Blouse"} không ạ
+    - Có loại [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} màu [không có cổ]{"entity": "attr", "value": "no_neckline"} [vàng đậm]{"entity": "color", "value": "yellow"} không admin
+    - [quần tự chế]{"entity": "cate", "value": "Cutoffs"} [trắng]{"entity": "color", "value": "white"} mà [rộng rãi]{"entity": "attr", "value": "conventional"} để đi học còn hàng không ạ
+    - shop có mẫu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [dạng rộng rãi]{"entity": "attr", "value": "loose"} [phủ lông]{"entity": "attr", "value": "faux"} nào cute không dị
+    - Admin còn mẫu [đầm không tay]{"entity": "cate", "value": "Cape"} tương tự như không ạ
+    - [quần sọt]{"entity": "cate", "value": "Shorts"} [đen]{"entity": "color", "value": "black"} [kiểu văn phòng]{"entity": "attr", "value": "kiểu văn phòng"} có loại nào ok không Ad
+    - Tiệm có mẫu [Áo]{"entity": "cate", "value": "T-Shirt"} [có hình]{"entity": "attr", "value": "graphic"} nào không
+    - admin có mẫu [áo thể thao]{"entity": "cate", "value": "Jersey"} nào [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [màu đen]{"entity": "color", "value": "black"} đẹp đẹp không dị
+    - [áo hở lưng]{"entity": "cate", "value": "Halter"} [trắng]{"entity": "color", "value": "white"} [xếp ly]{"entity": "attr", "value": "xếp ly"} có loại nào giống hình không
+    - Tuih muốn mua kiểu [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} [hoa hoè]{"entity": "attr", "value": "floral"} này á mà không biết lựa như thế nào
+    - shop có kiểu [quần bó sát]{"entity": "cate", "value": "Jodhpurs"} mà nó [màu nâu]{"entity": "color", "value": "nâu"} không á
+    - Tôi muốn mua [quần jeans]{"entity": "cate", "value": "Jeans"} [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} và nó màu [màu đen]{"entity": "color", "value": "black"} như này ạ
+    - Có loại [quần kaki]{"entity": "cate", "value": "pants"} màu [ca rô]{"entity": "attr", "value": "Flannel"} [vàng đậm]{"entity": "color", "value": "yellow"} không Ad
+    - Kiểu [áo]{"entity": "cate", "value": "T-Shirt"} loại [kiểu suông]{"entity": "attr", "value": "loose"} [màu đen]{"entity": "color", "value": "black"} còn hàng k ad
+    - Ad còn mẫu [loại blazer]{"entity": "cate", "value": "Blazer"} không ạ
+    - admin có mẫu [áo len dày]{"entity": "cate", "value": "Peacoat"} [denim]{"entity": "attr", "value": "denim"} nào không
+    - Có loại [quần bó sát chân]{"entity": "cate", "value": "short_sleeve"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không Admin
+    - Sốp còn loại [onesie]{"entity": "cate", "value": "Onesie"} [ca rô]{"entity": "attr", "value": "Flannel"} [có hình]{"entity": "attr", "value": "graphic"} á Sốp
+    - Admin còn loại [quần tây]{"entity": "cate", "value": "pants"} sexy [xanh lá]{"entity": "color", "value": "green"} không ad
+    - Admin có kiểu [Váy]{"entity": "cate", "value": "Skirt"} [có hình]{"entity": "attr", "value": "graphic"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} như trên hong á
+    - [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} này còn hàng loại này không sốp
+    - Có loại [đầm ngủ]{"entity": "cate", "value": "cotton"} [loại cô ton]{"entity": "attr", "value": "cotton"} không ad
+    - Có loại [áo thun]{"entity": "cate", "value": "Shirt"} [dài qua đầu gối]{"entity": "attr", "value": "maxi_length"} không Ad
+    - [quần Jeggings]{"entity": "cate", "value": "Jeggings"} [màu đỏ]{"entity": "color", "value": "red"} [dạng ôm]{"entity": "attr", "value": "dạng ôm"} có loại nào ok không Shop
+    - Có loại [Kimono]{"entity": "cate", "value": "Kimono"} [kiểu suông]{"entity": "attr", "value": "loose"} mặc [dạng ôm]{"entity": "attr", "value": "tight"} không Tiệm
+    - Loại [đa dạng]{"entity": "attr", "value": "conventional"} này còn hàng như hình không ạ
+    - [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} này còn hàng không dị
+    - Ad còn loại [quần ống loe]{"entity": "cate", "value": "Gauchos"} [chất liệu da]{"entity": "attr", "value":"leather"} nào mà đẹp đẹp không admin
+    - Toi muốn mua [Áo cổ lọ]{"entity": "cate", "value": "Turtleneck"} [cổ thuyền]{"entity": "attr", "value": "crew_neckline"} và nó màu [màu xanh lá]{"entity": "color", "value": "green"} như này ạ
+    - Còn kiểu [áo choàng]{"entity": "cate", "value": "Poncho"} [tím]{"entity": "color", "value": "purple"} [có hình lưới]{"entity": "attr", "value": "lattice"} không admin
+    - ad có [quần tây]{"entity": "cate", "value": "pants"} [dài tay]{"entity": "attr", "value": "long_sleeve"} [xanh]{"entity": "color", "value": "blue"} không á
+    - Có loại [quần sọt]{"entity": "cate", "value": "Shorts"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} không sốp
+    - Shop còn loại [mũ]{"entity": "cate", "value": "Anorak"} dạng [dạng sọc]{"entity": "attr", "value": "striped"} nào mà đẹp đẹp màu [vàng đậm]{"entity": "color", "value": "yellow"} [hồng]{"entity": "color", "value": "pink"} không Sốp
+    - Cửa hàng còn loại [đầm ngủ]{"entity": "cate", "value": "Nightdress"} [kiểu suông]{"entity": "attr", "value": "loose"} [màu xanh lá]{"entity": "color", "value": "green"} á Admin
+    - tui muốn mua [áo len có mũ]{"entity": "cate", "value": "Hoodie"} [ôm sát người]{"entity": "attr", "value": "tight"} và nó màu [màu vàng]{"entity": "color", "value": "yellow"} như này ạ
+    - Có mẫu {"entity": "cate", "value": "Bomber"} kiểu [dạng sọc]{"entity": "attr", "value": "striped"} với màu [vàng đậm]{"entity": "color", "value": "yellow"} không dị
+    - Sốp còn mẫu [Váy]{"entity": "cate", "value": "Skirt"} tương tự như không ạ
+    - shop còn loại [Áo]{"entity": "cate", "value": "Shirt"} [màu xanh lá]{"entity": "color", "value": "green"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} như bên dưới á
+    - Lựa giúp tui cái kiểu [quần tự chế]{"entity": "cate", "value": "Cutoffs"} loại [phủ lông]{"entity": "attr", "value": "faux"} [vàng đậm]{"entity": "color", "value": "yellow"} đi ad
+    - Mình muốn mua loại [áo]{"entity": "cate", "value": "T-Shirt"} này còn hàng như hình không ạ
+    - [mũ]{"entity": "cate", "value": "Anorak"} [ca rô]{"entity": "attr", "value": "Flannel"} mà [đa dạng]{"entity": "attr", "value": "conventional"} để đi học còn hàng không ạ
+    - toi muốn mua kiểu [quần kaki]{"entity": "cate", "value": "pants"} tương tự như này á
+    - Có loại [áo]{"entity": "cate", "value": "T-Shirt"} [denim]{"entity": "attr", "value": "denim"} không Admin
+    - Ad còn loại [áo len có mũ]{"entity": "cate", "value": "Hoodie"} [form rộng]{"entity": "attr", "value": "loose"} á Tiệm
+    - admin có [đầm bình thường]{"entity": "cate", "value": "Dress"} [màu đỏ]{"entity": "color", "value": "red"} loại [trên đầu gối]{"entity": "attr", "value": "mini_length"} không á
+    - Ad còn hàng [quần sọt]{"entity": "cate", "value": "Shorts"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} nào tương tự không ạ
+    - Lựa dùm mẫu [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} [cổ vuông]{"entity": "attr", "value": "square_neckline"} và nó màu [hồng]{"entity": "color", "value": "pink"} đi admin
+    - Có mẫu [Váy]{"entity": "cate", "value": "Skirt"} [trơn]{"entity": "attr", "value": "solid"} [màu hồng]{"entity": "color", "value": "pink"} không dị
+    - Lựa dùm mẫu [áo ba lổ]{"entity": "cate", "value": "Tank"} [màu cam]{"entity": "color", "value": "orange"} đi Ad
+    - [quần lửng]{"entity": "cate", "value": "Capris"} [tím]{"entity": "color", "value": "purple"} mà [kiểu ngắn]{"entity": "attr", "value": "mini_length"} để đi học còn hàng không ạ
+    - [Áo]{"entity": "cate", "value": "T-Shirt"} [trơn]{"entity": "attr", "value": "solid"} mà [hoa hoè]{"entity": "attr", "value": "floral"} để đi học còn hàng không ạ
+    - Shop còn chiếc [áo choàng Robe]{"entity": "cate", "value": "Robe"} tương tự không ạ
+    - Mình muốn mua loại [áo sơ mi]{"entity": "cate", "value": "Shirt"} này
+    - ad có [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} [màu tím]{"entity": "color", "value": "purple"} không á
+    - Admin có [áo len dày]{"entity": "cate", "value": "Peacoat"} [kiểu suông]{"entity": "attr", "value": "loose"} [trắng]{"entity": "color", "value": "white"} không á
+    - [quần bó sát chân]{"entity": "cate", "value": "Leggings"} này còn hàng loại này không admin
+    - shop còn loại [quần bó sát chân]{"entity": "cate", "value": "Leggings"} này không ạ
+    - [áo]{"entity": "cate", "value": "T-Shirt"} [màu hồng]{"entity": "color", "value": "pink"} [kiểu dài]{"entity": "attr", "value": "kiểu dài"} có loại nào ok không Shop
+    - shop còn mẫu [Áo]{"entity": "cate", "value": "T-Shirt"} không ạ
+    - [Kimono]{"entity": "cate", "value": "Kimono"} [hồng]{"entity": "color", "value": "pink"} [dài]{"entity": "attr", "value": "dài"} có loại nào giống hình không
+    - Còn kiểu [áo Tee]{"entity": "cate", "value": "Tee"} [màu hồng]{"entity": "color", "value": "pink"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} như hình Ad
+    - [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [đen]{"entity": "color", "value": "black"} [không có cổ]{"entity": "attr", "value": "không có cổ"} có loại nào ok không cửa hàng
+    - Có loại [đầm bình thường]{"entity": "cate", "value": "Dress"} màu [ngắn]{"entity": "attr", "value": "mini_length"} [màu xanh lá]{"entity": "color", "value": "green"} không sốp
+    - Tôi muốn mua kiểu [áo sơ mi]{"entity": "cate", "value": "Shirt"} [màu hồng]{"entity": "color", "value": "pink"} [hoa hoè]{"entity": "attr", "value": "floral"} này á mà không biết lựa như thế nào
+    - Tôi muốn mua [áo sơ mi]{"entity": "cate", "value": "Shirt"} [sọc]{"entity": "attr", "value": "striped"} và nó màu [màu tím]{"entity": "color", "value": "purple"} như này ạ
+    - admin còn loại [áo]{"entity": "cate", "value": "T-Shirt"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [form rộng]{"entity": "attr", "value": "loose"} á Ad
+    - Tôih muốn mua loại [Váy chơi hè]{"entity": "cate", "value": "Sundress"} này còn hàng như hình không ạ
+    - shop còn loại [Quần nỉ]{"entity": "cate", "value": "Sweatpants"} sexy [màu vàng]{"entity": "color", "value": "yellow"} không ad
+    - [đồ bay]{"entity": "cate", "value": "Jumpsuit"} này còn mẫu không thế
+    - Ad có kiểu [áo thun]{"entity": "cate", "value": "T-Shirt"} như  không á
+    - Có loại [Kimono]{"entity": "cate", "value": "Kimono"} [loại cô ton]{"entity": "attr", "value": "cotton"} [có hình lưới]{"entity": "attr", "value": "lattice"} không cửa hàng
+    - [Kimono]{"entity": "cate", "value": "Kimono"} này còn hàng loại này không Shop
+    - [hoodie]{"entity": "cate", "value": "Hoodie"} này còn hàng loại này không admin
+    - Lựa dùm mẫu [Áo]{"entity": "cate", "value": "Shirt"} [vàng đậm]{"entity": "color", "value": "yellow"} đi shop
+    - Tôi đang có nhu cầu mua loại [mũ]{"entity": "cate", "value": "Anorak"} [hoa hoè]{"entity": "attr", "value": "floral"} hợp xu hướng đi admin
+    - tui muốn mua mẫu [quần lót]{"entity": "cate", "value": "Trunks"} như này có không ạ
+    - Lựa giúp Mìnhh cái kiểu [đầm]{"entity": "cate", "value": "Dress"} [đa dạng]{"entity": "attr", "value": "conventional"} đi sốp
+    - [áo choàng]{"entity": "cate", "value": "Poncho"} [màu vàng]{"entity": "color", "value": "yellow"} [dạng lưới]{"entity": "attr", "value": "lattice"} có loại nào ok không Admin
+    - Admin có [quần sọt]{"entity": "cate", "value": "Shorts"} [tay dài]{"entity": "attr", "value": "Shirt"} [lục]{"entity": "color", "value": "blue"} không á
+    - [quần bó sát chân]{"entity": "cate", "value": "Leggings"} mà [dạng ôm]{"entity": "attr", "value": "tight"} để đi học còn hàng không ạ
+    - Shop còn chiếc [áo Tee]{"entity": "cate", "value": "Tee"} tương tự không ạ
+    - Toi muốn mua kiểu [áo thun]{"entity": "cate", "value": "Shirt"} [denim]{"entity": "attr", "value": "denim"} này á mà không biết lựa như thế nào
+    - [quần váy]{"entity": "cate", "value": "Skirt"} cái nào đẹp [rộng rãi]{"entity": "attr", "value": "conventional"} vậy Ad
+    - shop có kiểu [áo khoác không tay]{"entity": "cate", "value": "Kaftan"} giống vậy không á
+    - Ad có kiểu [Quần nỉ ngắn]{"entity": "cate", "value": "Sweatshorts"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [dài qua đầu gối]{"entity": "attr", "value": "maxi_length"} xinh không shop
+    - tôi muốn mua kiểu [áo khoác liền mũ]{"entity": "cate", "value": "Parka"} [kiểu ngắn]{"entity": "attr", "value": "mini_length"} này á mà không biết lựa như thế nào
+    - tôi muốn mua loại [áo Poncho]{"entity": "cate", "value": "Poncho"} này
+    - Shop có kiểu [áo choàng Robe]{"entity": "cate", "value": "Robe"} [ca rô]{"entity": "attr", "value": "Flannel"} [có in hình]{"entity": "attr", "value": "graphic"} xinh không shop
+    - Admin còn mẫu [Quần thun ống rộng]{"entity": "cate", "value": "Joggers"} tương tự như không ạ
+    - Admin có mẫu [quần jeans]{"entity": "cate", "value": "Jeans"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} [dạng len]{"entity": "attr", "value": "knit"} nào cute không dị
+    - Có mẫu [quần bó sát chân]{"entity": "cate", "value": "Leggings"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} với [vàng đậm]{"entity": "color", "value": "yellow"} không dị
+    - admin có mẫu [Áo khoác]{"entity": "cate", "value": "Áo khoác"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} nào cute không dị
+    - Ad có kiểu [quần jean]{"entity": "cate", "value": "Jeans"} như  không á
+    - [áo len có mũ]{"entity": "cate", "value": "Hoodie"} này còn hàng loại này không shop
+    - cửa hàng có kiểu [quần lửng]{"entity": "cate", "value": "quần"} [dài tay]{"entity": "attr", "value": "long_sleeve"} [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} như trên hong á
+    - Mìn muốn mua mẫu [đồ bay]{"entity": "cate", "value": "Jumpsuit"} như này ạ
+    - Có loại [áo hở lưng]{"entity": "cate", "value": "Halter"} [trên đầu gối]{"entity": "attr", "value": "mini_length"} [ngắn tay]{"entity": "attr", "value": "short_sleeve"} không admin
+    - [quần sọt]{"entity": "cate", "value": "Shorts"} [màu nâu]{"entity": "color", "value": "nâu"} mà [đa dạng]{"entity": "attr", "value": "conventional"} để đi học còn hàng không ạ
+    - shopmin có kiểu [áo liền quần ngắn]{"entity": "cate", "value": "Romper"} mà nó [hồng]{"entity": "color", "value": "pink"} không á
+    - Sốp có kiểu [quần ống rộng]{"entity": "cate", "value": "Culottes"} giống vậy không á
+    - shop còn loại [áo thun]{"entity": "cate", "value": "Shirt"} này không ạ
+    - [áo choàng]{"entity": "cate", "value": "Poncho"} này còn hàng loại này không ad
+    - sốp còn mẫu [váy sơ mi]{"entity": "cate", "value": "Shirtdress"} không ạ
+    - Còn kiểu [áo len dày]{"entity": "cate", "value": "Peacoat"} như này không
+    - Admin còn loại [đầm rộng]{"entity": "cate", "value": "Caftan"} sexy [màu trắng]{"entity": "color", "value": "white"} không sốp
+    - Lựa dùm mẫu [hoodie]{"entity": "cate", "value": "Hoodie"} [đen màu]{"entity": "color", "value": "black"} đi ad
+    - Shop còn loại [váy]{"entity": "cate", "value": "Skirt"} nào [đen]{"entity": "color", "value": "black"} [kiểu suông]{"entity": "attr", "value": "loose"} đẹp không ạ
+    - [quần lửng]{"entity": "cate", "value": "Capris"} mà [kiểu không váy]{"entity": "attr", "value": "no_dress"} để đi học còn hàng không ạ
+    - Admin còn chiếc [váy xà rông]{"entity": "cate", "value": "Sarong"} [vàng đậm]{"entity": "color", "value": "yellow"} hợp trend bây giờ không ạ
+    - Shop có mẫu [hoodie]{"entity": "cate", "value": "Hoodie"} [dạng lưới]{"entity": "attr", "value": "lattice"} [ngắn]{"entity": "attr", "value": "mini_length"} nào cute không dị
+    - Lựa dùm mẫu [loại blazer]{"entity": "cate", "value": "Blazer"} [cổ truyền thống]{"entity": "attr", "value": "crew_neckline"} và nó màu [vàng đậm]{"entity": "color", "value": "yellow"} đi Admin
+    - Sốp còn loại [váy xà rông]{"entity": "cate", "value": "Sarong"} [đa dạng]{"entity": "attr", "value": "conventional"} á shop
+    - Ad còn loại [quần lửng]{"entity": "cate", "value": "quần"} [phủ lông]{"entity": "attr", "value": "faux"} á ad
+    - Tôi muốn mua kiểu [quần ống rộng]{"entity": "cate", "value": "Culottes"} [màu đen]{"entity": "color", "value": "black"} [denim]{"entity": "attr", "value": "denim"} này á mà không biết lựa như thế nào
+    - Còn kiểu [Váy chơi hè]{"entity": "cate", "value": "Sundress"} [vàng đậm]{"entity": "color", "value": "yellow"} [ngắn hết cỡ]{"entity": "attr", "value": "mini_length"} không shop
+
+
+- synonym: Anorak
+  examples: |
+    - anorak
+    - mũ anorak
+    - mũ trùm đầu
+    - mũ len trùm đầu
+
+- synonym: Blazer
+  examples: |
+    - áo blazer
+    - áo khoác Blazer
+    - áo khoác đi tiệc
+
+- synonym: Blouse
+  examples: |
+    - Blouse
+    - áo bờ lu
+    - áo blouse
+    - áo bánh bèo
+    - áo xếp phồng
+    - áo xếp ly
+    - áo may phồng
+
+- synonym: Bomber
+  examples: |
+    - bomber
+    - áo bomber
+    - áo khoác không mũ
+    - áo khoác bomber
+
+- synonym: Button-Down
+  examples: |
+    - Button-Down
+    - áo sơ mi button-down
+    - áo sơ mi nút dẹt
+    - áo sơ mi cổ nút dẹt
+
+- synonym: Cardigan
+  examples: |
+    - Cardigan
+    - áo Cardigan
+    - áo len Cardigan
+    - áo len dệt hở
+    - áo len dệt
+
+- synonym: Flannel
+  examples: |
+    - Flannel
+    - áo Flannel
+    - áo sơ mi Flannel
+    - áo sơ mi kiểu ca rô 
+    - áo sơ mi ca rô
+    - áo sơ mi Flannel
+
+- synonym: Halter
+  examples: |
+    - Halter
+    - áo Halter
+    - áo dây
+    - áo hở lưng
+
+- synonym: Henley
+  examples: |
+    - Henley
+    - áo Henley
+    - áo thun tay dài 
+    - áo thun khui đầu
+
+- synonym: Hoodie
+  examples: |
+    - Hoodie
+    - áo Hoodie
+    - áo len Hoodie
+    - áo form rộng
+    - áo len có mũ
+
+- synonym: Jacket
+  examples: |
+    - Jacket
+    - áo khoác Jacket
+    - áo khoác unisex
+    - áo khoác cho nam nữ
+
+- synonym: Jersey
+  examples: |
+    - Jersey
+    - áo thể thao Jersey
+    - áo Jersey
+    - áo thể thao
+
+- synonym: Parka
+  examples: |
+    - Parka
+    - áo Parka
+    - áo khoác kèm mũ
+    - áo khoác liền mũ
+
+- synonym: Peacoat
+  examples: |
+    - Peacoat
+    - áo Peacoat
+    - áo len dày
+    - áo len Peacoat
+
+- synonym: Poncho
+  examples: |
+    - Poncho
+    - áo Poncho
+    - áo choàng
+
+- synonym: Sweater
+  examples: |
+    - Sweater
+    - áo Sweater
+    - áo len thông thường
+    - áo len
+
+- synonym: Tank
+  examples: |
+    - Tank
+    - áo Tank
+    - áo ba lỗ
+    - áo không tay
+    - áo thun không tay
+    - áo thun ba lỗ
+
+- synonym: Tee
+  examples: |
+    - Tee
+    - áo Tee
+    - áo cổ tròn
+    - áo thun cổ tròn
+    - áo thun ít hoạ tiết
+
+- synonym: Top
+  examples: |
+    - Top
+    - áo Top
+    - áo crop top
+
+- synonym: Turtleneck
+  examples: |
+    - Turtleneck
+    - áo Turtleneck
+    - áo cổ lọ Turtleneck
+    - áo cổ lọ
+
+- synonym: Capris
+  examples: |
+    - Capris
+    - quần Capris
+    - quần lửng
+
+- synonym: Chinos
+  examples: |
+    - Chinos
+    - quần Chinos
+    - quần cotton
+    - quần dệt chéo
+
+- synonym: Culottes
+  examples: |
+    - Culottes
+    - quần Culottes
+    - quần ống rộng Culottes
+    - quần ống rộng
+
+- synonym: Cutoffs
+  examples: |
+    - Cutoffs
+    - quần Cutoffs
+    - quần tự chế
+    - quần ngắn sát
+
+- synonym: Gauchos
+  examples: |
+    - Gauchos
+    - quần Gauchos
+    - quần ống loe
+
+- synonym: Jeans
+  examples: |
+    - Jeans
+    - quần Jeans
+    - áo Jeans
+
+- synonym: Jeggings
+  examples: |
+    - Jeggings
+    - quần Jeggings
+    - quần Legging nhưng may bằng vải denim
+
+- synonym: Jodhpurs
+  examples: |
+    - Jodhpurs
+    - quần Jodhpurs
+    - quần bó sát
+    - quần sát tới mắt cá chân
+
+- synonym: Joggers
+  examples: |
+    - Joggers
+    - quần Joggers
+    - quần thun
+    - quần thun ống rộng
+
+- synonym: Leggings
+  examples: |
+    - Leggings
+    - quần Leggings
+    - quần bó sát chân
+
+- synonym: Sarong
+  examples: |
+    - Sarong
+    - quần váy Sarong
+    - quần Sarong
+    - quần váy xà rông
+    - quần xà rông
+    - váy xà rông
+
+- synonym: Shorts
+  examples: |
+    - Shorts
+    - quần Shorts
+    - quần sọt
+    - quần ngắn
+  
+- synonym: Skirt
+  examples: |
+    - Skirt
+    - quần Skirt
+    - quần váy
+
+- synonym: Sweatpants
+  examples: |
+    - Sweatpants
+    - quần Sweatpants
+    - quần nỉ
+    - quần bo gấu
+    - quần nỉ bo gấu
+
+- synonym: Sweatshorts
+  examples: |
+    - Sweatshorts
+    - quần Sweatshorts
+    - quần nỉ ngắn
+
+- synonym: Trunks
+  examples: |
+    - Trunks
+    - quần Trunks
+    - quần lót
+
+- synonym: Caftan
+  examples: |
+    - Caftan
+    - đầm Caftan
+    - đầm rộng
+
+- synonym: Cape
+  examples: |
+    - Cape
+    - đầm Cape
+    - đầm không tay Cape
+    - đầm không tay
+
+- synonym: Coat
+  examples: |
+    - Coat
+    - áo khoác Coat
+    - áo giữ ấm
+    - áo khoác giữ ấm
+
+- synonym: Coverup
+  examples: |
+    - Coverup
+    - đồ Coverup
+
+- synonym: Dress
+  examples: |
+    - Dress
+    - đầm
+    - đầm thông thường
+    - đầm thường
+
+- synonym: Jumpsuit
+  examples: |
+    - Jumpsuit
+    - đồ bay
+    - đồ Jumpsuit
+
+- synonym: Kaftan
+  examples: |
+    - áo Kaftan
+    - Kaftan
+    - áo khoác không tay
+
+- synonym: Kimono
+  examples: |
+    - Kimono
+    - đồ Kimono
+    - đồ bộ Kimono
+    - đồ bộ kiểu Nhật
+    - đồ kiểu Nhật
+    - bộ Kimono
+
+- synonym: Nightdress
+  examples: |
+    - Nightdress
+    - đầm Nightdress
+    - đầm ngủ
+
+- synonym: Onesie
+  examples: |
+    - Onesie
+    - đồ Onesie
+    - áo liền quần
+
+- synonym: Robe
+  examples: |
+    - Robe
+    - áo Robe
+    - áo choàng Robe
+
+- synonym: Romper
+  examples: |
+    - Romper
+    - áo liền quần ngắn
+
+- synonym: Shirtdress
+  examples: |
+    - Shirtdress
+    - váy Shirtdress
+    - váy sơ mi
+
+- synonym: Sundress
+  examples: |
+    - váy Sundress
+    - Sundress
+    - váy đi chơi hè
+
+- synonym: floral
+  examples: |
+    - floral
+    - kiểu floral
+    - kiểu có hoa
+    - có hoa
+    - có bông
+    - dạng bông hoa
+
+- synonym: graphic
+  examples: |
+    - graphic
+    - kiểu graphic
+    - kiểu có hình ảnh
+    - kiểu in hình
+    - dạng có ảnh
+
+- synonym: striped
+  examples: |
+    - striped
+    - kiểu striped
+    - kiểu sọc
+    - có sọc
+
+- synonym: embroidered
+  examples: |
+    - embroidered
+    - dạng embroidered
+    - kiểu thêu
+    - dạng thêu
+
+- synonym: pleated
+  examples: |
+    - pleated
+    - kiểu pleated
+    - dạng xếp ly
+    - kiểu xếp li
+    - xếp li
+  
+- synonym: solid
+  examples: |
+    - solid
+    - kiểu solid
+    - trơn
+    - đồ trơn
+    - dạng trơn
+
+- synonym: lattice
+  examples: |
+    - lattice
+    - dạng lattice
+    - kiểu lưới
+    - có hình lưới
+
+- synonym: long_sleeve
+  examples: |
+    - long sleeve
+    - kiểu long sleeve
+    - dạng dài tay
+    - ống dài
+
+- synonym: short_sleeve
+  examples: |
+    - short sleeve
+    - kiểu short sleeve
+    - kiểu ngắn tay
+    - tay ngắn 
+    - ống ngắn
+
+- synonym: sleeveless
+  examples: |
+    - sleeveless
+    - kiểu sleeveless
+    - sát nách
+    - không có cánh tay
+
+- synonym: maxi_length
+  examples: |
+    - đồ dài
+    - qua đầu gối
+    - dưới đầu gối
+
+- synonym: mini_length
+  examples: |
+    - đồ ngắn
+    - kiểu ngắn
+    - trên đầu dưới
+    - ngắn hết cỡ
+
+- synonym: no_dress
+  examples: |
+    - no dress
+    - kiểu không váy
+
+- synonym: crew_neckline
+  examples: |
+    - có cổ
+    - kiểu cổ thuyền
+    - cổ truyền thống
+
+- synonym: v_neckline
+  examples: |
+    - kiểu cổ v
+    - kiểu v neckline
+    - có cổ chữ v
+    - cổ v
+
+- synonym: square_neckline
+  examples: |
+    - kiểu cổ vuông
+    - cổ vuông
+    - có dạng cổ vuông
+    - kiểu square neckline
+
+- synonym: no_neckline
+  examples: |
+    - kiểu không cổ
+    - dạng no neckline
+    - không có cổ
+
+- synonym: denim
+  examples: |
+    - kiểu denim
+    - denim
+    - kiểu jeans
+    - chất liệu jeans
+
+- synonym: chiffon
+  examples: |
+    - chiffon
+    - kiểu chiffon
+    - áo voan
+    - kiểu voan
+    - voan
+    - vải voan
+    - chất liệu voan
+    - chất liệu chiffon
+
+- synonym: cotton
+  examples: |
+    - cotton
+    - loại cô tông
+    - loại co ton
+    - kiểu cotton
+    - chất liệu cô tôn
+
+- synonym: leather
+  examples: |
+    - leather
+    - loại da
+    - da
+    - chất liệu da
+
+- synonym: faux
+  examples: |
+    - faux
+    - loại phủ lông
+    - phủ lông
+    - chất liệu lông
+
+- synonym: knit
+  examples: |
+    - knit
+    - dạng len
+    - có len
+    - chất liệu len
+
+- synonym: tight
+  examples: |
+    - tight
+    - bó sát
+    - kiểu tight
+    - dạng ôm
+
+- synonym: loose
+  examples: |
+    - loose
+    - dạng rộng rãi
+    - kiểu suông
+    - oversize
+
+- synonym: conventional
+  examples: |
+    - conventional
+    - kiểu thuận tiện
+    - kiểu văn phòng
+    - thoải mái
+    - đa dạng
+
+- synonym: red
+  examples: |
+    - red
+    - đỏ
+    - đỏ nhạt
+    - đỏ đậm
+    - đỏ sẫm
+    - màu đỏ
+
+- synonym: yellow
+  examples: |
+    - yellow
+    - vàng
+    - vàng nhạt
+    - vàng đậm
+    - màu vàng
+
+- synonym: blue
+  examples: |
+    - blue
+    - xanh
+    - xanh nhạt
+    - xanh đậm
+    - xanh biển
+    - biển
+    - màu xanh
+    - màu biển
+    - lục
+    - màu lục
+
+- synonym: green
+  examples: |
+    - green
+    - xanh lá
+    - xanh cây
+    - màu lam
+    - lam
+    - màu xanh lá
+
+- synonym: black
+  examples: |
+    - black
+    - đen
+    - đen nhạt
+    - đen đậm
+    - màu đen
+
+- synonym: white
+  examples: |
+    - white
+    - trắng
+    - trắng ngà
+    - màu trắng 
+
+- synonym: pink
+  examples: |
+    - pink
+    - hồng
+    - hồng nhạt
+    - hồng đậm
+    - màu hồng
+
+- synonym: orange
+  examples: |
+    - orange
+    - cam
+    - cam nhạt
+    - cam đậm
+    - màu cam
+
+- synonym: purple
+  examples: |
+    - tím
+    - tím nhạt
+    - tím đậm
+    - màu tím
+    - purple

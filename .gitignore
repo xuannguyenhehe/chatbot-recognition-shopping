@@ -152,3 +152,14 @@ rasa/models/
 docker-compose/minio/data/*
 docker-compose/milvus/data/*
 docker-compose/mongo/data/*
+
+dataset/*
+training/dataset/*
+data/*
+LICENSE
+CITATION.cff
+Makefile
+.bumpversion.cfg
+training/
+*.zip
+.DS_Store
