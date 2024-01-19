@@ -7,3 +7,6 @@ class InferenceInput(BaseModel):
 
 class IntentInput(BaseModel):
     message: str
+
+class CheckpointInput(BaseModel):
+    username: str

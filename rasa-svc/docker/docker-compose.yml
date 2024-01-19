@@ -14,16 +14,17 @@ services:
     networks:
       - chatbot_default
     volumes:
-      - ../app:/rasa-service/app
-      - ../extensions:/rasa-service/extensions
-      - ../config:/rasa-service/config
+      - ../app:/rasa/app
+      - ../extensions:/rasa/extensions
+      - ../config:/rasa/config
+      - ../tmp:/rasa/tmp
     ports:
       - 8002:8002
 
 networks:
   chatbot_default:
     name: chatbot_default
-    external: true
+    driver: bridge
   host:
     name: host
     external: true

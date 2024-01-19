@@ -163,3 +163,4 @@ Makefile
 training/
 *.zip
 .DS_Store
+rasa-svc/tmp

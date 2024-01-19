@@ -53,7 +53,7 @@ class MilvusConnector:
             volume = FieldSchema(name="volume", dtype=DataType.INT32)
             username = FieldSchema(name="username", dtype=DataType.VARCHAR, max_length=200)
             label = FieldSchema(name="label", dtype=DataType.VARCHAR, max_length=200)
-            vector = FieldSchema(name="vector", dtype=DataType.FLOAT_VECTOR, dim=64)
+            vector = FieldSchema(name="vector", dtype=DataType.FLOAT_VECTOR, dim=640)
             pseudo_cate = FieldSchema(name="pseudo_cate", dtype=DataType.JSON)
             pseudo_attr = FieldSchema(name="pseudo_attr", dtype=DataType.JSON)
             pseudo_color = FieldSchema(name="pseudo_color", dtype=DataType.JSON)

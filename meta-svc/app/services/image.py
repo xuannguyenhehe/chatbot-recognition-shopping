@@ -25,7 +25,7 @@ class ImageService(AppService):
     def add_images(self, username: str, images: dict):
         image_objs = []
         for label, image_files in images.items():
-            self.vector_search.delete_all_images(username)
+            # self.vector_search.delete_all_images(username)
             for image in image_files:
                 base64_image, _ = self.attemp_decode(image["content"])
                 filedata = io.BytesIO(base64_image)

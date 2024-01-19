@@ -10,6 +10,19 @@ class Settings(BaseSettings):
     SERVICE_NAME: str
 
     CHECKPOINT_PATH: str
+    RASA_CFG: str
+    DOMAIN_CFG: str
+    NLU_CFG: str
+    SYNONYM_CFG: str
+    RESPONSES_CFG: str
+    RULES_CFG: str
+    STORIES_CFG: str
+
+    MINIO_BUCKETS: str
+    ADMIN_MINIO_URL: str
+    MINIO_ROOT_USER: str
+    MINIO_ROOT_PASSWORD: str
+    DEFAULT_BUCKET: str
 
 
 class DevelopmentConfig(Settings):
