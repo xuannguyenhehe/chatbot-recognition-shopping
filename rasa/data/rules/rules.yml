@@ -12,7 +12,6 @@ rules:
   steps:
   - intent: ask_type
   - action: utter_wait
-  # - action: action_get_info_clothes
 
 - rule: Hỏi người dùng muốn mua khi nhận phản hồi tích cực
   steps:
@@ -59,7 +58,6 @@ rules:
 - rule: Khi chờ và có phản hồi tích cực
   steps: 
   - action: utter_wait
-  # - action: action_get_info_clothes
   - intent: mood_positive_response
   - action: utter_happy
   - action: utter_buy
@@ -67,6 +65,5 @@ rules:
 - rule: Khi chờ và có phản hồi tiêu cực
   steps:
   - action: utter_wait
-  # - action: action_get_info_clothes
   - intent: mood_negative_response
   - action: utter_type

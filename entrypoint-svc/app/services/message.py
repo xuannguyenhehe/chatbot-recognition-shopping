@@ -83,52 +83,71 @@ class MessageService(AppService):
             if status_code != sta.HTTP_200_OK:
                 return ResultResponse(ExceptionResponse.ErrorServer(message))
 
-        intent, entities = self.get_intent_entities_message(message_obj.content)
-        if intent == IntentType.GREET:
-            text = self.get_answer_message(
-                username=sender,
-                message=message_obj.content,
-            )
-            options = None
-        elif intent == IntentType.ASK_TYPE:
-            entities = {entity["entity"]: entity["value"] for entity in entities}
-
-            colors = None
-            if "color" in entities:
-                colors = [entities["color"]]
-            elif path_image:
-                colors = self.get_color_image(path_image)
-
-            if path_image:
-                category_attribute = self.get_category_attribute_prediction(path_image)
-
-            category = None
-            if "cate" in entities:
-                category = [entities["cate"]]
-            elif path_image:
-                category = category_attribute['cate']['top 5']
-
-            attribute = None
-            if "attr" in entities:
-                attribute = [entities["attr"]]
-            elif path_image:
-                attribute = category_attribute['attr']['top 5']
-
-            print(chat_user, path_image, colors, category, attribute, is_backup, offset_image)
-
-            images = self.get_recommend_images(chat_user, path_image, colors, [], ['maxi_length'], is_backup, offset_image)
-            if len(images) > 0:
-                text = "Sản phẩm nào làm bạn thích nhất?"
-                options = images
+        if "còn hàng" in message_obj.content:
+            candidates = message_obj.content.split(" ")
+            labels = [candidate for candidate in candidates if candidate.startswith('SP')]
+            if len(labels):
+                label = labels[0]
+                stocking = self.get_stock(chat_user, label)
+                if stocking >= 0:
+                    text = f"Hiện tại còn {stocking} sản phẩm"
+                else:
+                    text = f"Hiện tại không có loại sản phẩm mang mã {label}"    
             else:
-                text = "Thật tiếc chúng tôi không có sản phẩm nào giống miêu tả của bạn"
-                options = None
-        else:
-            text = """
-                Shop không hiểu yêu cầu của bạn. Bạn có thể lặp lại yêu cầu của bạn theo cú pháp sau không? 
-                "Tôi cần mua/quan tâm loại áo/quần/váy có màu/loại/kiểu như này không?"
-            """
+                stocking = 0
+                text = f"Hiện tại không có loại sản phẩm mang mã {label}"
             options = None
+        else:
+
+            intent, entities = self.get_intent_entities_message(message_obj.content)
+            if intent == IntentType.GREET:
+                text = self.get_answer_message(
+                    username=sender,
+                    message=message_obj.content,
+                )
+                options = None
+            elif intent == "address":
+                text = "Shop ở Tân Phú nha bạn ơi!"
+                options = None
+            elif intent == IntentType.ASK_TYPE:
+                entities = {entity["entity"]: entity["value"] for entity in entities}
+
+                colors = None
+                if "color" in entities:
+                    colors = [entities["color"]]
+                elif path_image:
+                    colors = self.get_color_image(path_image)
+
+                if path_image:
+                    category_attribute = self.get_category_attribute_prediction(path_image)
+
+                category = None
+                if "cate" in entities:
+                    category = [entities["cate"]]
+                elif path_image:
+                    category = category_attribute['cate']['top 5']
+
+                attribute = None
+                if "attr" in entities:
+                    attribute = [entities["attr"]]
+                elif path_image:
+                    attribute = category_attribute['attr']['top 5']
+
+                print(chat_user, path_image, colors, category, attribute, is_backup, offset_image)
+
+                images = self.get_recommend_images(chat_user, path_image, colors, category, attribute, is_backup, offset_image)
+                if len(images) > 0:
+                    text = "Sản phẩm nào làm bạn thích nhất?"
+                    options = images
+                else:
+                    text = "Thật tiếc chúng tôi không có sản phẩm nào giống miêu tả của bạn"
+                    options = None
+            else:
+                text = """
+                    Shop không hiểu yêu cầu của bạn. Bạn có thể lặp lại yêu cầu của bạn theo cú pháp sau không? 
+                    "Tôi cần mua/quan tâm loại áo/quần/váy có màu/loại/kiểu như này không?"
+                """
+                options = None
         
         message_output = MessageOutput(
             message=text,
@@ -254,6 +273,17 @@ class MessageService(AppService):
         }
         data, _ = self.call_api(url, payload, "get")
         return data
+    
+    def get_stock(self, chat_user, label):
+        url = "/meta/v1/inference/stock"
+        payload = {
+            "username": chat_user,
+            "label": label,
+        }
+        data, _ = self.call_api(url, payload, "post")
+        if data is None or 'stocking' not in data:
+            return -1
+        return data["stocking"]
     
 
 class MessageCRUD(AppCRUD):

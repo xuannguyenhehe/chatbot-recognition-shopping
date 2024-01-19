@@ -3,5 +3,9 @@ from typing import List
 
 
 class QAValid(BaseModel):
-    question: List[str]
+    keyword: str
+    questions: List[str]
     answer: str
+
+class QAValids(BaseModel):
+    intents: List[QAValid]

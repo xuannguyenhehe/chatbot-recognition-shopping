@@ -47,7 +47,7 @@ function ChatBot() {
             sm={2} 
             style={{
               "background": "rgb(24, 25, 26)",
-              "minHeight": "80vh",
+              "minHeight": "90vh",
               "overflow": "auto",
               "border": "1px solid #303030",
               "borderRadius": "3px",

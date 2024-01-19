@@ -210,15 +210,16 @@ class MilvusConnector:
                 anns_field="vector",
                 param={"metric_type": "L2"},
                 offset=offset,
-                limit=50,
+                limit=5,
                 expr=expr,
                 output_fields=["path", "label"],
             )
-            results = [(hit.entity.get('path'), hit.entity.get('label')) for result in results for hit in result]
+            results = [hit.entity.get('path') for result in results for hit in result]
         else:
             results = self.collection.query(
                 expr=expr, 
                 output_fields=['path'],
+                limit=5,
             )
             results = [result["path"] for result in results]
         return results

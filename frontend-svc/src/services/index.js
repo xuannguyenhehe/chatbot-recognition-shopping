@@ -3,6 +3,7 @@ import MessageSagas from "./message";
 import ChatSagas from "./chat";
 import AccountSagas from "./account";
 import ImageSagas from "./image";
+import QASagas from "./qa";
 
 export default function* rootSaga() {
   yield all([
@@ -10,5 +11,6 @@ export default function* rootSaga() {
     ChatSagas(),
     AccountSagas(),
     ImageSagas(),
+    QASagas(),
   ]);
 }

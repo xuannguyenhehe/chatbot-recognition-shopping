@@ -10,3 +10,7 @@ class InferenceInput(BaseModel):
     category: Optional[List[str]]
     attribute: Optional[List[str]]
     offset: Optional[int]
+
+class StockInput(BaseModel):
+    username: str
+    label: str

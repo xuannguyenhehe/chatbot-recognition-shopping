@@ -150,6 +150,16 @@ class ImageService(AppService):
         res = MetaClothesCRUD(self.db).get_info(username, labels[0]['label'])
         message = f"Get info with path image {path_image}"
         status_code = requests.codes.ok
+        if res is None:
+            res = "Info is emtpy"
+        return ResultResponse((message, status_code, res))
+    
+    def get_stock(self, username: str, label: str):
+        res = MetaClothesCRUD(self.db).get_info(username, label)
+        message = f"Get info with label {label}"
+        status_code = requests.codes.ok
+        if res is None:
+            res = {}
         return ResultResponse((message, status_code, res))
 
 

@@ -4,7 +4,7 @@ import pymongo
 from fastapi import status
 
 from app.models.qa import QA as QAModel
-from app.schemas.qa import QAValid
+from app.schemas.qa import QAValid, QAValids
 from app.services import AppCRUD, AppService
 from app.utils.repsonse.exceptions import ExceptionResponse
 from app.utils.repsonse.result import ResultResponse
@@ -15,27 +15,21 @@ class QAService(AppService):
         chats = QACRUD(self.db).get(username=username)
         return ResultResponse((None, status.HTTP_200_OK, chats))
 
-    def create(self, username: str, qa_input: QAValid) -> ResultResponse:
-        exist_qa = QACRUD(self.db).get(
-            username=username,
-        )
-        if exist_qa:
-            return ResultResponse(ExceptionResponse.ExistedError({
-                "qa": username,
-            }))
-        message, status_code = QACRUD(self.db).create(username, qa_input)
+    def create(self, username: str, qa_inputs: QAValids) -> ResultResponse:
+        message, status_code = QACRUD(self.db).create(username, qa_inputs)
         return ResultResponse((message, status_code))
 
 
 class QACRUD(AppCRUD):
-    def create(self, username: str, qa_input: QAValid):
-        qa_model = QAModel(username=username, **qa_input)
-        message, status_code = self.insert("QA", self.serialize(qa_model))
+    def create(self, username: str, qa_inputs: QAValids):
+        qa_model = [QAModel(username=username, **qa_input.dict()) for qa_input in qa_inputs.intents]
+        self.db.QA.delete_many({'username': username})
+        message, status_code = self.insert("QA", self.serialize_list(qa_model))
         return message, status_code
 
     def get(self, username: str) -> QAValid:
         query = {
-            username: username,
+            'username': username,
         }
         no_query = {
             "_id": False,

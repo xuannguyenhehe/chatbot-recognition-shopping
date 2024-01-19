@@ -88,7 +88,9 @@ function Register() {
             name="confirmPassword"
             onChange={(e) => setValues({ ...values, confirmPassword: e.target.value })}
           />
-          <select name="role">
+          <select name="role" onChange={(e) => {
+            setValues({ ...values, role: e.target.value})
+          }}>
             <option value={REALM_TYPES.USER} defaultValue>User</option>
             <option value={REALM_TYPES.ADMIN}>Shop</option>
           </select>

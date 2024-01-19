@@ -6,7 +6,9 @@ function Layout(props) {
   return (
     <div style={{"backgroundColor": "#0e0e11"}}>
       <Header username={props.username} />
-      {props.children}
+      <div style={{"height": "52rem"}}>
+        {props.children}
+      </div>
       <Footer />
     </div>
   );

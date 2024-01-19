@@ -18,6 +18,12 @@ class InferenceService(AppService):
         pseudo_colors: list = input.colors
         pseudo_category: list = input.category
         pseudo_attribute: list = input.attribute
+        print(f"""
+            path_image: {path_image}
+            pseudo_colors: {pseudo_colors}
+            pseudo_category: {pseudo_category} 
+            pseudo_attribute: {pseudo_attribute}
+        """)
         offset = input.offset
         results = []
 

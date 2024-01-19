@@ -201,7 +201,7 @@ const ChatContainer = ({ currentChatUser, messages }) => {
                           }
                         }}
                       >
-                        {option.startsWith("http") ? (
+                        {option !== null && option.startsWith("http") ? (
                           <ImageLoad 
                             src={option}
                           />
